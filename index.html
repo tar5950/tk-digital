@@ -328,6 +328,28 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:60px 5% 32px;
 .bot-send{background:var(--a);border:none;width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
 .bot-send:hover{background:var(--a2);}
 
+
+/* ── MODALE PREVIEW SITE ── */
+.preview-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:800;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+.preview-overlay.open{display:flex;}
+.preview-modal{width:90vw;height:88vh;background:var(--n2);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 32px 80px rgba(0,0,0,0.8);border:1px solid var(--n4);}
+.preview-bar{background:var(--n3);padding:12px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--n4);flex-shrink:0;}
+.preview-dots{display:flex;gap:6px;}
+.preview-dot{width:12px;height:12px;border-radius:50%;}
+.preview-dot.r{background:#ff5f57;}
+.preview-dot.y{background:#febc2e;}
+.preview-dot.g{background:#28c840;}
+.preview-url{flex:1;background:var(--n4);border-radius:6px;padding:6px 14px;font-size:12px;color:var(--mid);font-family:'DM Sans',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.preview-actions{display:flex;gap:8px;align-items:center;}
+.preview-open-btn{font-size:11px;font-weight:600;color:var(--a);background:rgba(200,241,53,0.1);border:1px solid rgba(200,241,53,0.2);padding:5px 12px;border-radius:4px;cursor:pointer;text-decoration:none;white-space:nowrap;}
+.preview-open-btn:hover{background:rgba(200,241,53,0.2);}
+.preview-close{background:none;border:none;color:var(--mid);font-size:20px;cursor:pointer;line-height:1;padding:2px 4px;}
+.preview-close:hover{color:var(--w);}
+.preview-iframe{flex:1;border:none;width:100%;background:#fff;}
+.preview-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--n2);}
+.preview-spin{width:32px;height:32px;border:3px solid var(--n4);border-top-color:var(--a);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
 /* ── KEYFRAMES ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -559,7 +581,7 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:60px 5% 32px;
   </div>
   <div class="portfolio-grid">
 
-    <div class="proj-card" onclick="window.open('https://tar5950.github.io/poulet-brais-4/','_blank')" style="cursor:pointer;">
+    <div class="proj-card" onclick="openPreview('https://tar5950.github.io/poulet-brais-4/')" style="cursor:pointer;">
       <div class="proj-placeholder">🔥</div>
       <div class="proj-overlay"></div>
       <div class="proj-info">
@@ -569,7 +591,7 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:60px 5% 32px;
       </div>
     </div>
 
-    <div class="proj-card" onclick="window.open('https://tar5950.github.io/la-dalle-burger/','_blank')" style="cursor:pointer;">
+    <div class="proj-card" onclick="openPreview('https://tar5950.github.io/la-dalle-burger/')" style="cursor:pointer;">
       <div class="proj-placeholder">🍔</div>
       <div class="proj-overlay"></div>
       <div class="proj-info">
@@ -579,7 +601,7 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:60px 5% 32px;
       </div>
     </div>
 
-    <div class="proj-card" onclick="window.open('https://tar5950.github.io/la-slica/','_blank')" style="cursor:pointer;">
+    <div class="proj-card" onclick="openPreview('https://tar5950.github.io/la-slica/')" style="cursor:pointer;">
       <div class="proj-placeholder">🍕</div>
       <div class="proj-overlay"></div>
       <div class="proj-info">
@@ -589,7 +611,7 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:60px 5% 32px;
       </div>
     </div>
 
-    <div class="proj-card" onclick="window.open('https://tar5950.github.io/Barber-2/','_blank')" style="cursor:pointer;">
+    <div class="proj-card" onclick="openPreview('https://tar5950.github.io/Barber-2/')" style="cursor:pointer;">
       <div class="proj-placeholder">💈</div>
       <div class="proj-overlay"></div>
       <div class="proj-info">
@@ -846,6 +868,30 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:60px 5% 32px;
 
 
 <script>
+
+// PREVIEW MODALE
+function openPreview(url) {
+  document.getElementById('previewUrl').textContent = url;
+  document.getElementById('previewOpenBtn').href = url;
+  document.getElementById('previewFrame').src = url;
+  document.getElementById('previewOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePreview(e) {
+  if (e.target === document.getElementById('previewOverlay')) {
+    document.getElementById('previewOverlay').classList.remove('open');
+    document.getElementById('previewFrame').src = '';
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('previewOverlay').classList.remove('open');
+    document.getElementById('previewFrame').src = '';
+    document.body.style.overflow = '';
+  }
+});
+
 // CURSOR
 var cur = document.getElementById('cursor');
 var ring = document.getElementById('cursor-ring');
@@ -938,6 +984,26 @@ document.querySelectorAll('.srv-card, .proj-card, .step, .about-num-card').forEa
   <div class="bot-input-row">
     <input class="bot-input" id="botInput" type="text" placeholder="Posez votre question..." onkeydown="if(event.key==='Enter') botSend()">
     <button class="bot-send" onclick="botSend()">➤</button>
+  </div>
+</div>
+
+
+<!-- MODALE PREVIEW -->
+<div class="preview-overlay" id="previewOverlay" onclick="closePreview(event)">
+  <div class="preview-modal">
+    <div class="preview-bar">
+      <div class="preview-dots">
+        <div class="preview-dot r"></div>
+        <div class="preview-dot y"></div>
+        <div class="preview-dot g"></div>
+      </div>
+      <div class="preview-url" id="previewUrl">https://...</div>
+      <div class="preview-actions">
+        <a class="preview-open-btn" id="previewOpenBtn" href="#" target="_blank">↗ Ouvrir</a>
+        <button class="preview-close" onclick="document.getElementById('previewOverlay').classList.remove('open')">✕</button>
+      </div>
+    </div>
+    <iframe class="preview-iframe" id="previewFrame" src="" allowfullscreen></iframe>
   </div>
 </div>
 
