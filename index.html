@@ -103,8 +103,8 @@ html{scroll-behavior:smooth;}
 body{background:var(--n);color:var(--w);font-family:'DM Sans',sans-serif;overflow-x:hidden;line-height:1.6;}
 
 /* ── CURSOR ── */
-#cursor{position:fixed;width:12px;height:12px;background:var(--a);border-radius:50%;pointer-events:none;z-index:9999;left:-100px;top:-100px;transition:width 0.2s,height 0.2s;}
-#cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(200,241,53,0.35);border-radius:50%;pointer-events:none;z-index:9998;left:-100px;top:-100px;transition:left 0.12s,top 0.12s,width 0.2s,height 0.2s;}
+#cursor{position:fixed;width:12px;height:12px;background:var(--a);border-radius:50%;pointer-events:none;z-index:9999;left:-100px;top:-100px;transition:width 0.15s,height 0.15s;mix-blend-mode:difference;box-shadow:0 0 12px 4px rgba(200,241,53,0.5);}
+#cursor-ring{position:fixed;width:36px;height:36px;border:2px solid rgba(200,241,53,0.5);border-radius:50%;pointer-events:none;z-index:9998;left:-100px;top:-100px;transition:left 0.1s cubic-bezier(0.23,1,0.32,1),top 0.1s cubic-bezier(0.23,1,0.32,1),width 0.2s,height 0.2s;}
 body:hover #cursor-ring{opacity:1;}
 
 /* ── NAV ── */
@@ -358,7 +358,7 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:60px 5% 32px;
 .bot-ping{position:absolute;top:0;right:0;width:16px;height:16px;background:#ff4444;border-radius:50%;border:2px solid var(--n);animation:botPing 1.8s infinite;}
 @keyframes botPing{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:0.3}}
 #botPanel{position:absolute;bottom:70px;right:0;width:320px;background:var(--n2);border:1px solid var(--n4);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.7);display:none;flex-direction:column;overflow:hidden;max-height:480px;}
-#botPanel.open{display:flex;}
+#botPanel.show{display:flex;}
 #botHead{background:var(--n3);padding:14px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--n4);flex-shrink:0;}
 .bh-av{width:34px;height:34px;background:var(--a);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
 .bh-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--w);}
@@ -951,226 +951,6 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:60px 5% 32px;
 </footer>
 
 
-<script>
-
-
-// ── BOT TK DIGITAL ──
-var botIsOpen = false;
-var botStarted = false;
-var botIdleTimer = null;
-var botQualStep = 0; // étape de qualification
-var botUserData = {};
-
-var BOT_QA = {
-  'prix':      'Un site complet commence à partir de 300€. Tout dépend de ce que vous voulez — commande WhatsApp, fidélité, pub... Je vous prépare un devis gratuit en 24h 😊',
-  'coût':      'Un site complet commence à partir de 300€. Tout dépend de ce que vous voulez — commande WhatsApp, fidélité, pub... Je vous prépare un devis gratuit en 24h 😊',
-  'coute':     'Un site complet commence à partir de 300€. Tout dépend de ce que vous voulez — commande WhatsApp, fidélité, pub... Je vous prépare un devis gratuit en 24h 😊',
-  'combien':   'Un site complet commence à partir de 300€. Tout dépend de ce que vous voulez — commande WhatsApp, fidélité, pub... Je vous prépare un devis gratuit en 24h 😊',
-  'tarif':     'Un site complet commence à partir de 300€. Tout dépend de ce que vous voulez — commande WhatsApp, fidélité, pub... Je vous prépare un devis gratuit en 24h 😊',
-  'budget':    'Un site complet commence à partir de 300€. Tout dépend de ce que vous voulez — commande WhatsApp, fidélité, pub... Je vous prépare un devis gratuit en 24h 😊',
-  'rapide':    'La première version de votre site est prête en 48h. Vous la voyez, vous donnez vos retours, et on met en ligne en moins d'une semaine.',
-  'délai':     'La première version de votre site est prête en 48h. Vous la voyez, vous donnez vos retours, et on met en ligne en moins d'une semaine.',
-  'temps':     'La première version de votre site est prête en 48h. Vous la voyez, vous donnez vos retours, et on met en ligne en moins d'une semaine.',
-  'faites':    'Je crée des sites web pour les commerçants du Nord. Site pro, commande WhatsApp, pub Facebook & Google, fidélité, alertes de commande. Tout ça sans jargon.',
-  'service':   'Je crée des sites web pour les commerçants du Nord. Site pro, commande WhatsApp, pub Facebook & Google, fidélité, alertes de commande. Tout ça sans jargon.',
-  'propose':   'Je crée des sites web pour les commerçants du Nord. Site pro, commande WhatsApp, pub Facebook & Google, fidélité, alertes de commande. Tout ça sans jargon.',
-  'tarik':     'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
-  'parler':    'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
-  'contact':   'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
-  'whatsapp':  'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
-  'restaurant':'Oui, je travaille beaucoup avec les restaurants ! Commande WhatsApp, fidélité, pub ciblée... Regardez les exemples dans la section Projets.',
-  'resto':     'Oui, je travaille beaucoup avec les restaurants ! Commande WhatsApp, fidélité, pub ciblée... Regardez les exemples dans la section Projets.',
-  'coiffeur':  'Oui ! J'ai déjà fait un site barbershop avec réservation WhatsApp. Jetez un oeil à Prestige Barber dans la section Projets.',
-  'réservation':'Oui, la réservation WhatsApp est intégrée. Le client choisit son créneau et confirme en 1 clic.',
-  'google':    'Votre site est optimisé dès le départ pour apparaître sur Google. Quand quelqu'un cherche votre activité près de chez vous, c'est vous qui sortez en premier.',
-  'seo':       'Votre site est optimisé dès le départ pour apparaître sur Google. Quand quelqu'un cherche votre activité près de chez vous, c'est vous qui sortez en premier.',
-  'facebook':  'Je crée et gère vos publicités Facebook & Instagram pour toucher des clients dans votre ville. Vous définissez le budget, je m'occupe du reste.',
-  'pub':       'Je crée et gère vos publicités Facebook & Instagram pour toucher des clients dans votre ville. Vous définissez le budget, je m'occupe du reste.',
-  'fidél':     'La carte de fidélité est intégrée dans votre site. Vos clients accumulent des points à chaque commande et reviennent automatiquement.',
-  'commande':  'Vos clients commandent directement depuis votre site via WhatsApp. Vous recevez une notification immédiate avec tous les détails. Zéro commission.',
-};
-
-function getBotReply(msg) {
-  var low = msg.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  for (var k in BOT_QA) {
-    var kn = k.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-    if (low.indexOf(kn) >= 0) return BOT_QA[k];
-  }
-  // Qualification si pas de réponse connue
-  return botQualify(msg);
-}
-
-function botQualify(msg) {
-  botQualStep++;
-  if (botQualStep === 1) {
-    botUserData.q1 = msg;
-    return 'Je comprends 😊 Pour vous aider au mieux — vous avez déjà un site internet en ce moment ?';
-  } else if (botQualStep === 2) {
-    botUserData.q2 = msg;
-    return 'Et quel est votre type d'activité ? (restaurant, boutique, coiffeur, autre...)';
-  } else if (botQualStep === 3) {
-    botUserData.q3 = msg;
-    var wa = 'https://wa.me/33768789800?text=' + encodeURIComponent('Bonjour Tarik ! Je viens du site TK Digital.\n\nMa situation : ' + botUserData.q1 + '\nSite actuel : ' + botUserData.q2 + '\nActivité : ' + botUserData.q3);
-    return 'Parfait ! Tarik va vous recontacter rapidement avec une solution adaptée. Cliquez ici pour lui envoyer directement vos infos 👉 <a href="' + wa + '" target="_blank" style="color:var(--a);font-weight:700;">Envoyer sur WhatsApp →</a>';
-  }
-  return 'Pour toute autre question, Tarik répond directement 👉 <a href="https://wa.me/33768789800" target="_blank" style="color:var(--a);font-weight:700;">WhatsApp →</a>';
-}
-
-function botAddMsg(txt, who) {
-  var el = document.createElement('div');
-  el.className = 'bm ' + who;
-  el.innerHTML = txt;
-  document.getElementById('botMsgs').appendChild(el);
-  document.getElementById('botMsgs').scrollTop = 99999;
-}
-
-function botType(cb) {
-  var t = document.createElement('div');
-  t.className = 'bt'; t.id = 'btTyp';
-  t.innerHTML = '<span></span><span></span><span></span>';
-  document.getElementById('botMsgs').appendChild(t);
-  document.getElementById('botMsgs').scrollTop = 99999;
-  setTimeout(function() {
-    var el = document.getElementById('btTyp');
-    if (el) el.remove();
-    cb();
-    document.getElementById('botMsgs').scrollTop = 99999;
-  }, 800);
-}
-
-function botSend() {
-  var inp = document.getElementById('botInp');
-  var msg = inp.value.trim();
-  if (!msg) return;
-  botAddMsg(msg, 'user');
-  inp.value = '';
-  document.getElementById('botSugs').style.display = 'none';
-  botType(function() { botAddMsg(getBotReply(msg), 'bot'); });
-}
-
-function botSug(el) {
-  var txt = el.textContent.trim();
-  botAddMsg(txt, 'user');
-  document.getElementById('botSugs').style.display = 'none';
-  var low = txt.toLowerCase();
-  var reply;
-  if (low.indexOf('tarik') >= 0 || low.indexOf('parler') >= 0) {
-    reply = 'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank" style="color:var(--a);font-weight:700;">Écrire sur WhatsApp →</a>';
-  } else {
-    reply = getBotReply(txt);
-  }
-  botType(function() { botAddMsg(reply, 'bot'); });
-}
-
-function botToggle() {
-  botIsOpen = !botIsOpen;
-  document.getElementById('botPanel').classList.toggle('open', botIsOpen);
-  if (botIsOpen && !botStarted) {
-    botStarted = true;
-    botType(function() {
-      botAddMsg('Bonjour 👋 Je suis l'assistant TK Digital. Je peux répondre à vos questions sur nos services, les tarifs, les délais... Comment puis-je vous aider ?', 'bot');
-    });
-  }
-  if (botIsOpen) document.getElementById('botInp').focus();
-}
-
-// Apparaît après 10 secondes d'inactivité
-function resetBotIdle() { clearTimeout(botIdleTimer); botIdleTimer = setTimeout(function(){ if(!botIsOpen && !botStarted) botToggle(); }, 10000); }
-['mousemove','scroll','keypress','touchstart'].forEach(function(e){ document.addEventListener(e, resetBotIdle, {passive:true}); });
-resetBotIdle();
-
-// PREVIEW MODALE
-function openPreview(url) {
-  document.getElementById('previewUrl').textContent = url;
-  document.getElementById('previewOpenBtn').href = url;
-  document.getElementById('previewFrame').src = url;
-  document.getElementById('previewOverlay').classList.add('open');
-  // On bloque uniquement le scroll du body pendant que la modale est ouverte
-  document.body.style.overflow = 'hidden';
-}
-function closePreview(e) {
-  if (e.target === document.getElementById('previewOverlay')) {
-    _closePreviewModal();
-  }
-}
-function _closePreviewModal() {
-  document.getElementById('previewOverlay').classList.remove('open');
-  document.getElementById('previewFrame').src = '';
-  document.body.style.overflow = '';
-  document.body.style.position = '';
-  document.documentElement.style.overflow = '';
-}
-// close géré par onclick
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') _closePreviewModal();
-});
-
-// CURSOR
-var cur = document.getElementById('cursor');
-var ring = document.getElementById('cursor-ring');
-document.addEventListener('mousemove', function(e) {
-  cur.style.left = e.clientX + 'px';
-  cur.style.top = e.clientY + 'px';
-  setTimeout(function(){ ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; }, 80);
-});
-document.querySelectorAll('a,button,.srv-card,.proj-card,.step').forEach(function(el) {
-  el.addEventListener('mouseenter', function(){ cur.style.width='20px';cur.style.height='20px';ring.style.width='56px';ring.style.height='56px'; });
-  el.addEventListener('mouseleave', function(){ cur.style.width='10px';cur.style.height='10px';ring.style.width='36px';ring.style.height='36px'; });
-});
-
-// NAV
-window.addEventListener('scroll', function() {
-  document.getElementById('nav').classList.toggle('solid', window.scrollY > 60);
-});
-
-// CONTACT
-function sendContact() {
-  var prenom = document.getElementById('cf-prenom').value.trim();
-  var business = document.getElementById('cf-business').value.trim();
-  var service = document.getElementById('cf-service').value;
-  var msg = document.getElementById('cf-msg').value.trim();
-  if (!prenom) { alert('Merci d\'entrer ton prénom'); return; }
-  if (!service) { alert('Choisis un service'); return; }
-  if (!msg) { alert('Décris ton projet'); return; }
-  var text = 'Bonjour TK Digital ! 👋\n\nPrénom : ' + prenom + (business ? '\nBusiness : ' + business : '') + '\nService : ' + service + '\n\n' + msg + '\n\nMerci !';
-  window.open('https://wa.me/33768789800?text=' + encodeURIComponent(text), '_blank');
-}
-
-// NOTIFS
-var notifs = [
-  { t: 'Nouveau projet 🚀', txt: 'Un restaurant du Nord vient de commander son site' },
-  { t: 'Site livré ✅', txt: 'Prestige Barber — site + réservation WhatsApp' },
-  { t: 'Campagne lancée 🎯', txt: 'Meta Ads pour un commerce local — résultats J+1' },
-  { t: 'Projet en cours ⚡', txt: 'Site e-commerce + fidélité pour Villeneuve-d\'Ascq' },
-];
-var ni = 0;
-function showNotif() {
-  var n = notifs[ni % notifs.length];
-  document.getElementById('notif-title').textContent = n.t;
-  document.getElementById('notif-txt').textContent = n.txt;
-  document.getElementById('notif').classList.add('show');
-  setTimeout(function(){ document.getElementById('notif').classList.remove('show'); }, 5000);
-  ni++;
-}
-setTimeout(function(){ showNotif(); setInterval(showNotif, 12000); }, 4000);
-
-// SCROLL ANIMATIONS
-var observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.srv-card, .proj-card, .step, .about-num-card').forEach(function(el, i) {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(32px)';
-  el.style.transition = 'opacity 0.6s ' + (i * 0.08) + 's, transform 0.6s ' + (i * 0.08) + 's';
-  observer.observe(el);
-});
-</script>
 
 
 <!-- MODALE PREVIEW -->
@@ -1217,182 +997,160 @@ document.querySelectorAll('.srv-card, .proj-card, .step, .about-num-card').forEa
 
 <script>
 // ── CURSOR VERT ──
-var CUR = document.getElementById('cursor');
-var RING = document.getElementById('cursor-ring');
-if (CUR) {
-  document.addEventListener('mousemove', function(e) {
-    CUR.style.left = e.clientX + 'px';
-    CUR.style.top = e.clientY + 'px';
-    setTimeout(function(){ RING.style.left = e.clientX + 'px'; RING.style.top = e.clientY + 'px'; }, 100);
+(function(){
+  var cur = document.getElementById('cursor');
+  var ring = document.getElementById('cursor-ring');
+  if (!cur) return;
+  document.addEventListener('mousemove', function(e){
+    cur.style.left = e.clientX + 'px';
+    cur.style.top  = e.clientY + 'px';
+    setTimeout(function(){
+      ring.style.left = e.clientX + 'px';
+      ring.style.top  = e.clientY + 'px';
+    }, 90);
   });
-  document.querySelectorAll('a,button,.srv-card,.proj-card,.step,.bsug').forEach(function(el) {
-    el.addEventListener('mouseenter', function(){ CUR.style.width='20px'; CUR.style.height='20px'; RING.style.width='52px'; RING.style.height='52px'; });
-    el.addEventListener('mouseleave', function(){ CUR.style.width='12px'; CUR.style.height='12px'; RING.style.width='36px'; RING.style.height='36px'; });
+  document.querySelectorAll('a,button,.srv-card,.proj-card,.step,.bsug,.bs,.bot-sug').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ cur.style.width='22px'; cur.style.height='22px'; ring.style.width='54px'; ring.style.height='54px'; });
+    el.addEventListener('mouseleave', function(){ cur.style.width='12px'; cur.style.height='12px'; ring.style.width='36px'; ring.style.height='36px'; });
   });
-}
+})();
 
 // ── NAV ──
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function(){
   document.getElementById('nav').classList.toggle('solid', window.scrollY > 60);
 });
 
 // ── SCROLL ANIMATIONS ──
-var obs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll('.srv-card,.proj-card,.step,.about-num-card').forEach(function(el, i) {
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+}, {threshold:0.08});
+document.querySelectorAll('.srv-card,.proj-card,.step,.about-num-card').forEach(function(el,i){
   el.style.opacity='0'; el.style.transform='translateY(28px)';
-  el.style.transition='opacity 0.55s '+(i*0.07)+'s, transform 0.55s '+(i*0.07)+'s';
+  el.style.transition='opacity 0.55s '+(i*0.07)+'s,transform 0.55s '+(i*0.07)+'s';
   obs.observe(el);
 });
 
 // ── PREVIEW MODALE ──
 var overlay = document.getElementById('previewOverlay');
-var frame = document.getElementById('previewFrame');
-var urlEl = document.getElementById('previewUrl');
-var openBtn = document.getElementById('previewOpenBtn');
-var closeBtn = document.getElementById('previewCloseBtn');
-
-function openPreview(url) {
-  urlEl.textContent = url;
-  openBtn.href = url;
+var frame   = document.getElementById('previewFrame');
+function openPreview(url){
+  document.getElementById('previewUrl').textContent = url;
+  document.getElementById('previewOpenBtn').href = url;
   frame.src = url;
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-function closeModal() {
+function closeModal(){
   overlay.classList.remove('open');
   frame.src = 'about:blank';
   document.body.style.overflow = '';
 }
-if (closeBtn) closeBtn.addEventListener('click', closeModal);
-overlay.addEventListener('click', function(e){ if(e.target === overlay) closeModal(); });
+document.getElementById('previewCloseBtn').addEventListener('click', closeModal);
+overlay.addEventListener('click', function(e){ if(e.target===overlay) closeModal(); });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
 
 // ── FORMULAIRE CONTACT ──
-function toggleCheck(el) {
+function toggleCheck(el){
   el.classList.toggle('selected');
-  var box = el.querySelector('.check-box');
-  if (box) box.textContent = el.classList.contains('selected') ? '☑' : '☐';
+  var b = el.querySelector('.check-box');
+  if(b) b.textContent = el.classList.contains('selected') ? '☑' : '☐';
 }
-function sendContact() {
+function sendContact(){
   var prenom = document.getElementById('cf-prenom').value.trim();
-  if (!prenom) { alert('Merci d'entrer votre prénom et activité'); document.getElementById('cf-prenom').focus(); return; }
+  if(!prenom){ alert("Merci d'entrer votre prénom et activité"); document.getElementById('cf-prenom').focus(); return; }
   var sel = Array.from(document.querySelectorAll('.srv-check.selected')).map(function(el){ return el.textContent.replace('☑','').trim(); });
-  if (!sel.length) { alert('Cochez au moins un service'); return; }
-  var txt = 'Bonjour Tarik ! 👋
-
-' + prenom + '
-
-Je suis intéressé par :
-' + sel.map(function(s){ return '• '+s; }).join('
-') + '
-
-Merci de me recontacter !';
-  window.open('https://wa.me/33768789800?text=' + encodeURIComponent(txt), '_blank');
+  if(!sel.length){ alert('Cochez au moins un service'); return; }
+  var txt = 'Bonjour Tarik ! 👋\n\n'+prenom+'\n\nJe suis intéressé par :\n'+sel.map(function(s){ return '• '+s; }).join('\n')+'\n\nMerci de me recontacter !';
+  window.open('https://wa.me/33768789800?text='+encodeURIComponent(txt),'_blank');
 }
 
 // ── BOT ──
-var bOpen = false, bStarted = false, bQStep = 0, bData = {};
-var bInp = document.getElementById('bInp');
-var bSendBtn = document.getElementById('bSend');
-if (bSendBtn) bSendBtn.addEventListener('click', bSend);
-if (bInp) bInp.addEventListener('keydown', function(e){ if(e.key==='Enter') bSend(); });
+var bOpen=false, bStarted=false, bQStep=0, bData={};
+var bInpEl = document.getElementById('bInp');
+var bSendEl = document.getElementById('bSend');
+if(bSendEl) bSendEl.addEventListener('click', bSend);
+if(bInpEl)  bInpEl.addEventListener('keydown', function(e){ if(e.key==='Enter') bSend(); });
 
 var BQA = {
-  'prix':'Un site complet commence à partir de 300€. Selon les fonctionnalités souhaitées — commande WhatsApp, fidélité, pub — je vous prépare un devis gratuit en 24h 😊',
-  'cout':'Un site complet commence à partir de 300€. Selon les fonctionnalités souhaitées — commande WhatsApp, fidélité, pub — je vous prépare un devis gratuit en 24h 😊',
-  'combi':'Un site complet commence à partir de 300€. Selon les fonctionnalités souhaitées — commande WhatsApp, fidélité, pub — je vous prépare un devis gratuit en 24h 😊',
-  'tarif':'Un site complet commence à partir de 300€. Selon les fonctionnalités souhaitées — commande WhatsApp, fidélité, pub — je vous prépare un devis gratuit en 24h 😊',
-  'rapide':'La première version de votre site est prête en 48h. Vous validez, on ajuste, on met en ligne en moins d'une semaine.',
-  'delai':'La première version de votre site est prête en 48h. Vous validez, on ajuste, on met en ligne en moins d'une semaine.',
-  'temps':'La première version de votre site est prête en 48h. Vous validez, on ajuste, on met en ligne en moins d'une semaine.',
-  'faite':'Je crée des sites web, gère la pub Facebook & Google, mets en place la commande WhatsApp, la fidélité et les alertes de commande. Tout ça sans jargon.',
-  'service':'Je crée des sites web, gère la pub Facebook & Google, mets en place la commande WhatsApp, la fidélité et les alertes de commande. Tout ça sans jargon.',
-  'tarik':'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
-  'parler':'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
-  'contact':'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
-  'google':'Votre site est optimisé dès le départ pour apparaître sur Google quand quelqu'un cherche votre activité dans votre ville.',
-  'facebook':'Je crée et gère vos publicités Facebook & Instagram pour toucher des clients dans votre ville. Vous définissez le budget, je m'occupe du reste.',
-  'instagram':'Je crée et gère vos publicités Facebook & Instagram pour toucher des clients dans votre ville. Vous définissez le budget, je m'occupe du reste.',
-  'fideli':'La carte de fidélité est intégrée dans votre site. Vos clients accumulent des points à chaque commande et reviennent automatiquement.',
-  'command':'Vos clients commandent depuis votre site via WhatsApp. Vous recevez une notification immédiate avec tous les détails. Zéro commission.',
-  'whatsapp':'Vos clients commandent depuis votre site via WhatsApp. Vous recevez une notification immédiate avec tous les détails. Zéro commission.',
-  'resto':'Oui, je travaille avec beaucoup de restaurants ! Commande WhatsApp, fidélité, pub ciblée... Regardez les exemples dans la section Projets.',
-  'restaurant':'Oui, je travaille avec beaucoup de restaurants ! Commande WhatsApp, fidélité, pub ciblée... Regardez les exemples dans la section Projets.',
-  'coiff':'J'ai déjà réalisé un site barbershop avec réservation WhatsApp. Jetez un oeil à Prestige Barber dans la section Projets.',
+  'prix':       'Un site complet commence à partir de 300€. Selon les options souhaitées je vous prépare un devis gratuit en 24h 😊',
+  'cout':       'Un site complet commence à partir de 300€. Selon les options souhaitées je vous prépare un devis gratuit en 24h 😊',
+  'combi':      'Un site complet commence à partir de 300€. Selon les options souhaitées je vous prépare un devis gratuit en 24h 😊',
+  'tarif':      'Un site complet commence à partir de 300€. Selon les options souhaitées je vous prépare un devis gratuit en 24h 😊',
+  'budget':     'Un site complet commence à partir de 300€. Selon les options souhaitées je vous prépare un devis gratuit en 24h 😊',
+  'rapide':     'La première version de votre site est prête en 48h. Vous validez, on ajuste, on met en ligne en moins d'une semaine.',
+  'delai':      'La première version de votre site est prête en 48h. Vous validez, on ajuste, on met en ligne en moins d'une semaine.',
+  'temps':      'La première version de votre site est prête en 48h. Vous validez, on ajuste, on met en ligne en moins d'une semaine.',
+  'faite':      'Je crée des sites web, gère la pub Facebook & Google, mets en place la commande WhatsApp, la fidélité et les alertes. Tout sans jargon.',
+  'service':    'Je crée des sites web, gère la pub Facebook & Google, mets en place la commande WhatsApp, la fidélité et les alertes. Tout sans jargon.',
+  'tarik':      'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
+  'parler':     'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
+  'contact':    'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
+  'google':     'Votre site est optimisé pour apparaître sur Google quand quelqu'un cherche votre activité dans votre ville.',
+  'facebook':   'Je crée et gère vos publicités Facebook & Instagram pour toucher des clients dans votre ville.',
+  'instagram':  'Je crée et gère vos publicités Facebook & Instagram pour toucher des clients dans votre ville.',
+  'fideli':     'La carte de fidélité est intégrée dans votre site. Vos clients accumulent des points et reviennent automatiquement.',
+  'command':    'Vos clients commandent depuis votre site via WhatsApp. Notification immédiate. Zéro commission.',
+  'whatsapp':   'Vos clients commandent depuis votre site via WhatsApp. Notification immédiate. Zéro commission.',
+  'resto':      'Oui, je travaille avec beaucoup de restaurants ! Commande WhatsApp, fidélité, pub ciblée... Regardez la section Projets.',
+  'restaurant': 'Oui, je travaille avec beaucoup de restaurants ! Commande WhatsApp, fidélité, pub ciblée... Regardez la section Projets.',
+  'coiff':      'J'ai déjà réalisé un site barbershop avec réservation WhatsApp. Regardez Prestige Barber dans la section Projets.',
 };
-
-function bGetReply(msg) {
-  var low = msg.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-  for (var k in BQA) { if (low.indexOf(k) >= 0) return BQA[k]; }
+function bGetReply(msg){
+  var low = msg.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  for(var k in BQA){ if(low.indexOf(k)>=0) return BQA[k]; }
   return bQualify(msg);
 }
-function bQualify(msg) {
+function bQualify(msg){
   bQStep++;
-  if (bQStep === 1) { bData.q1 = msg; return 'Je comprends 😊 Avez-vous déjà un site internet en ce moment ?'; }
-  if (bQStep === 2) { bData.q2 = msg; return 'Quel est votre type d'activité ? (restaurant, boutique, coiffeur...)'; }
-  if (bQStep === 3) {
-    bData.q3 = msg;
-    var wa = 'https://wa.me/33768789800?text=' + encodeURIComponent('Bonjour Tarik ! Je viens du site TK Digital.
-
-' + bData.q1 + '
-Site actuel : ' + bData.q2 + '
-Activité : ' + bData.q3);
-    return 'Parfait ! Cliquez ici pour envoyer vos infos à Tarik directement 👉 <a href="' + wa + '" target="_blank">Envoyer sur WhatsApp →</a>';
-  }
-  return 'Pour toute autre question, Tarik répond directement 👉 <a href="https://wa.me/33768789800" target="_blank">WhatsApp →</a>';
+  if(bQStep===1){ bData.q1=msg; return 'Je comprends 😊 Avez-vous déjà un site internet actuellement ?'; }
+  if(bQStep===2){ bData.q2=msg; return 'Quel est votre type d'activité ? (restaurant, boutique, coiffeur...)'; }
+  var wa='https://wa.me/33768789800?text='+encodeURIComponent('Bonjour Tarik !\n\n'+bData.q1+'\nSite actuel : '+bData.q2+'\nActivité : '+msg);
+  return 'Parfait ! Cliquez ici 👉 <a href="'+wa+'" target="_blank" style="color:var(--a);font-weight:700;">Envoyer sur WhatsApp →</a>';
 }
-
-function bAddMsg(txt, who) {
-  var d = document.createElement('div');
-  d.className = 'bm ' + who;
-  d.innerHTML = txt;
+function bAddMsg(txt,who){
+  var d=document.createElement('div'); d.className='bm '+who; d.innerHTML=txt;
   document.getElementById('bMsgs').appendChild(d);
-  document.getElementById('bMsgs').scrollTop = 99999;
+  document.getElementById('bMsgs').scrollTop=99999;
 }
-function bType(cb) {
-  var t = document.createElement('div'); t.className='bt'; t.id='btTyp';
+function bType(cb){
+  var t=document.createElement('div'); t.className='bt'; t.id='btTyp';
   t.innerHTML='<span></span><span></span><span></span>';
   document.getElementById('bMsgs').appendChild(t);
-  document.getElementById('bMsgs').scrollTop = 99999;
-  setTimeout(function(){ var el=document.getElementById('btTyp'); if(el) el.remove(); cb(); document.getElementById('bMsgs').scrollTop=99999; }, 850);
+  document.getElementById('bMsgs').scrollTop=99999;
+  setTimeout(function(){ var el=document.getElementById('btTyp'); if(el)el.remove(); cb(); document.getElementById('bMsgs').scrollTop=99999; },850);
 }
-function bSend() {
-  if (!bInp) return;
-  var msg = bInp.value.trim(); if (!msg) return;
-  bAddMsg(msg,'u'); bInp.value='';
+function bSend(){
+  if(!bInpEl) return;
+  var msg=bInpEl.value.trim(); if(!msg) return;
+  bAddMsg(msg,'u'); bInpEl.value='';
   document.getElementById('bSugs').style.display='none';
   bType(function(){ bAddMsg(bGetReply(msg),'b'); });
 }
-function bSug(el) {
-  var txt = el.textContent.trim();
+function bSug(el){
+  var txt=el.textContent.trim();
   bAddMsg(txt,'u');
   document.getElementById('bSugs').style.display='none';
-  var low = txt.toLowerCase();
-  var reply = (low.indexOf('tarik')>=0||low.indexOf('parler')>=0)
-    ? 'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp →</a>'
+  var low=txt.toLowerCase();
+  var r=(low.indexOf('tarik')>=0||low.indexOf('parler')>=0)
+    ? 'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank" style="color:var(--a);">Écrire sur WhatsApp →</a>'
     : bGetReply(txt);
-  bType(function(){ bAddMsg(reply,'b'); });
+  bType(function(){ bAddMsg(r,'b'); });
 }
-function bToggle() {
-  bOpen = !bOpen;
-  document.getElementById('botPanel').classList.toggle('show', bOpen);
-  if (bOpen && !bStarted) {
-    bStarted = true;
+function bToggle(){
+  bOpen=!bOpen;
+  document.getElementById('botPanel').classList.toggle('show',bOpen);
+  if(bOpen&&!bStarted){
+    bStarted=true;
     bType(function(){ bAddMsg('Bonjour 👋 Je suis l'assistant TK Digital. Comment puis-je vous aider ?','b'); });
   }
-  if (bOpen && bInp) bInp.focus();
+  if(bOpen&&bInpEl) bInpEl.focus();
 }
-
-// Auto-ouvre après 10s d'inactivité
 var bIdleT;
 function bResetIdle(){ clearTimeout(bIdleT); bIdleT=setTimeout(function(){ if(!bOpen&&!bStarted) bToggle(); },10000); }
 ['mousemove','scroll','keypress','touchstart'].forEach(function(e){ document.addEventListener(e,bResetIdle,{passive:true}); });
 bResetIdle();
 </script>
+
 
 </body>
 </html>
