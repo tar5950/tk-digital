@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TK Digital — Agence Web & Marketing Digital | Nord de France</title>
+<meta name="description" content="TK Digital — Enfin un site web qui vous ramène de vrais clients. Création de sites, Meta Ads, Google Ads, fidélisation. Nord de France & toute la France.">
+<meta name="keywords" content="agence web nord, création site internet douai, meta ads nord, google ads nord france, marketing digital, fidélisation client, TK Digital">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tar5950.github.io/tk-digital/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TK Digital — Agence Web & Marketing Digital">
+<meta property="og:description" content="Enfin un site web qui vous ramène de vrais clients. Nord de France & toute la France.">
+<meta property="og:url" content="https://tar5950.github.io/tk-digital/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"TK Digital","url":"https://tar5950.github.io/tk-digital/","description":"Agence web spécialisée en création de sites internet, marketing digital, Meta Ads, Google Ads et fidélisation client. Basée dans le Nord de France.","areaServed":"France","founder":{"@type":"Person","name":"Tarik","jobTitle":"Fondateur & Développeur Web"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --n:#050505; --n2:#0c0c0c; --n3:#141414; --n4:#1e1e1e; --n5:#2a2a2a;
+  --a:#c8f135; --a2:#d4ff4a;
+  --w:#f5f5f0; --w2:#e8e8e2; --mid:#888880;
+  --border:rgba(200,241,53,0.12);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--n);color:var(--w);font-family:'DM Sans',sans-serif;overflow-x:hidden;line-height:1.6;}
+
+/* CURSOR */
+#cur{position:fixed;width:12px;height:12px;background:var(--a);border-radius:50%;pointer-events:none;z-index:9999;left:-50px;top:-50px;transition:width .15s,height .15s;box-shadow:0 0 10px 3px rgba(200,241,53,0.4);}
+#curR{position:fixed;width:36px;height:36px;border:2px solid rgba(200,241,53,0.45);border-radius:50%;pointer-events:none;z-index:9998;left:-50px;top:-50px;transition:left .1s ease-out,top .1s ease-out,width .2s,height .2s;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 5%;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,border-color .3s;border-bottom:1px solid transparent;}
+nav.solid{background:rgba(5,5,5,.96);border-color:var(--border);backdrop-filter:blur(20px);}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-svg{width:36px;height:36px;flex-shrink:0;}
+.logo-txt{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--w);letter-spacing:.04em;}
+.logo-txt span{color:var(--a);}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--a);}
+.nav-cta{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--n);background:var(--a);padding:11px 24px;text-decoration:none;border-radius:2px;transition:background .2s;}
+.nav-cta:hover{background:var(--a2);}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5% 80px;position:relative;overflow:hidden;}
+.hbg{position:absolute;inset:0;}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,241,53,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,241,53,.03) 1px,transparent 1px);background-size:60px 60px;}
+.hglow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(200,241,53,.07) 0%,transparent 65%);top:-200px;right:-150px;pointer-events:none;}
+.htag{position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;background:var(--n3);border:1px solid var(--border);padding:6px 14px;border-radius:2px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:28px;opacity:0;animation:fup .6s .2s forwards;}
+.htag-dot{width:6px;height:6px;background:var(--a);border-radius:50%;animation:bth 2s infinite;}
+h1{position:relative;z-index:1;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,4vw,58px);line-height:1.15;letter-spacing:-.01em;margin-bottom:36px;}
+h1 .l1{display:block;color:var(--w);opacity:0;animation:fup .8s .4s forwards;}
+h1 .l2{display:block;color:var(--a);opacity:0;animation:fup .8s .6s forwards;}
+h1 .l3{display:block;color:var(--w);opacity:0;animation:fup .8s .8s forwards;}
+.hbot{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:28px;opacity:0;animation:fup .6s 1.2s forwards;}
+.hsub{font-size:15px;font-weight:300;color:var(--mid);line-height:1.8;max-width:400px;}
+.hsub strong{color:var(--w);font-weight:400;}
+.hbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+.btn-a{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--n);background:var(--a);padding:14px 28px;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:background .2s;}
+.btn-a:hover{background:var(--a2);}
+.btn-b{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--w);border:1px solid rgba(245,245,240,.2);padding:13px 24px;text-decoration:none;border-radius:2px;transition:border-color .2s,color .2s;}
+.btn-b:hover{border-color:var(--a);color:var(--a);}
+.hstats{display:flex;gap:36px;}
+.hstat-v{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--a);line-height:1;}
+.hstat-l{font-size:10px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-top:4px;}
+
+/* TICKER */
+.ticker{background:var(--a);padding:11px 0;overflow:hidden;}
+.ticker-track{display:flex;white-space:nowrap;animation:tick 22s linear infinite;}
+.tick-i{display:inline-flex;align-items:center;gap:14px;padding:0 20px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--n);}
+.tick-s{opacity:.35;}
+
+/* SECTIONS */
+.sec{padding:100px 5%;}
+.eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--a);margin-bottom:14px;}
+.sec-h{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(36px,5vw,68px);line-height:.95;letter-spacing:-.02em;color:var(--w);}
+.sec-h span{color:var(--a);}
+
+/* SERVICES */
+#services{background:var(--n);}
+.srv-hdr{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:64px;}
+.srv-sub{font-size:14px;font-weight:300;color:var(--mid);line-height:1.8;}
+.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--n4);}
+.srv-card{background:var(--n);padding:40px 28px;position:relative;overflow:hidden;transition:background .3s;}
+.srv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--a);transform:scaleX(0);transition:transform .3s;transform-origin:left;}
+.srv-card:hover{background:var(--n2);}
+.srv-card:hover::before{transform:scaleX(1);}
+.srv-n{font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--a);opacity:.5;margin-bottom:20px;}
+.srv-ico{font-size:28px;margin-bottom:16px;display:block;}
+.srv-name{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);margin-bottom:10px;line-height:1.2;}
+.srv-desc{font-size:12px;font-weight:300;color:var(--mid);line-height:1.8;}
+.srv-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:16px;}
+.srv-tag{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--a);background:rgba(200,241,53,.07);border:1px solid rgba(200,241,53,.14);padding:3px 8px;border-radius:2px;}
+
+/* PORTFOLIO */
+#portfolio{background:var(--n2);}
+.port-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:20px;}
+.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
+.proj{position:relative;overflow:hidden;background:var(--n3);aspect-ratio:16/9;cursor:pointer;}
+.proj:first-child{grid-column:span 2;aspect-ratio:21/9;}
+.proj-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:64px;transition:transform .6s;}
+.proj:hover .proj-bg{transform:scale(1.06);}
+.proj-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.95) 0%,transparent 55%);opacity:0;transition:opacity .3s;}
+.proj:hover .proj-ov{opacity:1;}
+.proj-info{position:absolute;bottom:0;left:0;right:0;padding:28px;transform:translateY(16px);opacity:0;transition:all .3s;}
+.proj:hover .proj-info{transform:translateY(0);opacity:1;}
+.proj-cat{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:6px;}
+.proj-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--w);}
+.proj-lnk{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--n);background:var(--a);padding:4px 12px;border-radius:2px;}
+.proj:nth-child(1) .proj-bg{background:linear-gradient(135deg,#0c0c0c,#1a0f08,#3d1a05);}
+.proj:nth-child(2) .proj-bg{background:linear-gradient(135deg,#0a0d0a,#0a2010,#0d3a18);}
+.proj:nth-child(3) .proj-bg{background:linear-gradient(135deg,#0c0a05,#1a1200,#2d2000);}
+.proj:nth-child(4) .proj-bg{background:linear-gradient(135deg,#090a0d,#0a1020,#0f1a35);}
+.proj:nth-child(5) .proj-bg{background:linear-gradient(135deg,#0d090c,#1a0815,#2d0f22);}
+
+/* PROCESS */
+#process{background:var(--n);}
+.proc-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;margin-top:56px;}
+.step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--n4);transition:padding-left .3s;}
+.step:hover{padding-left:10px;}
+.step:last-child{border:none;}
+.step-n{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--a);min-width:28px;padding-top:3px;opacity:.4;}
+.step-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--w);margin-bottom:5px;}
+.step-desc{font-size:12px;font-weight:300;color:var(--mid);line-height:1.7;}
+.proc-vis{background:var(--n2);border:1px solid var(--n4);border-radius:4px;padding:36px;}
+.pv-row{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--n3);border-radius:2px;border-left:2px solid var(--a);margin-bottom:10px;}
+.pv-l{font-size:12px;font-weight:500;color:var(--w);}
+.pv-v{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--a);}
+.bar-lbl{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin:14px 0 7px;}
+.bar{height:4px;background:var(--n4);border-radius:2px;overflow:hidden;margin-bottom:10px;}
+.bar-f{height:100%;background:var(--a);border-radius:2px;width:0;transition:width 1.5s ease;}
+.tags-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;padding-top:16px;border-top:1px solid var(--n4);}
+.tag-g{font-size:9px;color:var(--a);background:rgba(200,241,53,.07);border:1px solid rgba(200,241,53,.14);padding:4px 9px;border-radius:2px;}
+
+/* ABOUT */
+#about{background:var(--n2);}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.about-card{background:var(--n3);border:1px solid var(--n4);border-radius:4px;padding:36px;position:relative;overflow:hidden;}
+.about-card::after{content:'TK';position:absolute;bottom:-20px;right:-8px;font-family:'Syne',sans-serif;font-size:110px;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(200,241,53,.05);line-height:1;pointer-events:none;}
+.about-name{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--w);margin-bottom:3px;}
+.about-role{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--a);margin-bottom:18px;}
+.about-bio{font-size:13px;font-weight:300;color:var(--mid);line-height:1.8;margin-bottom:22px;}
+.skills{display:flex;flex-wrap:wrap;gap:6px;}
+.skill{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--w);background:var(--n4);border:1px solid var(--n5);padding:5px 10px;border-radius:2px;}
+.about-txt p{font-size:14px;font-weight:300;color:var(--mid);line-height:1.9;margin-bottom:18px;}
+.about-txt p strong{color:var(--w);font-weight:400;}
+.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;}
+.num-c{background:var(--n3);border:1px solid var(--n4);padding:18px;border-radius:2px;}
+.num-v{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--a);line-height:1;margin-bottom:3px;}
+.num-l{font-size:10px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);}
+
+/* CONTACT */
+#contact{background:var(--n);position:relative;overflow:hidden;}
+#contact::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(200,241,53,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(200,241,53,.02) 1px,transparent 1px);background-size:40px 40px;}
+.cont-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;position:relative;z-index:1;}
+.cont-sub{font-size:14px;font-weight:300;color:var(--mid);line-height:1.8;margin:20px 0 36px;}
+.ci{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.ci-ico{width:38px;height:38px;background:var(--n3);border:1px solid var(--n4);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.ci-txt{font-size:13px;color:var(--w);}
+.ci-txt span{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:1px;}
+.cont-form{background:var(--n2);border:1px solid var(--n4);border-radius:4px;padding:36px;}
+.form-ttl{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);margin-bottom:24px;}
+.f-lbl{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:7px;}
+.f-inp{width:100%;background:var(--n3);border:1px solid var(--n4);color:var(--w);padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:13px;border-radius:2px;outline:none;transition:border-color .2s;margin-bottom:16px;}
+.f-inp:focus{border-color:var(--a);}
+.f-inp::placeholder{color:var(--mid);}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:20px;}
+.chk{display:flex;align-items:center;gap:8px;background:var(--n3);border:1px solid var(--n4);padding:10px 12px;border-radius:2px;cursor:pointer;font-size:12px;font-weight:400;color:var(--mid);transition:all .18s;user-select:none;}
+.chk:hover{border-color:var(--a);color:var(--w);}
+.chk.on{border-color:var(--a);background:rgba(200,241,53,.07);color:var(--a);}
+.chk-box{font-size:13px;flex-shrink:0;}
+.btn-wa{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px;background:#25D366;color:#fff;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;transition:background .2s;box-shadow:0 6px 20px rgba(37,211,102,.3);}
+.btn-wa:hover{background:#1da855;}
+.f-note{text-align:center;font-size:10px;color:var(--mid);margin-top:10px;}
+
+/* FOOTER */
+footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;}
+.ft-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;flex-wrap:wrap;gap:28px;}
+.ft-logo-txt{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--w);margin-bottom:10px;}
+.ft-logo-txt span{color:var(--a);}
+.ft-tagline{font-size:12px;font-weight:300;color:var(--mid);max-width:240px;line-height:1.6;}
+.ft-cols{display:flex;gap:56px;flex-wrap:wrap;}
+.ft-col-ttl{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:14px;opacity:.6;}
+.ft-col a{display:block;font-size:12px;font-weight:300;color:var(--mid);text-decoration:none;line-height:2.2;transition:color .2s;}
+.ft-col a:hover{color:var(--w);}
+.ft-bot{display:flex;justify-content:space-between;padding-top:20px;border-top:1px solid var(--n4);flex-wrap:wrap;gap:8px;}
+.ft-copy{font-size:10px;color:rgba(136,136,128,.35);letter-spacing:.06em;}
+
+/* ── MODALE PREVIEW ── */
+#previewModal{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.9);
+  z-index:1000;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+#previewModal.active{display:flex;}
+.pm-box{
+  width:min(94vw,1100px);
+  height:90vh;
+  background:var(--n2);
+  border-radius:10px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 24px 80px rgba(0,0,0,.8);
+}
+.pm-bar{
+  background:var(--n3);
+  padding:10px 16px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-bottom:1px solid var(--n4);
+  flex-shrink:0;
+}
+.pm-dots{display:flex;gap:5px;}
+.pm-dot{width:11px;height:11px;border-radius:50%;}
+.pm-dot.r{background:#ff5f57;}
+.pm-dot.y{background:#febc2e;}
+.pm-dot.g{background:#28c840;}
+.pm-url{flex:1;background:var(--n4);border-radius:5px;padding:4px 12px;font-size:11px;color:var(--mid);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.pm-ext{font-size:11px;font-weight:700;color:var(--a);background:rgba(200,241,53,.1);border:1px solid rgba(200,241,53,.2);padding:4px 12px;border-radius:3px;text-decoration:none;white-space:nowrap;}
+.pm-ext:hover{background:rgba(200,241,53,.2);}
+.pm-close{background:none;border:none;color:var(--mid);font-size:22px;cursor:pointer;padding:0 4px;line-height:1;margin-left:4px;}
+.pm-close:hover{color:var(--w);}
+.pm-frame{flex:1;border:none;width:100%;}
+
+/* ── BOT ── */
+#bot{position:fixed;bottom:24px;right:24px;z-index:900;}
+#bot-btn{
+  width:58px;height:58px;
+  background:var(--a);
+  border:none;border-radius:50%;
+  cursor:pointer;font-size:26px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(200,241,53,.4);
+  transition:transform .2s;
+  position:relative;
+}
+#bot-btn:hover{transform:scale(1.08);}
+.bot-ping{
+  position:absolute;top:1px;right:1px;
+  width:14px;height:14px;
+  background:#ff4444;border-radius:50%;
+  border:2px solid var(--n);
+  animation:ping 2s infinite;
+}
+@keyframes ping{0%,100%{transform:scale(1);opacity:1}60%{transform:scale(1.6);opacity:0}}
+#bot-panel{
+  position:absolute;bottom:68px;right:0;
+  width:316px;
+  background:var(--n2);
+  border:1px solid var(--n4);
+  border-radius:14px;
+  box-shadow:0 20px 56px rgba(0,0,0,.7);
+  display:none;flex-direction:column;
+  max-height:460px;overflow:hidden;
+}
+#bot-panel.open{display:flex;}
+.bp-head{background:var(--n3);padding:13px 15px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--n4);flex-shrink:0;}
+.bp-av{width:32px;height:32px;background:var(--a);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.bp-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--w);}
+.bp-st{font-size:10px;color:var(--a);}
+#bp-close{margin-left:auto;background:none;border:none;color:var(--mid);font-size:20px;cursor:pointer;line-height:1;padding:0 4px;}
+#bp-close:hover{color:var(--w);}
+#bp-msgs{flex:1;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;}
+.bm{padding:9px 12px;border-radius:11px;font-size:13px;line-height:1.55;max-width:90%;}
+.bm.b{background:var(--n3);color:var(--w);border-radius:11px 11px 11px 2px;align-self:flex-start;}
+.bm.b a{color:var(--a);font-weight:700;}
+.bm.u{background:var(--a);color:var(--n);border-radius:11px 11px 2px 11px;align-self:flex-end;font-weight:600;}
+.btyp{display:flex;gap:4px;padding:9px 12px;background:var(--n3);border-radius:11px 11px 11px 2px;align-self:flex-start;}
+.btyp span{width:6px;height:6px;background:var(--mid);border-radius:50%;animation:typ 1.2s infinite;}
+.btyp span:nth-child(2){animation-delay:.2s;}
+.btyp span:nth-child(3){animation-delay:.4s;}
+@keyframes typ{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+#bp-sugs{padding:8px 10px;display:flex;flex-wrap:wrap;gap:5px;border-top:1px solid var(--n4);flex-shrink:0;}
+.bsug{background:var(--n3);border:1px solid var(--n4);color:var(--w2);font-size:11px;padding:5px 11px;border-radius:50px;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.bsug:hover{border-color:var(--a);color:var(--a);}
+#bp-inp-row{padding:10px 12px;border-top:1px solid var(--n4);display:flex;gap:8px;flex-shrink:0;}
+#bp-inp{flex:1;background:var(--n3);border:1px solid var(--n4);color:var(--w);padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:13px;border-radius:8px;outline:none;}
+#bp-inp:focus{border-color:var(--a);}
+#bp-inp::placeholder{color:var(--mid);}
+#bp-send{background:var(--a);border:none;width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:14px;flex-shrink:0;transition:background .2s;}
+#bp-send:hover{background:var(--a2);}
+
+/* KEYFRAMES */
+@keyframes fup{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bth{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SCROLL ANIM */
+.anim{opacity:0;transform:translateY(24px);transition:opacity .55s,transform .55s;}
+.anim.vis{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .srv-grid{grid-template-columns:repeat(2,1fr);}
+  .port-grid{grid-template-columns:1fr;}
+  .proj:first-child{grid-column:auto;aspect-ratio:16/9;}
+  .proc-layout,.about-layout,.cont-layout,.srv-hdr{grid-template-columns:1fr;gap:40px;}
+  .ft-top{flex-direction:column;}
+}
+@media(max-width:600px){
+  nav{padding:0 4%;}
+  .nav-links{display:none;}
+  .sec{padding:64px 4%;}
+  .srv-grid{grid-template-columns:1fr;}
+  .checks{grid-template-columns:1fr;}
+  .hstats{gap:20px;}
+  #bot-panel{width:calc(100vw - 32px);right:-12px;}
+  #cur,#curR{display:none;}
+}
+@media(max-width:380px){.nav-cta{display:none;}}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="curR"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="logo">
+    <svg class="logo-svg" viewBox="0 0 36 36" fill="none">
+      <rect width="36" height="36" fill="#c8f135"/>
+      <path d="M7 10H29M18 10V26" stroke="#050505" stroke-width="3" stroke-linecap="square"/>
+      <path d="M18 18L27 26M18 18L27 10" stroke="#050505" stroke-width="3" stroke-linecap="square"/>
+    </svg>
+    <span class="logo-txt">TK <span>Digital</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#portfolio">Projets</a>
+    <a href="#process">Méthode</a>
+    <a href="#about">À propos</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Démarrer →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hbg"><div class="hgrid"></div><div class="hglow"></div></div>
+  <div class="htag"><div class="htag-dot"></div>Agence Web — Nord de France</div>
+  <h1>
+    <span class="l1">Enfin un site web</span>
+    <span class="l2">qui vous ramène</span>
+    <span class="l3">de vrais clients.</span>
+  </h1>
+  <div class="hbot">
+    <div>
+      <p class="hsub"><strong>TK Digital</strong> crée votre site internet, gère votre publicité sur Facebook et Google, et fidélise vos clients. Vous faites votre métier, je m'occupe du reste.</p>
+      <div class="hbtns">
+        <a href="#contact" class="btn-a">Démarrer un projet</a>
+        <a href="#portfolio" class="btn-b">Voir les projets →</a>
+      </div>
+    </div>
+    <div class="hstats">
+      <div><div class="hstat-v">48h</div><div class="hstat-l">Délai démo</div></div>
+      <div><div class="hstat-v">0€</div><div class="hstat-l">Appel découverte</div></div>
+      <div><div class="hstat-v">Nord</div><div class="hstat-l">& France entière</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="tick-i">Création de sites web <span class="tick-s">✦</span></span>
+    <span class="tick-i">Meta Ads <span class="tick-s">✦</span></span>
+    <span class="tick-i">Google Ads <span class="tick-s">✦</span></span>
+    <span class="tick-i">Fidélisation client <span class="tick-s">✦</span></span>
+    <span class="tick-i">Commande WhatsApp <span class="tick-s">✦</span></span>
+    <span class="tick-i">SEO Google <span class="tick-s">✦</span></span>
+    <span class="tick-i">Nord de France <span class="tick-s">✦</span></span>
+    <span class="tick-i">Création de sites web <span class="tick-s">✦</span></span>
+    <span class="tick-i">Meta Ads <span class="tick-s">✦</span></span>
+    <span class="tick-i">Google Ads <span class="tick-s">✦</span></span>
+    <span class="tick-i">Fidélisation client <span class="tick-s">✦</span></span>
+    <span class="tick-i">Commande WhatsApp <span class="tick-s">✦</span></span>
+    <span class="tick-i">SEO Google <span class="tick-s">✦</span></span>
+    <span class="tick-i">Nord de France <span class="tick-s">✦</span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="sec">
+  <div class="srv-hdr">
+    <div>
+      <div class="eyebrow">Ce que je fais</div>
+      <h2 class="sec-h">Des services<br><span>qui rapportent.</span></h2>
+    </div>
+    <p class="srv-sub">Chaque prestation est pensée pour vous ramener des clients concrets — pas des clics, des vraies personnes qui commandent chez vous.</p>
+  </div>
+  <div class="srv-grid">
+    <div class="srv-card anim"><div class="srv-n">01</div><span class="srv-ico">🌐</span><div class="srv-name">Votre site internet</div><p class="srv-desc">Un beau site professionnel visible sur Google, rapide sur téléphone. Vos clients trouvent votre adresse, votre menu, vos services. Livré en 48h.</p><div class="srv-tags"><span class="srv-tag">Mobile-first</span><span class="srv-tag">SEO intégré</span><span class="srv-tag">Rapide</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">02</div><span class="srv-ico">📱</span><div class="srv-name">Commander par WhatsApp</div><p class="srv-desc">Vos clients commandent depuis votre site via WhatsApp. Vous recevez une alerte immédiate. Zéro commission, zéro intermédiaire.</p><div class="srv-tags"><span class="srv-tag">Panier</span><span class="srv-tag">Upsell</span><span class="srv-tag">Fidélité</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">03</div><span class="srv-ico">🎯</span><div class="srv-name">Pub Facebook & Instagram</div><p class="srv-desc">Je crée et gère vos publicités pour toucher des clients dans votre ville. Vous définissez le budget, je m'occupe du reste.</p><div class="srv-tags"><span class="srv-tag">Facebook</span><span class="srv-tag">Instagram</span><span class="srv-tag">Ciblage local</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">04</div><span class="srv-ico">🔍</span><div class="srv-name">Visible sur Google</div><p class="srv-desc">Quand quelqu'un cherche votre activité près de chez lui, c'est vous qui apparaissez en premier. Pub Google + référencement naturel.</p><div class="srv-tags"><span class="srv-tag">Google Ads</span><span class="srv-tag">SEO local</span><span class="srv-tag">Maps</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">05</div><span class="srv-ico">⭐</span><div class="srv-name">Fidéliser vos clients</div><p class="srv-desc">Carte de fidélité digitale, collecte d'avis Google automatique, messages de relance. Vos clients reviennent et parlent de vous.</p><div class="srv-tags"><span class="srv-tag">Fidélité</span><span class="srv-tag">Avis Google</span><span class="srv-tag">Relances</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">06</div><span class="srv-ico">📊</span><div class="srv-name">Tout gérer pour vous</div><p class="srv-desc">Site, pub, réseaux sociaux, messages automatiques. Une seule personne qui connaît votre business par cœur. Vous faites votre métier.</p><div class="srv-tags"><span class="srv-tag">Stratégie</span><span class="srv-tag">Automation</span><span class="srv-tag">Reporting</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">07</div><span class="srv-ico">🔔</span><div class="srv-name">Alertes commandes temps réel</div><p class="srv-desc">Dès qu'un client commande, vous recevez une notification WhatsApp avec tous les détails. Nom, commande, montant, mode de livraison. Zéro raté.</p><div class="srv-tags"><span class="srv-tag">WhatsApp</span><span class="srv-tag">Instantané</span><span class="srv-tag">Zéro raté</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">08</div><span class="srv-ico">💌</span><div class="srv-name">Messages promos automatiques</div><p class="srv-desc">Envoyez des offres à vos clients au bon moment — "Ce soir -20%", "Ça fait longtemps, voici un cadeau". Vos clients reviennent sans que vous fassiez quoi que ce soit.</p><div class="srv-tags"><span class="srv-tag">Automatique</span><span class="srv-tag">Promo</span><span class="srv-tag">Relance</span></div></div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="sec">
+  <div class="port-hdr">
+    <div>
+      <div class="eyebrow">Projets récents</div>
+      <h2 class="sec-h">Du concret,<br><span>pas des promesses.</span></h2>
+    </div>
+    <p style="font-size:13px;color:var(--mid);max-width:280px;line-height:1.6;">Cliquez sur un projet pour le voir en direct — sans quitter cette page.</p>
+  </div>
+  <div class="port-grid">
+    <div class="proj anim" onclick="openPreview('https://tar5950.github.io/poulet-brais-4/')">
+      <div class="proj-bg">🔥</div>
+      <div class="proj-ov"></div>
+      <div class="proj-info">
+        <div class="proj-cat">Restaurant · Villeneuve-d'Ascq</div>
+        <div class="proj-name">Poulet Braisé Triolo</div>
+        <span class="proj-lnk">Voir le site →</span>
+      </div>
+    </div>
+    <div class="proj anim" onclick="openPreview('https://tar5950.github.io/la-dalle-burger/')">
+      <div class="proj-bg">🍔</div>
+      <div class="proj-ov"></div>
+      <div class="proj-info">
+        <div class="proj-cat">Street Food · Nord</div>
+        <div class="proj-name">La Dalle Burger</div>
+        <span class="proj-lnk">Voir le site →</span>
+      </div>
+    </div>
+    <div class="proj anim" onclick="openPreview('https://tar5950.github.io/la-slica/')">
+      <div class="proj-bg">🍕</div>
+      <div class="proj-ov"></div>
+      <div class="proj-info">
+        <div class="proj-cat">Pizzeria · Nord</div>
+        <div class="proj-name">La Slica</div>
+        <span class="proj-lnk">Voir le site →</span>
+      </div>
+    </div>
+    <div class="proj anim" onclick="openPreview('https://tar5950.github.io/Barber-2/')">
+      <div class="proj-bg">💈</div>
+      <div class="proj-ov"></div>
+      <div class="proj-info">
+        <div class="proj-cat">Barbershop · Nord</div>
+        <div class="proj-name">Prestige Barber</div>
+        <span class="proj-lnk">Voir le site →</span>
+      </div>
+    </div>
+    <div class="proj anim">
+      <div class="proj-bg">⚡</div>
+      <div class="proj-ov"></div>
+      <div class="proj-info">
+        <div class="proj-cat">Électricien IRVE · Douai</div>
+        <div class="proj-name">Installation Électrique</div>
+        <span class="proj-lnk">Bientôt en ligne</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="sec">
+  <div class="eyebrow">Ma méthode</div>
+  <h2 class="sec-h">Simple.<br><span>Rapide. Efficace.</span></h2>
+  <div class="proc-layout">
+    <div>
+      <div class="step anim"><div class="step-n">01</div><div><div class="step-title">On se parle — gratuit</div><div class="step-desc">30 minutes pour comprendre votre activité et ce dont vous avez besoin. Sans engagement, sans blabla.</div></div></div>
+      <div class="step anim"><div class="step-n">02</div><div><div class="step-title">Vous voyez votre site en 48h</div><div class="step-desc">En 48h je vous montre une vraie version de votre site. Vous touchez, vous validez, vous changez ce que vous voulez.</div></div></div>
+      <div class="step anim"><div class="step-n">03</div><div><div class="step-title">On ajuste & on lance</div><div class="step-desc">On modifie ensemble jusqu'à ce que ce soit exactement ce que vous voulez. Mise en ligne en moins d'une semaine.</div></div></div>
+      <div class="step anim"><div class="step-n">04</div><div><div class="step-title">Je reste là après</div><div class="step-desc">Après le lancement je suis toujours là. Si quelque chose ne marche pas, vous m'appelez et c'est réglé.</div></div></div>
+    </div>
+    <div class="proc-vis">
+      <div class="pv-row"><span class="pv-l">Délai démo</span><span class="pv-v">48h chrono</span></div>
+      <div class="bar-lbl">Performance Lighthouse</div>
+      <div class="bar"><div class="bar-f" data-w="92"></div></div>
+      <div class="bar-lbl">Score SEO</div>
+      <div class="bar"><div class="bar-f" data-w="95"></div></div>
+      <div class="bar-lbl">Mobile-friendly</div>
+      <div class="bar"><div class="bar-f" data-w="100"></div></div>
+      <div class="tags-wrap">
+        <span class="tag-g">Site complet</span>
+        <span class="tag-g">Hébergement</span>
+        <span class="tag-g">SEO technique</span>
+        <span class="tag-g">WhatsApp setup</span>
+        <span class="tag-g">Google Analytics</span>
+        <span class="tag-g">Support continu</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="about-layout">
+    <div class="about-card anim">
+      <div class="about-name">Tarik</div>
+      <div class="about-role">Fondateur · Développeur & Stratège Digital</div>
+      <p class="about-bio">Basé à Douai, je conçois des solutions digitales complètes pour les commerçants du Nord qui veulent se démarquer en ligne et générer plus de clients.</p>
+      <div class="skills">
+        <span class="skill">Web Dev</span><span class="skill">Meta Ads</span><span class="skill">Google Ads</span>
+        <span class="skill">SEO</span><span class="skill">WhatsApp API</span><span class="skill">N8N</span>
+      </div>
+    </div>
+    <div class="about-txt">
+      <div class="eyebrow">Qui je suis</div>
+      <h2 class="sec-h" style="margin-bottom:22px;">Pas une grosse<br><span>agence anonyme.</span></h2>
+      <p>Vous ne parlez pas à un commercial qui passe le dossier à quelqu'un d'autre. <strong>C'est moi qui fais le travail, du début à la fin.</strong> Je connais votre projet par cœur.</p>
+      <p>Je maîtrise tout ce qu'il faut : site web, publicité, avis clients, commandes. <strong>Un seul interlocuteur pour tout.</strong></p>
+      <div class="nums">
+        <div class="num-c anim"><div class="num-v">48h</div><div class="num-l">Délai première démo</div></div>
+        <div class="num-c anim"><div class="num-v">∞</div><div class="num-l">Modifications jusqu'à validation</div></div>
+        <div class="num-c anim"><div class="num-v">0€</div><div class="num-l">Appel découverte</div></div>
+        <div class="num-c anim"><div class="num-v">Nord</div><div class="num-l">& toute la France</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="cont-layout">
+    <div>
+      <div class="eyebrow">On démarre ?</div>
+      <h2 class="sec-h">On démarre<br><span>quand vous voulez.</span></h2>
+      <p class="cont-sub">Dites-moi ce que vous faites et ce que vous voulez. Je vous réponds dans la journée avec une idée concrète et un prix clair. C'est gratuit.</p>
+      <div class="ci"><div class="ci-ico">📍</div><div class="ci-txt"><span>Localisation</span>Douai, Nord de France</div></div>
+      <div class="ci"><div class="ci-ico">🌐</div><div class="ci-txt"><span>Zone</span>Nord & toute la France</div></div>
+      <div class="ci"><div class="ci-ico">⏱</div><div class="ci-txt"><span>Disponibilité</span>Réponse sous 24h</div></div>
+      <div class="ci"><div class="ci-ico">💬</div><div class="ci-txt"><span>Contact</span>07 68 78 98 00</div></div>
+    </div>
+    <div class="cont-form">
+      <div class="form-ttl">Dites-moi ce qu'il vous faut</div>
+      <label class="f-lbl">Votre prénom & activité *</label>
+      <input class="f-inp" type="text" id="cf-prenom" placeholder="Ex : Karim — Restaurant à Douai">
+      <label class="f-lbl">Ce que vous voulez * (plusieurs choix)</label>
+      <div class="checks">
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Mon site internet</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Commande WhatsApp</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Pub Facebook/Instagram</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Visible sur Google</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Fidéliser mes clients</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Alertes commandes</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Messages promos auto</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Tout gérer pour moi</label>
+      </div>
+      <button class="btn-wa" onclick="sendWA()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Envoyer sur WhatsApp — gratuit
+      </button>
+      <p class="f-note">En 1 clic · Réponse sous 24h · Sans engagement</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <div class="ft-logo-txt">TK <span>Digital</span></div>
+      <p class="ft-tagline">Sites web, marketing digital & fidélisation. Nord de France & toute la France.</p>
+    </div>
+    <div class="ft-cols">
+      <div class="ft-col">
+        <div class="ft-col-ttl">Services</div>
+        <a href="#services">Site internet</a>
+        <a href="#services">Commande WhatsApp</a>
+        <a href="#services">Meta Ads</a>
+        <a href="#services">Google Ads & SEO</a>
+        <a href="#services">Fidélisation</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-ttl">Navigation</div>
+        <a href="#portfolio">Projets</a>
+        <a href="#process">Méthode</a>
+        <a href="#about">À propos</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-ttl">Contact</div>
+        <a href="https://wa.me/33768789800" target="_blank">WhatsApp</a>
+        <a href="#contact">Email</a>
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span class="ft-copy">© 2025 TK Digital — Tarik · Douai, Nord de France</span>
+    <span class="ft-copy">Fait avec ⚡ dans le Nord</span>
+  </div>
+</footer>
+
+<!-- MODALE PREVIEW -->
+<div id="previewModal">
+  <div class="pm-box">
+    <div class="pm-bar">
+      <div class="pm-dots">
+        <div class="pm-dot r"></div>
+        <div class="pm-dot y"></div>
+        <div class="pm-dot g"></div>
+      </div>
+      <div class="pm-url" id="pm-url">https://...</div>
+      <a class="pm-ext" id="pm-ext" href="#" target="_blank">↗ Ouvrir</a>
+      <button class="pm-close" id="pm-close">✕</button>
+    </div>
+    <iframe class="pm-frame" id="pm-frame" src="about:blank"></iframe>
+  </div>
+</div>
+
+<!-- BOT -->
+<div id="bot">
+  <button id="bot-btn" onclick="botToggle()">🤖<div class="bot-ping"></div></button>
+  <div id="bot-panel">
+    <div class="bp-head">
+      <div class="bp-av">🤖</div>
+      <div><div class="bp-name">TK Assistant</div><div class="bp-st">● En ligne</div></div>
+      <button id="bp-close" onclick="botToggle()">✕</button>
+    </div>
+    <div id="bp-msgs"></div>
+    <div id="bp-sugs">
+      <button class="bsug" onclick="botSug(this)">💰 Combien ça coûte ?</button>
+      <button class="bsug" onclick="botSug(this)">⏱ C'est rapide ?</button>
+      <button class="bsug" onclick="botSug(this)">🌐 Vous faites quoi ?</button>
+      <button class="bsug" onclick="botSug(this)">📞 Parler à Tarik</button>
+    </div>
+    <div id="bp-inp-row">
+      <input id="bp-inp" type="text" placeholder="Votre question...">
+      <button id="bp-send">➤</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── TOUT LE JS EN BAS DU BODY — DOM TOUJOURS PRÊT ──
+
+// CURSOR
+(function(){
+  var c = document.getElementById('cur');
+  var r = document.getElementById('curR');
+  if (!c) return;
+  document.addEventListener('mousemove', function(e){
+    c.style.left = e.clientX + 'px';
+    c.style.top  = e.clientY + 'px';
+    r.style.left = e.clientX + 'px';
+    r.style.top  = e.clientY + 'px';
+  });
+  document.querySelectorAll('a,button,.srv-card,.proj,.step,.bsug,.chk').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ c.style.width='20px'; c.style.height='20px'; r.style.width='50px'; r.style.height='50px'; });
+    el.addEventListener('mouseleave', function(){ c.style.width='12px'; c.style.height='12px'; r.style.width='36px'; r.style.height='36px'; });
+  });
+})();
+
+// NAV
+window.addEventListener('scroll', function(){
+  document.getElementById('nav').classList.toggle('solid', window.scrollY > 60);
+});
+
+// SCROLL ANIMATIONS
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('vis'); });
+}, {threshold: 0.08});
+document.querySelectorAll('.anim').forEach(function(el, i){
+  el.style.transitionDelay = (i % 6) * 0.07 + 's';
+  obs.observe(el);
+});
+
+// BARS ANIMATION
+var barObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.bar-f').forEach(function(f){ f.style.width = f.dataset.w + '%'; });
+    }
+  });
+}, {threshold: 0.3});
+var procVis = document.querySelector('.proc-vis');
+if(procVis) barObs.observe(procVis);
+
+// ── PREVIEW MODALE ──
+function openPreview(url) {
+  var modal = document.getElementById('previewModal');
+  var frame = document.getElementById('pm-frame');
+  var urlEl = document.getElementById('pm-url');
+  var ext   = document.getElementById('pm-ext');
+  urlEl.textContent = url;
+  ext.href = url;
+  frame.src = url;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closePreview() {
+  var modal = document.getElementById('previewModal');
+  var frame = document.getElementById('pm-frame');
+  modal.classList.remove('active');
+  frame.src = 'about:blank';
+  document.body.style.overflow = '';
+}
+document.getElementById('pm-close').addEventListener('click', closePreview);
+document.getElementById('previewModal').addEventListener('click', function(e){
+  if (e.target === this) closePreview();
+});
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePreview(); });
+
+// ── FORMULAIRE ──
+function toggleChk(el) {
+  el.classList.toggle('on');
+  var b = el.querySelector('.chk-box');
+  if(b) b.textContent = el.classList.contains('on') ? '☑' : '☐';
+}
+function sendWA() {
+  var prenom = document.getElementById('cf-prenom').value.trim();
+  if(!prenom){ alert("Entrez votre prénom et activité"); document.getElementById('cf-prenom').focus(); return; }
+  var sel = Array.from(document.querySelectorAll('.chk.on')).map(function(el){ return el.textContent.replace('☑','').trim(); });
+  if(!sel.length){ alert('Cochez au moins un service'); return; }
+  var txt = 'Bonjour Tarik ! 👋\n\n' + prenom + '\n\nJe suis intéressé par :\n' + sel.map(function(s){ return '• ' + s; }).join('\n') + '\n\nMerci de me recontacter !';
+  window.open('https://wa.me/33768789800?text=' + encodeURIComponent(txt), '_blank');
+}
+
+// ── BOT ──
+var botOpen = false, botInit = false, botStep = 0, botData = {};
+
+var BQA = {
+  'prix':       'Un site complet à partir de 300€. Selon ce que vous voulez je prépare un devis gratuit en 24h 😊',
+  'cout':       'Un site complet à partir de 300€. Selon ce que vous voulez je prépare un devis gratuit en 24h 😊',
+  'combi':      'Un site complet à partir de 300€. Selon ce que vous voulez je prépare un devis gratuit en 24h 😊',
+  'tarif':      'Un site complet à partir de 300€. Selon ce que vous voulez je prépare un devis gratuit en 24h 😊',
+  'budget':     'Un site complet à partir de 300€. Selon ce que vous voulez je prépare un devis gratuit en 24h 😊',
+  'rapide':     'La première version de votre site est prête en 48h. Vous validez, on ajuste, on met en ligne en moins d\'une semaine.',
+  'delai':      'La première version de votre site est prête en 48h. Vous validez, on ajuste, on met en ligne en moins d\'une semaine.',
+  'faite':      'Je crée des sites web, gère la pub Facebook & Google, la commande WhatsApp, la fidélité et les alertes. Tout sans jargon.',
+  'service':    'Je crée des sites web, gère la pub Facebook & Google, la commande WhatsApp, la fidélité et les alertes. Tout sans jargon.',
+  'tarik':      'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
+  'parler':     'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
+  'contact':    'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
+  'google':     'Votre site est optimisé pour apparaître sur Google quand quelqu\'un cherche votre activité dans votre ville.',
+  'facebook':   'Je crée et gère vos publicités Facebook & Instagram pour toucher des clients dans votre ville.',
+  'instagram':  'Je crée et gère vos publicités Facebook & Instagram pour toucher des clients dans votre ville.',
+  'fideli':     'La carte de fidélité est intégrée. Vos clients accumulent des points à chaque commande et reviennent automatiquement.',
+  'command':    'Vos clients commandent depuis votre site via WhatsApp. Vous recevez une notification immédiate. Zéro commission.',
+  'whatsapp':   'Vos clients commandent depuis votre site via WhatsApp. Vous recevez une notification immédiate. Zéro commission.',
+  'resto':      'Oui, beaucoup de restaurants ! Commande WhatsApp, fidélité, pub ciblée. Regardez les projets dans la section Portfolio.',
+  'restaurant': 'Oui, beaucoup de restaurants ! Commande WhatsApp, fidélité, pub ciblée. Regardez les projets dans la section Portfolio.',
+  'coiff':      'J\'ai déjà réalisé un site barbershop avec réservation WhatsApp. Regardez Prestige Barber dans le Portfolio.',
+};
+
+function botReply(msg) {
+  var low = msg.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  for(var k in BQA){ if(low.indexOf(k)>=0) return BQA[k]; }
+  botStep++;
+  if(botStep===1){ botData.q1=msg; return 'Je comprends 😊 Avez-vous déjà un site internet actuellement ?'; }
+  if(botStep===2){ botData.q2=msg; return 'Quel est votre type d\'activité ? (restaurant, boutique, coiffeur...)'; }
+  var wa='https://wa.me/33768789800?text='+encodeURIComponent('Bonjour Tarik !\n\n'+botData.q1+'\nSite actuel : '+botData.q2+'\nActivité : '+msg);
+  return 'Parfait ! Cliquez ici pour envoyer vos infos à Tarik 👉 <a href="'+wa+'" target="_blank" style="color:var(--a);font-weight:700;">Envoyer sur WhatsApp →</a>';
+}
+
+function botAdd(txt, who) {
+  var d = document.createElement('div');
+  d.className = 'bm ' + who;
+  d.innerHTML = txt;
+  document.getElementById('bp-msgs').appendChild(d);
+  document.getElementById('bp-msgs').scrollTop = 9999;
+}
+
+function botType(cb) {
+  var t = document.createElement('div');
+  t.className = 'btyp'; t.id = 'btyp-el';
+  t.innerHTML = '<span></span><span></span><span></span>';
+  document.getElementById('bp-msgs').appendChild(t);
+  document.getElementById('bp-msgs').scrollTop = 9999;
+  setTimeout(function(){
+    var el = document.getElementById('btyp-el');
+    if(el) el.remove();
+    cb();
+    document.getElementById('bp-msgs').scrollTop = 9999;
+  }, 800);
+}
+
+function botSend() {
+  var inp = document.getElementById('bp-inp');
+  var msg = inp.value.trim();
+  if(!msg) return;
+  botAdd(msg, 'u');
+  inp.value = '';
+  document.getElementById('bp-sugs').style.display = 'none';
+  botType(function(){ botAdd(botReply(msg), 'b'); });
+}
+
+function botSug(el) {
+  var txt = el.textContent.trim();
+  botAdd(txt, 'u');
+  document.getElementById('bp-sugs').style.display = 'none';
+  var low = txt.toLowerCase();
+  var r = (low.indexOf('tarik')>=0||low.indexOf('parler')>=0)
+    ? 'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank" style="color:var(--a);">Écrire sur WhatsApp →</a>'
+    : botReply(txt);
+  botType(function(){ botAdd(r, 'b'); });
+}
+
+function botToggle() {
+  botOpen = !botOpen;
+  document.getElementById('bot-panel').classList.toggle('open', botOpen);
+  if(botOpen && !botInit) {
+    botInit = true;
+    botType(function(){ botAdd('Bonjour 👋 Je suis l\'assistant TK Digital. Comment puis-je vous aider ?', 'b'); });
+  }
+  if(botOpen) document.getElementById('bp-inp').focus();
+}
+
+// Événements bot
+document.getElementById('bp-send').addEventListener('click', botSend);
+document.getElementById('bp-inp').addEventListener('keydown', function(e){ if(e.key==='Enter') botSend(); });
+
+// Auto-ouvre après 10s d'inactivité
+var idleT;
+function resetIdle(){ clearTimeout(idleT); idleT=setTimeout(function(){ if(!botOpen&&!botInit) botToggle(); },10000); }
+['mousemove','scroll','keypress','touchstart'].forEach(function(e){ document.addEventListener(e,resetIdle,{passive:true}); });
+resetIdle();
+</script>
+</body>
+</html>
