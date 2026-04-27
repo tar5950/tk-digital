@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TK Digital — Agence Web & Marketing Digital | Nord de France</title>
-<meta name="description" content="TK Digital — Enfin un site web qui vous ramène de vrais clients. Création de sites, Meta Ads, Google Ads, fidélisation. Nord de France & toute la France.">
+<meta name="description" content="TK Digital — Enfin un site web qui vous ramène des clients. Création de sites, Meta Ads, Google Ads, fidélisation. Nord de France & toute la France. Appelez : 07 68 78 98 00">
 <meta name="keywords" content="agence web nord, création site internet douai, meta ads nord, google ads nord france, marketing digital, fidélisation client, TK Digital">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://tar5950.github.io/tk-digital/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="TK Digital — Agence Web & Marketing Digital">
-<meta property="og:description" content="Enfin un site web qui vous ramène de vrais clients. Nord de France & toute la France.">
+<meta property="og:description" content="Enfin un site web qui vous ramène des clients. Nord de France & toute la France.">
 <meta property="og:url" content="https://tar5950.github.io/tk-digital/">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"TK Digital","url":"https://tar5950.github.io/tk-digital/","description":"Agence web spécialisée en création de sites internet, marketing digital, Meta Ads, Google Ads et fidélisation client. Basée dans le Nord de France.","areaServed":"France","founder":{"@type":"Person","name":"Tarik","jobTitle":"Fondateur & Développeur Web"}}
+{"@context":"https://schema.org","@type":"Organization","name":"TK Digital","url":"https://tar5950.github.io/tk-digital/","description":"Agence web spécialisée en création de sites internet, marketing digital, Meta Ads, Google Ads et fidélisation client. Basée dans le Nord de France.","telephone":"+33768789800","areaServed":"France","founder":{"@type":"Person","name":"Tarik","jobTitle":"Fondateur & Développeur Web"}}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png">
@@ -28,17 +28,56 @@
   --a:#c8f135; --a2:#d4ff4a;
   --w:#f5f5f0; --w2:#e8e8e2; --mid:#888880;
   --border:rgba(200,241,53,0.12);
+  --wa:#25D366; --wa2:#1da855;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--n);color:var(--w);font-family:'DM Sans',sans-serif;overflow-x:hidden;line-height:1.6;}
+
+/* ==================== TRUST BAR (NEW) ==================== */
+.trust-bar{
+  background:#000;
+  border-bottom:1px solid var(--border);
+  padding:8px 5%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
+  position:relative;
+  z-index:201;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.tb-item{
+  color:var(--w2);
+  display:flex;
+  align-items:center;
+  gap:6px;
+  white-space:nowrap;
+}
+.tb-item a{
+  color:var(--a);
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:.05em;
+  transition:color .2s;
+}
+.tb-item a:hover{color:var(--a2);}
+.tb-sep{color:var(--mid);opacity:.5;}
+@media(max-width:600px){
+  .trust-bar{font-size:10px;gap:10px;padding:7px 4%;}
+  .tb-sep{display:none;}
+}
 
 /* CURSOR */
 #cur{position:fixed;width:12px;height:12px;background:var(--a);border-radius:50%;pointer-events:none;z-index:9999;left:-50px;top:-50px;transition:width .15s,height .15s;box-shadow:0 0 10px 3px rgba(200,241,53,0.4);}
 #curR{position:fixed;width:36px;height:36px;border:2px solid rgba(200,241,53,0.45);border-radius:50%;pointer-events:none;z-index:9998;left:-50px;top:-50px;transition:left .1s ease-out,top .1s ease-out,width .2s,height .2s;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 5%;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,border-color .3s;border-bottom:1px solid transparent;}
+nav{position:sticky;top:0;left:0;right:0;z-index:200;padding:0 5%;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,border-color .3s;border-bottom:1px solid transparent;}
 nav.solid{background:rgba(5,5,5,.96);border-color:var(--border);backdrop-filter:blur(20px);}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
 .logo-svg{width:36px;height:36px;flex-shrink:0;}
@@ -51,7 +90,7 @@ nav.solid{background:rgba(5,5,5,.96);border-color:var(--border);backdrop-filter:
 .nav-cta:hover{background:var(--a2);}
 
 /* HERO */
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5% 80px;position:relative;overflow:hidden;}
+#hero{min-height:90vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5% 80px;position:relative;overflow:hidden;}
 .hbg{position:absolute;inset:0;}
 .hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,241,53,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,241,53,.03) 1px,transparent 1px);background-size:60px 60px;}
 .hglow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(200,241,53,.07) 0%,transparent 65%);top:-200px;right:-150px;pointer-events:none;}
@@ -59,12 +98,36 @@ nav.solid{background:rgba(5,5,5,.96);border-color:var(--border);backdrop-filter:
 .htag-dot{width:6px;height:6px;background:var(--a);border-radius:50%;animation:bth 2s infinite;}
 h1{position:relative;z-index:1;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,4vw,58px);line-height:1.15;letter-spacing:-.01em;margin-bottom:36px;}
 h1 .l1{display:block;color:var(--w);opacity:0;animation:fup .8s .4s forwards;}
-h1 .l2{display:block;color:var(--a);opacity:0;animation:fup .8s .6s forwards;}
+h1 .l1:nth-of-type(2){animation:fup .8s .6s forwards;}
+h1 .l2{display:block;color:var(--a);opacity:0;animation:fup .8s .8s forwards;}
 h1 .l3{display:block;color:var(--w);opacity:0;animation:fup .8s .8s forwards;}
 .hbot{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:28px;opacity:0;animation:fup .6s 1.2s forwards;}
 .hsub{font-size:15px;font-weight:300;color:var(--mid);line-height:1.8;max-width:400px;}
 .hsub strong{color:var(--w);font-weight:400;}
 .hbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+
+/* HERO BTN PRIMARY UPDATED — Téléphone */
+.btn-phone{
+  font-family:'Syne',sans-serif;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--n);
+  background:var(--a);
+  padding:16px 32px;
+  text-decoration:none;
+  border-radius:2px;
+  border:none;
+  cursor:pointer;
+  transition:background .2s,transform .2s,box-shadow .2s;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  box-shadow:0 8px 24px rgba(200,241,53,.25);
+}
+.btn-phone:hover{background:var(--a2);transform:translateY(-1px);box-shadow:0 12px 32px rgba(200,241,53,.35);}
+
 .btn-a{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--n);background:var(--a);padding:14px 28px;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:background .2s;}
 .btn-a:hover{background:var(--a2);}
 .btn-b{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--w);border:1px solid rgba(245,245,240,.2);padding:13px 24px;text-decoration:none;border-radius:2px;transition:border-color .2s,color .2s;}
@@ -116,6 +179,46 @@ h1 .l3{display:block;color:var(--w);opacity:0;animation:fup .8s .8s forwards;}
 .proj-cat{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:6px;}
 .proj-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--w);}
 .proj-lnk{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--n);background:var(--a);padding:4px 12px;border-radius:2px;}
+
+/* STATUS BADGES (NEW — HONNÊTES) */
+.proj-status{
+  position:absolute;
+  top:16px;
+  left:16px;
+  z-index:2;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:5px 11px;
+  border-radius:2px;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+}
+.proj-status.active{
+  background:rgba(200,241,53,.15);
+  color:var(--a);
+  border:1px solid rgba(200,241,53,.4);
+}
+.proj-status.demo{
+  background:rgba(245,245,240,.08);
+  color:var(--w2);
+  border:1px solid rgba(245,245,240,.18);
+}
+.proj-status.soon{
+  background:rgba(255,180,0,.12);
+  color:#ffb400;
+  border:1px solid rgba(255,180,0,.3);
+}
+.proj-status .dot-st{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:currentColor;
+}
+.proj-status.active .dot-st{animation:bth 2s infinite;}
+
 .proj:nth-child(1) .proj-bg{background:linear-gradient(135deg,#0c0c0c,#1a0f08,#3d1a05);}
 .proj:nth-child(2) .proj-bg{background:linear-gradient(135deg,#0a0d0a,#0a2010,#0d3a18);}
 .proj:nth-child(3) .proj-bg{background:linear-gradient(135deg,#0c0a05,#1a1200,#2d2000);}
@@ -167,6 +270,21 @@ h1 .l3{display:block;color:var(--w);opacity:0;animation:fup .8s .8s forwards;}
 .ci-ico{width:38px;height:38px;background:var(--n3);border:1px solid var(--n4);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
 .ci-txt{font-size:13px;color:var(--w);}
 .ci-txt span{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:1px;}
+.ci-phone{
+  border:1px solid var(--a);
+  background:rgba(200,241,53,.04);
+  padding:14px 16px;
+  border-radius:2px;
+  margin-bottom:18px;
+  text-decoration:none;
+  cursor:pointer;
+  transition:background .2s;
+}
+.ci-phone:hover{background:rgba(200,241,53,.1);}
+.ci-phone .ci-ico{background:var(--a);border-color:var(--a);color:var(--n);}
+.ci-phone .ci-txt{color:var(--w);font-weight:500;}
+.ci-phone .ci-txt strong{display:block;font-family:'Syne',sans-serif;font-size:18px;color:var(--a);font-weight:800;letter-spacing:.04em;margin-top:2px;}
+
 .cont-form{background:var(--n2);border:1px solid var(--n4);border-radius:4px;padding:36px;}
 .form-ttl{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);margin-bottom:24px;}
 .f-lbl{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:7px;}
@@ -178,8 +296,57 @@ h1 .l3{display:block;color:var(--w);opacity:0;animation:fup .8s .8s forwards;}
 .chk:hover{border-color:var(--a);color:var(--w);}
 .chk.on{border-color:var(--a);background:rgba(200,241,53,.07);color:var(--a);}
 .chk-box{font-size:13px;flex-shrink:0;}
-.btn-wa{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px;background:#25D366;color:#fff;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;transition:background .2s;box-shadow:0 6px 20px rgba(37,211,102,.3);}
-.btn-wa:hover{background:#1da855;}
+
+/* DOUBLE CTA FORM (NEW) */
+.cta-double{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:10px;
+}
+.btn-call-form,.btn-wa{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:15px 14px;
+  font-family:'Syne',sans-serif;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border:none;
+  border-radius:2px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:background .2s,transform .2s;
+  text-align:center;
+  line-height:1.3;
+}
+.btn-call-form{
+  background:var(--a);
+  color:var(--n);
+  box-shadow:0 6px 20px rgba(200,241,53,.3);
+}
+.btn-call-form:hover{background:var(--a2);transform:translateY(-1px);}
+.btn-wa{
+  background:var(--wa);
+  color:#fff;
+  box-shadow:0 6px 20px rgba(37,211,102,.3);
+}
+.btn-wa:hover{background:var(--wa2);transform:translateY(-1px);}
+.btn-call-form small,.btn-wa small{
+  display:block;
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.1em;
+  opacity:.85;
+  margin-top:3px;
+}
+@media(max-width:480px){
+  .cta-double{grid-template-columns:1fr;}
+}
+
 .f-note{text-align:center;font-size:10px;color:var(--mid);margin-top:10px;}
 
 /* FOOTER */
@@ -295,6 +462,54 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
 #bp-send{background:var(--a);border:none;width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:14px;flex-shrink:0;transition:background .2s;}
 #bp-send:hover{background:var(--a2);}
 
+/* ==================== STICKY MOBILE BAR (NEW) ==================== */
+.sticky-cta-mobile{
+  display:none;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:rgba(5,5,5,.97);
+  backdrop-filter:blur(15px);
+  padding:10px 12px;
+  gap:8px;
+  z-index:850;
+  border-top:1px solid var(--border);
+  box-shadow:0 -8px 30px rgba(0,0,0,.6);
+}
+.scm-btn{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:13px 10px;
+  font-family:'Syne',sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  border-radius:2px;
+  text-decoration:none;
+  transition:transform .2s;
+}
+.scm-btn:active{transform:scale(.96);}
+.scm-call{
+  background:var(--a);
+  color:var(--n);
+  border:1px solid var(--a);
+}
+.scm-wa{
+  background:var(--wa);
+  color:#fff;
+  border:1px solid var(--wa);
+}
+@media(max-width:768px){
+  .sticky-cta-mobile{display:flex;}
+  body{padding-bottom:78px;}
+  #bot{bottom:88px;right:16px;}
+}
+
 /* KEYFRAMES */
 @keyframes fup{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes bth{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
@@ -321,6 +536,7 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
   .hstats{gap:20px;}
   #bot-panel{width:calc(100vw - 32px);right:-12px;}
   #cur,#curR{display:none;}
+  .btn-phone{padding:14px 24px;font-size:11px;}
 }
 @media(max-width:380px){.nav-cta{display:none;}}
 </style>
@@ -330,6 +546,15 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
 <!-- CURSOR -->
 <div id="cur"></div>
 <div id="curR"></div>
+
+<!-- ==================== TRUST BAR (NEW) ==================== -->
+<div class="trust-bar">
+  <div class="tb-item">📞 <a href="tel:+33768789800">07 68 78 98 00</a></div>
+  <div class="tb-sep">·</div>
+  <div class="tb-item">⚡ Réponse sous 24h</div>
+  <div class="tb-sep">·</div>
+  <div class="tb-item">📍 Douai · Nord de France</div>
+</div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -356,16 +581,16 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
   <div class="hbg"><div class="hgrid"></div><div class="hglow"></div></div>
   <div class="htag"><div class="htag-dot"></div>Agence Web — Nord de France</div>
   <h1>
-    <span class="l1">Enfin un site web</span>
-    <span class="l2">qui vous ramène</span>
-    <span class="l3">de vrais clients.</span>
+    <span class="l1">Un beau site, c'est bien.</span>
+    <span class="l1">Un beau site qui ramène</span>
+    <span class="l2">des clients, c'est mieux.</span>
   </h1>
   <div class="hbot">
     <div>
       <p class="hsub"><strong>TK Digital</strong> crée votre site internet, gère votre publicité sur Facebook et Google, et fidélise vos clients. Vous faites votre métier, je m'occupe du reste.</p>
       <div class="hbtns">
-        <a href="#contact" class="btn-a">Démarrer un projet</a>
-        <a href="#portfolio" class="btn-b">Voir les projets →</a>
+        <a href="tel:+33768789800" class="btn-phone">📞 Appelez-moi</a>
+        <a href="#contact" class="btn-b">Ou écrivez →</a>
       </div>
     </div>
     <div class="hstats">
@@ -417,7 +642,7 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
   </div>
 </section>
 
-<!-- PORTFOLIO -->
+<!-- PORTFOLIO (avec STATUTS HONNÊTES) -->
 <section id="portfolio" class="sec">
   <div class="port-hdr">
     <div>
@@ -428,6 +653,7 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
   </div>
   <div class="port-grid">
     <div class="proj anim" onclick="openPreview('https://tar5950.github.io/poulet-brais-4/')">
+      <div class="proj-status active"><span class="dot-st"></span>Client actif</div>
       <div class="proj-bg">🔥</div>
       <div class="proj-ov"></div>
       <div class="proj-info">
@@ -437,33 +663,37 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
       </div>
     </div>
     <div class="proj anim" onclick="openPreview('https://tar5950.github.io/la-dalle-burger/')">
+      <div class="proj-status demo"><span class="dot-st"></span>Démo portfolio</div>
       <div class="proj-bg">🍔</div>
       <div class="proj-ov"></div>
       <div class="proj-info">
-        <div class="proj-cat">Street Food · Nord</div>
+        <div class="proj-cat">Street Food · Concept</div>
         <div class="proj-name">La Dalle Burger</div>
-        <span class="proj-lnk">Voir le site →</span>
+        <span class="proj-lnk">Voir la démo →</span>
       </div>
     </div>
     <div class="proj anim" onclick="openPreview('https://tar5950.github.io/la-slica/')">
+      <div class="proj-status demo"><span class="dot-st"></span>Démo portfolio</div>
       <div class="proj-bg">🍕</div>
       <div class="proj-ov"></div>
       <div class="proj-info">
-        <div class="proj-cat">Pizzeria · Nord</div>
+        <div class="proj-cat">Pizzeria · Concept</div>
         <div class="proj-name">La Slica</div>
-        <span class="proj-lnk">Voir le site →</span>
+        <span class="proj-lnk">Voir la démo →</span>
       </div>
     </div>
     <div class="proj anim" onclick="openPreview('https://tar5950.github.io/prestige-barber/')">
+      <div class="proj-status demo"><span class="dot-st"></span>Démo portfolio</div>
       <div class="proj-bg">💈</div>
       <div class="proj-ov"></div>
       <div class="proj-info">
-        <div class="proj-cat">Barbershop · Nord</div>
+        <div class="proj-cat">Barbershop · Concept</div>
         <div class="proj-name">Prestige Barber</div>
-        <span class="proj-lnk">Voir le site →</span>
+        <span class="proj-lnk">Voir la démo →</span>
       </div>
     </div>
     <div class="proj anim">
+      <div class="proj-status soon"><span class="dot-st"></span>Bientôt</div>
       <div class="proj-bg">⚡</div>
       <div class="proj-ov"></div>
       <div class="proj-info">
@@ -533,13 +763,18 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- CONTACT (sans "prix clair") -->
 <section id="contact" class="sec">
   <div class="cont-layout">
     <div>
       <div class="eyebrow">On démarre ?</div>
       <h2 class="sec-h">On démarre<br><span>quand vous voulez.</span></h2>
-      <p class="cont-sub">Dites-moi ce que vous faites et ce que vous voulez. Je vous réponds dans la journée avec une idée concrète et un prix clair. C'est gratuit.</p>
+      <p class="cont-sub">Dites-moi ce que vous faites et ce que vous voulez. Je vous réponds dans la journée avec une idée concrète. <strong style="color:var(--w);">C'est gratuit.</strong></p>
+
+      <a href="tel:+33768789800" class="ci ci-phone" style="text-decoration:none;">
+        <div class="ci-ico">📞</div>
+        <div class="ci-txt"><span>Appelez-moi directement</span><strong>07 68 78 98 00</strong></div>
+      </a>
       <div class="ci"><div class="ci-ico">📍</div><div class="ci-txt"><span>Localisation</span>Douai, Nord de France</div></div>
       <div class="ci"><div class="ci-ico">🌐</div><div class="ci-txt"><span>Zone</span>Nord & toute la France</div></div>
       <div class="ci"><div class="ci-ico">⏱</div><div class="ci-txt"><span>Disponibilité</span>Réponse sous 24h</div></div>
@@ -562,10 +797,19 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
         <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Messages promos auto</label>
         <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Tout gérer pour moi</label>
       </div>
-      <button class="btn-wa" onclick="sendWA()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        Envoyer sur WhatsApp — gratuit
-      </button>
+
+      <!-- DOUBLE CTA (NEW) -->
+      <div class="cta-double">
+        <a href="tel:+33768789800" class="btn-call-form">
+          📞 Appelez-moi
+          <small>07 68 78 98 00</small>
+        </a>
+        <button class="btn-wa" onclick="sendWA()" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp
+          <small>Réponse 24h</small>
+        </button>
+      </div>
       <p class="f-note">En 1 clic · Réponse sous 24h · Sans engagement</p>
     </div>
   </div>
@@ -596,6 +840,7 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
       </div>
       <div class="ft-col">
         <div class="ft-col-ttl">Contact</div>
+        <a href="tel:+33768789800">📞 07 68 78 98 00</a>
         <a href="https://wa.me/33768789800" target="_blank">WhatsApp</a>
         <a href="https://www.instagram.com/tk_digital-nord" target="_blank">Instagram</a>
         <a href="https://www.facebook.com/tk.digital.nord" target="_blank">Facebook</a>
@@ -648,9 +893,13 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
   </div>
 </div>
 
-<script>
-// ── TOUT LE JS EN BAS DU BODY — DOM TOUJOURS PRÊT ──
+<!-- ==================== STICKY MOBILE BAR (NEW) ==================== -->
+<div class="sticky-cta-mobile">
+  <a href="tel:+33768789800" class="scm-btn scm-call">📞 Appeler</a>
+  <a href="https://wa.me/33768789800?text=Salam%20Tarik%2C%20je%20veux%20parler%20de%20mon%20projet" target="_blank" class="scm-btn scm-wa">💬 WhatsApp</a>
+</div>
 
+<script>
 // CURSOR
 (function(){
   var c = document.getElementById('cur');
@@ -693,7 +942,7 @@ var barObs = new IntersectionObserver(function(entries){
 var procVis = document.querySelector('.proc-vis');
 if(procVis) barObs.observe(procVis);
 
-// ── PREVIEW MODALE ──
+// PREVIEW MODALE
 function openPreview(url) {
   var modal = document.getElementById('previewModal');
   var frame = document.getElementById('pm-frame');
@@ -718,7 +967,7 @@ document.getElementById('previewModal').addEventListener('click', function(e){
 });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePreview(); });
 
-// ── FORMULAIRE ──
+// FORMULAIRE
 function toggleChk(el) {
   el.classList.toggle('on');
   var b = el.querySelector('.chk-box');
@@ -733,7 +982,7 @@ function sendWA() {
   window.open('https://wa.me/33768789800?text=' + encodeURIComponent(txt), '_blank');
 }
 
-// ── BOT ──
+// BOT
 var botOpen = false, botInit = false, botStep = 0, botData = {};
 
 var BQA = {
@@ -746,9 +995,11 @@ var BQA = {
   'delai':      'La première version de votre site est prête en 48h. Vous validez, on ajuste, on met en ligne en moins d\'une semaine.',
   'faite':      'Je crée des sites web, gère la pub Facebook & Google, la commande WhatsApp, la fidélité et les alertes. Tout sans jargon.',
   'service':    'Je crée des sites web, gère la pub Facebook & Google, la commande WhatsApp, la fidélité et les alertes. Tout sans jargon.',
-  'tarik':      'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
-  'parler':     'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
-  'contact':    'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
+  'tarik':      'Tarik est disponible maintenant 👉 <a href="tel:+33768789800">📞 Appeler 07 68 78 98 00</a> ou <a href="https://wa.me/33768789800" target="_blank">WhatsApp</a>',
+  'parler':     'Tarik est disponible maintenant 👉 <a href="tel:+33768789800">📞 Appeler 07 68 78 98 00</a> ou <a href="https://wa.me/33768789800" target="_blank">WhatsApp</a>',
+  'contact':    'Tarik est disponible maintenant 👉 <a href="tel:+33768789800">📞 Appeler 07 68 78 98 00</a> ou <a href="https://wa.me/33768789800" target="_blank">WhatsApp</a>',
+  'appel':      'Appelez-moi maintenant 👉 <a href="tel:+33768789800">📞 07 68 78 98 00</a>',
+  'telephone':  'Mon numéro 👉 <a href="tel:+33768789800">📞 07 68 78 98 00</a>',
   'google':     'Votre site est optimisé pour apparaître sur Google quand quelqu\'un cherche votre activité dans votre ville.',
   'facebook':   'Je crée et gère vos publicités Facebook & Instagram pour toucher des clients dans votre ville.',
   'instagram':  'Je crée et gère vos publicités Facebook & Instagram pour toucher des clients dans votre ville.',
@@ -808,7 +1059,7 @@ function botSug(el) {
   document.getElementById('bp-sugs').style.display = 'none';
   var low = txt.toLowerCase();
   var r = (low.indexOf('tarik')>=0||low.indexOf('parler')>=0)
-    ? 'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank" style="color:var(--a);">Écrire sur WhatsApp →</a>'
+    ? 'Tarik est disponible maintenant 👉 <a href="tel:+33768789800" style="color:var(--a);">📞 07 68 78 98 00</a> ou <a href="https://wa.me/33768789800" target="_blank" style="color:var(--a);">WhatsApp →</a>'
     : botReply(txt);
   botType(function(){ botAdd(r, 'b'); });
 }
@@ -823,11 +1074,9 @@ function botToggle() {
   if(botOpen) document.getElementById('bp-inp').focus();
 }
 
-// Événements bot
 document.getElementById('bp-send').addEventListener('click', botSend);
 document.getElementById('bp-inp').addEventListener('keydown', function(e){ if(e.key==='Enter') botSend(); });
 
-// Auto-ouvre après 10s d'inactivité
 var idleT;
 function resetIdle(){ clearTimeout(idleT); idleT=setTimeout(function(){ if(!botOpen&&!botInit) botToggle(); },10000); }
 ['mousemove','scroll','keypress','touchstart'].forEach(function(e){ document.addEventListener(e,resetIdle,{passive:true}); });
