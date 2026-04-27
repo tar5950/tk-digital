@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TK Digital — Agence Web & Marketing Digital | Nord de France</title>
-<meta name="description" content="TK Digital — Enfin un site web qui vous ramène des clients. Création de sites, Meta Ads, Google Ads, fidélisation. Nord de France & toute la France. Appelez : 07 68 78 98 00">
-<meta name="keywords" content="agence web nord, création site internet douai, meta ads nord, google ads nord france, marketing digital, fidélisation client, TK Digital">
+<title>TK Digital — Site web + Google + WhatsApp pour Restos & Barbiers du Nord</title>
+<meta name="description" content="Tarik (ex-fournisseur emballages 7 ans Nord) : site web + Google + WhatsApp pour restos, pizzerias, barbiers. Setup 490€ puis 190€ ou 290€/mois selon ton niveau. Engagement 6 mois. Site en 7 jours.">
+<meta name="keywords" content="agence web nord, création site internet douai, site web restaurant halal, site barbier nord, fiche google optimisée, commande whatsapp, fidélisation client, TK Digital">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://tar5950.github.io/tk-digital/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="TK Digital — Agence Web & Marketing Digital">
-<meta property="og:description" content="Enfin un site web qui vous ramène des clients. Nord de France & toute la France.">
+<meta property="og:description" content="Enfin un site web qui vous ramène de vrais clients. Nord de France & toute la France.">
 <meta property="og:url" content="https://tar5950.github.io/tk-digital/">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"TK Digital","url":"https://tar5950.github.io/tk-digital/","description":"Agence web spécialisée en création de sites internet, marketing digital, Meta Ads, Google Ads et fidélisation client. Basée dans le Nord de France.","telephone":"+33768789800","areaServed":"France","founder":{"@type":"Person","name":"Tarik","jobTitle":"Fondateur & Développeur Web"}}
+{"@context":"https://schema.org","@type":"Organization","name":"TK Digital","url":"https://tar5950.github.io/tk-digital/","description":"Création de sites web, fiche Google optimisée et commande WhatsApp pour restaurateurs et barbiers du Nord de France.","areaServed":"France","founder":{"@type":"Person","name":"Tarik","jobTitle":"Fondateur & Développeur Web"}}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png">
@@ -28,56 +28,17 @@
   --a:#c8f135; --a2:#d4ff4a;
   --w:#f5f5f0; --w2:#e8e8e2; --mid:#888880;
   --border:rgba(200,241,53,0.12);
-  --wa:#25D366; --wa2:#1da855;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--n);color:var(--w);font-family:'DM Sans',sans-serif;overflow-x:hidden;line-height:1.6;}
-
-/* ==================== TRUST BAR (NEW) ==================== */
-.trust-bar{
-  background:#000;
-  border-bottom:1px solid var(--border);
-  padding:8px 5%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:18px;
-  flex-wrap:wrap;
-  position:relative;
-  z-index:201;
-  font-size:11px;
-  font-weight:500;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-.tb-item{
-  color:var(--w2);
-  display:flex;
-  align-items:center;
-  gap:6px;
-  white-space:nowrap;
-}
-.tb-item a{
-  color:var(--a);
-  text-decoration:none;
-  font-weight:700;
-  letter-spacing:.05em;
-  transition:color .2s;
-}
-.tb-item a:hover{color:var(--a2);}
-.tb-sep{color:var(--mid);opacity:.5;}
-@media(max-width:600px){
-  .trust-bar{font-size:10px;gap:10px;padding:7px 4%;}
-  .tb-sep{display:none;}
-}
 
 /* CURSOR */
 #cur{position:fixed;width:12px;height:12px;background:var(--a);border-radius:50%;pointer-events:none;z-index:9999;left:-50px;top:-50px;transition:width .15s,height .15s;box-shadow:0 0 10px 3px rgba(200,241,53,0.4);}
 #curR{position:fixed;width:36px;height:36px;border:2px solid rgba(200,241,53,0.45);border-radius:50%;pointer-events:none;z-index:9998;left:-50px;top:-50px;transition:left .1s ease-out,top .1s ease-out,width .2s,height .2s;}
 
 /* NAV */
-nav{position:sticky;top:0;left:0;right:0;z-index:200;padding:0 5%;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,border-color .3s;border-bottom:1px solid transparent;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 5%;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,border-color .3s;border-bottom:1px solid transparent;}
 nav.solid{background:rgba(5,5,5,.96);border-color:var(--border);backdrop-filter:blur(20px);}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
 .logo-svg{width:36px;height:36px;flex-shrink:0;}
@@ -88,50 +49,49 @@ nav.solid{background:rgba(5,5,5,.96);border-color:var(--border);backdrop-filter:
 .nav-links a:hover{color:var(--a);}
 .nav-cta{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--n);background:var(--a);padding:11px 24px;text-decoration:none;border-radius:2px;transition:background .2s;}
 .nav-cta:hover{background:var(--a2);}
+.nav-actions{display:flex;align-items:center;gap:14px;}
+.nav-tel{display:flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--w);text-decoration:none;padding:9px 14px;border:1px solid var(--n5);border-radius:2px;transition:all .2s;}
+.nav-tel:hover{border-color:var(--a);color:var(--a);}
+.nav-tel svg{flex-shrink:0;}
+
+/* Sticky phone button mobile */
+.mob-tel{
+  display:none;
+  position:fixed;
+  bottom:24px;left:24px;z-index:899;
+  width:54px;height:54px;
+  background:#25D366;color:#fff;
+  border-radius:50%;
+  align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(37,211,102,.5);
+  text-decoration:none;
+  animation:pulseRing 2.4s infinite;
+}
+@keyframes pulseRing{0%{box-shadow:0 8px 24px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,.55);}60%{box-shadow:0 8px 24px rgba(37,211,102,.5),0 0 0 14px rgba(37,211,102,0);}100%{box-shadow:0 8px 24px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,0);}}
 
 /* HERO */
-#hero{min-height:90vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5% 80px;position:relative;overflow:hidden;}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5% 80px;position:relative;overflow:hidden;}
 .hbg{position:absolute;inset:0;}
 .hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,241,53,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,241,53,.03) 1px,transparent 1px);background-size:60px 60px;}
 .hglow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(200,241,53,.07) 0%,transparent 65%);top:-200px;right:-150px;pointer-events:none;}
 .htag{position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;background:var(--n3);border:1px solid var(--border);padding:6px 14px;border-radius:2px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:28px;opacity:0;animation:fup .6s .2s forwards;}
 .htag-dot{width:6px;height:6px;background:var(--a);border-radius:50%;animation:bth 2s infinite;}
+.htag-urg{background:rgba(255,140,66,.08);border:1px solid rgba(255,140,66,.3);color:#ff8c42;}
+.htag-urg .htag-dot{background:#ff8c42;}
 h1{position:relative;z-index:1;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,4vw,58px);line-height:1.15;letter-spacing:-.01em;margin-bottom:36px;}
 h1 .l1{display:block;color:var(--w);opacity:0;animation:fup .8s .4s forwards;}
-h1 .l1:nth-of-type(2){animation:fup .8s .6s forwards;}
-h1 .l2{display:block;color:var(--a);opacity:0;animation:fup .8s .8s forwards;}
+h1 .l2{display:block;color:var(--a);opacity:0;animation:fup .8s .6s forwards;}
 h1 .l3{display:block;color:var(--w);opacity:0;animation:fup .8s .8s forwards;}
 .hbot{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:28px;opacity:0;animation:fup .6s 1.2s forwards;}
 .hsub{font-size:15px;font-weight:300;color:var(--mid);line-height:1.8;max-width:400px;}
 .hsub strong{color:var(--w);font-weight:400;}
 .hbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
-
-/* HERO BTN PRIMARY UPDATED — Téléphone */
-.btn-phone{
-  font-family:'Syne',sans-serif;
-  font-size:13px;
-  font-weight:700;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--n);
-  background:var(--a);
-  padding:16px 32px;
-  text-decoration:none;
-  border-radius:2px;
-  border:none;
-  cursor:pointer;
-  transition:background .2s,transform .2s,box-shadow .2s;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  box-shadow:0 8px 24px rgba(200,241,53,.25);
-}
-.btn-phone:hover{background:var(--a2);transform:translateY(-1px);box-shadow:0 12px 32px rgba(200,241,53,.35);}
-
 .btn-a{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--n);background:var(--a);padding:14px 28px;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:background .2s;}
 .btn-a:hover{background:var(--a2);}
 .btn-b{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--w);border:1px solid rgba(245,245,240,.2);padding:13px 24px;text-decoration:none;border-radius:2px;transition:border-color .2s,color .2s;}
 .btn-b:hover{border-color:var(--a);color:var(--a);}
+.btn-tel{display:inline-flex;align-items:center;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;color:#fff;background:#25D366;padding:13px 22px;text-decoration:none;border-radius:2px;transition:background .2s;box-shadow:0 4px 14px rgba(37,211,102,.3);}
+.btn-tel:hover{background:#1da855;}
 .hstats{display:flex;gap:36px;}
 .hstat-v{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--a);line-height:1;}
 .hstat-l{font-size:10px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-top:4px;}
@@ -179,46 +139,6 @@ h1 .l3{display:block;color:var(--w);opacity:0;animation:fup .8s .8s forwards;}
 .proj-cat{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:6px;}
 .proj-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--w);}
 .proj-lnk{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--n);background:var(--a);padding:4px 12px;border-radius:2px;}
-
-/* STATUS BADGES (NEW — HONNÊTES) */
-.proj-status{
-  position:absolute;
-  top:16px;
-  left:16px;
-  z-index:2;
-  font-size:9px;
-  font-weight:700;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  padding:5px 11px;
-  border-radius:2px;
-  display:inline-flex;
-  align-items:center;
-  gap:5px;
-}
-.proj-status.active{
-  background:rgba(200,241,53,.15);
-  color:var(--a);
-  border:1px solid rgba(200,241,53,.4);
-}
-.proj-status.demo{
-  background:rgba(245,245,240,.08);
-  color:var(--w2);
-  border:1px solid rgba(245,245,240,.18);
-}
-.proj-status.soon{
-  background:rgba(255,180,0,.12);
-  color:#ffb400;
-  border:1px solid rgba(255,180,0,.3);
-}
-.proj-status .dot-st{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:currentColor;
-}
-.proj-status.active .dot-st{animation:bth 2s infinite;}
-
 .proj:nth-child(1) .proj-bg{background:linear-gradient(135deg,#0c0c0c,#1a0f08,#3d1a05);}
 .proj:nth-child(2) .proj-bg{background:linear-gradient(135deg,#0a0d0a,#0a2010,#0d3a18);}
 .proj:nth-child(3) .proj-bg{background:linear-gradient(135deg,#0c0a05,#1a1200,#2d2000);}
@@ -270,21 +190,6 @@ h1 .l3{display:block;color:var(--w);opacity:0;animation:fup .8s .8s forwards;}
 .ci-ico{width:38px;height:38px;background:var(--n3);border:1px solid var(--n4);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
 .ci-txt{font-size:13px;color:var(--w);}
 .ci-txt span{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:1px;}
-.ci-phone{
-  border:1px solid var(--a);
-  background:rgba(200,241,53,.04);
-  padding:14px 16px;
-  border-radius:2px;
-  margin-bottom:18px;
-  text-decoration:none;
-  cursor:pointer;
-  transition:background .2s;
-}
-.ci-phone:hover{background:rgba(200,241,53,.1);}
-.ci-phone .ci-ico{background:var(--a);border-color:var(--a);color:var(--n);}
-.ci-phone .ci-txt{color:var(--w);font-weight:500;}
-.ci-phone .ci-txt strong{display:block;font-family:'Syne',sans-serif;font-size:18px;color:var(--a);font-weight:800;letter-spacing:.04em;margin-top:2px;}
-
 .cont-form{background:var(--n2);border:1px solid var(--n4);border-radius:4px;padding:36px;}
 .form-ttl{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);margin-bottom:24px;}
 .f-lbl{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:7px;}
@@ -296,57 +201,8 @@ h1 .l3{display:block;color:var(--w);opacity:0;animation:fup .8s .8s forwards;}
 .chk:hover{border-color:var(--a);color:var(--w);}
 .chk.on{border-color:var(--a);background:rgba(200,241,53,.07);color:var(--a);}
 .chk-box{font-size:13px;flex-shrink:0;}
-
-/* DOUBLE CTA FORM (NEW) */
-.cta-double{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-bottom:10px;
-}
-.btn-call-form,.btn-wa{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  padding:15px 14px;
-  font-family:'Syne',sans-serif;
-  font-size:13px;
-  font-weight:700;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  border:none;
-  border-radius:2px;
-  cursor:pointer;
-  text-decoration:none;
-  transition:background .2s,transform .2s;
-  text-align:center;
-  line-height:1.3;
-}
-.btn-call-form{
-  background:var(--a);
-  color:var(--n);
-  box-shadow:0 6px 20px rgba(200,241,53,.3);
-}
-.btn-call-form:hover{background:var(--a2);transform:translateY(-1px);}
-.btn-wa{
-  background:var(--wa);
-  color:#fff;
-  box-shadow:0 6px 20px rgba(37,211,102,.3);
-}
-.btn-wa:hover{background:var(--wa2);transform:translateY(-1px);}
-.btn-call-form small,.btn-wa small{
-  display:block;
-  font-size:9px;
-  font-weight:500;
-  letter-spacing:.1em;
-  opacity:.85;
-  margin-top:3px;
-}
-@media(max-width:480px){
-  .cta-double{grid-template-columns:1fr;}
-}
-
+.btn-wa{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px;background:#25D366;color:#fff;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;transition:background .2s;box-shadow:0 6px 20px rgba(37,211,102,.3);}
+.btn-wa:hover{background:#1da855;}
 .f-note{text-align:center;font-size:10px;color:var(--mid);margin-top:10px;}
 
 /* FOOTER */
@@ -462,54 +318,6 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
 #bp-send{background:var(--a);border:none;width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:14px;flex-shrink:0;transition:background .2s;}
 #bp-send:hover{background:var(--a2);}
 
-/* ==================== STICKY MOBILE BAR (NEW) ==================== */
-.sticky-cta-mobile{
-  display:none;
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:rgba(5,5,5,.97);
-  backdrop-filter:blur(15px);
-  padding:10px 12px;
-  gap:8px;
-  z-index:850;
-  border-top:1px solid var(--border);
-  box-shadow:0 -8px 30px rgba(0,0,0,.6);
-}
-.scm-btn{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-  padding:13px 10px;
-  font-family:'Syne',sans-serif;
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  border-radius:2px;
-  text-decoration:none;
-  transition:transform .2s;
-}
-.scm-btn:active{transform:scale(.96);}
-.scm-call{
-  background:var(--a);
-  color:var(--n);
-  border:1px solid var(--a);
-}
-.scm-wa{
-  background:var(--wa);
-  color:#fff;
-  border:1px solid var(--wa);
-}
-@media(max-width:768px){
-  .sticky-cta-mobile{display:flex;}
-  body{padding-bottom:78px;}
-  #bot{bottom:88px;right:16px;}
-}
-
 /* KEYFRAMES */
 @keyframes fup{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes bth{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
@@ -518,6 +326,188 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
 /* SCROLL ANIM */
 .anim{opacity:0;transform:translateY(24px);transition:opacity .55s,transform .55s;}
 .anim.vis{opacity:1;transform:translateY(0);}
+
+/* URGENCE banner */
+.urg-banner{position:relative;margin-top:32px;background:linear-gradient(135deg,#1a0e0e,#1a1208);border:1px solid #ff8c42;border-radius:8px;padding:24px 28px;overflow:hidden;}
+.urg-pulse{position:absolute;top:-50%;right:-10%;width:200px;height:200px;background:radial-gradient(circle,rgba(255,140,66,.18) 0%,transparent 70%);animation:urgPulse 3s ease-in-out infinite;}
+@keyframes urgPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+.urg-content{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+.urg-tag{display:inline-block;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#ff8c42;background:rgba(255,140,66,.1);border:1px solid rgba(255,140,66,.3);padding:5px 12px;border-radius:2px;margin-bottom:10px;}
+.urg-h{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);line-height:1.4;margin-bottom:6px;}
+.urg-h strong{color:#ff8c42;}
+.urg-sub{font-size:13px;color:var(--mid);line-height:1.6;}
+.urg-sub strong{color:var(--w);}
+.urg-stat{text-align:center;background:rgba(255,140,66,.1);border:2px solid #ff8c42;border-radius:8px;padding:18px 26px;}
+.urg-stat-v{font-family:'Syne',sans-serif;font-size:54px;font-weight:800;color:#ff8c42;line-height:1;}
+.urg-stat-l{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#ffb088;margin-top:4px;}
+
+/* SETUP banner */
+.setup-banner{margin-top:40px;background:linear-gradient(135deg,var(--n3),var(--n4));border:1px solid var(--border);border-radius:8px;padding:32px 36px;display:grid;grid-template-columns:1fr 1.2fr;gap:36px;align-items:center;}
+.setup-banner-tag{display:inline-block;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--a);background:rgba(200,241,53,.1);border:1px solid rgba(200,241,53,.2);padding:5px 12px;border-radius:2px;margin-bottom:14px;}
+.setup-banner-price{font-family:'Syne',sans-serif;font-size:64px;font-weight:800;color:var(--w);line-height:1;margin-bottom:10px;}
+.setup-banner-sub{font-size:13px;color:var(--mid);line-height:1.7;}
+.setup-banner-sub strong{color:var(--w);}
+.setup-banner-list{list-style:none;}
+.setup-banner-list li{font-size:13px;color:var(--w2);padding:8px 0;border-bottom:1px solid var(--n4);}
+.setup-banner-list li:last-child{border:none;}
+
+/* TIER intro */
+.tier-intro{margin-top:48px;text-align:center;}
+.tier-intro-tag{display:inline-block;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--a);background:rgba(200,241,53,.06);border:1px solid rgba(200,241,53,.18);padding:5px 14px;border-radius:2px;margin-bottom:14px;}
+.tier-intro-h{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--w);margin-bottom:8px;letter-spacing:-.01em;}
+.tier-intro-sub{font-size:14px;color:var(--mid);max-width:540px;margin:0 auto;}
+
+/* OFFRE (Two-tier monthly cards) */
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px;}
+.pay-card{background:var(--n3);border:1px solid var(--n4);border-radius:8px;padding:32px 28px;display:flex;flex-direction:column;position:relative;transition:transform .25s,border-color .25s;}
+.pay-card:hover{transform:translateY(-4px);}
+.pay-card.featured{border:2px solid var(--a);background:linear-gradient(180deg,var(--n3),var(--n2));box-shadow:0 16px 48px rgba(200,241,53,.12);}
+.pay-tag{display:inline-block;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--a);background:rgba(200,241,53,.08);border:1px solid rgba(200,241,53,.18);padding:5px 12px;border-radius:2px;margin-bottom:18px;align-self:flex-start;}
+.pay-price{font-family:'Syne',sans-serif;font-size:64px;font-weight:800;color:var(--w);line-height:1;margin-bottom:6px;}
+.pay-price small{font-size:18px;font-weight:400;color:var(--mid);}
+.pay-period{font-size:12px;color:var(--mid);margin-bottom:20px;letter-spacing:.04em;}
+.pay-divider{height:1px;background:var(--n4);margin:0 0 22px;}
+.pay-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--w);margin-bottom:14px;}
+.pay-list{list-style:none;flex:1;margin-bottom:18px;}
+.pay-list li{font-size:13px;color:var(--w2);line-height:1.7;padding-left:22px;position:relative;margin-bottom:8px;}
+.pay-list li::before{content:'✓';position:absolute;left:0;color:var(--a);font-weight:700;}
+.pay-list li strong{color:var(--w);}
+.pay-note{font-size:12px;color:var(--mid);background:rgba(200,241,53,.04);border-left:2px solid var(--a);padding:10px 14px;border-radius:0 4px 4px 0;line-height:1.6;}
+.pay-note strong{color:var(--a);font-weight:700;}
+.pay-tag-feat{display:inline-block;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--n);background:var(--a);padding:5px 12px;border-radius:2px;margin-bottom:18px;align-self:flex-start;}
+.pay-cta{display:block;text-align:center;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:14px;background:transparent;border:1px solid var(--n5);color:var(--w);text-decoration:none;border-radius:2px;transition:all .2s;margin-top:18px;}
+.pay-cta:hover{background:var(--a);color:var(--n);border-color:var(--a);}
+.pay-cta.featured{background:var(--a);color:var(--n);border-color:var(--a);}
+.pay-cta.featured:hover{background:var(--a2);}
+
+.not-incl{margin-top:40px;background:var(--n2);border:1px dashed var(--n5);border-radius:8px;padding:32px;}
+.not-incl-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--w);margin-bottom:22px;}
+.not-incl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px;}
+.not-incl-item{padding:18px;background:var(--n3);border-radius:4px;border:1px solid var(--n4);}
+.not-incl-h{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--w);margin-bottom:8px;}
+.not-incl-d{font-size:12px;color:var(--mid);line-height:1.65;}
+.not-incl-bottom{font-size:13px;color:var(--w2);text-align:center;padding-top:18px;border-top:1px solid var(--n4);}
+.not-incl-bottom strong{color:var(--a);}
+
+.off-final-cta{margin-top:40px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* OFFRE (Single offer — kept for compatibility) */
+#offres{background:var(--n2);}
+.single-off{margin-top:48px;background:var(--n3);border:2px solid var(--a);border-radius:10px;padding:48px;position:relative;box-shadow:0 24px 60px rgba(200,241,53,.08);}
+.single-off-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--a);color:var(--n);font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:3px;}
+.single-off-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center;}
+.single-off-price{font-family:'Syne',sans-serif;font-size:84px;font-weight:800;color:var(--w);line-height:1;margin-bottom:6px;}
+.single-off-price small{font-size:24px;font-weight:400;color:var(--mid);}
+.single-off-price-row{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--n4);}
+.single-off-price-row:last-of-type{border-bottom:none;margin-bottom:14px;}
+.price-label{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);min-width:60px;}
+.price-val{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:var(--w);line-height:1;}
+.price-val small{font-size:18px;font-weight:400;color:var(--mid);}
+.single-off-period{font-size:13px;color:var(--mid);margin-bottom:30px;letter-spacing:.04em;}
+.single-off-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;}
+.single-off-trust{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;padding-top:24px;border-top:1px solid var(--n4);}
+.single-off-ti{font-size:12px;color:var(--w2);display:flex;align-items:center;gap:8px;}
+.ti-ico{color:var(--a);font-weight:700;font-size:14px;}
+.single-off-feats-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--a);margin-bottom:18px;}
+.single-off-feats{list-style:none;}
+.single-off-feats li{font-size:13px;color:var(--w2);line-height:1.6;padding-left:24px;position:relative;margin-bottom:12px;}
+.single-off-feats li::before{content:'→';position:absolute;left:0;color:var(--a);font-weight:700;}
+.single-off-feats li strong{color:var(--w);font-weight:600;}
+
+/* GARANTIE */
+#garantie{background:var(--n);position:relative;overflow:hidden;}
+#garantie::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(200,241,53,.06) 0%,transparent 60%);}
+.gar-wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.gar-seal{aspect-ratio:1;max-width:380px;margin:0 auto;background:var(--n2);border:2px solid var(--a);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px;text-align:center;position:relative;}
+.gar-seal::before{content:'';position:absolute;inset:8px;border:1px dashed rgba(200,241,53,.3);border-radius:50%;}
+.gar-seal-top{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--a);margin-bottom:10px;}
+.gar-seal-big{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--w);line-height:1;margin-bottom:8px;}
+.gar-seal-sub{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--a);line-height:1.2;}
+.gar-list{list-style:none;}
+.gar-list li{padding:14px 0;border-bottom:1px solid var(--n4);display:flex;gap:14px;align-items:flex-start;}
+.gar-list li:last-child{border:none;}
+.gar-ico{font-size:20px;flex-shrink:0;margin-top:2px;}
+.gar-li-t{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--w);margin-bottom:3px;}
+.gar-li-d{font-size:12px;color:var(--mid);line-height:1.6;}
+
+/* CALCULATEUR UBER */
+#calculateur{background:var(--n2);}
+.calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:40px;}
+.calc-card{background:var(--n3);border:1px solid var(--n4);border-radius:8px;padding:32px;}
+.calc-row{margin-bottom:20px;}
+.calc-lbl{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:8px;}
+.calc-inp{width:100%;background:var(--n4);border:1px solid var(--n5);color:var(--w);padding:14px 16px;font-family:'Syne',sans-serif;font-size:18px;font-weight:700;border-radius:3px;outline:none;transition:border-color .2s;}
+.calc-inp:focus{border-color:var(--a);}
+.calc-help{font-size:10px;color:var(--mid);margin-top:5px;}
+.calc-result{background:linear-gradient(135deg,#1a0a0a,#1a0808);border:1px solid #ff5544;border-radius:8px;padding:32px;text-align:center;}
+.calc-r-lbl{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#ff8888;margin-bottom:14px;}
+.calc-r-big{font-family:'Syne',sans-serif;font-size:54px;font-weight:800;color:#ff5544;line-height:1;margin-bottom:6px;}
+.calc-r-per{font-size:13px;color:var(--mid);margin-bottom:18px;}
+.calc-r-yr{padding-top:18px;border-top:1px solid rgba(255,85,68,.2);}
+.calc-r-yr-v{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:#ff8866;line-height:1;}
+.calc-r-yr-l{font-size:11px;color:var(--mid);margin-top:4px;letter-spacing:.1em;text-transform:uppercase;}
+.calc-saved{margin-top:20px;padding:16px;background:rgba(200,241,53,.06);border:1px solid rgba(200,241,53,.18);border-radius:4px;}
+.calc-saved-l{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--a);margin-bottom:4px;}
+.calc-saved-v{font-size:13px;color:var(--w);line-height:1.5;}
+
+/* POURQUOI MOI */
+#why{background:var(--n);}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--n4);margin-top:48px;}
+.why-card{background:var(--n);padding:36px 28px;}
+.why-num{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--a);opacity:.5;margin-bottom:18px;}
+.why-ico{font-size:32px;margin-bottom:14px;display:block;}
+.why-h{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);margin-bottom:10px;line-height:1.25;}
+.why-d{font-size:12px;color:var(--mid);line-height:1.8;}
+.why-d strong{color:var(--w);font-weight:500;}
+
+/* FAQ */
+#faq{background:var(--n2);}
+.faq-list{margin-top:40px;max-width:880px;}
+.faq-item{background:var(--n3);border:1px solid var(--n4);border-radius:4px;margin-bottom:10px;overflow:hidden;transition:border-color .2s;}
+.faq-item:hover{border-color:rgba(200,241,53,.2);}
+.faq-q{padding:18px 22px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:16px;}
+.faq-q-t{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:var(--w);}
+.faq-plus{color:var(--a);font-size:18px;font-weight:300;flex-shrink:0;transition:transform .25s;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s;}
+.faq-item.open .faq-a{max-height:500px;}
+.faq-a-in{padding:0 22px 20px;font-size:13px;color:var(--mid);line-height:1.75;}
+.faq-a-in strong{color:var(--w);}
+
+@media(max-width:1024px){
+  .single-off-grid{grid-template-columns:1fr;gap:36px;}
+  .pay-grid{grid-template-columns:1fr;gap:14px;}
+  .setup-banner{grid-template-columns:1fr;gap:24px;padding:26px;}
+  .not-incl-grid{grid-template-columns:1fr;gap:14px;}
+  .gar-wrap,.calc-wrap{grid-template-columns:1fr;gap:40px;}
+  .why-grid{grid-template-columns:1fr;}
+  .gar-seal{max-width:280px;}
+}
+@media(max-width:768px){
+  .pay-card{padding:26px 20px;}
+  .pay-price{font-size:48px;}
+  .not-incl{padding:22px 18px;}
+  .urg-content{flex-direction:column;align-items:flex-start;}
+  .urg-stat{align-self:center;padding:14px 22px;}
+  .urg-stat-v{font-size:42px;}
+  .urg-h{font-size:15px;}
+  .single-off{padding:32px 22px;}
+  .single-off-price,.price-val{font-size:54px;}
+  .price-val small{font-size:14px;}
+  .single-off-trust{grid-template-columns:1fr;}
+  .single-off-cta-row{flex-direction:column;align-items:stretch;}
+  .single-off-cta-row .btn-a,.single-off-cta-row .btn-b{text-align:center;}
+  .gar-seal{max-width:240px;padding:24px;}
+  .gar-seal-big{font-size:36px;}
+  .gar-seal-sub{font-size:15px;}
+  .calc-r-big{font-size:42px;}
+  .calc-r-yr-v{font-size:24px;}
+  .why-card{padding:28px 22px;}
+  .single-off-feats li{font-size:12px;}
+  .faq-q{padding:14px 16px;}
+  .faq-q-t{font-size:13px;}
+  .faq-a-in{padding:0 16px 16px;font-size:12px;}
+}
 
 /* RESPONSIVE */
 @media(max-width:1024px){
@@ -528,15 +518,52 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
   .ft-top{flex-direction:column;}
 }
 @media(max-width:600px){
-  nav{padding:0 4%;}
+  nav{padding:0 4%;height:60px;}
   .nav-links{display:none;}
-  .sec{padding:64px 4%;}
+  .nav-tel-num{display:none;}
+  .nav-tel{padding:8px 10px;}
+  .sec{padding:54px 4%;}
+  #hero{padding:0 4% 60px;}
+  h1{font-size:30px;line-height:1.18;margin-bottom:24px;}
+  .hsub{font-size:14px;}
+  .htag{font-size:10px;padding:5px 12px;margin-bottom:18px;}
+  .hbtns{flex-direction:column;align-items:stretch;width:100%;}
+  .hbtns .btn-a,.hbtns .btn-b,.hbtns .btn-tel{text-align:center;justify-content:center;width:100%;}
+  .hbot{flex-direction:column;align-items:stretch;}
+  .hstats{gap:14px;flex-wrap:wrap;}
+  .hstat-v{font-size:22px;}
   .srv-grid{grid-template-columns:1fr;}
+  .sec-h{font-size:30px;line-height:1.05;}
   .checks{grid-template-columns:1fr;}
-  .hstats{gap:20px;}
-  #bot-panel{width:calc(100vw - 32px);right:-12px;}
+  .single-off{padding:24px 18px;}
+  .single-off-price,.price-val{font-size:42px;}
+  .gar-seal{max-width:200px;padding:18px;}
+  .gar-seal-big{font-size:28px;}
+  .gar-seal-sub{font-size:13px;}
+  .gar-seal-top{font-size:9px;}
+  .calc-card{padding:22px;}
+  .calc-result{padding:24px;}
+  .calc-r-big{font-size:36px;}
+  .why-h{font-size:16px;}
+  .why-d{font-size:11px;}
+  .ft-cols{gap:32px;flex-direction:column;}
+  .mob-tel{display:flex;}
+  #bot{bottom:90px;right:18px;}
+  #bot-panel{width:calc(100vw - 32px);right:-8px;bottom:64px;}
   #cur,#curR{display:none;}
-  .btn-phone{padding:14px 24px;font-size:11px;}
+  .ticker{padding:8px 0;}
+  .tick-i{font-size:10px;padding:0 14px;}
+}
+@media(max-width:480px){
+  h1{font-size:26px;}
+  .sec-h{font-size:26px;}
+  .single-off-price,.price-val{font-size:36px;}
+  .calc-r-big{font-size:30px;}
+  .single-off-feats li{font-size:11px;padding-left:18px;}
+  .gar-li-t{font-size:13px;}
+  .gar-li-d{font-size:11px;}
+  .step-title{font-size:15px;}
+  .step-desc{font-size:11px;}
 }
 @media(max-width:380px){.nav-cta{display:none;}}
 </style>
@@ -546,15 +573,6 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
 <!-- CURSOR -->
 <div id="cur"></div>
 <div id="curR"></div>
-
-<!-- ==================== TRUST BAR (NEW) ==================== -->
-<div class="trust-bar">
-  <div class="tb-item">📞 <a href="tel:+33768789800">07 68 78 98 00</a></div>
-  <div class="tb-sep">·</div>
-  <div class="tb-item">⚡ Réponse sous 24h</div>
-  <div class="tb-sep">·</div>
-  <div class="tb-item">📍 Douai · Nord de France</div>
-</div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -567,36 +585,51 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
     <span class="logo-txt">TK <span>Digital</span></span>
   </a>
   <div class="nav-links">
-    <a href="#services">Services</a>
+    <a href="#offres">Offres</a>
+    <a href="#calculateur">Calculateur</a>
     <a href="#portfolio">Projets</a>
-    <a href="#process">Méthode</a>
-    <a href="#about">À propos</a>
+    <a href="#garantie">Garantie</a>
+    <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
   </div>
-  <a href="#contact" class="nav-cta">Démarrer →</a>
+  <div class="nav-actions">
+    <a href="tel:+33768789800" class="nav-tel" title="Appeler Tarik">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.59-6.59l2.2-2.2a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z"/></svg>
+      <span class="nav-tel-num">07 68 78 98 00</span>
+    </a>
+    <a href="#offres" class="nav-cta">Démarrer →</a>
+  </div>
 </nav>
+
+<!-- Sticky phone button mobile -->
+<a href="tel:+33768789800" class="mob-tel" aria-label="Appeler Tarik">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.59-6.59l2.2-2.2a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z"/></svg>
+</a>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hbg"><div class="hgrid"></div><div class="hglow"></div></div>
-  <div class="htag"><div class="htag-dot"></div>Agence Web — Nord de France</div>
+  <div class="htag htag-urg"><div class="htag-dot"></div>🔥 Offre de lancement — 3 places restantes ce mois-ci</div>
   <h1>
-    <span class="l1">Un beau site, c'est bien.</span>
-    <span class="l1">Un beau site qui ramène</span>
-    <span class="l2">des clients, c'est mieux.</span>
+    <span class="l1">Enfin un site web</span>
+    <span class="l2">qui te ramène</span>
+    <span class="l3">de vrais clients.</span>
   </h1>
   <div class="hbot">
     <div>
-      <p class="hsub"><strong>TK Digital</strong> crée votre site internet, gère votre publicité sur Facebook et Google, et fidélise vos clients. Vous faites votre métier, je m'occupe du reste.</p>
+      <p class="hsub"><strong>Tarik — ex-fournisseur emballages 7 ans dans le Nord.</strong> Aujourd'hui je sors les restos, pizzerias, kebabs et barbiers de l'ombre. Site web qui convertit, fiche Google qui ramène les clients du quartier, commande WhatsApp sans commission. <strong>Setup 490€ + 190€ ou 290€/mois selon ton niveau. Engagement 6 mois.</strong></p>
       <div class="hbtns">
-        <a href="tel:+33768789800" class="btn-phone">📞 Appelez-moi</a>
-        <a href="#contact" class="btn-b">Ou écrivez →</a>
+        <a href="#offres" class="btn-a">Voir l'offre</a>
+        <a href="tel:+33768789800" class="btn-tel">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.59-6.59l2.2-2.2a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z"/></svg>
+          07 68 78 98 00
+        </a>
       </div>
     </div>
     <div class="hstats">
-      <div><div class="hstat-v">48h</div><div class="hstat-l">Délai démo</div></div>
-      <div><div class="hstat-v">0€</div><div class="hstat-l">Appel découverte</div></div>
-      <div><div class="hstat-v">Nord</div><div class="hstat-l">& France entière</div></div>
+      <div><div class="hstat-v">7j</div><div class="hstat-l">Site en ligne</div></div>
+      <div><div class="hstat-v">6 mois</div><div class="hstat-l">Engagement minimum</div></div>
+      <div><div class="hstat-v">7 ans</div><div class="hstat-l">Au service des restos Nord</div></div>
     </div>
   </div>
 </section>
@@ -605,21 +638,137 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
 <div class="ticker">
   <div class="ticker-track">
     <span class="tick-i">Création de sites web <span class="tick-s">✦</span></span>
-    <span class="tick-i">Meta Ads <span class="tick-s">✦</span></span>
-    <span class="tick-i">Google Ads <span class="tick-s">✦</span></span>
-    <span class="tick-i">Fidélisation client <span class="tick-s">✦</span></span>
     <span class="tick-i">Commande WhatsApp <span class="tick-s">✦</span></span>
-    <span class="tick-i">SEO Google <span class="tick-s">✦</span></span>
+    <span class="tick-i">Fiche Google optimisée <span class="tick-s">✦</span></span>
+    <span class="tick-i">Suggestions au panier <span class="tick-s">✦</span></span>
+    <span class="tick-i">Récolte d'avis <span class="tick-s">✦</span></span>
+    <span class="tick-i">Fidélisation auto <span class="tick-s">✦</span></span>
     <span class="tick-i">Nord de France <span class="tick-s">✦</span></span>
     <span class="tick-i">Création de sites web <span class="tick-s">✦</span></span>
-    <span class="tick-i">Meta Ads <span class="tick-s">✦</span></span>
-    <span class="tick-i">Google Ads <span class="tick-s">✦</span></span>
-    <span class="tick-i">Fidélisation client <span class="tick-s">✦</span></span>
     <span class="tick-i">Commande WhatsApp <span class="tick-s">✦</span></span>
-    <span class="tick-i">SEO Google <span class="tick-s">✦</span></span>
+    <span class="tick-i">Fiche Google optimisée <span class="tick-s">✦</span></span>
+    <span class="tick-i">Suggestions au panier <span class="tick-s">✦</span></span>
+    <span class="tick-i">Récolte d'avis <span class="tick-s">✦</span></span>
+    <span class="tick-i">Fidélisation auto <span class="tick-s">✦</span></span>
     <span class="tick-i">Nord de France <span class="tick-s">✦</span></span>
   </div>
 </div>
+
+<!-- OFFRE -->
+<section id="offres" class="sec">
+  <!-- URGENCE BANNER -->
+  <div class="urg-banner anim">
+    <div class="urg-pulse"></div>
+    <div class="urg-content">
+      <div class="urg-l">
+        <div class="urg-tag">🔥 Offre de lancement</div>
+        <div class="urg-h">Je prends max <strong>5 clients</strong> par mois pour garantir un suivi VIP</div>
+        <div class="urg-sub">Et pour les <strong>3 premières signatures du mois</strong>, j'offre <strong>1 mois Premium gratuit</strong> en plus (valeur 290€).</div>
+      </div>
+      <div class="urg-r">
+        <div class="urg-stat"><div class="urg-stat-v" id="urg-spots">3</div><div class="urg-stat-l">Places restantes ce mois-ci</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="srv-hdr">
+    <div>
+      <div class="eyebrow">Une offre, deux paiements, c'est tout</div>
+      <h2 class="sec-h">Tu paies quoi.<br><span>Tu paies pas quoi.</span></h2>
+    </div>
+    <p class="srv-sub">Beaucoup d'agences cachent des frais : "ah mais l'hébergement c'est en plus, le nom de domaine aussi, les modifs c'est 50€ chaque, le SSL 80€/an…". <strong style="color:var(--w);">Pas chez moi.</strong> Voilà exactement ce que tu paies, et exactement ce que tu ne paies pas. Lis bien.</p>
+  </div>
+
+  <!-- SETUP commun -->
+  <div class="setup-banner anim">
+    <div class="setup-banner-l">
+      <div class="setup-banner-tag">Étape 1 — Setup (une seule fois)</div>
+      <div class="setup-banner-price">490€</div>
+      <div class="setup-banner-sub">Pour créer ton site sur-mesure, l'adapter à ton activité, le mettre en ligne et te former. Tu paies <strong>une fois</strong>. Plus jamais.</div>
+    </div>
+    <div class="setup-banner-r">
+      <ul class="setup-banner-list">
+        <li>✓ Création complète du site (design + dev)</li>
+        <li>✓ Adapté à ton activité (kebab ≠ barbier ≠ pizzeria)</li>
+        <li>✓ Mise en ligne, config technique, SSL</li>
+        <li>✓ Formation 30 min : "comment recevoir tes commandes"</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2 forfaits mensuels -->
+  <div class="tier-intro">
+    <div class="tier-intro-tag">Étape 2 — Tu choisis ton niveau</div>
+    <div class="tier-intro-h">Mensuel — 2 formules</div>
+    <div class="tier-intro-sub">Selon le niveau de service que tu veux. Tu peux passer du 1er au 2ème quand tu veux. Engagement minimum 6 mois.</div>
+  </div>
+
+  <div class="pay-grid">
+    <!-- ESSENTIEL 190€ -->
+    <div class="pay-card anim">
+      <div class="pay-tag">Pack Essentiel</div>
+      <div class="pay-price">190€<small>/mois</small></div>
+      <div class="pay-period">Idéal pour démarrer · Engagement 6 mois</div>
+      <div class="pay-divider"></div>
+      <div class="pay-title">Tout l'essentiel pour exister sur Google</div>
+      <ul class="pay-list">
+        <li><strong>Hébergement + nom de domaine + SSL</strong> — tout inclus</li>
+        <li><strong>Fiche Google optimisée</strong> — setup + 1 post par mois</li>
+        <li><strong>Commande WhatsApp</strong> + alertes temps réel</li>
+        <li><strong>Suggestion au panier</strong> — 1 produit complémentaire affiché à la commande (boisson, frites, dessert…) → +15-25% de panier moyen</li>
+        <li><strong>Récolte d'avis Google</strong> automatique (QR + SMS)</li>
+        <li><strong>5 modifications/mois</strong> sur le site</li>
+        <li><strong>Reporting trimestriel</strong> chiffré</li>
+        <li><strong>Support WhatsApp</strong> en heures bureau (9h-19h)</li>
+      </ul>
+      <a href="#contact" class="pay-cta">Choisir l'Essentiel →</a>
+    </div>
+
+    <!-- PREMIUM 290€ -->
+    <div class="pay-card featured anim">
+      <div class="pay-tag-feat">★ Pack Premium</div>
+      <div class="pay-price">290€<small>/mois</small></div>
+      <div class="pay-period">Pour aller plus loin · Engagement 6 mois</div>
+      <div class="pay-divider"></div>
+      <div class="pay-title">Pour fidéliser et automatiser</div>
+      <ul class="pay-list">
+        <li><strong>Tout du Pack Essentiel</strong>, plus :</li>
+        <li><strong>Modifications illimitées</strong> sur le site</li>
+        <li><strong>4 posts Google par mois</strong> (vs 1)</li>
+        <li><strong>Réponses automatiques aux avis Google</strong> sous 24h (positifs ET négatifs)</li>
+        <li><strong>Messages de relance fidélité automatiques</strong> — quand un client n'est pas revenu depuis 2 semaines</li>
+        <li><strong>Reporting mensuel</strong> chiffré (vs trimestriel)</li>
+        <li><strong>Support WhatsApp 7j/7</strong> — soirs & week-ends</li>
+      </ul>
+      <a href="#contact" class="pay-cta featured">Choisir Premium →</a>
+    </div>
+  </div>
+
+  <!-- CE QUI N'EST PAS COMPRIS -->
+  <div class="not-incl anim">
+    <div class="not-incl-title">⚠️ Pour être 100% transparent — voici ce qui N'EST PAS compris</div>
+    <div class="not-incl-grid">
+      <div class="not-incl-item">
+        <div class="not-incl-h">Les photos professionnelles sur place</div>
+        <div class="not-incl-d">Si tu veux que je vienne faire les photos de ton resto/salon, c'est en option (180€ pour 30 photos pro). Sinon, on utilise les photos que tu m'envoies depuis ton téléphone, et ça marche très bien aussi.</div>
+      </div>
+      <div class="not-incl-item">
+        <div class="not-incl-h">Tes adresses email pro</div>
+        <div class="not-incl-d">Tes adresses email pro (genre tarik@tonresto.fr) ne sont pas incluses. Si tu en veux, je te conseille Google Workspace à 6€/mois (chez Google, pas chez moi) — et je te configure ça gratuitement.</div>
+      </div>
+      <div class="not-incl-item">
+        <div class="not-incl-h">Aucun abonnement caché</div>
+        <div class="not-incl-d">Pas de logiciel mystérieux à 50€/mois en plus. Pas de "frais de maintenance technique" surprise. Pas de surcoût SEO. <strong>Le prix annoncé = le prix payé.</strong></div>
+      </div>
+    </div>
+    <div class="not-incl-bottom"><strong>C'est tout.</strong> Aucun autre frais caché. Je préfère que tu saches dès le départ — comme ça tu sais où tu vas.</div>
+  </div>
+
+  <div class="off-final-cta anim">
+    <a href="#contact" class="btn-a">Parler à Tarik (5 min, gratuit)</a>
+    <a href="tel:+33768789800" class="btn-tel">📞 07 68 78 98 00</a>
+  </div>
+</section>
 
 <!-- SERVICES -->
 <section id="services" class="sec">
@@ -628,13 +777,13 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
       <div class="eyebrow">Ce que je fais</div>
       <h2 class="sec-h">Des services<br><span>qui rapportent.</span></h2>
     </div>
-    <p class="srv-sub">Chaque prestation est pensée pour vous ramener des clients concrets — pas des clics, des vraies personnes qui commandent chez vous.</p>
+    <p class="srv-sub">Chaque prestation est pensée pour ramener de <strong style="color:var(--w);">vrais clients qui commandent chez toi en direct</strong>. Pas des likes, pas des clics inutiles — des personnes du quartier qui te paient sans intermédiaire.</p>
   </div>
   <div class="srv-grid">
     <div class="srv-card anim"><div class="srv-n">01</div><span class="srv-ico">🌐</span><div class="srv-name">Votre site internet</div><p class="srv-desc">Un beau site professionnel visible sur Google, rapide sur téléphone. Vos clients trouvent votre adresse, votre menu, vos services. Livré en 48h.</p><div class="srv-tags"><span class="srv-tag">Mobile-first</span><span class="srv-tag">SEO intégré</span><span class="srv-tag">Rapide</span></div></div>
     <div class="srv-card anim"><div class="srv-n">02</div><span class="srv-ico">📱</span><div class="srv-name">Commander par WhatsApp</div><p class="srv-desc">Vos clients commandent depuis votre site via WhatsApp. Vous recevez une alerte immédiate. Zéro commission, zéro intermédiaire.</p><div class="srv-tags"><span class="srv-tag">Panier</span><span class="srv-tag">Upsell</span><span class="srv-tag">Fidélité</span></div></div>
-    <div class="srv-card anim"><div class="srv-n">03</div><span class="srv-ico">🎯</span><div class="srv-name">Pub Facebook & Instagram</div><p class="srv-desc">Je crée et gère vos publicités pour toucher des clients dans votre ville. Vous définissez le budget, je m'occupe du reste.</p><div class="srv-tags"><span class="srv-tag">Facebook</span><span class="srv-tag">Instagram</span><span class="srv-tag">Ciblage local</span></div></div>
-    <div class="srv-card anim"><div class="srv-n">04</div><span class="srv-ico">🔍</span><div class="srv-name">Visible sur Google</div><p class="srv-desc">Quand quelqu'un cherche votre activité près de chez lui, c'est vous qui apparaissez en premier. Pub Google + référencement naturel.</p><div class="srv-tags"><span class="srv-tag">Google Ads</span><span class="srv-tag">SEO local</span><span class="srv-tag">Maps</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">03</div><span class="srv-ico">🛒</span><div class="srv-name">Suggestion au panier</div><p class="srv-desc">Quand un client commande, le site lui propose un produit complémentaire (boisson, frites, dessert…). +15-25% de panier moyen sans rien faire de plus.</p><div class="srv-tags"><span class="srv-tag">Upsell</span><span class="srv-tag">Panier moyen</span><span class="srv-tag">Auto</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">04</div><span class="srv-ico">🔍</span><div class="srv-name">Visible sur Google</div><p class="srv-desc">Quand quelqu'un cherche ton activité près de chez lui, c'est toi qui apparais. Fiche Google optimisée + posts mensuels + récolte d'avis.</p><div class="srv-tags"><span class="srv-tag">Fiche Google</span><span class="srv-tag">SEO local</span><span class="srv-tag">Maps</span></div></div>
     <div class="srv-card anim"><div class="srv-n">05</div><span class="srv-ico">⭐</span><div class="srv-name">Fidéliser vos clients</div><p class="srv-desc">Carte de fidélité digitale, collecte d'avis Google automatique, messages de relance. Vos clients reviennent et parlent de vous.</p><div class="srv-tags"><span class="srv-tag">Fidélité</span><span class="srv-tag">Avis Google</span><span class="srv-tag">Relances</span></div></div>
     <div class="srv-card anim"><div class="srv-n">06</div><span class="srv-ico">📊</span><div class="srv-name">Tout gérer pour vous</div><p class="srv-desc">Site, pub, réseaux sociaux, messages automatiques. Une seule personne qui connaît votre business par cœur. Vous faites votre métier.</p><div class="srv-tags"><span class="srv-tag">Stratégie</span><span class="srv-tag">Automation</span><span class="srv-tag">Reporting</span></div></div>
     <div class="srv-card anim"><div class="srv-n">07</div><span class="srv-ico">🔔</span><div class="srv-name">Alertes commandes temps réel</div><p class="srv-desc">Dès qu'un client commande, vous recevez une notification WhatsApp avec tous les détails. Nom, commande, montant, mode de livraison. Zéro raté.</p><div class="srv-tags"><span class="srv-tag">WhatsApp</span><span class="srv-tag">Instantané</span><span class="srv-tag">Zéro raté</span></div></div>
@@ -642,7 +791,7 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
   </div>
 </section>
 
-<!-- PORTFOLIO (avec STATUTS HONNÊTES) -->
+<!-- PORTFOLIO -->
 <section id="portfolio" class="sec">
   <div class="port-hdr">
     <div>
@@ -653,7 +802,6 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
   </div>
   <div class="port-grid">
     <div class="proj anim" onclick="openPreview('https://tar5950.github.io/poulet-brais-4/')">
-      <div class="proj-status active"><span class="dot-st"></span>Client actif</div>
       <div class="proj-bg">🔥</div>
       <div class="proj-ov"></div>
       <div class="proj-info">
@@ -663,37 +811,33 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
       </div>
     </div>
     <div class="proj anim" onclick="openPreview('https://tar5950.github.io/la-dalle-burger/')">
-      <div class="proj-status demo"><span class="dot-st"></span>Démo portfolio</div>
       <div class="proj-bg">🍔</div>
       <div class="proj-ov"></div>
       <div class="proj-info">
-        <div class="proj-cat">Street Food · Concept</div>
+        <div class="proj-cat">Street Food · Nord</div>
         <div class="proj-name">La Dalle Burger</div>
-        <span class="proj-lnk">Voir la démo →</span>
+        <span class="proj-lnk">Voir le site →</span>
       </div>
     </div>
     <div class="proj anim" onclick="openPreview('https://tar5950.github.io/la-slica/')">
-      <div class="proj-status demo"><span class="dot-st"></span>Démo portfolio</div>
       <div class="proj-bg">🍕</div>
       <div class="proj-ov"></div>
       <div class="proj-info">
-        <div class="proj-cat">Pizzeria · Concept</div>
+        <div class="proj-cat">Pizzeria · Nord</div>
         <div class="proj-name">La Slica</div>
-        <span class="proj-lnk">Voir la démo →</span>
+        <span class="proj-lnk">Voir le site →</span>
       </div>
     </div>
     <div class="proj anim" onclick="openPreview('https://tar5950.github.io/prestige-barber/')">
-      <div class="proj-status demo"><span class="dot-st"></span>Démo portfolio</div>
       <div class="proj-bg">💈</div>
       <div class="proj-ov"></div>
       <div class="proj-info">
-        <div class="proj-cat">Barbershop · Concept</div>
+        <div class="proj-cat">Barbershop · Nord</div>
         <div class="proj-name">Prestige Barber</div>
-        <span class="proj-lnk">Voir la démo →</span>
+        <span class="proj-lnk">Voir le site →</span>
       </div>
     </div>
     <div class="proj anim">
-      <div class="proj-status soon"><span class="dot-st"></span>Bientôt</div>
       <div class="proj-bg">⚡</div>
       <div class="proj-ov"></div>
       <div class="proj-info">
@@ -705,16 +849,144 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
   </div>
 </section>
 
+<!-- GARANTIE -->
+<section id="garantie" class="sec">
+  <div class="gar-wrap">
+    <div class="gar-seal anim">
+      <div class="gar-seal-top">Mes garanties</div>
+      <div class="gar-seal-big">7 jours</div>
+      <div class="gar-seal-sub">Site en ligne<br>ou setup gratuit</div>
+    </div>
+    <div>
+      <div class="eyebrow">Le risque, c'est moi qui le prends</div>
+      <h2 class="sec-h">Pas de pari.<br><span>Pas d'arnaque.</span></h2>
+      <p style="font-size:15px;color:var(--mid);line-height:1.8;margin:18px 0 28px;">Tu connais la chanson : "On t'a vendu un site, une pub, et 6 mois après — toujours rien." Je sais. C'est pour ça que je m'engage <strong style="color:var(--w);">avant</strong> que tu paies.</p>
+      <ul class="gar-list">
+        <li>
+          <span class="gar-ico">⚡</span>
+          <div>
+            <div class="gar-li-t">Site en ligne en 7 jours — ou le setup est gratuit</div>
+            <div class="gar-li-d">Si ton site n'est pas live dans les 7 jours après validation, je te rembourse les 490€ de setup.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">🤝</span>
+          <div>
+            <div class="gar-li-t">Engagement 6 mois — c'est <em>pour toi</em>, pas contre toi</div>
+            <div class="gar-li-d">Le SEO local et la fidélisation prennent 3-6 mois pour produire des résultats visibles. Cet engagement garantit qu'on aille au bout. Après, tu pars quand tu veux.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">🏠</span>
+          <div>
+            <div class="gar-li-t">Ton site t'appartient à 100%</div>
+            <div class="gar-li-d">Pas de "site loué" qu'on t'éteint si tu pars. Code, design, nom de domaine — tout est à toi. Pas comme Linkeo qui te lock 48 mois.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">💰</span>
+          <div>
+            <div class="gar-li-t">Zéro commission sur tes commandes</div>
+            <div class="gar-li-d">Contrairement à Uber Eats / Deliveroo qui prennent 25-35%. Tes clients paient en direct, tu gardes 100%.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">📞</span>
+          <div>
+            <div class="gar-li-t">Un seul interlocuteur — moi, Tarik</div>
+            <div class="gar-li-d">Pas de commercial, pas de "service après-vente" à l'autre bout du monde. Tu m'écris, je décroche.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATEUR ANTI-UBER -->
+<section id="calculateur" class="sec">
+  <div class="srv-hdr">
+    <div>
+      <div class="eyebrow">Spécial restos / pizzerias / kebabs</div>
+      <h2 class="sec-h">Combien Uber<br><span>te vole vraiment ?</span></h2>
+    </div>
+    <p class="srv-sub">Bouge le curseur. Tu vas comprendre pourquoi reprendre tes clients en direct change ta vie.</p>
+  </div>
+  <div class="calc-wrap">
+    <div class="calc-card">
+      <div class="calc-row">
+        <label class="calc-lbl">Combien de commandes Uber / Deliveroo par jour ?</label>
+        <input class="calc-inp" type="number" id="calc-orders" value="20" min="0" max="500">
+        <div class="calc-help">Estimation moyenne tous services confondus</div>
+      </div>
+      <div class="calc-row">
+        <label class="calc-lbl">Panier moyen (€)</label>
+        <input class="calc-inp" type="number" id="calc-basket" value="18" min="0" max="200">
+        <div class="calc-help">Ce que paye un client en moyenne</div>
+      </div>
+      <div class="calc-row">
+        <label class="calc-lbl">Commission plateforme (%)</label>
+        <input class="calc-inp" type="number" id="calc-commission" value="30" min="0" max="50">
+        <div class="calc-help">Uber Eats / Deliveroo : 25-35% en moyenne</div>
+      </div>
+    </div>
+    <div class="calc-result">
+      <div class="calc-r-lbl">Ce qu'ils te prennent par mois</div>
+      <div class="calc-r-big" id="calc-month">3 240€</div>
+      <div class="calc-r-per">de marge directement aspirée</div>
+      <div class="calc-r-yr">
+        <div class="calc-r-yr-v" id="calc-year">38 880€</div>
+        <div class="calc-r-yr-l">par AN sur ta marge</div>
+      </div>
+      <div class="calc-saved">
+        <div class="calc-saved-l">→ Avec moi</div>
+        <div class="calc-saved-v"><strong style="color:var(--a);">Garde 100%.</strong> Site + commande WhatsApp + Google = clients qui te paient en direct, sans intermédiaire.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI MOI -->
+<section id="why" class="sec">
+  <div class="srv-hdr">
+    <div>
+      <div class="eyebrow">Pourquoi moi, pas une agence</div>
+      <h2 class="sec-h">Ex-fournisseur<br><span>de tes voisins.</span></h2>
+    </div>
+    <p class="srv-sub">Pendant 7 ans j'ai livré les emballages des restos halal du Nord. Je connais ton métier mieux qu'aucune agence parisienne. Aujourd'hui je règle un autre problème : ta visibilité.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card anim">
+      <div class="why-num">01</div>
+      <span class="why-ico">🤝</span>
+      <div class="why-h">Je connais le terrain</div>
+      <div class="why-d">7 ans à servir les boîtes pizza, sachets burger, gobelets aux <strong>restos du Nord</strong>. Roubaix, Lille, Valenciennes, Douai, Lens. Je sais comment tu bosses, à quelle heure tu coupes, ce qui te bouffe.</div>
+    </div>
+    <div class="why-card anim">
+      <div class="why-num">02</div>
+      <span class="why-ico">⚡</span>
+      <div class="why-h">Je fais le travail moi-même</div>
+      <div class="why-d">Pas de commercial qui passe à un sous-traitant en Inde. <strong>C'est moi qui code, moi qui pilote ta pub, moi qui réponds à 22h.</strong> Un seul numéro WhatsApp. Toujours dispo.</div>
+    </div>
+    <div class="why-card anim">
+      <div class="why-num">03</div>
+      <span class="why-ico">📊</span>
+      <div class="why-h">Du chiffré, pas du vent</div>
+      <div class="why-d">Chaque mois tu reçois un mini rapport : <strong>X appels Google, Y vues fiche, Z commandes en direct.</strong> Tu vois ce qui marche. Si ça ne marche pas, tu pars sans frais.</div>
+    </div>
+  </div>
+</section>
+
 <!-- PROCESS -->
 <section id="process" class="sec">
   <div class="eyebrow">Ma méthode</div>
   <h2 class="sec-h">Simple.<br><span>Rapide. Efficace.</span></h2>
   <div class="proc-layout">
     <div>
-      <div class="step anim"><div class="step-n">01</div><div><div class="step-title">On se parle — gratuit</div><div class="step-desc">30 minutes pour comprendre votre activité et ce dont vous avez besoin. Sans engagement, sans blabla.</div></div></div>
-      <div class="step anim"><div class="step-n">02</div><div><div class="step-title">Vous voyez votre site en 48h</div><div class="step-desc">En 48h je vous montre une vraie version de votre site. Vous touchez, vous validez, vous changez ce que vous voulez.</div></div></div>
-      <div class="step anim"><div class="step-n">03</div><div><div class="step-title">On ajuste & on lance</div><div class="step-desc">On modifie ensemble jusqu'à ce que ce soit exactement ce que vous voulez. Mise en ligne en moins d'une semaine.</div></div></div>
-      <div class="step anim"><div class="step-n">04</div><div><div class="step-title">Je reste là après</div><div class="step-desc">Après le lancement je suis toujours là. Si quelque chose ne marche pas, vous m'appelez et c'est réglé.</div></div></div>
+      <div class="step anim"><div class="step-n">00</div><div><div class="step-title">Audit Express 47€ — pour tester sans risque</div><div class="step-desc">30 min en visio. J'identifie 5 trucs qui te plombent sur Google et on les corrige en LIVE. Tu repars avec un PDF + plan 7 jours. Si ça t'a pas plu, tu pars. Pas grave.</div></div></div>
+      <div class="step anim"><div class="step-n">01</div><div><div class="step-title">Démo de ton site en 48h</div><div class="step-desc">Tu choisis une offre, je te montre une vraie version live de ton site dans les 48h. Pas un mockup PDF — du vrai code, sur ton vrai contenu.</div></div></div>
+      <div class="step anim"><div class="step-n">02</div><div><div class="step-title">Mise en ligne en 7 jours</div><div class="step-desc">On ajuste ensemble jusqu'à ce que tu valides. Mise en ligne, configuration Google, commande WhatsApp testée. Tu encaisses tes premières commandes en direct.</div></div></div>
+      <div class="step anim"><div class="step-n">03</div><div><div class="step-title">Suivi mensuel chiffré</div><div class="step-desc">Chaque mois, mini rapport : appels Google, vues fiche, commandes en direct, classement sur tes mots-clés. Tu vois si ça marche. Si non, je le corrige ou tu pars.</div></div></div>
+      <div class="step anim"><div class="step-n">04</div><div><div class="step-title">Je reste joignable — toujours</div><div class="step-desc">Pas de "service après-vente" à l'autre bout du monde. Tu m'écris sur WhatsApp, je réponds. Le soir, le week-end, quand t'as besoin.</div></div></div>
     </div>
     <div class="proc-vis">
       <div class="pv-row"><span class="pv-l">Délai démo</span><span class="pv-v">48h chrono</span></div>
@@ -742,43 +1014,87 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
     <div class="about-card anim">
       <div class="about-name">Tarik</div>
       <div class="about-role">Fondateur · Développeur & Stratège Digital</div>
-      <p class="about-bio">Basé à Douai, je conçois des solutions digitales complètes pour les commerçants du Nord qui veulent se démarquer en ligne et générer plus de clients.</p>
+      <p class="about-bio">Pendant 7 ans j'ai livré les emballages des restos halal du Nord — Lille, Roubaix, Valenciennes, Douai, Lens. J'ai vu de l'intérieur ce qui marche, ce qui tue, ce qui plombe une marge. Aujourd'hui j'utilise tout ça pour aider les commerces locaux à devenir <strong>premiers sur Google</strong>.</p>
       <div class="skills">
-        <span class="skill">Web Dev</span><span class="skill">Meta Ads</span><span class="skill">Google Ads</span>
-        <span class="skill">SEO</span><span class="skill">WhatsApp API</span><span class="skill">N8N</span>
+        <span class="skill">Web Dev</span><span class="skill">SEO local</span><span class="skill">Fiche Google</span>
+        <span class="skill">WhatsApp API</span><span class="skill">Auto fidélité</span><span class="skill">N8N</span>
       </div>
     </div>
     <div class="about-txt">
       <div class="eyebrow">Qui je suis</div>
       <h2 class="sec-h" style="margin-bottom:22px;">Pas une grosse<br><span>agence anonyme.</span></h2>
-      <p>Vous ne parlez pas à un commercial qui passe le dossier à quelqu'un d'autre. <strong>C'est moi qui fais le travail, du début à la fin.</strong> Je connais votre projet par cœur.</p>
-      <p>Je maîtrise tout ce qu'il faut : site web, publicité, avis clients, commandes. <strong>Un seul interlocuteur pour tout.</strong></p>
+      <p>Tu ne parles pas à un commercial qui balance ton dossier à un sous-traitant en Inde. <strong>C'est moi qui fais le boulot — code, pub, suivi, support.</strong> Toujours un seul numéro WhatsApp.</p>
+      <p>Je connais ton métier <strong>de l'intérieur</strong>. Les marges qui fondent, les commandes Uber qui arnaquent, les clients qui galèrent à trouver tes horaires. Et je sais exactement quoi faire pour <strong>récupérer cette marge et ces clients</strong>.</p>
       <div class="nums">
-        <div class="num-c anim"><div class="num-v">48h</div><div class="num-l">Délai première démo</div></div>
-        <div class="num-c anim"><div class="num-v">∞</div><div class="num-l">Modifications jusqu'à validation</div></div>
-        <div class="num-c anim"><div class="num-v">0€</div><div class="num-l">Appel découverte</div></div>
-        <div class="num-c anim"><div class="num-v">Nord</div><div class="num-l">& toute la France</div></div>
+        <div class="num-c anim"><div class="num-v">7 ans</div><div class="num-l">Au service des restos Nord</div></div>
+        <div class="num-c anim"><div class="num-v">90j</div><div class="num-l">Top 3 Google ou remboursé</div></div>
+        <div class="num-c anim"><div class="num-v">0€</div><div class="num-l">Engagement · Commission</div></div>
+        <div class="num-c anim"><div class="num-v">47€</div><div class="num-l">Pour tester sans risque</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT (sans "prix clair") -->
+<!-- FAQ -->
+<section id="faq" class="sec">
+  <div class="eyebrow">Tes questions — mes réponses</div>
+  <h2 class="sec-h">Pas de bullshit.<br><span>Pas de blabla.</span></h2>
+  <div class="faq-list">
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Combien ça coûte vraiment ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in"><strong>490€ une seule fois pour la création du site, puis 190€/mois (Pack Essentiel) ou 290€/mois (Pack Premium)</strong> selon le niveau de service que tu choisis. <strong>Tout est inclus</strong> : hébergement, nom de domaine, SSL, Google, WhatsApp, support. <strong>Engagement minimum 6 mois</strong> parce que les résultats demandent du temps. Pas de surprise, pas de frais cachés.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Et si dans 1 an je veux partir ou changer de prestataire ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Tu pars avec <strong>ton site, ton domaine, tes contenus — tout</strong>. Je te transfère le tout en 24h sur ton compte personnel. À partir de là, tu paies directement OVH (~12€/an pour ton domaine) et l'hébergement (~5-10€/mois). <strong>Moi, je ne touche plus rien. Aucune prise d'otage. Aucun frais de sortie.</strong> Contrairement à Linkeo / Solocal qui gardent ton domaine si tu pars.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">J'ai déjà été arnaqué une fois. Pourquoi je te ferais confiance ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Je comprends — <strong>35% des restaurateurs ont été arnaqués par une agence web</strong>. C'est exactement pour ça que je m'engage <strong>avant</strong> que tu paies : site en ligne en 7 jours ou setup remboursé, engagement seulement 6 mois (vs 48 mois chez Linkeo / Solocal), ton site t'appartient à 100%. <strong>Le risque, c'est moi qui le prends, pas toi.</strong></div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">J'ai pas le temps. Combien ça me prend de mon côté ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in"><strong>30 minutes au total.</strong> Un appel WhatsApp pour qu'on cale ce que tu veux, un échange de photos, une validation. Le reste, je m'en occupe. Tu continues ton métier.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Mes clients viennent par bouche-à-oreille. J'ai besoin d'un site ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in"><strong>Le bouche-à-oreille en 2026 c'est Google.</strong> Quand quelqu'un te recommande, son ami tape ton nom + ta ville sur Google. Si tu n'apparais pas en 1er, ou si la fiche est moche, ou si l'horaire est faux, il va chez ton concurrent. <strong>Sans Google bien fait, tu perds 30-50% des recommandations.</strong></div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Je suis sur Uber Eats / Deliveroo, c'est suffisant non ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Suffisant pour qu'ils prennent <strong>30% de commission sur chaque commande</strong>. Utilise mon calculateur plus haut. Tu vas voir : à 20 commandes/jour à 18€, c'est <strong>~3 240€/mois aspirés</strong>. Sur un an, ~39 000€ de marge perdue. Mon offre la plus chère coûte ~10 000€/an. Le calcul est vite fait.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Je suis sur Insta. Pourquoi en plus un site ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Insta c'est <strong>la vitrine</strong>, mais 80% des clients qui veulent commander tapent sur Google. Insta + Google + WhatsApp = la combinaison qui marche. Je m'occupe des 3.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">J'ai un cousin qui m'a fait un site. Il fait pas le boulot que tu fais ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Avoir un site ≠ être visible. <strong>Si tu n'apparais pas dans les 3 premiers résultats Google quand on cherche ton activité dans ta ville, ton site sert à rien.</strong> Je peux te faire un audit Google à 47€ pour qu'on regarde ensemble où tu en es. Tu décides après.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">C'est rapide ? J'ai besoin de résultats vite.</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in"><strong>Démo du site en 48h. Site complet en ligne en 7 jours. Top 3 Google en 90 jours.</strong> Et la commande WhatsApp marche dès la mise en ligne.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Tu travailles avec qui ? J'ai des références dans le Nord ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Oui — regarde la section "Projets" plus haut : <strong>Poulet Braisé Triolo (Villeneuve-d'Ascq), La Dalle Burger, La Slica (pizzeria), Prestige Barber</strong>. Plus 7 ans d'historique en tant que fournisseur emballages dans le Nord.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section id="contact" class="sec">
   <div class="cont-layout">
     <div>
       <div class="eyebrow">On démarre ?</div>
       <h2 class="sec-h">On démarre<br><span>quand vous voulez.</span></h2>
-      <p class="cont-sub">Dites-moi ce que vous faites et ce que vous voulez. Je vous réponds dans la journée avec une idée concrète. <strong style="color:var(--w);">C'est gratuit.</strong></p>
-
-      <a href="tel:+33768789800" class="ci ci-phone" style="text-decoration:none;">
-        <div class="ci-ico">📞</div>
-        <div class="ci-txt"><span>Appelez-moi directement</span><strong>07 68 78 98 00</strong></div>
-      </a>
+      <p class="cont-sub">Tu me dis ton activité + ta ville + ce que tu veux. Je te réponds sous 24h avec un plan concret et un prix précis. <strong style="color:var(--w);">Pas de bullshit. Pas de devis interminable.</strong></p>
       <div class="ci"><div class="ci-ico">📍</div><div class="ci-txt"><span>Localisation</span>Douai, Nord de France</div></div>
       <div class="ci"><div class="ci-ico">🌐</div><div class="ci-txt"><span>Zone</span>Nord & toute la France</div></div>
       <div class="ci"><div class="ci-ico">⏱</div><div class="ci-txt"><span>Disponibilité</span>Réponse sous 24h</div></div>
-      <div class="ci"><div class="ci-ico">💬</div><div class="ci-txt"><span>WhatsApp</span>07 68 78 98 00</div></div>
+      <a href="tel:+33768789800" class="ci" style="text-decoration:none;cursor:pointer;"><div class="ci-ico">📞</div><div class="ci-txt"><span>Téléphone — appel direct</span><strong style="font-size:16px;color:var(--a);">07 68 78 98 00</strong></div></a>
+      <a href="https://wa.me/33768789800" target="_blank" class="ci" style="text-decoration:none;cursor:pointer;"><div class="ci-ico">💬</div><div class="ci-txt"><span>WhatsApp — réponse rapide</span>07 68 78 98 00</div></a>
       <a href="https://www.instagram.com/tk_digital-nord" target="_blank" class="ci" style="text-decoration:none;cursor:pointer;"><div class="ci-ico">📸</div><div class="ci-txt"><span>Instagram</span>@tk_digital-nord</div></a>
       <a href="https://www.facebook.com/tk.digital.nord" target="_blank" class="ci" style="text-decoration:none;cursor:pointer;"><div class="ci-ico">👍</div><div class="ci-txt"><span>Facebook</span>tk.digital.nord</div></a>
     </div>
@@ -790,26 +1106,17 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
       <div class="checks">
         <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Mon site internet</label>
         <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Commande WhatsApp</label>
-        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Pub Facebook/Instagram</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Suggestion au panier (upsell)</label>
         <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Visible sur Google</label>
         <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Fidéliser mes clients</label>
         <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Alertes commandes</label>
         <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Messages promos auto</label>
         <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Tout gérer pour moi</label>
       </div>
-
-      <!-- DOUBLE CTA (NEW) -->
-      <div class="cta-double">
-        <a href="tel:+33768789800" class="btn-call-form">
-          📞 Appelez-moi
-          <small>07 68 78 98 00</small>
-        </a>
-        <button class="btn-wa" onclick="sendWA()" type="button">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-          WhatsApp
-          <small>Réponse 24h</small>
-        </button>
-      </div>
+      <button class="btn-wa" onclick="sendWA()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Envoyer sur WhatsApp — gratuit
+      </button>
       <p class="f-note">En 1 clic · Réponse sous 24h · Sans engagement</p>
     </div>
   </div>
@@ -824,23 +1131,24 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
     </div>
     <div class="ft-cols">
       <div class="ft-col">
-        <div class="ft-col-ttl">Services</div>
-        <a href="#services">Site internet</a>
-        <a href="#services">Commande WhatsApp</a>
-        <a href="#services">Meta Ads</a>
-        <a href="#services">Google Ads & SEO</a>
-        <a href="#services">Fidélisation</a>
+        <div class="ft-col-ttl">Offre</div>
+        <a href="#offres">Setup 490€ une fois</a>
+        <a href="#offres">Pack Essentiel 190€/mois</a>
+        <a href="#offres">Pack Premium 290€/mois</a>
+        <a href="#offres">Engagement 6 mois</a>
+        <a href="#garantie">Garanties</a>
       </div>
       <div class="ft-col">
         <div class="ft-col-ttl">Navigation</div>
+        <a href="#calculateur">Calculateur Uber</a>
+        <a href="#garantie">Garantie 90j</a>
         <a href="#portfolio">Projets</a>
-        <a href="#process">Méthode</a>
-        <a href="#about">À propos</a>
+        <a href="#why">Pourquoi moi</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="ft-col">
         <div class="ft-col-ttl">Contact</div>
-        <a href="tel:+33768789800">📞 07 68 78 98 00</a>
         <a href="https://wa.me/33768789800" target="_blank">WhatsApp</a>
         <a href="https://www.instagram.com/tk_digital-nord" target="_blank">Instagram</a>
         <a href="https://www.facebook.com/tk.digital.nord" target="_blank">Facebook</a>
@@ -893,13 +1201,9 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
   </div>
 </div>
 
-<!-- ==================== STICKY MOBILE BAR (NEW) ==================== -->
-<div class="sticky-cta-mobile">
-  <a href="tel:+33768789800" class="scm-btn scm-call">📞 Appeler</a>
-  <a href="https://wa.me/33768789800?text=Salam%20Tarik%2C%20je%20veux%20parler%20de%20mon%20projet" target="_blank" class="scm-btn scm-wa">💬 WhatsApp</a>
-</div>
-
 <script>
+// ── TOUT LE JS EN BAS DU BODY — DOM TOUJOURS PRÊT ──
+
 // CURSOR
 (function(){
   var c = document.getElementById('cur');
@@ -931,6 +1235,22 @@ document.querySelectorAll('.anim').forEach(function(el, i){
   obs.observe(el);
 });
 
+// CALCULATEUR ANTI-UBER
+function calcUber(){
+  var o = parseFloat(document.getElementById('calc-orders').value) || 0;
+  var b = parseFloat(document.getElementById('calc-basket').value) || 0;
+  var c = parseFloat(document.getElementById('calc-commission').value) || 0;
+  var month = o * b * (c/100) * 30;
+  var year = month * 12;
+  document.getElementById('calc-month').textContent = month.toLocaleString('fr-FR',{maximumFractionDigits:0}) + '€';
+  document.getElementById('calc-year').textContent = year.toLocaleString('fr-FR',{maximumFractionDigits:0}) + '€';
+}
+['calc-orders','calc-basket','calc-commission'].forEach(function(id){
+  var el = document.getElementById(id);
+  if(el) el.addEventListener('input', calcUber);
+});
+calcUber();
+
 // BARS ANIMATION
 var barObs = new IntersectionObserver(function(entries){
   entries.forEach(function(e){
@@ -942,7 +1262,7 @@ var barObs = new IntersectionObserver(function(entries){
 var procVis = document.querySelector('.proc-vis');
 if(procVis) barObs.observe(procVis);
 
-// PREVIEW MODALE
+// ── PREVIEW MODALE ──
 function openPreview(url) {
   var modal = document.getElementById('previewModal');
   var frame = document.getElementById('pm-frame');
@@ -967,7 +1287,7 @@ document.getElementById('previewModal').addEventListener('click', function(e){
 });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePreview(); });
 
-// FORMULAIRE
+// ── FORMULAIRE ──
 function toggleChk(el) {
   el.classList.toggle('on');
   var b = el.querySelector('.chk-box');
@@ -982,28 +1302,26 @@ function sendWA() {
   window.open('https://wa.me/33768789800?text=' + encodeURIComponent(txt), '_blank');
 }
 
-// BOT
+// ── BOT ──
 var botOpen = false, botInit = false, botStep = 0, botData = {};
 
 var BQA = {
-  'prix':       'Le prix dépend de ce dont vous avez besoin. On en parle ensemble et je vous fais un devis clair et honnête sous 24h 😊',
-  'cout':       'Le prix dépend de ce dont vous avez besoin. On en parle ensemble et je vous fais un devis clair et honnête sous 24h 😊',
-  'combi':      'Le prix dépend de ce dont vous avez besoin. On en parle ensemble et je vous fais un devis clair et honnête sous 24h 😊',
-  'tarif':      'Le prix dépend de ce dont vous avez besoin. On en parle ensemble et je vous fais un devis clair et honnête sous 24h 😊',
-  'budget':     'Le prix dépend de ce dont vous avez besoin. On en parle ensemble et je vous fais un devis clair et honnête sous 24h 😊',
+  'prix':       '490€ une seule fois pour créer ton site, puis 2 formules au choix : Pack Essentiel à 190€/mois (site + Google + WhatsApp + suggestions panier + récolte d\'avis) ou Pack Premium à 290€/mois (en plus : modifs illimitées + auto-réponses avis + relances fidélité + support 7j/7). Engagement 6 mois 😊',
+  'cout':       '490€ une seule fois pour créer ton site, puis 2 formules au choix : Pack Essentiel à 190€/mois (site + Google + WhatsApp + suggestions panier + récolte d\'avis) ou Pack Premium à 290€/mois (en plus : modifs illimitées + auto-réponses avis + relances fidélité + support 7j/7). Engagement 6 mois 😊',
+  'combi':      '490€ une seule fois pour créer ton site, puis 2 formules au choix : Pack Essentiel à 190€/mois (site + Google + WhatsApp + suggestions panier + récolte d\'avis) ou Pack Premium à 290€/mois (en plus : modifs illimitées + auto-réponses avis + relances fidélité + support 7j/7). Engagement 6 mois 😊',
+  'tarif':      '490€ une seule fois pour créer ton site, puis 2 formules au choix : Pack Essentiel à 190€/mois (site + Google + WhatsApp + suggestions panier + récolte d\'avis) ou Pack Premium à 290€/mois (en plus : modifs illimitées + auto-réponses avis + relances fidélité + support 7j/7). Engagement 6 mois 😊',
+  'budget':     '490€ une seule fois pour créer ton site, puis 2 formules au choix : Pack Essentiel à 190€/mois (site + Google + WhatsApp + suggestions panier + récolte d\'avis) ou Pack Premium à 290€/mois (en plus : modifs illimitées + auto-réponses avis + relances fidélité + support 7j/7). Engagement 6 mois 😊',
   'rapide':     'La première version de votre site est prête en 48h. Vous validez, on ajuste, on met en ligne en moins d\'une semaine.',
   'delai':      'La première version de votre site est prête en 48h. Vous validez, on ajuste, on met en ligne en moins d\'une semaine.',
-  'faite':      'Je crée des sites web, gère la pub Facebook & Google, la commande WhatsApp, la fidélité et les alertes. Tout sans jargon.',
-  'service':    'Je crée des sites web, gère la pub Facebook & Google, la commande WhatsApp, la fidélité et les alertes. Tout sans jargon.',
-  'tarik':      'Tarik est disponible maintenant 👉 <a href="tel:+33768789800">📞 Appeler 07 68 78 98 00</a> ou <a href="https://wa.me/33768789800" target="_blank">WhatsApp</a>',
-  'parler':     'Tarik est disponible maintenant 👉 <a href="tel:+33768789800">📞 Appeler 07 68 78 98 00</a> ou <a href="https://wa.me/33768789800" target="_blank">WhatsApp</a>',
-  'contact':    'Tarik est disponible maintenant 👉 <a href="tel:+33768789800">📞 Appeler 07 68 78 98 00</a> ou <a href="https://wa.me/33768789800" target="_blank">WhatsApp</a>',
-  'appel':      'Appelez-moi maintenant 👉 <a href="tel:+33768789800">📞 07 68 78 98 00</a>',
-  'telephone':  'Mon numéro 👉 <a href="tel:+33768789800">📞 07 68 78 98 00</a>',
+  'faite':      'Je crée des sites web, je configure ta fiche Google, je mets en place la commande WhatsApp et les suggestions au panier, je récolte les avis automatiquement, et je gère les relances fidélité. Tout sans jargon.',
+  'service':    'Je crée des sites web, je configure ta fiche Google, je mets en place la commande WhatsApp et les suggestions au panier, je récolte les avis automatiquement, et je gère les relances fidélité. Tout sans jargon.',
+  'tarik':      'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
+  'parler':     'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
+  'contact':    'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
   'google':     'Votre site est optimisé pour apparaître sur Google quand quelqu\'un cherche votre activité dans votre ville.',
-  'facebook':   'Je crée et gère vos publicités Facebook & Instagram pour toucher des clients dans votre ville.',
-  'instagram':  'Je crée et gère vos publicités Facebook & Instagram pour toucher des clients dans votre ville.',
-  'fideli':     'La carte de fidélité est intégrée. Vos clients accumulent des points à chaque commande et reviennent automatiquement.',
+  'fideli':     'La carte de fidélité digitale + relances automatiques pour les clients qui ne sont pas revenus depuis 2 semaines (Pack Premium). Tes clients reviennent sans que tu fasses rien.',
+  'panier':     'Quand un client commande sur ton site, on lui propose 1 produit complémentaire (boisson, frites, dessert) → +15-25% de panier moyen sans effort. Inclus dans tous les packs.',
+  'suggestion': 'Quand un client commande sur ton site, on lui propose 1 produit complémentaire (boisson, frites, dessert) → +15-25% de panier moyen sans effort. Inclus dans tous les packs.',
   'command':    'Vos clients commandent depuis votre site via WhatsApp. Vous recevez une notification immédiate. Zéro commission.',
   'whatsapp':   'Vos clients commandent depuis votre site via WhatsApp. Vous recevez une notification immédiate. Zéro commission.',
   'resto':      'Oui, beaucoup de restaurants ! Commande WhatsApp, fidélité, pub ciblée. Regardez les projets dans la section Portfolio.',
@@ -1059,7 +1377,7 @@ function botSug(el) {
   document.getElementById('bp-sugs').style.display = 'none';
   var low = txt.toLowerCase();
   var r = (low.indexOf('tarik')>=0||low.indexOf('parler')>=0)
-    ? 'Tarik est disponible maintenant 👉 <a href="tel:+33768789800" style="color:var(--a);">📞 07 68 78 98 00</a> ou <a href="https://wa.me/33768789800" target="_blank" style="color:var(--a);">WhatsApp →</a>'
+    ? 'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank" style="color:var(--a);">Écrire sur WhatsApp →</a>'
     : botReply(txt);
   botType(function(){ botAdd(r, 'b'); });
 }
@@ -1074,9 +1392,11 @@ function botToggle() {
   if(botOpen) document.getElementById('bp-inp').focus();
 }
 
+// Événements bot
 document.getElementById('bp-send').addEventListener('click', botSend);
 document.getElementById('bp-inp').addEventListener('keydown', function(e){ if(e.key==='Enter') botSend(); });
 
+// Auto-ouvre après 10s d'inactivité
 var idleT;
 function resetIdle(){ clearTimeout(idleT); idleT=setTimeout(function(){ if(!botOpen&&!botInit) botToggle(); },10000); }
 ['mousemove','scroll','keypress','touchstart'].forEach(function(e){ document.addEventListener(e,resetIdle,{passive:true}); });
