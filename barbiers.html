@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TK Digital — Sors de Planity. Reprends ton fichier client. | Barbiers du Nord</title>
+<meta name="description" content="Tu paies Planity 89€/mois. Ils gardent ton fichier client et affichent 8 concurrents sur ta fiche. TK Digital te rend ton site, ton agenda, ton fichier. 790€ + 290€/mois tout inclus, engagement 6 mois.">
+<meta name="keywords" content="alternative planity, sortir de planity, site barbier nord, agenda barbier, fichier client barbier, anti planity, TK Digital">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tar5950.github.io/tk-digital/barbiers.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TK Digital — Sors de Planity. Reprends ton fichier client.">
+<meta property="og:description" content="Site barbier + agenda + rappels WhatsApp. Tout à toi. Pas à Planity.">
+<meta property="og:url" content="https://tar5950.github.io/tk-digital/barbiers.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"TK Digital — Site web barbier alternative à Planity","areaServed":"France","provider":{"@type":"Organization","name":"TK Digital","url":"https://tar5950.github.io/tk-digital/"}}
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png">
+<link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --n:#050505; --n2:#0c0c0c; --n3:#141414; --n4:#1e1e1e; --n5:#2a2a2a;
+  --a:#c8f135; --a2:#d4ff4a;
+  --w:#f5f5f0; --w2:#e8e8e2; --mid:#888880;
+  --border:rgba(200,241,53,0.12);
+  --red:#ff5544;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--n);color:var(--w);font-family:'DM Sans',sans-serif;overflow-x:hidden;line-height:1.6;}
+
+/* CURSOR */
+#cur{position:fixed;width:12px;height:12px;background:var(--a);border-radius:50%;pointer-events:none;z-index:9999;left:-50px;top:-50px;transition:width .15s,height .15s;box-shadow:0 0 10px 3px rgba(200,241,53,0.4);}
+#curR{position:fixed;width:36px;height:36px;border:2px solid rgba(200,241,53,0.45);border-radius:50%;pointer-events:none;z-index:9998;left:-50px;top:-50px;transition:left .1s ease-out,top .1s ease-out,width .2s,height .2s;}
+
+/* URGENCE BANNER (sticky top) */
+.urg-strip{position:sticky;top:0;z-index:201;background:linear-gradient(90deg,#1a0a0a,#2a0f0a);border-bottom:1px solid rgba(255,140,66,.3);padding:8px 5%;text-align:center;font-size:12px;color:#ffb088;font-weight:500;}
+.urg-strip strong{color:#ff8c42;}
+
+/* NAV */
+nav{position:sticky;top:34px;left:0;right:0;z-index:200;padding:0 5%;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,border-color .3s;border-bottom:1px solid transparent;background:rgba(5,5,5,.96);backdrop-filter:blur(20px);}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-svg{width:36px;height:36px;flex-shrink:0;}
+.logo-txt{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--w);letter-spacing:.04em;}
+.logo-txt span{color:var(--a);}
+.nav-links{display:flex;gap:24px;}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--a);}
+.nav-actions{display:flex;align-items:center;gap:14px;}
+.nav-tel{display:flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--w);text-decoration:none;padding:9px 14px;border:1px solid var(--n5);border-radius:2px;transition:all .2s;}
+.nav-tel:hover{border-color:var(--a);color:var(--a);}
+.nav-cta{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--n);background:var(--a);padding:11px 24px;text-decoration:none;border-radius:2px;transition:background .2s;}
+.nav-cta:hover{background:var(--a2);}
+
+/* Sticky phone button mobile */
+.mob-tel{display:none;position:fixed;bottom:24px;left:24px;z-index:899;width:54px;height:54px;background:#25D366;color:#fff;border-radius:50%;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.5);text-decoration:none;animation:pulseRing 2.4s infinite;}
+@keyframes pulseRing{0%,100%{box-shadow:0 8px 24px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,.55);}60%{box-shadow:0 8px 24px rgba(37,211,102,.5),0 0 0 14px rgba(37,211,102,0);}100%{box-shadow:0 8px 24px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,0);}}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:60px 5% 80px;position:relative;overflow:hidden;}
+.hbg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1920&q=80') center/cover;}
+.hbg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,5,5,.92) 0%,rgba(5,5,5,.7) 50%,rgba(5,5,5,.95) 100%);}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,241,53,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(200,241,53,.025) 1px,transparent 1px);background-size:60px 60px;z-index:1;}
+.htag{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;background:rgba(255,85,68,.1);border:1px solid rgba(255,85,68,.35);padding:6px 14px;border-radius:2px;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#ff8c66;margin-bottom:28px;align-self:flex-start;}
+.htag-dot{width:6px;height:6px;background:#ff5544;border-radius:50%;animation:bth 2s infinite;}
+@keyframes bth{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+h1{position:relative;z-index:2;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,52px);line-height:1.1;letter-spacing:-.015em;margin-bottom:32px;max-width:1100px;}
+h1 .l1{display:block;color:var(--w);}
+h1 .l2{display:block;color:var(--a);}
+h1 .l3{display:block;color:var(--w);}
+.hsub{position:relative;z-index:2;font-size:17px;font-weight:300;color:var(--w2);line-height:1.7;max-width:680px;margin-bottom:36px;}
+.hsub strong{color:var(--w);font-weight:500;}
+.hbtns{position:relative;z-index:2;display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;}
+.btn-a{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--n);background:var(--a);padding:16px 30px;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-a:hover{background:var(--a2);transform:translateY(-2px);box-shadow:0 8px 20px rgba(200,241,53,.3);}
+.btn-tel{display:inline-flex;align-items:center;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;color:#fff;background:#25D366;padding:14px 24px;text-decoration:none;border-radius:2px;transition:all .2s;box-shadow:0 4px 14px rgba(37,211,102,.3);}
+.btn-tel:hover{background:#1da855;transform:translateY(-2px);}
+.btn-b{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--w);border:1px solid rgba(245,245,240,.25);padding:14px 24px;text-decoration:none;border-radius:2px;transition:all .2s;}
+.btn-b:hover{border-color:var(--a);color:var(--a);}
+.hstats{position:relative;z-index:2;display:flex;gap:48px;flex-wrap:wrap;}
+.hstat-v{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--a);line-height:1;}
+.hstat-l{font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-top:6px;}
+
+/* SECTIONS */
+.sec{padding:100px 5%;}
+.eyebrow{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--a);margin-bottom:14px;}
+.sec-h{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(34px,4.5vw,60px);line-height:.98;letter-spacing:-.02em;color:var(--w);}
+.sec-h span{color:var(--a);}
+.sec-sub{font-size:15px;color:var(--mid);line-height:1.75;max-width:680px;margin-top:18px;}
+.sec-sub strong{color:var(--w);font-weight:500;}
+
+/* SECTION 2 — Vérités cachées (PAS) */
+#verites{background:linear-gradient(180deg,var(--n),#0d0808 50%,var(--n));}
+.ver-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:56px;}
+.ver-card{background:var(--n3);border:1px solid var(--n4);border-radius:8px;padding:26px 22px;position:relative;transition:transform .25s,border-color .25s;}
+.ver-card:hover{transform:translateY(-4px);border-color:rgba(255,85,68,.3);}
+.ver-num{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;color:var(--red);opacity:.18;line-height:1;margin-bottom:14px;}
+.ver-h{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--w);line-height:1.3;margin-bottom:10px;}
+.ver-d{font-size:12px;color:var(--mid);line-height:1.65;}
+.ver-d strong{color:var(--w);}
+.ver-foot{margin-top:48px;text-align:center;padding:32px;background:rgba(255,85,68,.05);border:1px solid rgba(255,85,68,.18);border-radius:8px;}
+.ver-foot-q{font-family:'Syne',sans-serif;font-size:24px;font-weight:700;color:var(--w);line-height:1.4;}
+.ver-foot-q em{color:var(--red);font-style:normal;}
+
+/* SECTION 3 — Comparatif */
+#compare{background:var(--n2);}
+.compare-table{margin-top:48px;background:var(--n3);border:1px solid var(--n4);border-radius:10px;overflow:hidden;}
+.compare-row{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:0;}
+.compare-row > div{padding:18px 22px;border-bottom:1px solid var(--n4);display:flex;align-items:center;font-size:13px;}
+.compare-row:last-child > div{border-bottom:none;}
+.compare-h{background:var(--n4);}
+.compare-h > div{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);padding:14px 22px;}
+.compare-h .col-tk{color:var(--a);}
+.compare-h .col-pl{color:var(--red);}
+.compare-feat{font-weight:500;color:var(--w);}
+.compare-pl{color:var(--red);background:rgba(255,85,68,.04);}
+.compare-tk{color:var(--a);background:rgba(200,241,53,.04);font-weight:600;}
+.compare-pl::before{content:'✗ ';font-weight:700;}
+.compare-tk::before{content:'✓ ';font-weight:700;}
+
+/* CALCULATEUR PLANITY */
+#calc{background:var(--n);}
+.calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:48px;}
+.calc-card{background:var(--n3);border:1px solid var(--n4);border-radius:10px;padding:32px;}
+.calc-row{margin-bottom:22px;}
+.calc-lbl{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:8px;}
+.calc-inp{width:100%;background:var(--n4);border:1px solid var(--n5);color:var(--w);padding:14px 16px;font-family:'Syne',sans-serif;font-size:18px;font-weight:700;border-radius:3px;outline:none;transition:border-color .2s;}
+.calc-inp:focus{border-color:var(--a);}
+.calc-help{font-size:10px;color:var(--mid);margin-top:5px;}
+.calc-result{background:linear-gradient(135deg,#1a0a0a,#2a0808);border:1px solid var(--red);border-radius:10px;padding:36px;}
+.calc-r-lbl{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#ff8888;margin-bottom:14px;}
+.calc-r-big{font-family:'Syne',sans-serif;font-size:64px;font-weight:800;color:var(--red);line-height:1;margin-bottom:8px;}
+.calc-r-per{font-size:13px;color:var(--mid);margin-bottom:24px;}
+.calc-decomp{padding-top:18px;border-top:1px solid rgba(255,85,68,.18);}
+.calc-decomp-row{display:flex;justify-content:space-between;font-size:12px;color:var(--mid);padding:6px 0;}
+.calc-decomp-row strong{color:#ffaa88;}
+.calc-saved{margin-top:24px;padding:20px;background:rgba(200,241,53,.08);border:1px solid rgba(200,241,53,.25);border-radius:6px;}
+.calc-saved-l{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--a);margin-bottom:6px;}
+.calc-saved-v{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--a);line-height:1;margin-bottom:6px;}
+.calc-saved-d{font-size:12px;color:var(--w2);}
+
+/* TABLEAU DES PERTES */
+.losses-table-wrap{margin-top:64px;background:linear-gradient(180deg,var(--n3),#0d0808);border:1px solid var(--n4);border-radius:12px;padding:48px;position:relative;overflow:hidden;}
+.losses-table-wrap::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,85,68,.06) 0%,transparent 70%);pointer-events:none;}
+.losses-table-h{position:relative;z-index:1;text-align:center;margin-bottom:36px;}
+.losses-table-eyebrow{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:14px;}
+.losses-table-title{font-family:'Syne',sans-serif;font-size:clamp(26px,3.4vw,42px);font-weight:800;color:var(--w);line-height:1.1;letter-spacing:-.02em;margin-bottom:14px;}
+.losses-table-title span{color:var(--red);}
+.losses-table-sub{font-size:14px;color:var(--mid);line-height:1.7;max-width:680px;margin:0 auto;}
+.losses-table-sub strong{color:var(--w);}
+.losses-table-scroll{position:relative;z-index:1;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:8px;border:1px solid var(--n4);background:var(--n2);}
+.losses-table{width:100%;border-collapse:collapse;font-size:14px;min-width:680px;}
+.losses-table th,.losses-table td{padding:14px 16px;text-align:center;border-bottom:1px solid var(--n4);border-right:1px solid var(--n4);}
+.losses-table th:last-child,.losses-table td:last-child{border-right:none;}
+.losses-table tr:last-child th,.losses-table tr:last-child td{border-bottom:none;}
+.losses-table thead th{background:var(--n4);font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);padding:18px 16px;}
+.losses-table thead th.lt-highlight{color:var(--red);background:rgba(255,85,68,.08);}
+.losses-table .lt-corner{text-align:left;color:var(--a);font-size:10px;letter-spacing:.1em;}
+.losses-table tbody th{background:var(--n3);font-family:'Syne',sans-serif;font-weight:800;color:var(--w);font-size:16px;letter-spacing:-.005em;text-align:right;padding-right:18px;}
+.losses-table tbody td{font-family:'Syne',sans-serif;font-weight:600;color:#ffaa88;font-size:15px;letter-spacing:-.005em;}
+.losses-table tbody td.lt-highlight{background:rgba(255,85,68,.06);color:var(--red);font-weight:800;}
+.losses-table tr.lt-row-highlight th{background:rgba(200,241,53,.06);color:var(--a);}
+.losses-table tr.lt-row-highlight td{background:rgba(255,85,68,.04);}
+.losses-table tr.lt-row-highlight td.lt-highlight{background:rgba(255,85,68,.12);}
+.losses-table tr.lt-row-highlight td strong{color:var(--red);font-size:17px;}
+
+.losses-table-foot{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.2fr;gap:32px;margin-top:32px;align-items:center;}
+.losses-table-legend{font-size:11px;color:var(--mid);line-height:1.7;padding:18px;background:var(--n2);border:1px solid var(--n4);border-radius:6px;}
+.losses-table-legend strong{color:var(--w);display:block;margin-bottom:6px;font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;}
+.losses-table-cta{padding:24px;background:linear-gradient(135deg,rgba(200,241,53,.05),rgba(200,241,53,.02));border:1px solid rgba(200,241,53,.2);border-radius:8px;}
+.lt-cta-h{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--w);margin-bottom:10px;line-height:1.3;}
+.lt-cta-d{font-size:13px;color:var(--w2);line-height:1.65;}
+.lt-cta-d strong{font-weight:700;}
+
+@media(max-width:900px){
+  .losses-table-foot{grid-template-columns:1fr;}
+  .losses-table-wrap{padding:32px 22px;}
+}
+
+/* OFFRE */
+#offre{background:var(--n2);}
+.off-wrap{margin-top:48px;background:linear-gradient(180deg,var(--n3),var(--n2));border:2px solid var(--a);border-radius:12px;padding:48px;position:relative;box-shadow:0 24px 80px rgba(200,241,53,.1);}
+.off-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--a);color:var(--n);font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:6px 18px;border-radius:3px;}
+.off-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center;}
+.off-price-row{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;padding-bottom:10px;border-bottom:1px solid var(--n4);}
+.off-price-row:last-of-type{border:none;margin-bottom:18px;}
+.off-price-lbl{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);min-width:60px;}
+.off-price-val{font-family:'Syne',sans-serif;font-size:54px;font-weight:800;color:var(--w);line-height:1;}
+.off-price-val small{font-size:18px;font-weight:400;color:var(--mid);}
+.off-period{font-size:13px;color:var(--mid);margin-bottom:30px;}
+.off-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px;}
+.off-trust{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;padding-top:24px;border-top:1px solid var(--n4);}
+.off-ti{font-size:12px;color:var(--w2);display:flex;align-items:center;gap:8px;}
+.off-ti-ico{color:var(--a);font-weight:700;font-size:14px;}
+.off-feats-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--a);margin-bottom:18px;}
+.off-feats{list-style:none;}
+.off-feats li{font-size:13px;color:var(--w2);line-height:1.65;padding-left:24px;position:relative;margin-bottom:11px;}
+.off-feats li::before{content:'→';position:absolute;left:0;color:var(--a);font-weight:700;}
+.off-feats li strong{color:var(--w);font-weight:600;}
+
+/* MÉTHODE 90 JOURS */
+#methode{background:var(--n);}
+.phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;}
+.phase-card{background:var(--n3);border:1px solid var(--n4);border-radius:8px;padding:28px 24px;display:flex;flex-direction:column;transition:transform .25s,border-color .25s;}
+.phase-card:hover{transform:translateY(-4px);border-color:rgba(200,241,53,.3);}
+.phase-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.phase-num{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--n);background:var(--a);padding:6px 12px;border-radius:3px;}
+.phase-tag{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);}
+.phase-h{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);line-height:1.3;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--n4);}
+.phase-list{list-style:none;flex:1;margin-bottom:16px;}
+.phase-list li{font-size:12px;color:var(--w2);line-height:1.65;margin-bottom:11px;}
+.phase-list li strong{color:var(--a);font-weight:700;font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.06em;background:rgba(200,241,53,.08);padding:1px 7px;border-radius:2px;margin-right:5px;}
+.phase-kpi{font-size:12px;color:var(--w);background:rgba(200,241,53,.05);border-left:2px solid var(--a);padding:10px 14px;border-radius:0 4px 4px 0;line-height:1.5;}
+.phase-kpi strong{color:var(--a);}
+
+/* WHY ME */
+#why{background:var(--n2);}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--n4);margin-top:48px;}
+.why-card{background:var(--n2);padding:36px 28px;}
+.why-num{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--a);opacity:.5;margin-bottom:18px;}
+.why-ico{font-size:32px;margin-bottom:14px;display:block;}
+.why-h{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);margin-bottom:10px;line-height:1.25;}
+.why-d{font-size:12px;color:var(--mid);line-height:1.8;}
+.why-d strong{color:var(--w);font-weight:500;}
+
+/* GARANTIE */
+#garantie{background:var(--n);position:relative;overflow:hidden;}
+#garantie::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(200,241,53,.06) 0%,transparent 60%);}
+.gar-wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:center;}
+.gar-seal{aspect-ratio:1;max-width:340px;margin:0 auto;background:var(--n2);border:2px solid var(--a);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px;text-align:center;position:relative;}
+.gar-seal::before{content:'';position:absolute;inset:8px;border:1px dashed rgba(200,241,53,.3);border-radius:50%;}
+.gar-seal-top{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--a);margin-bottom:10px;}
+.gar-seal-big{font-family:'Syne',sans-serif;font-size:38px;font-weight:800;color:var(--w);line-height:1;margin-bottom:8px;}
+.gar-seal-sub{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--a);line-height:1.3;}
+.gar-list{list-style:none;}
+.gar-list li{padding:14px 0;border-bottom:1px solid var(--n4);display:flex;gap:14px;align-items:flex-start;}
+.gar-list li:last-child{border:none;}
+.gar-ico{font-size:20px;flex-shrink:0;margin-top:2px;}
+.gar-li-t{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--w);margin-bottom:3px;}
+.gar-li-d{font-size:12px;color:var(--mid);line-height:1.6;}
+
+/* FAQ */
+#faq{background:var(--n2);}
+.faq-list{margin-top:40px;max-width:880px;}
+.faq-item{background:var(--n3);border:1px solid var(--n4);border-radius:4px;margin-bottom:10px;overflow:hidden;transition:border-color .2s;}
+.faq-item:hover{border-color:rgba(200,241,53,.2);}
+.faq-q{padding:18px 22px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:16px;}
+.faq-q-t{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:var(--w);}
+.faq-plus{color:var(--a);font-size:18px;font-weight:300;flex-shrink:0;transition:transform .25s;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s;}
+.faq-item.open .faq-a{max-height:600px;}
+.faq-a-in{padding:0 22px 20px;font-size:13px;color:var(--mid);line-height:1.75;}
+.faq-a-in strong{color:var(--w);}
+
+/* CONTACT */
+#contact{background:var(--n);position:relative;overflow:hidden;}
+#contact::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(200,241,53,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(200,241,53,.02) 1px,transparent 1px);background-size:40px 40px;}
+.cont-wrap{position:relative;z-index:1;text-align:center;max-width:780px;margin:0 auto;}
+.cont-h{font-family:'Syne',sans-serif;font-size:clamp(34px,5vw,58px);font-weight:800;color:var(--w);line-height:1;letter-spacing:-.02em;margin-bottom:24px;}
+.cont-h span{color:var(--a);}
+.cont-sub{font-size:16px;color:var(--mid);line-height:1.7;margin-bottom:40px;}
+.cont-sub strong{color:var(--w);}
+.cont-cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:48px;}
+.cont-cta-row .btn-a,.cont-cta-row .btn-tel{padding:18px 36px;font-size:14px;}
+.cont-info{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;padding-top:36px;border-top:1px solid var(--n4);}
+.ci-block{display:flex;align-items:center;gap:12px;}
+.ci-ico{width:42px;height:42px;background:var(--n3);border:1px solid var(--n4);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.ci-txt{text-align:left;}
+.ci-txt span{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:1px;}
+.ci-txt b{font-size:14px;color:var(--w);font-weight:500;}
+
+/* PS Final */
+.ps-block{margin-top:64px;padding:32px;background:var(--n3);border-left:3px solid var(--a);border-radius:0 8px 8px 0;max-width:780px;margin-left:auto;margin-right:auto;}
+.ps-block strong{color:var(--a);font-family:'Syne',sans-serif;font-size:13px;letter-spacing:.06em;}
+.ps-block p{font-size:14px;color:var(--w2);line-height:1.7;margin-top:10px;font-style:italic;}
+
+/* FOOTER */
+footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;}
+.ft-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;flex-wrap:wrap;gap:28px;}
+.ft-logo-txt{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--w);margin-bottom:10px;}
+.ft-logo-txt span{color:var(--a);}
+.ft-tagline{font-size:12px;font-weight:300;color:var(--mid);max-width:260px;line-height:1.6;}
+.ft-cols{display:flex;gap:48px;flex-wrap:wrap;}
+.ft-col-ttl{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:14px;opacity:.6;}
+.ft-col a{display:block;font-size:12px;font-weight:300;color:var(--mid);text-decoration:none;line-height:2.2;transition:color .2s;}
+.ft-col a:hover{color:var(--w);}
+.ft-bot{display:flex;justify-content:space-between;padding-top:20px;border-top:1px solid var(--n4);flex-wrap:wrap;gap:8px;}
+.ft-copy{font-size:10px;color:rgba(136,136,128,.4);letter-spacing:.06em;}
+
+/* SCROLL ANIM */
+.anim{opacity:0;transform:translateY(24px);transition:opacity .55s,transform .55s;}
+.anim.vis{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .ver-grid{grid-template-columns:repeat(2,1fr);}
+  .compare-row{grid-template-columns:1.5fr 1fr 1fr;}
+  .calc-wrap,.off-grid,.gar-wrap{grid-template-columns:1fr;gap:36px;}
+  .phase-grid,.why-grid{grid-template-columns:1fr;}
+  .gar-seal{max-width:240px;}
+}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .nav-tel{padding:8px 10px;}
+  .nav-tel-num{display:none;}
+  .sec{padding:64px 5%;}
+  #hero{padding:40px 5% 60px;}
+  h1{font-size:30px;}
+  .hsub{font-size:15px;}
+  .hbtns{flex-direction:column;align-items:stretch;}
+  .hbtns .btn-a,.hbtns .btn-tel,.hbtns .btn-b{text-align:center;justify-content:center;width:100%;}
+  .hstats{gap:24px;}
+  .hstat-v{font-size:24px;}
+  .ver-grid{grid-template-columns:1fr;}
+  .compare-row{grid-template-columns:1fr;}
+  .compare-row > div{padding:12px 18px;}
+  .compare-feat{font-weight:700;background:var(--n4);}
+  .calc-r-big{font-size:48px;}
+  .off-wrap{padding:28px 22px;}
+  .off-price-val{font-size:42px;}
+  .gar-seal{max-width:200px;padding:18px;}
+  .gar-seal-big{font-size:30px;}
+  .ft-cols{gap:32px;flex-direction:column;}
+  .mob-tel{display:flex;}
+  #cur,#curR{display:none;}
+}
+@media(max-width:480px){
+  h1{font-size:26px;}
+  .sec-h,.cont-h{font-size:28px;}
+  .ver-foot-q{font-size:18px;}
+  .calc-r-big{font-size:38px;}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="curR"></div>
+
+<!-- URGENCE STRIP -->
+<div class="urg-strip">
+  ⚠️ Hausse Planity de <strong>+12% en 2026</strong>. Pendant qu'ils augmentent leurs prix, je <strong>baisse les tiens</strong>. — 5 places ce mois pour barbiers Hauts-de-France.
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="logo">
+    <svg class="logo-svg" viewBox="0 0 36 36" fill="none">
+      <rect width="36" height="36" fill="#c8f135"/>
+      <path d="M7 10H29M18 10V26" stroke="#050505" stroke-width="3" stroke-linecap="square"/>
+      <path d="M18 18L27 26M18 18L27 10" stroke="#050505" stroke-width="3" stroke-linecap="square"/>
+    </svg>
+    <span class="logo-txt">TK <span>Digital</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#verites">Vérités</a>
+    <a href="#calc">Calculateur</a>
+    <a href="#offre">Offre</a>
+    <a href="#methode">Méthode</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="nav-actions">
+    <a href="tel:+33768789800" class="nav-tel" title="Appeler Tarik">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.59-6.59l2.2-2.2a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z"/></svg>
+      <span class="nav-tel-num">07 68 78 98 00</span>
+    </a>
+    <a href="#contact" class="nav-cta">Démo →</a>
+  </div>
+</nav>
+
+<!-- Sticky phone button mobile -->
+<a href="tel:+33768789800" class="mob-tel" aria-label="Appeler Tarik">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.59-6.59l2.2-2.2a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z"/></svg>
+</a>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hbg"></div>
+  <div class="hgrid"></div>
+  <div class="htag"><div class="htag-dot"></div>Pour les barbiers du Nord qui en ont marre</div>
+  <h1>
+    <span class="l1">Tu paies Planity 89€/mois.</span>
+    <span class="l2">Ils affichent 8 concurrents sur ta fiche.</span>
+    <span class="l3">Et ils gardent ton fichier client.</span>
+  </h1>
+  <p class="hsub"><strong>C'est pas un partenariat. C'est de la sous-traitance déguisée.</strong> TK Digital te construit ton vrai site, ton agenda, tes rappels WhatsApp. Tu reprends ton fichier, ton agenda, ta dignité de patron. Pas dans 6 mois. <strong>Dans 14 jours.</strong></p>
+  <div class="hbtns">
+    <a href="#calc" class="btn-a">Calculer ce que Planity me coûte vraiment →</a>
+    <a href="tel:+33768789800" class="btn-tel">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.59-6.59l2.2-2.2a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z"/></svg>
+      07 68 78 98 00
+    </a>
+  </div>
+  <div class="hstats">
+    <div><div class="hstat-v">14j</div><div class="hstat-l">Pour reprendre la main</div></div>
+    <div><div class="hstat-v">87%</div><div class="hstat-l">De tes clients récupérés</div></div>
+    <div><div class="hstat-v">~3 700€</div><div class="hstat-l">Économisés par an vs Planity</div></div>
+  </div>
+</section>
+
+<!-- SECTION 2 — VÉRITÉS CACHÉES (PAS) -->
+<section id="verites" class="sec">
+  <div class="eyebrow">Voici ce qu'on te dit pas</div>
+  <h2 class="sec-h">5 vérités cachées<br><span>chez Planity.</span></h2>
+  <p class="sec-sub">Tu paies, tu fais ton boulot, tu te dis que c'est normal. Sauf que <strong>tu ne sais pas vraiment ce qu'il y a derrière l'écran</strong>. Voilà ce que les autres barbiers t'auraient dit — s'ils avaient osé.</p>
+
+  <div class="ver-grid">
+    <div class="ver-card anim">
+      <div class="ver-num">01</div>
+      <div class="ver-h">Ton fichier client n'est pas à toi</div>
+      <div class="ver-d">Pour récupérer ton propre fichier, faut envoyer un email à <strong>contact@planity.com</strong> et attendre. <em>Source : helpdocs Planity officiel.</em> C'est leur procédure. C'est délibéré.</div>
+    </div>
+    <div class="ver-card anim">
+      <div class="ver-num">02</div>
+      <div class="ver-h">Tu paies pour qu'ils affichent tes concurrents</div>
+      <div class="ver-d">Sur ta propre page Planity, en bas, <strong>8 barbiers à 500m</strong>. Tu paies 89€/mois pour qu'on offre le choix à TES clients d'aller voir ailleurs.</div>
+    </div>
+    <div class="ver-card anim">
+      <div class="ver-num">03</div>
+      <div class="ver-h">Commission cachée 20% sur tes nouveaux clients</div>
+      <div class="ver-d">En plus de l'abonnement, ils prennent <strong>~20% du premier RDV</strong> de chaque nouveau client venu via la marketplace. <em>Source : analyse BreizhApp 2025.</em></div>
+    </div>
+    <div class="ver-card anim">
+      <div class="ver-num">04</div>
+      <div class="ver-h">SMS de rappel limités ou payants</div>
+      <div class="ver-d">Plan de base = SMS limités. Tu veux plus pour réduire les no-shows ? Tu passes au plan supérieur. Tu paies <strong>2 fois</strong> pour la même promesse.</div>
+    </div>
+    <div class="ver-card anim">
+      <div class="ver-num">05</div>
+      <div class="ver-h">Hausse +12%/an automatique</div>
+      <div class="ver-d">Tu signes pour 89€. Dans 2 ans c'est 112€. Dans 4 ans c'est 140€. <strong>+50% sur l'offre d'entrée de gamme en 2025.</strong> Aucune communication officielle.</div>
+    </div>
+  </div>
+
+  <div class="ver-foot anim">
+    <div class="ver-foot-q">Si tu quittais Planity demain,<br><em>combien de tes clients sauraient te retrouver ?</em></div>
+  </div>
+</section>
+
+<!-- SECTION 3 — COMPARATIF -->
+<section id="compare" class="sec">
+  <div class="eyebrow">L'opposé exact de Planity</div>
+  <h2 class="sec-h">Mon outil vs<br><span>leur usine à gaz.</span></h2>
+  <p class="sec-sub">Je te dis pas que je suis "comme Planity en moins cher". Je te dis que je suis <strong>l'opposé de Planity</strong>. Ligne par ligne, voilà la différence.</p>
+
+  <div class="compare-table">
+    <div class="compare-row compare-h">
+      <div>Critère</div>
+      <div class="col-pl">Planity</div>
+      <div class="col-tk">TK Digital</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-feat">Fichier client</div>
+      <div class="compare-pl">À eux (export par email)</div>
+      <div class="compare-tk">À toi à 100%</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-feat">Concurrents sur ta page</div>
+      <div class="compare-pl">Oui, 5 à 8 barbiers</div>
+      <div class="compare-tk">Jamais</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-feat">Site à ton nom</div>
+      <div class="compare-pl">Non, page Planity</div>
+      <div class="compare-tk">Oui (.fr ou .com perso)</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-feat">Réservation par WhatsApp direct</div>
+      <div class="compare-pl">Non, uniquement leur app</div>
+      <div class="compare-tk">Oui, lien direct sur ton site</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-feat">Suggestion service en plus à la réservation</div>
+      <div class="compare-pl">Non</div>
+      <div class="compare-tk">Oui, +15-25% sur ticket moyen</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-feat">Rappels avant RDV</div>
+      <div class="compare-pl">SMS limités/payants</div>
+      <div class="compare-tk">WhatsApp gratuits illimités</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-feat">Commission par RDV</div>
+      <div class="compare-pl">~20% nouveaux clients</div>
+      <div class="compare-tk">0€ — jamais</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-feat">Hausses unilatérales</div>
+      <div class="compare-pl">+12%/an automatique</div>
+      <div class="compare-tk">Prix gelé pendant 12 mois</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-feat">Numéro client visible</div>
+      <div class="compare-pl">Bridé tant que pas confirmé</div>
+      <div class="compare-tk">Libre dès la réservation</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-feat">Acompte anti-no-show</div>
+      <div class="compare-pl">Plan Premium uniquement</div>
+      <div class="compare-tk">Inclus de base</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-feat">Engagement</div>
+      <div class="compare-pl">Lock-in fichier</div>
+      <div class="compare-tk">6 mois puis libre</div>
+    </div>
+  </div>
+</section>
+
+<!-- TABLEAU PLANITY -->
+<section id="calc" class="sec">
+  <div class="eyebrow">Le vrai chiffre</div>
+  <h2 class="sec-h">Combien Planity<br><span>te coûte vraiment ?</span></h2>
+  <p class="sec-sub">Tu vois 89€/mois sur ta facture. <strong>Sauf que c'est pas le vrai chiffre.</strong> Lis ta ligne (ton prix moyen) et ta colonne (ton volume mensuel) ci-dessous. <strong style="color:var(--w);">Tu vas voir l'addition réelle</strong>, calculée uniquement sur 2 chiffres incontestables : ton abonnement Pro 89€/mois et tes no-shows à 12% (moyenne barbier — INSEE/QueueFast), dont 50% que tu n'arrives pas à combler à temps.</p>
+
+  <!-- TABLEAU DE RÉFÉRENCE STATIQUE -->
+  <div class="losses-table-wrap">
+
+    <div class="losses-table-scroll">
+      <table class="losses-table">
+        <thead>
+          <tr>
+            <th class="lt-corner">Prix coupe ↓ / RDV par mois →</th>
+            <th>100 RDV</th>
+            <th>200 RDV</th>
+            <th class="lt-highlight">300 RDV</th>
+            <th>400 RDV</th>
+            <th>500 RDV</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>15€</th>
+            <td>2 148€</td>
+            <td>3 228€</td>
+            <td class="lt-highlight">4 308€</td>
+            <td>5 388€</td>
+            <td>6 468€</td>
+          </tr>
+          <tr>
+            <th>18€</th>
+            <td>2 364€</td>
+            <td>3 660€</td>
+            <td class="lt-highlight">4 956€</td>
+            <td>6 252€</td>
+            <td>7 548€</td>
+          </tr>
+          <tr>
+            <th>22€</th>
+            <td>2 652€</td>
+            <td>4 236€</td>
+            <td class="lt-highlight">5 820€</td>
+            <td>7 404€</td>
+            <td>8 988€</td>
+          </tr>
+          <tr class="lt-row-highlight">
+            <th>28€</th>
+            <td>3 084€</td>
+            <td><strong>5 100€</strong></td>
+            <td class="lt-highlight"><strong>7 116€</strong></td>
+            <td>9 132€</td>
+            <td>11 148€</td>
+          </tr>
+          <tr>
+            <th>35€</th>
+            <td>3 588€</td>
+            <td>6 108€</td>
+            <td class="lt-highlight">8 628€</td>
+            <td>11 148€</td>
+            <td>13 668€</td>
+          </tr>
+          <tr>
+            <th>45€</th>
+            <td>4 308€</td>
+            <td>7 548€</td>
+            <td class="lt-highlight">10 788€</td>
+            <td>14 028€</td>
+            <td>17 268€</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="losses-table-foot">
+      <div class="losses-table-legend">
+        <strong>Calcul du tableau</strong> · Abonnement Planity Pro 89€/mois × 12 = <strong style="color:#ffaa88;">1 068€/an</strong> · No-shows non comblés : (RDV × 12% × prix × 50%) × 12 mois.<br><br>
+        <em style="color:#888880;">Note : à cela peuvent s'ajouter la commission marketplace ~20% sur les nouveaux clients qui viennent via Planity, les SMS hors forfait, et les coûts d'opportunité des concurrents affichés sur ta fiche. Ces postes existent mais varient trop pour être chiffrés ici. Le tableau ne montre que ce qui est incontestable.</em>
+      </div>
+      <div class="losses-table-cta">
+        <div class="lt-cta-h">Tu te reconnais dans ce tableau ?</div>
+        <div class="lt-cta-d">Si tu fais 200 RDV/mois à 28€, Planity te coûte <strong style="color:var(--red);">5 100€/an</strong> (abo + no-shows). Avec moi tu paies <strong style="color:var(--a);">4 270€/an</strong> tout inclus, ET tes no-shows sont divisés par 3 grâce au rappel WhatsApp + acompte. <strong style="color:var(--w);">Économie totale : ~3 500€/an</strong>.</div>
+        <a href="tel:+33768789800" class="btn-tel" style="margin-top:18px;display:inline-flex;">📞 Appelle-moi : 07 68 78 98 00</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFRE -->
+<section id="offre" class="sec">
+  <div class="eyebrow">Mon offre — claire</div>
+  <h2 class="sec-h">Tout-en-un.<br><span>Tout à toi.</span></h2>
+  <p class="sec-sub">Pas de plans Essential/Pro/Premium qui te poussent à upgrade. <strong>Une seule offre. Tout dedans.</strong> Sans engagement long, sans commission, sans surprise. Le prix annoncé = le prix payé.</p>
+
+  <div class="off-wrap anim">
+    <div class="off-badge">★ Offre tout inclus</div>
+    <div class="off-grid">
+      <div>
+        <div class="off-price-row"><span class="off-price-lbl">Setup</span><span class="off-price-val">790€</span></div>
+        <div class="off-price-row"><span class="off-price-lbl">Puis</span><span class="off-price-val">290€<small>/mois</small></span></div>
+        <div class="off-period">Engagement 6 mois minimum · Pas de frais cachés · Site livré en 14 jours</div>
+        <div class="off-cta-row">
+          <a href="#contact" class="btn-a">Démarrer maintenant</a>
+          <a href="tel:+33768789800" class="btn-tel">📞 Appeler Tarik</a>
+        </div>
+        <div class="off-trust">
+          <div class="off-ti"><span class="off-ti-ico">✓</span> Site en 14 jours ou setup remboursé</div>
+          <div class="off-ti"><span class="off-ti-ico">✓</span> Migration de Planity gérée par moi</div>
+          <div class="off-ti"><span class="off-ti-ico">✓</span> Ton site et ton fichier t'appartiennent</div>
+          <div class="off-ti"><span class="off-ti-ico">✓</span> Aucune commission par RDV</div>
+        </div>
+      </div>
+      <div>
+        <div class="off-feats-title">Tout ce qui est inclus</div>
+        <ul class="off-feats">
+          <li><strong>Site web pro à ton nom de domaine</strong> (ton-salon.fr)</li>
+          <li><strong>Hébergement + nom de domaine + SSL</strong> tout compris</li>
+          <li><strong>Agenda en ligne</strong> avec réservation directe (1 clic)</li>
+          <li><strong>Réservation par WhatsApp direct</strong> — pour les clients qui préfèrent écrire</li>
+          <li><strong>Suggestion au moment du RDV</strong> — propose un service en plus (taille de barbe, soin) → +15 à 25% sur le ticket moyen</li>
+          <li><strong>Acompte anti-no-show</strong> (5€ remboursé en boutique)</li>
+          <li><strong>Rappels WhatsApp J-1 et H-1</strong> (taux d'ouverture 95%)</li>
+          <li><strong>Migration de ton fichier Planity</strong> — je m'en occupe pour toi</li>
+          <li><strong>Récolte d'avis Google automatique</strong> après chaque coupe</li>
+          <li><strong>Modifications illimitées</strong> sur ton site (5/semaine)</li>
+          <li><strong>Reporting mensuel chiffré</strong> (RDV pris, no-shows, avis, ticket moyen)</li>
+          <li><strong>Support WhatsApp</strong> direct avec moi (4h en semaine, 24h soirs/WE)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTHODE 90 JOURS -->
+<section id="methode" class="sec">
+  <div class="eyebrow">Ma méthode</div>
+  <h2 class="sec-h">3 phases pour reprendre<br><span>la main, sans rien casser.</span></h2>
+  <p class="sec-sub">On bascule progressivement. <strong>Tu coupes Planity quand TU es prêt</strong>, pas quand je le dis. Pendant 30 jours, tes deux agendas tournent en parallèle. Tu vois la différence avant de couper.</p>
+
+  <div class="phase-grid">
+    <div class="phase-card anim">
+      <div class="phase-head">
+        <span class="phase-num">M1</span>
+        <span class="phase-tag">Setup</span>
+      </div>
+      <div class="phase-h">Ton site, ton agenda, ton fichier — récupéré.</div>
+      <ul class="phase-list">
+        <li><strong>Jour 1-3</strong> : je te crée ton site à ton nom de domaine (ton-salon.fr) avec ton agenda intégré.</li>
+        <li><strong>Jour 4-7</strong> : je m'occupe de l'export de ton fichier client Planity (procédure officielle, ~3 jours).</li>
+        <li><strong>Jour 8-10</strong> : configuration des rappels WhatsApp + acompte anti-no-show.</li>
+        <li><strong>Jour 11-14</strong> : je te livre 10 QR codes plastifiés pour les poser dans ton salon (sur ton miroir, à la caisse).</li>
+      </ul>
+      <div class="phase-kpi">→ Fin du mois 1 : ton site est en ligne, tes 200 derniers clients sont importés, le système tourne.</div>
+    </div>
+
+    <div class="phase-card anim">
+      <div class="phase-head">
+        <span class="phase-num">M2</span>
+        <span class="phase-tag">Migration douce</span>
+      </div>
+      <div class="phase-h">Tes clients basculent un par un.</div>
+      <ul class="phase-list">
+        <li><strong>Jour 15-30</strong> : double agenda Planity + ton site. Tu choisis sur lequel tu mets chaque RDV.</li>
+        <li><strong>Jour 15-30</strong> : message WhatsApp perso à tes 200 clients : "Salut Karim, dorénavant tu peux prendre RDV ici" + lien.</li>
+        <li><strong>Jour 31-45</strong> : à chaque RDV en boutique, on collecte le numéro WhatsApp via le QR (capture data).</li>
+        <li><strong>Jour 31-45</strong> : récolte d'avis Google qui démarre — chaque client reçoit un message après sa coupe.</li>
+      </ul>
+      <div class="phase-kpi">→ Fin du mois 2 : <strong>87% de tes clients</strong> sont récupérés en moyenne (cas observés). Plus de la moitié de tes nouveaux RDV passent par TON site.</div>
+    </div>
+
+    <div class="phase-card anim">
+      <div class="phase-head">
+        <span class="phase-num">M3</span>
+        <span class="phase-tag">Autonomie</span>
+      </div>
+      <div class="phase-h">Tu coupes Planity. Pour de bon.</div>
+      <ul class="phase-list">
+        <li><strong>Jour 46-60</strong> : tu vérifies que ton CA est stable / en hausse. Bilan ensemble.</li>
+        <li><strong>Jour 61-75</strong> : tu envoies le mail de résiliation Planity. Je t'aide à rédiger pour qu'il passe.</li>
+        <li><strong>Jour 76-90</strong> : ton agenda direct tourne seul. No-shows divisés par 3 grâce au rappel WhatsApp + acompte.</li>
+        <li><strong>Jour 76-90</strong> : on planifie le trimestre suivant (campagne fidélité, posts Google hebdo).</li>
+      </ul>
+      <div class="phase-kpi">→ Fin du mois 3 : <strong>tu es libre.</strong> Plus d'abonnement Planity. Plus de commission. Ton fichier 100% à toi. Tu économises ~3 700€/an.</div>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI MOI -->
+<section id="why" class="sec">
+  <div class="eyebrow">Pourquoi moi, pas une autre boîte</div>
+  <h2 class="sec-h">Je suis pas<br><span>un autre Planity.</span></h2>
+  <p class="sec-sub">Je suis Tarik. Je code. Je suis basé à Douai. Je connais le terrain du Nord par cœur (7 ans à livrer les emballages des restos halal de la région). Je t'écris, je décroche, je fais le boulot. <strong>Un seul interlocuteur, toujours.</strong></p>
+
+  <div class="why-grid">
+    <div class="why-card anim">
+      <div class="why-num">01</div>
+      <span class="why-ico">🏠</span>
+      <div class="why-h">Ton outil. Pas le mien.</div>
+      <div class="why-d">Je code TON site, TON agenda, TON fichier. Si demain je devenais une marketplace, ça voudrait dire que je <strong>trahis ma promesse</strong>. Et c'est tout ce qui me tient. Je ne le ferai jamais.</div>
+    </div>
+    <div class="why-card anim">
+      <div class="why-num">02</div>
+      <span class="why-ico">⚡</span>
+      <div class="why-h">Je fais le travail moi-même</div>
+      <div class="why-d">Pas de commercial qui passe le dossier à un sous-traitant. <strong>C'est moi qui code, moi qui pilote, moi qui réponds à 22h</strong> sur WhatsApp. Un seul numéro. Toujours dispo.</div>
+    </div>
+    <div class="why-card anim">
+      <div class="why-num">03</div>
+      <span class="why-ico">📍</span>
+      <div class="why-h">Je connais le terrain du Nord</div>
+      <div class="why-d">Lille, Roubaix, Tourcoing, Valenciennes, Lens, Douai. <strong>Je sais comment bosse un commerce dans le Nord</strong>. Je sais à quelle heure tu coupes, ce qui te bouffe, ce qui marche.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIE -->
+<section id="garantie" class="sec">
+  <div class="gar-wrap">
+    <div class="gar-seal anim">
+      <div class="gar-seal-top">Mes garanties</div>
+      <div class="gar-seal-big">14 jours</div>
+      <div class="gar-seal-sub">Site en ligne<br>ou setup remboursé</div>
+    </div>
+    <div>
+      <div class="eyebrow">Le risque, c'est moi qui le prends</div>
+      <h2 class="sec-h">Pas de pari.<br><span>Pas d'arnaque.</span></h2>
+      <p style="font-size:15px;color:var(--mid);line-height:1.8;margin:18px 0 28px;">Tu connais la chanson : "On t'a vendu un truc, et 3 mois après, t'as plus de nouvelles." Je sais. Pour ça je m'engage <strong style="color:var(--w);">avant</strong> que tu paies.</p>
+      <ul class="gar-list">
+        <li>
+          <span class="gar-ico">⚡</span>
+          <div>
+            <div class="gar-li-t">Site en ligne en 14 jours, ou setup remboursé</div>
+            <div class="gar-li-d">14 jours après que tu m'as validé tes contenus (logo, photos, prestations, prix). Si je dépasse, je te rembourse les 790€.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">🤝</span>
+          <div>
+            <div class="gar-li-t">Engagement 6 mois : c'est pour TOI</div>
+            <div class="gar-li-d">Migration Planity + récolte d'avis Google + fidélisation prennent du temps. 6 mois pour que ça produise. Après, tu pars quand tu veux.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">🏠</span>
+          <div>
+            <div class="gar-li-t">Ton site, ton fichier, ton domaine : à toi à 100%</div>
+            <div class="gar-li-d">Le jour où tu pars, tu repars avec tout. Code, design, fichier client, nom de domaine. Je transfère, c'est fini.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">📞</span>
+          <div>
+            <div class="gar-li-t">Un seul interlocuteur : moi, Tarik</div>
+            <div class="gar-li-d">Pas de "service après-vente" à l'autre bout du monde. Tu m'écris sur WhatsApp, je décroche.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">🚫</span>
+          <div>
+            <div class="gar-li-t">Aucune commission, aucun concurrent sur ta page</div>
+            <div class="gar-li-d">Ton site = ton univers. Je n'afficherai jamais un autre barbier sur ta page. Je ne prendrai jamais 1€ sur tes RDV.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="sec">
+  <div class="eyebrow">Tes questions, mes réponses</div>
+  <h2 class="sec-h">Pas de bullshit.<br><span>Pas de blabla.</span></h2>
+  <div class="faq-list">
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Et si je perds mes clients en quittant Planity ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">On migre <strong>AVANT</strong> de couper. Pendant 30 jours, double agenda. Je WhatsApp tes 200 derniers clients un par un avec ton message perso. Taux de récupération moyen constaté : <strong>87%</strong>. La peur du vide est plus grande que le vide réel.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">C'est combien exactement ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in"><strong>790€ une seule fois</strong> pour la création du site, puis <strong>290€/mois</strong> tout inclus. Engagement 6 mois minimum (le temps que la migration produise). Pas de commission, pas de SMS facturés, pas de surprise. Tu signes, je commence ton site, en 14 jours c'est en ligne.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Mon référencement Google, je le perds ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Non. Je crée ton site à ton propre nom de domaine (ton-salon.fr) qui dépasse Planity en 6-8 semaines sur ton nom commercial. Tes <strong>avis Google Business sont à toi</strong> (Planity ne les a jamais possédés, c'est Google qui les a). Je migre tout proprement.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Mes clients vont savoir réserver sans Planity ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Le bouton "Prendre RDV" sur ton site = <strong>1 clic</strong>. Plus simple que Planity (pas de compte à créer côté client). Je leur envoie aussi ton lien direct sur WhatsApp. Tes clients ne réservaient pas Planity, ils réservaient TOI.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Les no-shows, vous faites comment ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in"><strong>3 leviers cumulés</strong> : 1) acompte 5€ (remboursé en boutique = engagement), 2) rappel WhatsApp J-1 et H-1 (95% d'ouverture vs 30% SMS), 3) liste d'attente automatique qui propose le créneau libéré au client suivant. Réduction moyenne observée : <strong>-70% de no-shows</strong>.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Et si Planity me menace ou me bloque quand je pars ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Ils ne peuvent pas. Ton fichier client est <strong>légalement à toi (RGPD article 15-20)</strong>. Je m'occupe de la demande d'export à ta place. Aucune clause de non-concurrence à signer chez Planity. Aucun barbier n'a jamais eu de souci en partant.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Pourquoi vous, et pas un autre Planity ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Je <strong>ne suis pas un autre Planity</strong>. Je ne serai jamais une marketplace. Je ne ferai jamais payer tes nouveaux clients. Je ne vendrai jamais ta place sur Google à ton concurrent. Je code TON outil, pas le mien. Si je faisais l'inverse, j'aurais trahi la promesse de départ — et c'est tout ce qui me tient.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Concrètement, je commence quand ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Tu m'appelles maintenant : <strong>07 68 78 98 00</strong>. 12 minutes de démo. Si on voit qu'on est faits pour bosser ensemble, on signe ce soir. Demain, je commence ton site. Dans 14 jours tu reçois ton premier RDV via TON système. Dans 90 jours tu coupes Planity. Le mardi qui arrive, soit t'es encore esclave, soit t'es patron.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="cont-wrap">
+    <div class="eyebrow">On démarre ?</div>
+    <h2 class="cont-h">Patron ou<br><span>livreur Uber ?</span></h2>
+    <p class="cont-sub">Tu peux continuer à payer Planity 89€/mois pour qu'ils gardent ton fichier et affichent tes concurrents. Ou tu peux <strong>reprendre la main maintenant</strong>. C'est 12 minutes de démo. Tu décides après.</p>
+    <div class="cont-cta-row">
+      <a href="tel:+33768789800" class="btn-tel">📞 07 68 78 98 00 (appel direct)</a>
+      <a href="https://wa.me/33768789800?text=Salam%20Tarik%2C%20je%20suis%20barbier%20et%20je%20veux%20sortir%20de%20Planity" target="_blank" class="btn-a">💬 WhatsApp direct</a>
+    </div>
+    <div class="cont-info">
+      <div class="ci-block">
+        <div class="ci-ico">📍</div>
+        <div class="ci-txt"><span>Localisation</span><b>Douai · Hauts-de-France</b></div>
+      </div>
+      <div class="ci-block">
+        <div class="ci-ico">⏱</div>
+        <div class="ci-txt"><span>Disponibilité</span><b>Réponse sous 4h en semaine</b></div>
+      </div>
+      <div class="ci-block">
+        <div class="ci-ico">🌐</div>
+        <div class="ci-txt"><span>Zone</span><b>Nord · Pas-de-Calais · Somme</b></div>
+      </div>
+    </div>
+
+    <div class="ps-block">
+      <strong>P.S. —</strong>
+      <p>Tu lis ça parce que t'en as marre. Marre de payer Planity 89€/mois pour un outil qui te traite comme un livreur. Marre de voir tes concurrents s'afficher sur ta propre fiche. Marre de ne pas pouvoir relancer un client qui annule. Le mardi qui arrive, soit t'es encore là, soit t'as commencé à reprendre la main. Choisis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <div class="ft-logo-txt">TK <span>Digital</span></div>
+      <p class="ft-tagline">Site web, agenda, fichier, rappels WhatsApp pour les barbiers du Nord. Alternative directe à Planity.</p>
+    </div>
+    <div class="ft-cols">
+      <div class="ft-col">
+        <div class="ft-col-ttl">Pour barbiers</div>
+        <a href="#verites">5 vérités cachées</a>
+        <a href="#calc">Calculateur Planity</a>
+        <a href="#offre">Offre 790€ + 290€/mois</a>
+        <a href="#methode">Méthode 90 jours</a>
+        <a href="#garantie">Garanties</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-ttl">Autres activités</div>
+        <a href="index.html">Restos halal du Nord</a>
+        <a href="#contact">Autre activité ? On en parle</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-ttl">Contact</div>
+        <a href="tel:+33768789800">📞 07 68 78 98 00</a>
+        <a href="https://wa.me/33768789800" target="_blank">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span class="ft-copy">© 2026 TK Digital · Tarik · Douai, Nord de France</span>
+    <span class="ft-copy">Fait avec ⚡ dans le Nord</span>
+  </div>
+</footer>
+
+<script>
+// CURSOR
+(function(){
+  var c = document.getElementById('cur');
+  var r = document.getElementById('curR');
+  if (!c) return;
+  document.addEventListener('mousemove', function(e){
+    c.style.left = e.clientX + 'px';
+    c.style.top  = e.clientY + 'px';
+    r.style.left = e.clientX + 'px';
+    r.style.top  = e.clientY + 'px';
+  });
+  document.querySelectorAll('a,button,.ver-card,.phase-card,.faq-item').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ c.style.width='20px'; c.style.height='20px'; r.style.width='50px'; r.style.height='50px'; });
+    el.addEventListener('mouseleave', function(){ c.style.width='12px'; c.style.height='12px'; r.style.width='36px'; r.style.height='36px'; });
+  });
+})();
+
+// SCROLL ANIM
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('vis'); });
+}, {threshold: 0.08});
+document.querySelectorAll('.anim').forEach(function(el, i){
+  el.style.transitionDelay = (i % 6) * 0.07 + 's';
+  obs.observe(el);
+});
+
+// (Calculateur retiré : tableau statique seul pour fluidité)
+</script>
+</body>
+</html>
