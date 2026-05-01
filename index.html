@@ -72,7 +72,7 @@ nav.solid{background:rgba(5,5,5,.96);border-color:var(--border);backdrop-filter:
 /* HERO */
 #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5% 80px;position:relative;overflow:hidden;}
 .hbg{position:absolute;inset:0;background:url('images/hero-restaurateur.png') center/cover no-repeat;}
-.hbg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,5,5,.92) 0%,rgba(5,5,5,.7) 50%,rgba(5,5,5,.95) 100%);}
+.hbg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,5,.85) 0%,rgba(5,5,5,.55) 45%,rgba(5,5,5,.25) 100%);}
 .hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,241,53,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(200,241,53,.025) 1px,transparent 1px);background-size:60px 60px;z-index:1;}
 .hglow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(200,241,53,.07) 0%,transparent 65%);top:-200px;right:-150px;pointer-events:none;}
 .htag{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;background:rgba(20,20,20,.85);backdrop-filter:blur(8px);border:1px solid var(--border);padding:6px 14px;border-radius:2px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:28px;opacity:0;animation:fup .6s .2s forwards;}
@@ -632,12 +632,12 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
     <span class="logo-txt">TK <span>Digital</span></span>
   </a>
   <div class="nav-links">
-    <a href="#offres">Offre</a>
     <a href="#calculateur">Calculateur</a>
     <a href="#methode">Méthode 90j</a>
+    <a href="#portfolio">Projets</a>
     <a href="#garantie">Garantie</a>
+    <a href="#offres">Offre</a>
     <a href="#faq">FAQ</a>
-    <a href="#contact">Contact</a>
   </div>
   <div class="nav-actions">
     <a href="tel:+33768789800" class="nav-tel" title="Appeler Tarik">
@@ -698,251 +698,6 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
     <span class="tick-i">Récolte d'avis automatique <span class="tick-s">✦</span></span>
   </div>
 </div>
-
-<!-- OFFRE -->
-<section id="offres" class="sec">
-  <!-- URGENCE BANNER -->
-  <div class="urg-banner anim">
-    <div class="urg-pulse"></div>
-    <div class="urg-content">
-      <div class="urg-l">
-        <div class="urg-tag">🔥 Offre de lancement</div>
-        <div class="urg-h">Je prends max <strong>5 clients</strong> par mois pour garantir un suivi VIP</div>
-        <div class="urg-sub">Et pour les <strong>3 premières signatures du mois</strong>, j'offre <strong>1 mois Premium gratuit</strong> en plus (valeur 290€).</div>
-      </div>
-      <div class="urg-r">
-        <div class="urg-stat"><div class="urg-stat-v" id="urg-spots">3</div><div class="urg-stat-l">Places restantes ce mois-ci</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="srv-hdr">
-    <div>
-      <div class="eyebrow">Une offre, deux paiements, c'est tout</div>
-      <h2 class="sec-h">Tu paies quoi.<br><span>Tu paies pas quoi.</span></h2>
-    </div>
-    <p class="srv-sub">Beaucoup d'agences cachent des frais : "ah mais l'hébergement c'est en plus, le nom de domaine aussi, les modifs c'est 50€ chaque, le SSL 80€/an…". <strong style="color:var(--w);">Pas chez moi.</strong> Voilà exactement ce que tu paies, et exactement ce que tu ne paies pas. Lis bien.</p>
-  </div>
-
-  <!-- SETUP commun -->
-  <div class="setup-banner anim">
-    <div class="setup-banner-l">
-      <div class="setup-banner-tag">Étape 1 · Setup (une seule fois)</div>
-      <div class="setup-banner-price">790€</div>
-      <div class="setup-banner-sub">Pour créer ton site sur-mesure, l'adapter à ton activité, le mettre en ligne et te former. Tu paies <strong>une fois</strong>. Plus jamais.</div>
-    </div>
-    <div class="setup-banner-r">
-      <ul class="setup-banner-list">
-        <li>✓ Création complète du site (design + dev)</li>
-        <li>✓ Adapté à ton activité (kebab ≠ pizzeria ≠ snack)</li>
-        <li>✓ Mise en ligne, config technique, SSL</li>
-        <li>✓ Création + nettoyage de ta fiche Google</li>
-        <li>✓ Setup commande WhatsApp + alertes</li>
-        <li>✓ Impression et livraison de tes QR codes (10 QR plastifiés)</li>
-        <li>✓ Formation 30 min : "comment recevoir tes commandes"</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- 2 forfaits mensuels -->
-  <div class="tier-intro">
-    <div class="tier-intro-tag">Étape 2 · Tu choisis ton niveau</div>
-    <div class="tier-intro-h">Mensuel · 2 formules</div>
-    <div class="tier-intro-sub">Selon le niveau de service que tu veux. Tu peux passer du 1er au 2ème quand tu veux. Engagement minimum 6 mois.</div>
-  </div>
-
-  <div class="pay-grid">
-    <!-- ESSENTIEL 190€ -->
-    <div class="pay-card anim">
-      <div class="pay-tag">Pack Essentiel</div>
-      <div class="pay-price">190€<small>/mois</small></div>
-      <div class="pay-period">Idéal pour démarrer · Engagement 6 mois</div>
-      <div class="pay-divider"></div>
-      <div class="pay-title">Tout l'essentiel pour exister sur Google</div>
-      <ul class="pay-list">
-        <li><strong>Hébergement + nom de domaine + SSL</strong> tout inclus</li>
-        <li><strong>Fiche Google optimisée</strong> (setup + 1 post par mois)</li>
-        <li><strong>Commande WhatsApp</strong> + alertes temps réel</li>
-        <li><strong>Suggestion au panier</strong> : 1 produit complémentaire affiché à la commande (boisson, frites, dessert…). +15 à 25% sur le montant des commandes</li>
-        <li><strong>Récolte d'avis Google</strong> automatique (QR + message WhatsApp)</li>
-        <li><strong>5 modifications/mois</strong> sur le site</li>
-        <li><strong>Reporting trimestriel</strong> chiffré</li>
-        <li><strong>Support WhatsApp</strong> en heures bureau (9h-19h)</li>
-      </ul>
-      <a href="#contact" class="pay-cta">Choisir l'Essentiel →</a>
-    </div>
-
-    <!-- PREMIUM 290€ -->
-    <div class="pay-card featured anim">
-      <div class="pay-tag-feat">★ Pack Premium</div>
-      <div class="pay-price">290€<small>/mois</small></div>
-      <div class="pay-period">Pour aller plus loin · Engagement 6 mois</div>
-      <div class="pay-divider"></div>
-      <div class="pay-title">Pour fidéliser et automatiser</div>
-      <ul class="pay-list">
-        <li><strong>Tout du Pack Essentiel</strong>, plus :</li>
-        <li><strong>Modifications illimitées</strong> sur le site (jusqu'à 5 par semaine)</li>
-        <li><strong>4 posts Google par mois</strong> (vs 1)</li>
-        <li><strong>Réponses automatiques aux avis Google</strong> sous 24h (positifs ET négatifs)</li>
-        <li><strong>Messages WhatsApp automatiques de relance</strong> envoyés à un client qui n'est pas revenu depuis 2 semaines (gratuit, plus personnel que SMS)</li>
-        <li><strong>Reporting mensuel</strong> chiffré (vs trimestriel)</li>
-        <li><strong>Support WhatsApp prioritaire</strong> (réponse sous 4h en semaine, sous 24h soirs & week-ends)</li>
-      </ul>
-      <a href="#contact" class="pay-cta featured">Choisir Premium →</a>
-    </div>
-  </div>
-
-  <!-- CE QUI N'EST PAS COMPRIS -->
-  <div class="not-incl anim">
-    <div class="not-incl-title">⚠️ Pour être 100% transparent : voici ce qui N'EST PAS compris</div>
-    <div class="not-incl-grid">
-      <div class="not-incl-item">
-        <div class="not-incl-h">Pack Flyers anti-Uber (option)</div>
-        <div class="not-incl-d">Si tu veux booster ta bascule Uber → direct, je peux te livrer 1 000 flyers prêts à glisser dans tes sacs livraison (visuel + impression + livraison). <strong>+150€ une fois.</strong> Recommandé si tu fais plus de 20 commandes Uber/jour.</div>
-      </div>
-      <div class="not-incl-item">
-        <div class="not-incl-h">Les photos professionnelles sur place</div>
-        <div class="not-incl-d">Si tu veux que je vienne faire les photos de ton resto, c'est en option (180€ pour 30 photos pro). Sinon, on utilise les photos que tu m'envoies depuis ton téléphone, et ça marche très bien aussi.</div>
-      </div>
-      <div class="not-incl-item">
-        <div class="not-incl-h">Tes adresses email pro</div>
-        <div class="not-incl-d">Tes adresses email pro (genre tarik@tonresto.fr) ne sont pas incluses. Si tu en veux, je te conseille Google Workspace à 6€/mois (chez Google, pas chez moi). Je te configure ça gratuitement.</div>
-      </div>
-      <div class="not-incl-item">
-        <div class="not-incl-h">Aucun abonnement caché</div>
-        <div class="not-incl-d">Pas de logiciel mystérieux à 50€/mois en plus. Pas de "frais de maintenance technique" surprise. Pas de surcoût SEO. <strong>Le prix annoncé = le prix payé.</strong></div>
-      </div>
-    </div>
-    <div class="not-incl-bottom"><strong>C'est tout.</strong> Aucun autre frais caché. Je préfère que tu saches dès le départ : comme ça tu sais où tu vas.</div>
-  </div>
-
-  <div class="off-final-cta anim">
-    <a href="#contact" class="btn-a">Parler à Tarik (5 min, gratuit)</a>
-    <a href="tel:+33768789800" class="btn-tel">📞 07 68 78 98 00</a>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services" class="sec">
-  <div class="srv-hdr">
-    <div>
-      <div class="eyebrow">Ce que je fais</div>
-      <h2 class="sec-h">Des services<br><span>qui rapportent.</span></h2>
-    </div>
-    <p class="srv-sub">Chaque prestation est pensée pour ramener de <strong style="color:var(--w);">vrais clients qui commandent chez toi en direct</strong>. Pas des likes, pas des clics inutiles. Des personnes du quartier qui te paient sans intermédiaire.</p>
-  </div>
-  <div class="srv-grid">
-    <div class="srv-card anim"><div class="srv-n">01</div><span class="srv-ico">🌐</span><div class="srv-name">Votre site internet</div><p class="srv-desc">Un beau site professionnel visible sur Google, rapide sur téléphone. Vos clients trouvent votre adresse, votre menu, vos services. Livré en 48h.</p><div class="srv-tags"><span class="srv-tag">Mobile-first</span><span class="srv-tag">SEO intégré</span><span class="srv-tag">Rapide</span></div></div>
-    <div class="srv-card anim"><div class="srv-n">02</div><span class="srv-ico">📱</span><div class="srv-name">Commander par WhatsApp</div><p class="srv-desc">Vos clients commandent depuis votre site via WhatsApp. Vous recevez une alerte immédiate. Zéro commission, zéro intermédiaire.</p><div class="srv-tags"><span class="srv-tag">Panier</span><span class="srv-tag">Upsell</span><span class="srv-tag">Fidélité</span></div></div>
-    <div class="srv-card anim"><div class="srv-n">03</div><span class="srv-ico">🛒</span><div class="srv-name">Suggestion au panier</div><p class="srv-desc">Quand un client commande, le site lui propose un produit complémentaire (boisson, frites, dessert…). +15 à 25% sur le montant des commandes sans rien faire de plus.</p><div class="srv-tags"><span class="srv-tag">Plus de marge</span><span class="srv-tag">Sans effort</span><span class="srv-tag">Auto</span></div></div>
-    <div class="srv-card anim"><div class="srv-n">04</div><span class="srv-ico">🔍</span><div class="srv-name">Visible sur Google</div><p class="srv-desc">Quand quelqu'un cherche ton activité près de chez lui, c'est toi qui apparais. Fiche Google optimisée + posts mensuels + récolte d'avis.</p><div class="srv-tags"><span class="srv-tag">Fiche Google</span><span class="srv-tag">SEO local</span><span class="srv-tag">Maps</span></div></div>
-    <div class="srv-card anim"><div class="srv-n">05</div><span class="srv-ico">⭐</span><div class="srv-name">Fidéliser vos clients</div><p class="srv-desc">Carte de fidélité digitale, collecte d'avis Google automatique, messages de relance. Vos clients reviennent et parlent de vous.</p><div class="srv-tags"><span class="srv-tag">Fidélité</span><span class="srv-tag">Avis Google</span><span class="srv-tag">Relances</span></div></div>
-    <div class="srv-card anim"><div class="srv-n">06</div><span class="srv-ico">📊</span><div class="srv-name">Tout gérer pour vous</div><p class="srv-desc">Site, pub, réseaux sociaux, messages automatiques. Une seule personne qui connaît votre business par cœur. Vous faites votre métier.</p><div class="srv-tags"><span class="srv-tag">Stratégie</span><span class="srv-tag">Automation</span><span class="srv-tag">Reporting</span></div></div>
-    <div class="srv-card anim"><div class="srv-n">07</div><span class="srv-ico">🔔</span><div class="srv-name">Alertes commandes temps réel</div><p class="srv-desc">Dès qu'un client commande, vous recevez une notification WhatsApp avec tous les détails. Nom, commande, montant, mode de livraison. Zéro raté.</p><div class="srv-tags"><span class="srv-tag">WhatsApp</span><span class="srv-tag">Instantané</span><span class="srv-tag">Zéro raté</span></div></div>
-    <div class="srv-card anim"><div class="srv-n">08</div><span class="srv-ico">💌</span><div class="srv-name">Messages promos automatiques</div><p class="srv-desc">Envoie des offres à tes clients au bon moment : "Ce soir -20%", "Ça fait longtemps, voici un cadeau". Tes clients reviennent sans que tu fasses quoi que ce soit.</p><div class="srv-tags"><span class="srv-tag">Automatique</span><span class="srv-tag">Promo</span><span class="srv-tag">Relance</span></div></div>
-  </div>
-</section>
-
-<!-- PORTFOLIO -->
-<section id="portfolio" class="sec">
-  <div class="port-hdr">
-    <div>
-      <div class="eyebrow">Projets récents</div>
-      <h2 class="sec-h">Du concret,<br><span>pas des promesses.</span></h2>
-    </div>
-    <p style="font-size:13px;color:var(--mid);max-width:280px;line-height:1.6;">Clique sur un projet pour le voir en direct, sans quitter cette page.</p>
-  </div>
-  <div class="port-grid">
-    <div class="proj proj-1 anim" onclick="openPreview('https://tar5950.github.io/poulet-brais-4/')">
-      <div class="proj-ov"></div>
-      <div class="proj-live"><span class="proj-live-dot"></span>Live</div>
-      <div class="proj-info">
-        <div class="proj-cat">Restaurant · Villeneuve-d'Ascq</div>
-        <div class="proj-name">Poulet Braisé Triolo</div>
-        <span class="proj-lnk">Voir le site →</span>
-      </div>
-    </div>
-    <div class="proj proj-2 anim" onclick="openPreview('https://tar5950.github.io/la-dalle-burger/')">
-      <div class="proj-ov"></div>
-      <div class="proj-live"><span class="proj-live-dot"></span>Live</div>
-      <div class="proj-info">
-        <div class="proj-cat">Street Food · Nord</div>
-        <div class="proj-name">La Dalle Burger</div>
-        <span class="proj-lnk">Voir le site →</span>
-      </div>
-    </div>
-    <div class="proj proj-3 anim" onclick="openPreview('https://tar5950.github.io/la-slica/')">
-      <div class="proj-ov"></div>
-      <div class="proj-live"><span class="proj-live-dot"></span>Live</div>
-      <div class="proj-info">
-        <div class="proj-cat">Pizzeria · Nord</div>
-        <div class="proj-name">La Slica</div>
-        <span class="proj-lnk">Voir le site →</span>
-      </div>
-    </div>
-    <div class="proj proj-5 anim">
-      <div class="proj-ov"></div>
-      <div class="proj-info">
-        <div class="proj-cat">Électricien IRVE · Douai</div>
-        <div class="proj-name">Installation Électrique</div>
-        <span class="proj-lnk">Bientôt en ligne</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GARANTIE -->
-<section id="garantie" class="sec">
-  <div class="gar-wrap">
-    <div class="gar-seal anim">
-      <div class="gar-seal-top">Mes garanties</div>
-      <div class="gar-seal-big">7 jours</div>
-      <div class="gar-seal-sub">Site en ligne<br>ou setup gratuit</div>
-    </div>
-    <div>
-      <div class="eyebrow">Le risque, c'est moi qui le prends</div>
-      <h2 class="sec-h">Pas de pari.<br><span>Pas d'arnaque.</span></h2>
-      <p style="font-size:15px;color:var(--mid);line-height:1.8;margin:18px 0 28px;">Tu connais la chanson : "On t'a vendu un site, une pub, et 6 mois après... toujours rien." Je sais. C'est pour ça que je m'engage <strong style="color:var(--w);">avant</strong> que tu paies.</p>
-      <ul class="gar-list">
-        <li>
-          <span class="gar-ico">⚡</span>
-          <div>
-            <div class="gar-li-t">Site en ligne en 7 jours, ou le setup est gratuit</div>
-            <div class="gar-li-d">7 jours après que tu m'as validé tes contenus (photos, menu, infos). Si je dépasse, je te rembourse les 790€ de setup.</div>
-          </div>
-        </li>
-        <li>
-          <span class="gar-ico">🤝</span>
-          <div>
-            <div class="gar-li-t">Engagement 6 mois : c'est <em>pour toi</em>, pas contre toi</div>
-            <div class="gar-li-d">Le SEO local et la fidélisation prennent 3-6 mois pour produire des résultats visibles. Cet engagement garantit qu'on aille au bout. Après, tu pars quand tu veux.</div>
-          </div>
-        </li>
-        <li>
-          <span class="gar-ico">🏠</span>
-          <div>
-            <div class="gar-li-t">Ton site t'appartient à 100%</div>
-            <div class="gar-li-d">Pas de "site loué" qu'on t'éteint si tu pars. Code, design, nom de domaine : tout est à toi. Pas comme Linkeo qui te lock 48 mois.</div>
-          </div>
-        </li>
-        <li>
-          <span class="gar-ico">💰</span>
-          <div>
-            <div class="gar-li-t">Zéro commission sur tes commandes</div>
-            <div class="gar-li-d">Contrairement à Uber Eats / Deliveroo qui prennent 25-35%. Tes clients paient en direct, tu gardes 100%.</div>
-          </div>
-        </li>
-        <li>
-          <span class="gar-ico">📞</span>
-          <div>
-            <div class="gar-li-t">Un seul interlocuteur : moi, Tarik</div>
-            <div class="gar-li-d">Pas de commercial, pas de "service après-vente" à l'autre bout du monde. Tu m'écris, je décroche.</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
 
 <!-- CALCULATEUR ANTI-UBER -->
 <section id="calculateur" class="sec">
@@ -1120,6 +875,251 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
       <div class="why-h">Du chiffré, pas du vent</div>
       <div class="why-d">Chaque mois tu reçois un mini rapport : <strong>X appels Google, Y vues fiche, Z commandes en direct.</strong> Tu vois ce qui marche. Si ça ne marche pas, tu pars sans frais.</div>
     </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="sec">
+  <div class="port-hdr">
+    <div>
+      <div class="eyebrow">Projets récents</div>
+      <h2 class="sec-h">Du concret,<br><span>pas des promesses.</span></h2>
+    </div>
+    <p style="font-size:13px;color:var(--mid);max-width:280px;line-height:1.6;">Clique sur un projet pour le voir en direct, sans quitter cette page.</p>
+  </div>
+  <div class="port-grid">
+    <div class="proj proj-1 anim" onclick="openPreview('https://tar5950.github.io/poulet-brais-4/')">
+      <div class="proj-ov"></div>
+      <div class="proj-live"><span class="proj-live-dot"></span>Live</div>
+      <div class="proj-info">
+        <div class="proj-cat">Restaurant · Villeneuve-d'Ascq</div>
+        <div class="proj-name">Poulet Braisé Triolo</div>
+        <span class="proj-lnk">Voir le site →</span>
+      </div>
+    </div>
+    <div class="proj proj-2 anim" onclick="openPreview('https://tar5950.github.io/la-dalle-burger/')">
+      <div class="proj-ov"></div>
+      <div class="proj-live"><span class="proj-live-dot"></span>Live</div>
+      <div class="proj-info">
+        <div class="proj-cat">Street Food · Nord</div>
+        <div class="proj-name">La Dalle Burger</div>
+        <span class="proj-lnk">Voir le site →</span>
+      </div>
+    </div>
+    <div class="proj proj-3 anim" onclick="openPreview('https://tar5950.github.io/la-slica/')">
+      <div class="proj-ov"></div>
+      <div class="proj-live"><span class="proj-live-dot"></span>Live</div>
+      <div class="proj-info">
+        <div class="proj-cat">Pizzeria · Nord</div>
+        <div class="proj-name">La Slica</div>
+        <span class="proj-lnk">Voir le site →</span>
+      </div>
+    </div>
+    <div class="proj proj-5 anim">
+      <div class="proj-ov"></div>
+      <div class="proj-info">
+        <div class="proj-cat">Électricien IRVE · Douai</div>
+        <div class="proj-name">Installation Électrique</div>
+        <span class="proj-lnk">Bientôt en ligne</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIE -->
+<section id="garantie" class="sec">
+  <div class="gar-wrap">
+    <div class="gar-seal anim">
+      <div class="gar-seal-top">Mes garanties</div>
+      <div class="gar-seal-big">7 jours</div>
+      <div class="gar-seal-sub">Site en ligne<br>ou setup gratuit</div>
+    </div>
+    <div>
+      <div class="eyebrow">Le risque, c'est moi qui le prends</div>
+      <h2 class="sec-h">Pas de pari.<br><span>Pas d'arnaque.</span></h2>
+      <p style="font-size:15px;color:var(--mid);line-height:1.8;margin:18px 0 28px;">Tu connais la chanson : "On t'a vendu un site, une pub, et 6 mois après... toujours rien." Je sais. C'est pour ça que je m'engage <strong style="color:var(--w);">avant</strong> que tu paies.</p>
+      <ul class="gar-list">
+        <li>
+          <span class="gar-ico">⚡</span>
+          <div>
+            <div class="gar-li-t">Site en ligne en 7 jours, ou le setup est gratuit</div>
+            <div class="gar-li-d">7 jours après que tu m'as validé tes contenus (photos, menu, infos). Si je dépasse, je te rembourse les 790€ de setup.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">🤝</span>
+          <div>
+            <div class="gar-li-t">Engagement 6 mois : c'est <em>pour toi</em>, pas contre toi</div>
+            <div class="gar-li-d">Le SEO local et la fidélisation prennent 3-6 mois pour produire des résultats visibles. Cet engagement garantit qu'on aille au bout. Après, tu pars quand tu veux.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">🏠</span>
+          <div>
+            <div class="gar-li-t">Ton site t'appartient à 100%</div>
+            <div class="gar-li-d">Pas de "site loué" qu'on t'éteint si tu pars. Code, design, nom de domaine : tout est à toi. Pas comme Linkeo qui te lock 48 mois.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">💰</span>
+          <div>
+            <div class="gar-li-t">Zéro commission sur tes commandes</div>
+            <div class="gar-li-d">Contrairement à Uber Eats / Deliveroo qui prennent 25-35%. Tes clients paient en direct, tu gardes 100%.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">📞</span>
+          <div>
+            <div class="gar-li-t">Un seul interlocuteur : moi, Tarik</div>
+            <div class="gar-li-d">Pas de commercial, pas de "service après-vente" à l'autre bout du monde. Tu m'écris, je décroche.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- OFFRE -->
+<section id="offres" class="sec">
+  <!-- URGENCE BANNER -->
+  <div class="urg-banner anim">
+    <div class="urg-pulse"></div>
+    <div class="urg-content">
+      <div class="urg-l">
+        <div class="urg-tag">🔥 Offre de lancement</div>
+        <div class="urg-h">Je prends max <strong>5 clients</strong> par mois pour garantir un suivi VIP</div>
+        <div class="urg-sub">Et pour les <strong>3 premières signatures du mois</strong>, j'offre <strong>1 mois Premium gratuit</strong> en plus (valeur 290€).</div>
+      </div>
+      <div class="urg-r">
+        <div class="urg-stat"><div class="urg-stat-v" id="urg-spots">3</div><div class="urg-stat-l">Places restantes ce mois-ci</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="srv-hdr">
+    <div>
+      <div class="eyebrow">Une offre, deux paiements, c'est tout</div>
+      <h2 class="sec-h">Tu paies quoi.<br><span>Tu paies pas quoi.</span></h2>
+    </div>
+    <p class="srv-sub">Beaucoup d'agences cachent des frais : "ah mais l'hébergement c'est en plus, le nom de domaine aussi, les modifs c'est 50€ chaque, le SSL 80€/an…". <strong style="color:var(--w);">Pas chez moi.</strong> Voilà exactement ce que tu paies, et exactement ce que tu ne paies pas. Lis bien.</p>
+  </div>
+
+  <!-- SETUP commun -->
+  <div class="setup-banner anim">
+    <div class="setup-banner-l">
+      <div class="setup-banner-tag">Étape 1 · Setup (une seule fois)</div>
+      <div class="setup-banner-price">790€</div>
+      <div class="setup-banner-sub">Pour créer ton site sur-mesure, l'adapter à ton activité, le mettre en ligne et te former. Tu paies <strong>une fois</strong>. Plus jamais.</div>
+    </div>
+    <div class="setup-banner-r">
+      <ul class="setup-banner-list">
+        <li>✓ Création complète du site (design + dev)</li>
+        <li>✓ Adapté à ton activité (kebab ≠ pizzeria ≠ snack)</li>
+        <li>✓ Mise en ligne, config technique, SSL</li>
+        <li>✓ Création + nettoyage de ta fiche Google</li>
+        <li>✓ Setup commande WhatsApp + alertes</li>
+        <li>✓ Impression et livraison de tes QR codes (10 QR plastifiés)</li>
+        <li>✓ Formation 30 min : "comment recevoir tes commandes"</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2 forfaits mensuels -->
+  <div class="tier-intro">
+    <div class="tier-intro-tag">Étape 2 · Tu choisis ton niveau</div>
+    <div class="tier-intro-h">Mensuel · 2 formules</div>
+    <div class="tier-intro-sub">Selon le niveau de service que tu veux. Tu peux passer du 1er au 2ème quand tu veux. Engagement minimum 6 mois.</div>
+  </div>
+
+  <div class="pay-grid">
+    <!-- ESSENTIEL 190€ -->
+    <div class="pay-card anim">
+      <div class="pay-tag">Pack Essentiel</div>
+      <div class="pay-price">190€<small>/mois</small></div>
+      <div class="pay-period">Idéal pour démarrer · Engagement 6 mois</div>
+      <div class="pay-divider"></div>
+      <div class="pay-title">Tout l'essentiel pour exister sur Google</div>
+      <ul class="pay-list">
+        <li><strong>Hébergement + nom de domaine + SSL</strong> tout inclus</li>
+        <li><strong>Fiche Google optimisée</strong> (setup + 1 post par mois)</li>
+        <li><strong>Commande WhatsApp</strong> + alertes temps réel</li>
+        <li><strong>Suggestion au panier</strong> : 1 produit complémentaire affiché à la commande (boisson, frites, dessert…). +15 à 25% sur le montant des commandes</li>
+        <li><strong>Récolte d'avis Google</strong> automatique (QR + message WhatsApp)</li>
+        <li><strong>5 modifications/mois</strong> sur le site</li>
+        <li><strong>Reporting trimestriel</strong> chiffré</li>
+        <li><strong>Support WhatsApp</strong> en heures bureau (9h-19h)</li>
+      </ul>
+      <a href="#contact" class="pay-cta">Choisir l'Essentiel →</a>
+    </div>
+
+    <!-- PREMIUM 290€ -->
+    <div class="pay-card featured anim">
+      <div class="pay-tag-feat">★ Pack Premium</div>
+      <div class="pay-price">290€<small>/mois</small></div>
+      <div class="pay-period">Pour aller plus loin · Engagement 6 mois</div>
+      <div class="pay-divider"></div>
+      <div class="pay-title">Pour fidéliser et automatiser</div>
+      <ul class="pay-list">
+        <li><strong>Tout du Pack Essentiel</strong>, plus :</li>
+        <li><strong>Modifications illimitées</strong> sur le site (jusqu'à 5 par semaine)</li>
+        <li><strong>4 posts Google par mois</strong> (vs 1)</li>
+        <li><strong>Réponses automatiques aux avis Google</strong> sous 24h (positifs ET négatifs)</li>
+        <li><strong>Messages WhatsApp automatiques de relance</strong> envoyés à un client qui n'est pas revenu depuis 2 semaines (gratuit, plus personnel que SMS)</li>
+        <li><strong>Reporting mensuel</strong> chiffré (vs trimestriel)</li>
+        <li><strong>Support WhatsApp prioritaire</strong> (réponse sous 4h en semaine, sous 24h soirs & week-ends)</li>
+      </ul>
+      <a href="#contact" class="pay-cta featured">Choisir Premium →</a>
+    </div>
+  </div>
+
+  <!-- CE QUI N'EST PAS COMPRIS -->
+  <div class="not-incl anim">
+    <div class="not-incl-title">⚠️ Pour être 100% transparent : voici ce qui N'EST PAS compris</div>
+    <div class="not-incl-grid">
+      <div class="not-incl-item">
+        <div class="not-incl-h">Pack Flyers anti-Uber (option)</div>
+        <div class="not-incl-d">Si tu veux booster ta bascule Uber → direct, je peux te livrer 1 000 flyers prêts à glisser dans tes sacs livraison (visuel + impression + livraison). <strong>+150€ une fois.</strong> Recommandé si tu fais plus de 20 commandes Uber/jour.</div>
+      </div>
+      <div class="not-incl-item">
+        <div class="not-incl-h">Les photos professionnelles sur place</div>
+        <div class="not-incl-d">Si tu veux que je vienne faire les photos de ton resto, c'est en option (180€ pour 30 photos pro). Sinon, on utilise les photos que tu m'envoies depuis ton téléphone, et ça marche très bien aussi.</div>
+      </div>
+      <div class="not-incl-item">
+        <div class="not-incl-h">Tes adresses email pro</div>
+        <div class="not-incl-d">Tes adresses email pro (genre tarik@tonresto.fr) ne sont pas incluses. Si tu en veux, je te conseille Google Workspace à 6€/mois (chez Google, pas chez moi). Je te configure ça gratuitement.</div>
+      </div>
+      <div class="not-incl-item">
+        <div class="not-incl-h">Aucun abonnement caché</div>
+        <div class="not-incl-d">Pas de logiciel mystérieux à 50€/mois en plus. Pas de "frais de maintenance technique" surprise. Pas de surcoût SEO. <strong>Le prix annoncé = le prix payé.</strong></div>
+      </div>
+    </div>
+    <div class="not-incl-bottom"><strong>C'est tout.</strong> Aucun autre frais caché. Je préfère que tu saches dès le départ : comme ça tu sais où tu vas.</div>
+  </div>
+
+  <div class="off-final-cta anim">
+    <a href="#contact" class="btn-a">Parler à Tarik (5 min, gratuit)</a>
+    <a href="tel:+33768789800" class="btn-tel">📞 07 68 78 98 00</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="sec">
+  <div class="srv-hdr">
+    <div>
+      <div class="eyebrow">Ce que je fais</div>
+      <h2 class="sec-h">Des services<br><span>qui rapportent.</span></h2>
+    </div>
+    <p class="srv-sub">Chaque prestation est pensée pour ramener de <strong style="color:var(--w);">vrais clients qui commandent chez toi en direct</strong>. Pas des likes, pas des clics inutiles. Des personnes du quartier qui te paient sans intermédiaire.</p>
+  </div>
+  <div class="srv-grid">
+    <div class="srv-card anim"><div class="srv-n">01</div><span class="srv-ico">🌐</span><div class="srv-name">Votre site internet</div><p class="srv-desc">Un beau site professionnel visible sur Google, rapide sur téléphone. Vos clients trouvent votre adresse, votre menu, vos services. Livré en 48h.</p><div class="srv-tags"><span class="srv-tag">Mobile-first</span><span class="srv-tag">SEO intégré</span><span class="srv-tag">Rapide</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">02</div><span class="srv-ico">📱</span><div class="srv-name">Commander par WhatsApp</div><p class="srv-desc">Vos clients commandent depuis votre site via WhatsApp. Vous recevez une alerte immédiate. Zéro commission, zéro intermédiaire.</p><div class="srv-tags"><span class="srv-tag">Panier</span><span class="srv-tag">Upsell</span><span class="srv-tag">Fidélité</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">03</div><span class="srv-ico">🛒</span><div class="srv-name">Suggestion au panier</div><p class="srv-desc">Quand un client commande, le site lui propose un produit complémentaire (boisson, frites, dessert…). +15 à 25% sur le montant des commandes sans rien faire de plus.</p><div class="srv-tags"><span class="srv-tag">Plus de marge</span><span class="srv-tag">Sans effort</span><span class="srv-tag">Auto</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">04</div><span class="srv-ico">🔍</span><div class="srv-name">Visible sur Google</div><p class="srv-desc">Quand quelqu'un cherche ton activité près de chez lui, c'est toi qui apparais. Fiche Google optimisée + posts mensuels + récolte d'avis.</p><div class="srv-tags"><span class="srv-tag">Fiche Google</span><span class="srv-tag">SEO local</span><span class="srv-tag">Maps</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">05</div><span class="srv-ico">⭐</span><div class="srv-name">Fidéliser vos clients</div><p class="srv-desc">Carte de fidélité digitale, collecte d'avis Google automatique, messages de relance. Vos clients reviennent et parlent de vous.</p><div class="srv-tags"><span class="srv-tag">Fidélité</span><span class="srv-tag">Avis Google</span><span class="srv-tag">Relances</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">06</div><span class="srv-ico">📊</span><div class="srv-name">Tout gérer pour vous</div><p class="srv-desc">Site, pub, réseaux sociaux, messages automatiques. Une seule personne qui connaît votre business par cœur. Vous faites votre métier.</p><div class="srv-tags"><span class="srv-tag">Stratégie</span><span class="srv-tag">Automation</span><span class="srv-tag">Reporting</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">07</div><span class="srv-ico">🔔</span><div class="srv-name">Alertes commandes temps réel</div><p class="srv-desc">Dès qu'un client commande, vous recevez une notification WhatsApp avec tous les détails. Nom, commande, montant, mode de livraison. Zéro raté.</p><div class="srv-tags"><span class="srv-tag">WhatsApp</span><span class="srv-tag">Instantané</span><span class="srv-tag">Zéro raté</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">08</div><span class="srv-ico">💌</span><div class="srv-name">Messages promos automatiques</div><p class="srv-desc">Envoie des offres à tes clients au bon moment : "Ce soir -20%", "Ça fait longtemps, voici un cadeau". Tes clients reviennent sans que tu fasses quoi que ce soit.</p><div class="srv-tags"><span class="srv-tag">Automatique</span><span class="srv-tag">Promo</span><span class="srv-tag">Relance</span></div></div>
   </div>
 </section>
 
