@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TK Digital — Le digital pour les restaurants halal du Nord | Site + Google + WhatsApp</title>
+<meta name="description" content="Tarik, ex-fournisseur emballages 7 ans Nord. Site web + fiche Google + commande WhatsApp pour restos halal, pizzerias, kebabs et snacks du Nord. Reprends tes clients à Uber. Setup 790€ + 190€ ou 290€/mois. Engagement 6 mois.">
+<meta name="keywords" content="site web restaurant halal nord, site internet kebab lille, site pizzeria nord france, commande whatsapp restaurant, fiche google restaurant halal, sortir uber eats, agence web restaurateurs nord, TK Digital, Tarik Douai">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tar5950.github.io/tk-digital/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TK Digital — Agence Web & Marketing Digital">
+<meta property="og:description" content="Enfin un site web qui vous ramène de vrais clients. Nord de France & toute la France.">
+<meta property="og:url" content="https://tar5950.github.io/tk-digital/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"TK Digital","url":"https://tar5950.github.io/tk-digital/","description":"Site web, fiche Google et commande WhatsApp pour les restaurants halal, pizzerias, kebabs et snacks du Nord de France.","areaServed":"France","founder":{"@type":"Person","name":"Tarik","jobTitle":"Fondateur & Développeur Web"}}
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png">
+<link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
+<link rel="shortcut icon" href="favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --n:#050505; --n2:#0c0c0c; --n3:#141414; --n4:#1e1e1e; --n5:#2a2a2a;
+  --a:#c8f135; --a2:#d4ff4a;
+  --w:#f5f5f0; --w2:#e8e8e2; --mid:#888880;
+  --border:rgba(200,241,53,0.12);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--n);color:var(--w);font-family:'DM Sans',sans-serif;overflow-x:hidden;line-height:1.6;}
+
+/* CURSOR */
+#cur{position:fixed;width:12px;height:12px;background:var(--a);border-radius:50%;pointer-events:none;z-index:9999;left:-50px;top:-50px;transition:width .15s,height .15s;box-shadow:0 0 10px 3px rgba(200,241,53,0.4);}
+#curR{position:fixed;width:36px;height:36px;border:2px solid rgba(200,241,53,0.45);border-radius:50%;pointer-events:none;z-index:9998;left:-50px;top:-50px;transition:left .1s ease-out,top .1s ease-out,width .2s,height .2s;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 5%;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,border-color .3s;border-bottom:1px solid transparent;}
+nav.solid{background:rgba(5,5,5,.96);border-color:var(--border);backdrop-filter:blur(20px);}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-svg{width:36px;height:36px;flex-shrink:0;}
+.logo-txt{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--w);letter-spacing:.04em;}
+.logo-txt span{color:var(--a);}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--a);}
+.nav-cta{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--n);background:var(--a);padding:11px 24px;text-decoration:none;border-radius:2px;transition:background .2s;}
+.nav-cta:hover{background:var(--a2);}
+.nav-actions{display:flex;align-items:center;gap:14px;}
+.nav-tel{display:flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--w);text-decoration:none;padding:9px 14px;border:1px solid var(--n5);border-radius:2px;transition:all .2s;}
+.nav-tel:hover{border-color:var(--a);color:var(--a);}
+.nav-tel svg{flex-shrink:0;}
+
+/* Sticky phone button mobile */
+.mob-tel{
+  display:none;
+  position:fixed;
+  bottom:24px;left:24px;z-index:899;
+  width:54px;height:54px;
+  background:#25D366;color:#fff;
+  border-radius:50%;
+  align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(37,211,102,.5);
+  text-decoration:none;
+  animation:pulseRing 2.4s infinite;
+}
+@keyframes pulseRing{0%{box-shadow:0 8px 24px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,.55);}60%{box-shadow:0 8px 24px rgba(37,211,102,.5),0 0 0 14px rgba(37,211,102,0);}100%{box-shadow:0 8px 24px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,0);}}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5% 80px;position:relative;overflow:hidden;}
+.hbg{position:absolute;inset:0;background:url('images/hero-restaurateur.png') center/cover no-repeat;}
+.hbg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,5,1) 0%,rgba(5,5,5,.75) 45%,rgba(5,5,5,.45) 100%);}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,241,53,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(200,241,53,.025) 1px,transparent 1px);background-size:60px 60px;z-index:1;}
+.hglow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(200,241,53,.07) 0%,transparent 65%);top:-200px;right:-150px;pointer-events:none;}
+.htag{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;background:rgba(20,20,20,.85);backdrop-filter:blur(8px);border:1px solid var(--border);padding:6px 14px;border-radius:2px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:28px;opacity:0;animation:fup .6s .2s forwards;}
+.htag-dot{width:6px;height:6px;background:var(--a);border-radius:50%;animation:bth 2s infinite;}
+.htag-urg{background:rgba(255,140,66,.08);border:1px solid rgba(255,140,66,.3);color:#ff8c42;}
+.htag-urg .htag-dot{background:#ff8c42;}
+h1{position:relative;z-index:2;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,4vw,58px);line-height:1.15;letter-spacing:-.01em;margin-bottom:36px;text-shadow:0 2px 12px rgba(0,0,0,.5);}
+h1 .l1{display:block;color:var(--w);opacity:0;animation:fup .8s .4s forwards;}
+h1 .l2{display:block;color:var(--a);opacity:0;animation:fup .8s .6s forwards;}
+h1 .l3{display:block;color:var(--w);opacity:0;animation:fup .8s .8s forwards;}
+.hbot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:28px;opacity:0;animation:fup .6s 1.2s forwards;}
+.hsub{font-size:15px;font-weight:300;color:var(--w2);line-height:1.8;max-width:520px;text-shadow:0 1px 6px rgba(0,0,0,.4);}
+.hsub strong{color:var(--w);font-weight:500;}
+.hbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+.btn-a{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--n);background:var(--a);padding:14px 28px;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:background .2s;}
+.btn-a:hover{background:var(--a2);}
+.btn-b{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--w);border:1px solid rgba(245,245,240,.2);padding:13px 24px;text-decoration:none;border-radius:2px;transition:border-color .2s,color .2s;}
+.btn-b:hover{border-color:var(--a);color:var(--a);}
+.btn-tel{display:inline-flex;align-items:center;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;color:#fff;background:#25D366;padding:13px 22px;text-decoration:none;border-radius:2px;transition:background .2s;box-shadow:0 4px 14px rgba(37,211,102,.3);}
+.btn-tel:hover{background:#1da855;}
+.hstats{display:flex;gap:36px;}
+.hstat-v{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--a);line-height:1;}
+.hstat-l{font-size:10px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-top:4px;}
+
+/* TICKER */
+.ticker{background:var(--a);padding:11px 0;overflow:hidden;}
+.ticker-track{display:flex;white-space:nowrap;animation:tick 22s linear infinite;}
+.tick-i{display:inline-flex;align-items:center;gap:14px;padding:0 20px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--n);}
+.tick-s{opacity:.35;}
+
+/* SECTIONS */
+.sec{padding:100px 5%;}
+.eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--a);margin-bottom:14px;}
+.sec-h{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(36px,5vw,68px);line-height:.95;letter-spacing:-.02em;color:var(--w);}
+.sec-h span{color:var(--a);}
+
+/* SERVICES */
+#services{background:var(--n);}
+.srv-hdr{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:64px;}
+.srv-sub{font-size:14px;font-weight:300;color:var(--mid);line-height:1.8;}
+.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--n4);}
+.srv-card{background:var(--n);padding:40px 28px;position:relative;overflow:hidden;transition:background .3s;}
+.srv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--a);transform:scaleX(0);transition:transform .3s;transform-origin:left;}
+.srv-card:hover{background:var(--n2);}
+.srv-card:hover::before{transform:scaleX(1);}
+.srv-n{font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--a);opacity:.5;margin-bottom:20px;}
+.srv-ico{font-size:28px;margin-bottom:16px;display:block;}
+.srv-name{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);margin-bottom:10px;line-height:1.2;}
+.srv-desc{font-size:12px;font-weight:300;color:var(--mid);line-height:1.8;}
+.srv-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:16px;}
+.srv-tag{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--a);background:rgba(200,241,53,.07);border:1px solid rgba(200,241,53,.14);padding:3px 8px;border-radius:2px;}
+
+/* PORTFOLIO */
+#portfolio{background:var(--n2);}
+.port-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:20px;}
+.port-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
+.proj{position:relative;overflow:hidden;background:var(--n3);aspect-ratio:16/10;cursor:pointer;border-radius:8px;border:1px solid transparent;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s;background-size:cover;background-position:center;}
+.proj:nth-child(1){grid-column:span 4;aspect-ratio:21/9;}
+.proj:nth-child(2){grid-column:span 2;}
+.proj:nth-child(3){grid-column:span 3;}
+.proj:nth-child(4){grid-column:span 3;}
+.proj::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .8s cubic-bezier(.2,.8,.2,1);z-index:0;}
+.proj:hover{transform:translateY(-4px);border-color:rgba(200,241,53,.4);box-shadow:0 18px 48px rgba(0,0,0,.5),0 0 0 1px rgba(200,241,53,.15);}
+.proj:hover::before{transform:scale(1.08);}
+.proj-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.95) 0%,rgba(5,5,5,.55) 50%,rgba(5,5,5,.25) 100%);z-index:1;transition:background .35s;}
+.proj:hover .proj-ov{background:linear-gradient(to top,rgba(5,5,5,.96) 0%,rgba(5,5,5,.7) 60%,rgba(5,5,5,.35) 100%);}
+.proj-info{position:absolute;bottom:0;left:0;right:0;padding:24px;z-index:2;}
+.proj-cat{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:8px;background:rgba(200,241,53,.12);border:1px solid rgba(200,241,53,.25);padding:3px 10px;border-radius:2px;backdrop-filter:blur(6px);}
+.proj-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--w);line-height:1.15;letter-spacing:-.005em;text-shadow:0 2px 12px rgba(0,0,0,.6);}
+.proj:nth-child(1) .proj-name{font-size:30px;}
+.proj-live{position:absolute;top:14px;right:14px;z-index:2;display:flex;align-items:center;gap:6px;background:rgba(5,5,5,.78);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);padding:5px 10px;border-radius:99px;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--w);}
+.proj-live-dot{width:6px;height:6px;border-radius:50%;background:#3ad36b;box-shadow:0 0 8px #3ad36b;animation:livepulse 1.6s infinite;}
+@keyframes livepulse{0%,100%{opacity:1}50%{opacity:.4}}
+.proj-lnk{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--n);background:var(--a);padding:8px 14px;border-radius:3px;transform:translateY(6px);opacity:0;transition:transform .3s,opacity .3s;}
+.proj:hover .proj-lnk{transform:translateY(0);opacity:1;}
+
+/* Background images Unsplash */
+.proj-1::before{background-image:url('https://images.unsplash.com/photo-1508615263227-c5d58c1e5821?w=1600&q=80');}
+.proj-2::before{background-image:url('https://images.unsplash.com/photo-1730987878944-4d0b9e8db415?w=1200&q=80');}
+.proj-3::before{background-image:url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&q=80');}
+.proj-4::before{background-image:url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1200&q=80');}
+.proj-5::before{background-image:url('https://images.unsplash.com/photo-1663579748061-b53ee57b6974?w=1200&q=80');}
+
+/* PROCESS */
+#process{background:var(--n);}
+.proc-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;margin-top:56px;}
+.step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--n4);transition:padding-left .3s;}
+.step:hover{padding-left:10px;}
+.step:last-child{border:none;}
+.step-n{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--a);min-width:28px;padding-top:3px;opacity:.4;}
+.step-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--w);margin-bottom:5px;}
+.step-desc{font-size:12px;font-weight:300;color:var(--mid);line-height:1.7;}
+.proc-vis{background:var(--n2);border:1px solid var(--n4);border-radius:4px;padding:36px;}
+.pv-row{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--n3);border-radius:2px;border-left:2px solid var(--a);margin-bottom:10px;}
+.pv-l{font-size:12px;font-weight:500;color:var(--w);}
+.pv-v{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--a);}
+.bar-lbl{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin:14px 0 7px;}
+.bar{height:4px;background:var(--n4);border-radius:2px;overflow:hidden;margin-bottom:10px;}
+.bar-f{height:100%;background:var(--a);border-radius:2px;width:0;transition:width 1.5s ease;}
+.tags-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;padding-top:16px;border-top:1px solid var(--n4);}
+.tag-g{font-size:9px;color:var(--a);background:rgba(200,241,53,.07);border:1px solid rgba(200,241,53,.14);padding:4px 9px;border-radius:2px;}
+
+/* ABOUT */
+#about{background:var(--n2);}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.about-card{background:var(--n3);border:1px solid var(--n4);border-radius:4px;padding:36px;position:relative;overflow:hidden;}
+.about-card::after{content:'TK';position:absolute;bottom:-20px;right:-8px;font-family:'Syne',sans-serif;font-size:110px;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(200,241,53,.05);line-height:1;pointer-events:none;}
+.about-name{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--w);margin-bottom:3px;}
+.about-role{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--a);margin-bottom:18px;}
+.about-bio{font-size:13px;font-weight:300;color:var(--mid);line-height:1.8;margin-bottom:22px;}
+.skills{display:flex;flex-wrap:wrap;gap:6px;}
+.skill{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--w);background:var(--n4);border:1px solid var(--n5);padding:5px 10px;border-radius:2px;}
+.about-txt p{font-size:14px;font-weight:300;color:var(--mid);line-height:1.9;margin-bottom:18px;}
+.about-txt p strong{color:var(--w);font-weight:400;}
+.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;}
+.num-c{background:var(--n3);border:1px solid var(--n4);padding:18px;border-radius:2px;}
+.num-v{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--a);line-height:1;margin-bottom:3px;}
+.num-l{font-size:10px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);}
+
+/* CONTACT */
+#contact{background:var(--n);position:relative;overflow:hidden;}
+#contact::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(200,241,53,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(200,241,53,.02) 1px,transparent 1px);background-size:40px 40px;}
+.cont-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;position:relative;z-index:1;}
+.cont-sub{font-size:14px;font-weight:300;color:var(--mid);line-height:1.8;margin:20px 0 36px;}
+.ci{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.ci-ico{width:38px;height:38px;background:var(--n3);border:1px solid var(--n4);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.ci-txt{font-size:13px;color:var(--w);}
+.ci-txt span{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:1px;}
+.cont-form{background:var(--n2);border:1px solid var(--n4);border-radius:4px;padding:36px;}
+.form-ttl{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);margin-bottom:24px;}
+.f-lbl{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:7px;}
+.f-inp{width:100%;background:var(--n3);border:1px solid var(--n4);color:var(--w);padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:13px;border-radius:2px;outline:none;transition:border-color .2s;margin-bottom:16px;}
+.f-inp:focus{border-color:var(--a);}
+.f-inp::placeholder{color:var(--mid);}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:20px;}
+.chk{display:flex;align-items:center;gap:8px;background:var(--n3);border:1px solid var(--n4);padding:10px 12px;border-radius:2px;cursor:pointer;font-size:12px;font-weight:400;color:var(--mid);transition:all .18s;user-select:none;}
+.chk:hover{border-color:var(--a);color:var(--w);}
+.chk.on{border-color:var(--a);background:rgba(200,241,53,.07);color:var(--a);}
+.chk-box{font-size:13px;flex-shrink:0;}
+.btn-wa{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px;background:#25D366;color:#fff;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;transition:background .2s;box-shadow:0 6px 20px rgba(37,211,102,.3);}
+.btn-wa:hover{background:#1da855;}
+.f-note{text-align:center;font-size:10px;color:var(--mid);margin-top:10px;}
+
+/* FOOTER */
+footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;}
+.ft-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;flex-wrap:wrap;gap:28px;}
+.ft-logo-txt{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--w);margin-bottom:10px;}
+.ft-logo-txt span{color:var(--a);}
+.ft-tagline{font-size:12px;font-weight:300;color:var(--mid);max-width:240px;line-height:1.6;}
+.ft-cols{display:flex;gap:56px;flex-wrap:wrap;}
+.ft-col-ttl{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:14px;opacity:.6;}
+.ft-col a{display:block;font-size:12px;font-weight:300;color:var(--mid);text-decoration:none;line-height:2.2;transition:color .2s;}
+.ft-col a:hover{color:var(--w);}
+.ft-bot{display:flex;justify-content:space-between;padding-top:20px;border-top:1px solid var(--n4);flex-wrap:wrap;gap:8px;}
+.ft-copy{font-size:10px;color:rgba(136,136,128,.35);letter-spacing:.06em;}
+
+/* ── MODALE PREVIEW ── */
+#previewModal{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.9);
+  z-index:1000;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+#previewModal.active{display:flex;}
+.pm-box{
+  width:min(94vw,1100px);
+  height:90vh;
+  background:var(--n2);
+  border-radius:10px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 24px 80px rgba(0,0,0,.8);
+}
+.pm-bar{
+  background:var(--n3);
+  padding:10px 16px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-bottom:1px solid var(--n4);
+  flex-shrink:0;
+}
+.pm-dots{display:flex;gap:5px;}
+.pm-dot{width:11px;height:11px;border-radius:50%;}
+.pm-dot.r{background:#ff5f57;}
+.pm-dot.y{background:#febc2e;}
+.pm-dot.g{background:#28c840;}
+.pm-url{flex:1;background:var(--n4);border-radius:5px;padding:4px 12px;font-size:11px;color:var(--mid);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.pm-ext{font-size:11px;font-weight:700;color:var(--a);background:rgba(200,241,53,.1);border:1px solid rgba(200,241,53,.2);padding:4px 12px;border-radius:3px;text-decoration:none;white-space:nowrap;}
+.pm-ext:hover{background:rgba(200,241,53,.2);}
+.pm-close{background:none;border:none;color:var(--mid);font-size:22px;cursor:pointer;padding:0 4px;line-height:1;margin-left:4px;}
+.pm-close:hover{color:var(--w);}
+.pm-frame{flex:1;border:none;width:100%;}
+
+/* ── BOT ── */
+#bot{position:fixed;bottom:24px;right:24px;z-index:900;}
+#bot-btn{
+  width:58px;height:58px;
+  background:var(--a);
+  border:none;border-radius:50%;
+  cursor:pointer;font-size:26px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(200,241,53,.4);
+  transition:transform .2s;
+  position:relative;
+}
+#bot-btn:hover{transform:scale(1.08);}
+.bot-ping{
+  position:absolute;top:1px;right:1px;
+  width:14px;height:14px;
+  background:#ff4444;border-radius:50%;
+  border:2px solid var(--n);
+  animation:ping 2s infinite;
+}
+@keyframes ping{0%,100%{transform:scale(1);opacity:1}60%{transform:scale(1.6);opacity:0}}
+#bot-panel{
+  position:absolute;bottom:68px;right:0;
+  width:316px;
+  background:var(--n2);
+  border:1px solid var(--n4);
+  border-radius:14px;
+  box-shadow:0 20px 56px rgba(0,0,0,.7);
+  display:none;flex-direction:column;
+  max-height:460px;overflow:hidden;
+}
+#bot-panel.open{display:flex;}
+.bp-head{background:var(--n3);padding:13px 15px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--n4);flex-shrink:0;}
+.bp-av{width:32px;height:32px;background:var(--a);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.bp-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--w);}
+.bp-st{font-size:10px;color:var(--a);}
+#bp-close{margin-left:auto;background:none;border:none;color:var(--mid);font-size:20px;cursor:pointer;line-height:1;padding:0 4px;}
+#bp-close:hover{color:var(--w);}
+#bp-msgs{flex:1;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;}
+.bm{padding:9px 12px;border-radius:11px;font-size:13px;line-height:1.55;max-width:90%;}
+.bm.b{background:var(--n3);color:var(--w);border-radius:11px 11px 11px 2px;align-self:flex-start;}
+.bm.b a{color:var(--a);font-weight:700;}
+.bm.u{background:var(--a);color:var(--n);border-radius:11px 11px 2px 11px;align-self:flex-end;font-weight:600;}
+.btyp{display:flex;gap:4px;padding:9px 12px;background:var(--n3);border-radius:11px 11px 11px 2px;align-self:flex-start;}
+.btyp span{width:6px;height:6px;background:var(--mid);border-radius:50%;animation:typ 1.2s infinite;}
+.btyp span:nth-child(2){animation-delay:.2s;}
+.btyp span:nth-child(3){animation-delay:.4s;}
+@keyframes typ{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+#bp-sugs{padding:8px 10px;display:flex;flex-wrap:wrap;gap:5px;border-top:1px solid var(--n4);flex-shrink:0;}
+.bsug{background:var(--n3);border:1px solid var(--n4);color:var(--w2);font-size:11px;padding:5px 11px;border-radius:50px;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.bsug:hover{border-color:var(--a);color:var(--a);}
+#bp-inp-row{padding:10px 12px;border-top:1px solid var(--n4);display:flex;gap:8px;flex-shrink:0;}
+#bp-inp{flex:1;background:var(--n3);border:1px solid var(--n4);color:var(--w);padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:13px;border-radius:8px;outline:none;}
+#bp-inp:focus{border-color:var(--a);}
+#bp-inp::placeholder{color:var(--mid);}
+#bp-send{background:var(--a);border:none;width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:14px;flex-shrink:0;transition:background .2s;}
+#bp-send:hover{background:var(--a2);}
+
+/* KEYFRAMES */
+@keyframes fup{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bth{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SCROLL ANIM */
+.anim{opacity:0;transform:translateY(24px);transition:opacity .55s,transform .55s;}
+.anim.vis{opacity:1;transform:translateY(0);}
+
+/* URGENCE banner */
+.urg-banner{position:relative;margin-top:32px;background:linear-gradient(135deg,#1a0e0e,#1a1208);border:1px solid #ff8c42;border-radius:8px;padding:24px 28px;overflow:hidden;}
+.urg-pulse{position:absolute;top:-50%;right:-10%;width:200px;height:200px;background:radial-gradient(circle,rgba(255,140,66,.18) 0%,transparent 70%);animation:urgPulse 3s ease-in-out infinite;}
+@keyframes urgPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+.urg-content{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+.urg-tag{display:inline-block;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#ff8c42;background:rgba(255,140,66,.1);border:1px solid rgba(255,140,66,.3);padding:5px 12px;border-radius:2px;margin-bottom:10px;}
+.urg-h{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);line-height:1.4;margin-bottom:6px;}
+.urg-h strong{color:#ff8c42;}
+.urg-sub{font-size:13px;color:var(--mid);line-height:1.6;}
+.urg-sub strong{color:var(--w);}
+.urg-stat{text-align:center;background:rgba(255,140,66,.1);border:2px solid #ff8c42;border-radius:8px;padding:18px 26px;}
+.urg-stat-v{font-family:'Syne',sans-serif;font-size:54px;font-weight:800;color:#ff8c42;line-height:1;}
+.urg-stat-l{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#ffb088;margin-top:4px;}
+
+/* SETUP banner */
+.setup-banner{margin-top:40px;background:linear-gradient(135deg,var(--n3),var(--n4));border:1px solid var(--border);border-radius:8px;padding:32px 36px;display:grid;grid-template-columns:1fr 1.2fr;gap:36px;align-items:center;}
+.setup-banner-tag{display:inline-block;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--a);background:rgba(200,241,53,.1);border:1px solid rgba(200,241,53,.2);padding:5px 12px;border-radius:2px;margin-bottom:14px;}
+.setup-banner-price{font-family:'Syne',sans-serif;font-size:64px;font-weight:800;color:var(--w);line-height:1;margin-bottom:10px;}
+.setup-banner-sub{font-size:13px;color:var(--mid);line-height:1.7;}
+.setup-banner-sub strong{color:var(--w);}
+.setup-banner-list{list-style:none;}
+.setup-banner-list li{font-size:13px;color:var(--w2);padding:8px 0;border-bottom:1px solid var(--n4);}
+.setup-banner-list li:last-child{border:none;}
+
+/* TIER intro */
+.tier-intro{margin-top:48px;text-align:center;}
+.tier-intro-tag{display:inline-block;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--a);background:rgba(200,241,53,.06);border:1px solid rgba(200,241,53,.18);padding:5px 14px;border-radius:2px;margin-bottom:14px;}
+.tier-intro-h{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--w);margin-bottom:8px;letter-spacing:-.01em;}
+.tier-intro-sub{font-size:14px;color:var(--mid);max-width:540px;margin:0 auto;}
+
+/* OFFRE (Two-tier monthly cards) */
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px;}
+.pay-card{background:var(--n3);border:1px solid var(--n4);border-radius:8px;padding:32px 28px;display:flex;flex-direction:column;position:relative;transition:transform .25s,border-color .25s;}
+.pay-card:hover{transform:translateY(-4px);}
+.pay-card.featured{border:2px solid var(--a);background:linear-gradient(180deg,var(--n3),var(--n2));box-shadow:0 16px 48px rgba(200,241,53,.12);}
+.pay-tag{display:inline-block;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--a);background:rgba(200,241,53,.08);border:1px solid rgba(200,241,53,.18);padding:5px 12px;border-radius:2px;margin-bottom:18px;align-self:flex-start;}
+.pay-price{font-family:'Syne',sans-serif;font-size:64px;font-weight:800;color:var(--w);line-height:1;margin-bottom:6px;}
+.pay-price small{font-size:18px;font-weight:400;color:var(--mid);}
+.pay-period{font-size:12px;color:var(--mid);margin-bottom:20px;letter-spacing:.04em;}
+.pay-divider{height:1px;background:var(--n4);margin:0 0 22px;}
+.pay-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--w);margin-bottom:14px;}
+.pay-list{list-style:none;flex:1;margin-bottom:18px;}
+.pay-list li{font-size:13px;color:var(--w2);line-height:1.7;padding-left:22px;position:relative;margin-bottom:8px;}
+.pay-list li::before{content:'✓';position:absolute;left:0;color:var(--a);font-weight:700;}
+.pay-list li strong{color:var(--w);}
+.pay-note{font-size:12px;color:var(--mid);background:rgba(200,241,53,.04);border-left:2px solid var(--a);padding:10px 14px;border-radius:0 4px 4px 0;line-height:1.6;}
+.pay-note strong{color:var(--a);font-weight:700;}
+.pay-tag-feat{display:inline-block;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--n);background:var(--a);padding:5px 12px;border-radius:2px;margin-bottom:18px;align-self:flex-start;}
+.pay-cta{display:block;text-align:center;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:14px;background:transparent;border:1px solid var(--n5);color:var(--w);text-decoration:none;border-radius:2px;transition:all .2s;margin-top:18px;}
+.pay-cta:hover{background:var(--a);color:var(--n);border-color:var(--a);}
+.pay-cta.featured{background:var(--a);color:var(--n);border-color:var(--a);}
+.pay-cta.featured:hover{background:var(--a2);}
+
+.not-incl{margin-top:40px;background:var(--n2);border:1px dashed var(--n5);border-radius:8px;padding:32px;}
+.not-incl-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--w);margin-bottom:22px;}
+.not-incl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px;}
+.not-incl-item{padding:18px;background:var(--n3);border-radius:4px;border:1px solid var(--n4);}
+.not-incl-h{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--w);margin-bottom:8px;}
+.not-incl-d{font-size:12px;color:var(--mid);line-height:1.65;}
+.not-incl-bottom{font-size:13px;color:var(--w2);text-align:center;padding-top:18px;border-top:1px solid var(--n4);}
+.not-incl-bottom strong{color:var(--a);}
+
+.off-final-cta{margin-top:40px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* OFFRE (Single offer — kept for compatibility) */
+#offres{background:var(--n2);}
+.single-off{margin-top:48px;background:var(--n3);border:2px solid var(--a);border-radius:10px;padding:48px;position:relative;box-shadow:0 24px 60px rgba(200,241,53,.08);}
+.single-off-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--a);color:var(--n);font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:3px;}
+.single-off-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center;}
+.single-off-price{font-family:'Syne',sans-serif;font-size:84px;font-weight:800;color:var(--w);line-height:1;margin-bottom:6px;}
+.single-off-price small{font-size:24px;font-weight:400;color:var(--mid);}
+.single-off-price-row{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--n4);}
+.single-off-price-row:last-of-type{border-bottom:none;margin-bottom:14px;}
+.price-label{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);min-width:60px;}
+.price-val{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:var(--w);line-height:1;}
+.price-val small{font-size:18px;font-weight:400;color:var(--mid);}
+.single-off-period{font-size:13px;color:var(--mid);margin-bottom:30px;letter-spacing:.04em;}
+.single-off-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;}
+.single-off-trust{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;padding-top:24px;border-top:1px solid var(--n4);}
+.single-off-ti{font-size:12px;color:var(--w2);display:flex;align-items:center;gap:8px;}
+.ti-ico{color:var(--a);font-weight:700;font-size:14px;}
+.single-off-feats-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--a);margin-bottom:18px;}
+.single-off-feats{list-style:none;}
+.single-off-feats li{font-size:13px;color:var(--w2);line-height:1.6;padding-left:24px;position:relative;margin-bottom:12px;}
+.single-off-feats li::before{content:'→';position:absolute;left:0;color:var(--a);font-weight:700;}
+.single-off-feats li strong{color:var(--w);font-weight:600;}
+
+/* GARANTIE */
+#garantie{background:var(--n);position:relative;overflow:hidden;}
+#garantie::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(200,241,53,.06) 0%,transparent 60%);}
+.gar-wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.gar-seal{aspect-ratio:1;max-width:380px;margin:0 auto;background:var(--n2);border:2px solid var(--a);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px;text-align:center;position:relative;}
+.gar-seal::before{content:'';position:absolute;inset:8px;border:1px dashed rgba(200,241,53,.3);border-radius:50%;}
+.gar-seal-top{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--a);margin-bottom:10px;}
+.gar-seal-big{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--w);line-height:1;margin-bottom:8px;}
+.gar-seal-sub{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--a);line-height:1.2;}
+.gar-list{list-style:none;}
+.gar-list li{padding:14px 0;border-bottom:1px solid var(--n4);display:flex;gap:14px;align-items:flex-start;}
+.gar-list li:last-child{border:none;}
+.gar-ico{font-size:20px;flex-shrink:0;margin-top:2px;}
+.gar-li-t{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--w);margin-bottom:3px;}
+.gar-li-d{font-size:12px;color:var(--mid);line-height:1.6;}
+
+/* CALCULATEUR UBER */
+#calculateur{background:var(--n2);}
+.calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:40px;}
+.calc-card{background:var(--n3);border:1px solid var(--n4);border-radius:8px;padding:32px;}
+.calc-row{margin-bottom:20px;}
+.calc-lbl{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:8px;}
+.calc-inp{width:100%;background:var(--n4);border:1px solid var(--n5);color:var(--w);padding:14px 16px;font-family:'Syne',sans-serif;font-size:18px;font-weight:700;border-radius:3px;outline:none;transition:border-color .2s;}
+.calc-inp:focus{border-color:var(--a);}
+.calc-help{font-size:10px;color:var(--mid);margin-top:5px;}
+.calc-result{background:linear-gradient(135deg,#1a0a0a,#1a0808);border:1px solid #ff5544;border-radius:8px;padding:32px;text-align:center;}
+.calc-r-lbl{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#ff8888;margin-bottom:14px;}
+.calc-r-big{font-family:'Syne',sans-serif;font-size:54px;font-weight:800;color:#ff5544;line-height:1;margin-bottom:6px;}
+.calc-r-per{font-size:13px;color:var(--mid);margin-bottom:18px;}
+.calc-r-yr{padding-top:18px;border-top:1px solid rgba(255,85,68,.2);}
+.calc-r-yr-v{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:#ff8866;line-height:1;}
+.calc-r-yr-l{font-size:11px;color:var(--mid);margin-top:4px;letter-spacing:.1em;text-transform:uppercase;}
+.calc-saved{margin-top:20px;padding:16px;background:rgba(200,241,53,.06);border:1px solid rgba(200,241,53,.18);border-radius:4px;}
+.calc-saved-l{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--a);margin-bottom:4px;}
+.calc-saved-v{font-size:13px;color:var(--w);line-height:1.5;}
+
+/* MÉTHODE BASCULE DIRECTE */
+#methode{background:var(--n);}
+.phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;}
+.phase-card{background:var(--n3);border:1px solid var(--n4);border-radius:8px;padding:28px 24px;display:flex;flex-direction:column;position:relative;transition:transform .25s,border-color .25s;}
+.phase-card:hover{transform:translateY(-4px);border-color:rgba(200,241,53,.3);}
+.phase-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.phase-num{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;letter-spacing:.04em;color:var(--n);background:var(--a);padding:6px 12px;border-radius:3px;}
+.phase-tag{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);}
+.phase-h{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);line-height:1.3;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--n4);}
+.phase-list{list-style:none;flex:1;margin-bottom:16px;}
+.phase-list li{font-size:12px;color:var(--w2);line-height:1.65;padding-left:0;margin-bottom:11px;}
+.phase-list li strong{color:var(--a);font-weight:700;font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.06em;background:rgba(200,241,53,.08);padding:1px 7px;border-radius:2px;margin-right:5px;}
+.phase-kpi{font-size:12px;color:var(--w);background:rgba(200,241,53,.05);border-left:2px solid var(--a);padding:10px 14px;border-radius:0 4px 4px 0;line-height:1.5;}
+.phase-kpi strong{color:var(--a);}
+
+.incl-note{margin-top:36px;background:var(--n2);border:1px solid var(--n4);border-radius:8px;padding:28px;}
+.incl-note-h{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--w);margin-bottom:20px;}
+.incl-note-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.incl-note-col{padding:20px;background:var(--n3);border-radius:6px;border:1px solid var(--n4);}
+.incl-note-st{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--a);margin-bottom:14px;line-height:1.4;}
+.incl-note-list{list-style:none;}
+.incl-note-list li{font-size:12px;color:var(--w2);line-height:1.65;padding-left:0;margin-bottom:8px;}
+.incl-note-foot{font-size:12px;color:var(--mid);margin-top:14px;padding-top:14px;border-top:1px solid var(--n4);font-style:italic;line-height:1.6;}
+@media(max-width:768px){.incl-note-grid{grid-template-columns:1fr;gap:14px;}}
+
+.proof-strip{margin-top:40px;background:linear-gradient(135deg,var(--n3),var(--n2));border:1px solid var(--border);border-radius:8px;padding:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center;}
+.proof-i{padding:0 12px;}
+.proof-v{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;color:var(--a);line-height:1;margin-bottom:8px;}
+.proof-l{font-size:11px;color:var(--mid);letter-spacing:.04em;line-height:1.5;}
+
+/* POURQUOI MOI */
+#why{background:var(--n);}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--n4);margin-top:48px;}
+.why-card{background:var(--n);padding:36px 28px;}
+.why-num{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--a);opacity:.5;margin-bottom:18px;}
+.why-ico{font-size:32px;margin-bottom:14px;display:block;}
+.why-h{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);margin-bottom:10px;line-height:1.25;}
+.why-d{font-size:12px;color:var(--mid);line-height:1.8;}
+.why-d strong{color:var(--w);font-weight:500;}
+
+/* FAQ */
+#faq{background:var(--n2);}
+.faq-list{margin-top:40px;max-width:880px;}
+.faq-item{background:var(--n3);border:1px solid var(--n4);border-radius:4px;margin-bottom:10px;overflow:hidden;transition:border-color .2s;}
+.faq-item:hover{border-color:rgba(200,241,53,.2);}
+.faq-q{padding:18px 22px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:16px;}
+.faq-q-t{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:var(--w);}
+.faq-plus{color:var(--a);font-size:18px;font-weight:300;flex-shrink:0;transition:transform .25s;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s;}
+.faq-item.open .faq-a{max-height:500px;}
+.faq-a-in{padding:0 22px 20px;font-size:13px;color:var(--mid);line-height:1.75;}
+.faq-a-in strong{color:var(--w);}
+
+@media(max-width:1024px){
+  .single-off-grid{grid-template-columns:1fr;gap:36px;}
+  .pay-grid{grid-template-columns:1fr;gap:14px;}
+  .setup-banner{grid-template-columns:1fr;gap:24px;padding:26px;}
+  .not-incl-grid{grid-template-columns:1fr;gap:14px;}
+  .gar-wrap,.calc-wrap{grid-template-columns:1fr;gap:40px;}
+  .why-grid{grid-template-columns:1fr;}
+  .gar-seal{max-width:280px;}
+  .phase-grid{grid-template-columns:1fr;gap:14px;}
+  .proof-strip{grid-template-columns:1fr;gap:20px;padding:24px;}
+}
+@media(max-width:768px){
+  .pay-card{padding:26px 20px;}
+  .pay-price{font-size:48px;}
+  .not-incl{padding:22px 18px;}
+  .urg-content{flex-direction:column;align-items:flex-start;}
+  .urg-stat{align-self:center;padding:14px 22px;}
+  .urg-stat-v{font-size:42px;}
+  .urg-h{font-size:15px;}
+  .single-off{padding:32px 22px;}
+  .single-off-price,.price-val{font-size:54px;}
+  .price-val small{font-size:14px;}
+  .single-off-trust{grid-template-columns:1fr;}
+  .single-off-cta-row{flex-direction:column;align-items:stretch;}
+  .single-off-cta-row .btn-a,.single-off-cta-row .btn-b{text-align:center;}
+  .gar-seal{max-width:240px;padding:24px;}
+  .gar-seal-big{font-size:36px;}
+  .gar-seal-sub{font-size:15px;}
+  .calc-r-big{font-size:42px;}
+  .calc-r-yr-v{font-size:24px;}
+  .why-card{padding:28px 22px;}
+  .single-off-feats li{font-size:12px;}
+  .faq-q{padding:14px 16px;}
+  .faq-q-t{font-size:13px;}
+  .faq-a-in{padding:0 16px 16px;font-size:12px;}
+}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .srv-grid{grid-template-columns:repeat(2,1fr);}
+  .port-grid{grid-template-columns:repeat(2,1fr);}
+  .proj:nth-child(1),.proj:nth-child(2),.proj:nth-child(3),.proj:nth-child(4),.proj:nth-child(5){grid-column:span 1;aspect-ratio:16/10;}
+  .proj:nth-child(1) .proj-name{font-size:22px;}
+  .proc-layout,.about-layout,.cont-layout,.srv-hdr{grid-template-columns:1fr;gap:40px;}
+  .ft-top{flex-direction:column;}
+}
+@media(max-width:600px){
+  .port-grid{grid-template-columns:1fr;}
+  .proj{aspect-ratio:4/3;}
+  .proj:nth-child(1) .proj-name{font-size:20px;}
+  nav{padding:0 4%;height:60px;}
+  .nav-links{display:none;}
+  .nav-tel-num{display:none;}
+  .nav-tel{padding:8px 10px;}
+  .sec{padding:54px 4%;}
+  #hero{padding:60vw 4% 50px;min-height:auto;justify-content:flex-end;}
+  .hbg{background-position:55% 25% !important;background-size:cover !important;}
+  .hbg::after{background:linear-gradient(180deg,rgba(5,5,5,.1) 0%,rgba(5,5,5,.45) 50%,rgba(5,5,5,.92) 80%,rgba(5,5,5,.98) 100%) !important;}
+  h1{font-size:30px;line-height:1.18;margin-bottom:24px;}
+  .hsub{font-size:14px;}
+  .htag{font-size:10px;padding:5px 12px;margin-bottom:18px;}
+  .hbtns{flex-direction:column;align-items:stretch;width:100%;}
+  .hbtns .btn-a,.hbtns .btn-b,.hbtns .btn-tel{text-align:center;justify-content:center;width:100%;}
+  .hbot{flex-direction:column;align-items:stretch;}
+  .hstats{gap:14px;flex-wrap:wrap;}
+  .hstat-v{font-size:22px;}
+  .srv-grid{grid-template-columns:1fr;}
+  .sec-h{font-size:30px;line-height:1.05;}
+  .checks{grid-template-columns:1fr;}
+  .single-off{padding:24px 18px;}
+  .single-off-price,.price-val{font-size:42px;}
+  .gar-seal{max-width:200px;padding:18px;}
+  .gar-seal-big{font-size:28px;}
+  .gar-seal-sub{font-size:13px;}
+  .gar-seal-top{font-size:9px;}
+  .calc-card{padding:22px;}
+  .calc-result{padding:24px;}
+  .calc-r-big{font-size:36px;}
+  .why-h{font-size:16px;}
+  .why-d{font-size:11px;}
+  .ft-cols{gap:32px;flex-direction:column;}
+  .mob-tel{display:flex;}
+  #bot{bottom:90px;right:18px;}
+  #bot-panel{width:calc(100vw - 32px);right:-8px;bottom:64px;}
+  #cur,#curR{display:none;}
+  .ticker{padding:8px 0;}
+  .tick-i{font-size:10px;padding:0 14px;}
+}
+@media(max-width:480px){
+  h1{font-size:26px;}
+  .sec-h{font-size:26px;}
+  .single-off-price,.price-val{font-size:36px;}
+  .calc-r-big{font-size:30px;}
+  .single-off-feats li{font-size:11px;padding-left:18px;}
+  .gar-li-t{font-size:13px;}
+  .gar-li-d{font-size:11px;}
+  .step-title{font-size:15px;}
+  .step-desc{font-size:11px;}
+}
+@media(max-width:380px){.nav-cta{display:none;}}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="curR"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="logo" title="Retour à l'accueil TK Digital">
+    <svg class="logo-svg" viewBox="0 0 36 36" fill="none">
+      <rect width="36" height="36" fill="#c8f135"/>
+      <path d="M7 10H29M18 10V26" stroke="#050505" stroke-width="3" stroke-linecap="square"/>
+      <path d="M18 18L27 26M18 18L27 10" stroke="#050505" stroke-width="3" stroke-linecap="square"/>
+    </svg>
+    <span class="logo-txt">TK <span>Digital</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#calculateur">Calculateur</a>
+    <a href="#methode">Méthode 90j</a>
+    <a href="#portfolio">Projets</a>
+    <a href="#garantie">Garantie</a>
+    <a href="#offres">Offre</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="nav-actions">
+    <a href="tel:+33768789800" class="nav-tel" title="Appeler Tarik">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.59-6.59l2.2-2.2a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z"/></svg>
+      <span class="nav-tel-num">07 68 78 98 00</span>
+    </a>
+    <a href="#offres" class="nav-cta">Démarrer →</a>
+  </div>
+</nav>
+
+<!-- Sticky phone button mobile -->
+<a href="tel:+33768789800" class="mob-tel" aria-label="Appeler Tarik">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.59-6.59l2.2-2.2a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z"/></svg>
+</a>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hbg"><div class="hgrid"></div><div class="hglow"></div></div>
+  <div class="htag htag-urg"><div class="htag-dot"></div>🔥 Restos halal du Nord · 3 places restantes ce mois-ci</div>
+  <h1>
+    <span class="l1">Reprends tes clients</span>
+    <span class="l2">du quartier.</span>
+    <span class="l3">Sans Uber, sans agence.</span>
+  </h1>
+  <div class="hbot">
+    <div>
+      <p class="hsub"><strong>Tarik. Ex-fournisseur emballages 7 ans dans le Nord.</strong> J'ai vu de l'intérieur ce qui tue les marges des restos halal, pizzerias, kebabs et snacks. Aujourd'hui je sors mes confrères de l'ombre Google, je remplis leur WhatsApp en commandes directes, et je leur fais reprendre les clients qu'Uber leur pique.</p>
+      <div class="hbtns">
+        <a href="#offres" class="btn-a">Voir l'offre</a>
+        <a href="tel:+33768789800" class="btn-tel">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.59-6.59l2.2-2.2a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z"/></svg>
+          07 68 78 98 00
+        </a>
+      </div>
+    </div>
+    <div class="hstats">
+      <div><div class="hstat-v">7j</div><div class="hstat-l">Site en ligne</div></div>
+      <div><div class="hstat-v">6 mois</div><div class="hstat-l">Engagement minimum</div></div>
+      <div><div class="hstat-v">7 ans</div><div class="hstat-l">Au service des restos Nord</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="tick-i">Restos halal du Nord <span class="tick-s">✦</span></span>
+    <span class="tick-i">Sortir d'Uber Eats <span class="tick-s">✦</span></span>
+    <span class="tick-i">Commande WhatsApp directe <span class="tick-s">✦</span></span>
+    <span class="tick-i">Fiche Google optimisée <span class="tick-s">✦</span></span>
+    <span class="tick-i">Suggestions au panier <span class="tick-s">✦</span></span>
+    <span class="tick-i">Récolte d'avis automatique <span class="tick-s">✦</span></span>
+    <span class="tick-i">Restos halal du Nord <span class="tick-s">✦</span></span>
+    <span class="tick-i">Sortir d'Uber Eats <span class="tick-s">✦</span></span>
+    <span class="tick-i">Commande WhatsApp directe <span class="tick-s">✦</span></span>
+    <span class="tick-i">Fiche Google optimisée <span class="tick-s">✦</span></span>
+    <span class="tick-i">Suggestions au panier <span class="tick-s">✦</span></span>
+    <span class="tick-i">Récolte d'avis automatique <span class="tick-s">✦</span></span>
+  </div>
+</div>
+
+<!-- CALCULATEUR ANTI-UBER -->
+<section id="calculateur" class="sec">
+  <div class="srv-hdr">
+    <div>
+      <div class="eyebrow">Spécial restos / pizzerias / kebabs</div>
+      <h2 class="sec-h">Combien Uber<br><span>te vole vraiment ?</span></h2>
+    </div>
+    <p class="srv-sub">Bouge le curseur. Tu vas comprendre pourquoi reprendre tes clients en direct change ta vie.</p>
+  </div>
+  <div class="calc-wrap">
+    <div class="calc-card">
+      <div class="calc-row">
+        <label class="calc-lbl">Combien de commandes Uber / Deliveroo par jour ?</label>
+        <input class="calc-inp" type="number" id="calc-orders" value="20" min="0" max="500">
+        <div class="calc-help">Estimation moyenne tous services confondus</div>
+      </div>
+      <div class="calc-row">
+        <label class="calc-lbl">Panier moyen (€)</label>
+        <input class="calc-inp" type="number" id="calc-basket" value="18" min="0" max="200">
+        <div class="calc-help">Ce que paye un client en moyenne</div>
+      </div>
+      <div class="calc-row">
+        <label class="calc-lbl">Commission plateforme (%)</label>
+        <input class="calc-inp" type="number" id="calc-commission" value="30" min="0" max="50">
+        <div class="calc-help">Uber Eats / Deliveroo : 25-35% en moyenne</div>
+      </div>
+    </div>
+    <div class="calc-result">
+      <div class="calc-r-lbl">Ce qu'ils te prennent par mois</div>
+      <div class="calc-r-big" id="calc-month">3 240€</div>
+      <div class="calc-r-per">de marge directement aspirée</div>
+      <div class="calc-r-yr">
+        <div class="calc-r-yr-v" id="calc-year">38 880€</div>
+        <div class="calc-r-yr-l">par AN sur ta marge</div>
+      </div>
+      <div class="calc-saved">
+        <div class="calc-saved-l">→ Avec moi</div>
+        <div class="calc-saved-v"><strong style="color:var(--a);">Garde 100%.</strong> Site + commande WhatsApp + Google = clients qui te paient en direct, sans intermédiaire.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTHODE BASCULE DIRECTE 90 JOURS -->
+<section id="methode" class="sec">
+  <div class="srv-hdr">
+    <div>
+      <div class="eyebrow">Ma méthode signature</div>
+      <h2 class="sec-h">Bascule Directe<br><span>en 90 jours.</span></h2>
+    </div>
+    <p class="srv-sub">Pas de blabla. Pas de promesses creuses. <strong style="color:var(--w);">Une méthode en 3 étapes qui ramène tes commandes Uber en direct chez toi.</strong> Pour que tes clients commandent sans qu'Uber leur prenne 30%. Testée et validée par les outils qui marchent en France. <em style="color:var(--mid);font-size:13px;">Les chiffres ci-dessous sont basés sur des cas similaires français, atteignables avec ton engagement (QR sur les tables, flyers dans les sacs, communication Insta). Sans participation active de ta part, les résultats seront inférieurs.</em></p>
+  </div>
+
+  <div class="phase-grid">
+    <!-- MOIS 1 -->
+    <div class="phase-card anim">
+      <div class="phase-head">
+        <span class="phase-num">M1</span>
+        <span class="phase-tag">Capter</span>
+      </div>
+      <div class="phase-h">200-500 contacts captés</div>
+      <ul class="phase-list">
+        <li><strong>Jour 1-3</strong> : je nettoie et j'optimise ta fiche Google. On remplace le bouton "Commander" qui pointait vers Uber par ton futur site direct.</li>
+        <li><strong>Jour 4-10</strong> : ton site direct est en ligne. Tes clients peuvent commander et payer chez toi sans intermédiaire.</li>
+        <li><strong>Jour 11-15</strong> : je t'imprime et je te livre 10 QR codes plastifiés à mettre sur tes tables et au comptoir. Inclus dans le setup.</li>
+        <li><strong>Jour 16-30</strong> : <em>option Pack Flyers (+150€)</em> : si tu veux booster, je te fournis 1 000 flyers anti-Uber prêts à glisser dans tes sacs livraison.</li>
+      </ul>
+      <div class="phase-kpi">→ Fin du mois 1 : ton site est en ligne, ta fiche Google est propre, tu commences à capter tes premiers clients en direct</div>
+    </div>
+
+    <!-- MOIS 2 -->
+    <div class="phase-card anim">
+      <div class="phase-head">
+        <span class="phase-num">M2</span>
+        <span class="phase-tag">Basculer</span>
+      </div>
+      <div class="phase-h">30% de tes commandes en direct</div>
+      <ul class="phase-list">
+        <li><strong>Jour 31-45</strong> : carte de fidélité activée sur ton site. Le 10e plat est offert quand le client commande en direct.</li>
+        <li><strong>Jour 31-45</strong> : premier message WhatsApp envoyé à tes contacts récupérés avec une offre exclusive en direct.</li>
+        <li><strong>Jour 46-60</strong> : on teste 2 versions de message pour voir laquelle te ramène le plus de clients.</li>
+        <li><strong>Jour 46-60</strong> : on rend 2 ou 3 de tes meilleurs plats disponibles uniquement en direct (pas sur Uber).</li>
+      </ul>
+      <div class="phase-kpi">→ Fin du mois 2 : entre <strong>20 et 30% de tes commandes en direct</strong>, base de plus de <strong>400 contacts</strong> à toi</div>
+    </div>
+
+    <!-- MOIS 3 -->
+    <div class="phase-card anim">
+      <div class="phase-head">
+        <span class="phase-num">M3</span>
+        <span class="phase-tag">Consolider</span>
+      </div>
+      <div class="phase-h">40-50% en direct + résultats chiffrés</div>
+      <ul class="phase-list">
+        <li><strong>Jour 61-75</strong> : messages WhatsApp automatiques chaque semaine (l'offre du jour, ton plat signature, le menu du weekend).</li>
+        <li><strong>Jour 61-75</strong> : j'améliore ton site pour que moins de clients abandonnent leur commande.</li>
+        <li><strong>Jour 76-90</strong> : bilan chiffré ensemble. Combien tu as économisé en commission, combien de clients reviennent en direct.</li>
+        <li><strong>Jour 76-90</strong> : on planifie le trimestre suivant pour viser plus de commandes en direct.</li>
+      </ul>
+      <div class="phase-kpi">→ Fin du mois 3 : entre <strong>30 et 50% de tes commandes en direct</strong>, base de plus de <strong>800 contacts</strong>, premiers résultats chiffrés en main</div>
+    </div>
+  </div>
+
+  <!-- Note de transparence -->
+  <div class="incl-note anim">
+    <div class="incl-note-h">Pour être clair sur ce qui est compris dans la méthode</div>
+    <div class="incl-note-grid">
+      <div class="incl-note-col">
+        <div class="incl-note-st">✅ Ce que JE fais (tout compris)</div>
+        <ul class="incl-note-list">
+          <li>Création + maintenance du site direct</li>
+          <li>Optimisation et posts sur ta fiche Google</li>
+          <li>Configuration commande WhatsApp + alertes</li>
+          <li>Impression et livraison de tes 10 QR codes plastifiés</li>
+          <li>Carte de fidélité digitale activée sur ton site</li>
+          <li>Messages WhatsApp automatiques (rédigés et programmés)</li>
+          <li>Reporting chiffré chaque mois</li>
+        </ul>
+      </div>
+      <div class="incl-note-col">
+        <div class="incl-note-st">➕ En option si tu veux booster</div>
+        <ul class="incl-note-list">
+          <li><strong>Pack Flyers anti-Uber : +150€</strong></li>
+          <li>1 000 flyers prêts à glisser dans tes sacs Uber</li>
+          <li>Je fournis le visuel + j'imprime + je te livre</li>
+          <li>Tu n'as qu'à les mettre dans les sacs</li>
+        </ul>
+        <div class="incl-note-foot">Le Pack Flyers est puissant pour faire basculer plus vite tes clients Uber en direct. Pas obligatoire, mais conseillé si tu fais 20+ commandes Uber par jour.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proof-strip anim">
+    <div class="proof-i">
+      <div class="proof-v">+120%</div>
+      <div class="proof-l">de montant moyen par commande<br>(cas réel resto Tripletta · Paris)</div>
+    </div>
+    <div class="proof-i">
+      <div class="proof-v">+35%</div>
+      <div class="proof-l">de ventes à emporter en direct<br>(cas resto utilisant Collectly · 90 jours)</div>
+    </div>
+    <div class="proof-i">
+      <div class="proof-v">25-30%</div>
+      <div class="proof-l">de marge en plus pour le resto<br>(étude MOP Nantes)</div>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI MOI -->
+<section id="why" class="sec">
+  <div class="srv-hdr">
+    <div>
+      <div class="eyebrow">Pourquoi moi, pas une agence</div>
+      <h2 class="sec-h">Ex-fournisseur<br><span>de tes voisins.</span></h2>
+    </div>
+    <p class="srv-sub">Pendant 7 ans j'ai livré les emballages des restos halal du Nord. <strong style="color:var(--w);">Je connais ton métier mieux qu'aucune agence parisienne.</strong> Aujourd'hui je règle un autre problème : tes clients qui partent chez Uber.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card anim">
+      <div class="why-num">01</div>
+      <span class="why-ico">🤝</span>
+      <div class="why-h">Je connais le terrain</div>
+      <div class="why-d">7 ans à servir les boîtes pizza, sachets burger, gobelets aux <strong>restos du Nord</strong>. Roubaix, Lille, Valenciennes, Douai, Lens. Je sais comment tu bosses, à quelle heure tu coupes, ce qui te bouffe.</div>
+    </div>
+    <div class="why-card anim">
+      <div class="why-num">02</div>
+      <span class="why-ico">⚡</span>
+      <div class="why-h">Je fais le travail moi-même</div>
+      <div class="why-d">Pas de commercial qui passe à un sous-traitant en Inde. <strong>C'est moi qui code, moi qui pilote ta pub, moi qui réponds à 22h.</strong> Un seul numéro WhatsApp. Toujours dispo.</div>
+    </div>
+    <div class="why-card anim">
+      <div class="why-num">03</div>
+      <span class="why-ico">📊</span>
+      <div class="why-h">Du chiffré, pas du vent</div>
+      <div class="why-d">Chaque mois tu reçois un mini rapport : <strong>X appels Google, Y vues fiche, Z commandes en direct.</strong> Tu vois ce qui marche. Si ça ne marche pas, tu pars sans frais.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="sec">
+  <div class="port-hdr">
+    <div>
+      <div class="eyebrow">Projets récents</div>
+      <h2 class="sec-h">Du concret,<br><span>pas des promesses.</span></h2>
+    </div>
+    <p style="font-size:13px;color:var(--mid);max-width:280px;line-height:1.6;">Clique sur un projet pour le voir en direct, sans quitter cette page.</p>
+  </div>
+  <div class="port-grid">
+    <div class="proj proj-1 anim" onclick="openPreview('https://tar5950.github.io/poulet-brais-4/')">
+      <div class="proj-ov"></div>
+      <div class="proj-live"><span class="proj-live-dot"></span>Live</div>
+      <div class="proj-info">
+        <div class="proj-cat">Restaurant · Villeneuve-d'Ascq</div>
+        <div class="proj-name">Poulet Braisé Triolo</div>
+        <span class="proj-lnk">Voir le site →</span>
+      </div>
+    </div>
+    <div class="proj proj-2 anim" onclick="openPreview('https://tar5950.github.io/la-dalle-burger/')">
+      <div class="proj-ov"></div>
+      <div class="proj-live"><span class="proj-live-dot"></span>Live</div>
+      <div class="proj-info">
+        <div class="proj-cat">Street Food · Nord</div>
+        <div class="proj-name">La Dalle Burger</div>
+        <span class="proj-lnk">Voir le site →</span>
+      </div>
+    </div>
+    <div class="proj proj-3 anim" onclick="openPreview('https://tar5950.github.io/la-slica/')">
+      <div class="proj-ov"></div>
+      <div class="proj-live"><span class="proj-live-dot"></span>Live</div>
+      <div class="proj-info">
+        <div class="proj-cat">Pizzeria · Nord</div>
+        <div class="proj-name">La Slica</div>
+        <span class="proj-lnk">Voir le site →</span>
+      </div>
+    </div>
+    <div class="proj proj-5 anim">
+      <div class="proj-ov"></div>
+      <div class="proj-info">
+        <div class="proj-cat">Électricien IRVE · Douai</div>
+        <div class="proj-name">Installation Électrique</div>
+        <span class="proj-lnk">Bientôt en ligne</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIE -->
+<section id="garantie" class="sec">
+  <div class="gar-wrap">
+    <div class="gar-seal anim">
+      <div class="gar-seal-top">Mes garanties</div>
+      <div class="gar-seal-big">7 jours</div>
+      <div class="gar-seal-sub">Site en ligne<br>ou setup gratuit</div>
+    </div>
+    <div>
+      <div class="eyebrow">Le risque, c'est moi qui le prends</div>
+      <h2 class="sec-h">Pas de pari.<br><span>Pas d'arnaque.</span></h2>
+      <p style="font-size:15px;color:var(--mid);line-height:1.8;margin:18px 0 28px;">Tu connais la chanson : "On t'a vendu un site, une pub, et 6 mois après... toujours rien." Je sais. C'est pour ça que je m'engage <strong style="color:var(--w);">avant</strong> que tu paies.</p>
+      <ul class="gar-list">
+        <li>
+          <span class="gar-ico">⚡</span>
+          <div>
+            <div class="gar-li-t">Site en ligne en 7 jours, ou le setup est gratuit</div>
+            <div class="gar-li-d">7 jours après que tu m'as validé tes contenus (photos, menu, infos). Si je dépasse, je te rembourse les 790€ de setup.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">🤝</span>
+          <div>
+            <div class="gar-li-t">Engagement 6 mois : c'est <em>pour toi</em>, pas contre toi</div>
+            <div class="gar-li-d">Le SEO local et la fidélisation prennent 3-6 mois pour produire des résultats visibles. Cet engagement garantit qu'on aille au bout. Après, tu pars quand tu veux.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">🏠</span>
+          <div>
+            <div class="gar-li-t">Ton site t'appartient à 100%</div>
+            <div class="gar-li-d">Pas de "site loué" qu'on t'éteint si tu pars. Code, design, nom de domaine : tout est à toi. Pas comme Linkeo qui te lock 48 mois.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">💰</span>
+          <div>
+            <div class="gar-li-t">Zéro commission sur tes commandes</div>
+            <div class="gar-li-d">Contrairement à Uber Eats / Deliveroo qui prennent 25-35%. Tes clients paient en direct, tu gardes 100%.</div>
+          </div>
+        </li>
+        <li>
+          <span class="gar-ico">📞</span>
+          <div>
+            <div class="gar-li-t">Un seul interlocuteur : moi, Tarik</div>
+            <div class="gar-li-d">Pas de commercial, pas de "service après-vente" à l'autre bout du monde. Tu m'écris, je décroche.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- OFFRE -->
+<section id="offres" class="sec">
+  <!-- URGENCE BANNER -->
+  <div class="urg-banner anim">
+    <div class="urg-pulse"></div>
+    <div class="urg-content">
+      <div class="urg-l">
+        <div class="urg-tag">🔥 Offre de lancement</div>
+        <div class="urg-h">Je prends max <strong>5 clients</strong> par mois pour garantir un suivi VIP</div>
+        <div class="urg-sub">Et pour les <strong>3 premières signatures du mois</strong>, j'offre <strong>1 mois Premium gratuit</strong> en plus (valeur 290€).</div>
+      </div>
+      <div class="urg-r">
+        <div class="urg-stat"><div class="urg-stat-v" id="urg-spots">3</div><div class="urg-stat-l">Places restantes ce mois-ci</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="srv-hdr">
+    <div>
+      <div class="eyebrow">Une offre, deux paiements, c'est tout</div>
+      <h2 class="sec-h">Tu paies quoi.<br><span>Tu paies pas quoi.</span></h2>
+    </div>
+    <p class="srv-sub">Beaucoup d'agences cachent des frais : "ah mais l'hébergement c'est en plus, le nom de domaine aussi, les modifs c'est 50€ chaque, le SSL 80€/an…". <strong style="color:var(--w);">Pas chez moi.</strong> Voilà exactement ce que tu paies, et exactement ce que tu ne paies pas. Lis bien.</p>
+  </div>
+
+  <!-- SETUP commun -->
+  <div class="setup-banner anim">
+    <div class="setup-banner-l">
+      <div class="setup-banner-tag">Étape 1 · Setup (une seule fois)</div>
+      <div class="setup-banner-price">790€</div>
+      <div class="setup-banner-sub">Pour créer ton site sur-mesure, l'adapter à ton activité, le mettre en ligne et te former. Tu paies <strong>une fois</strong>. Plus jamais.</div>
+    </div>
+    <div class="setup-banner-r">
+      <ul class="setup-banner-list">
+        <li>✓ Création complète du site (design + dev)</li>
+        <li>✓ Adapté à ton activité (kebab ≠ pizzeria ≠ snack)</li>
+        <li>✓ Mise en ligne, config technique, SSL</li>
+        <li>✓ Création + nettoyage de ta fiche Google</li>
+        <li>✓ Setup commande WhatsApp + alertes</li>
+        <li>✓ Impression et livraison de tes QR codes (10 QR plastifiés)</li>
+        <li>✓ Formation 30 min : "comment recevoir tes commandes"</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2 forfaits mensuels -->
+  <div class="tier-intro">
+    <div class="tier-intro-tag">Étape 2 · Tu choisis ton niveau</div>
+    <div class="tier-intro-h">Mensuel · 2 formules</div>
+    <div class="tier-intro-sub">Selon le niveau de service que tu veux. Tu peux passer du 1er au 2ème quand tu veux. Engagement minimum 6 mois.</div>
+  </div>
+
+  <div class="pay-grid">
+    <!-- ESSENTIEL 190€ -->
+    <div class="pay-card anim">
+      <div class="pay-tag">Pack Essentiel</div>
+      <div class="pay-price">190€<small>/mois</small></div>
+      <div class="pay-period">Idéal pour démarrer · Engagement 6 mois</div>
+      <div class="pay-divider"></div>
+      <div class="pay-title">Tout l'essentiel pour exister sur Google</div>
+      <ul class="pay-list">
+        <li><strong>Hébergement + nom de domaine + SSL</strong> tout inclus</li>
+        <li><strong>Fiche Google optimisée</strong> (setup + 1 post par mois)</li>
+        <li><strong>Commande WhatsApp</strong> + alertes temps réel</li>
+        <li><strong>Suggestion au panier</strong> : 1 produit complémentaire affiché à la commande (boisson, frites, dessert…). +15 à 25% sur le montant des commandes</li>
+        <li><strong>Récolte d'avis Google</strong> automatique (QR + message WhatsApp)</li>
+        <li><strong>5 modifications/mois</strong> sur le site</li>
+        <li><strong>Reporting trimestriel</strong> chiffré</li>
+        <li><strong>Support WhatsApp</strong> en heures bureau (9h-19h)</li>
+      </ul>
+      <a href="#contact" class="pay-cta">Choisir l'Essentiel →</a>
+    </div>
+
+    <!-- PREMIUM 290€ -->
+    <div class="pay-card featured anim">
+      <div class="pay-tag-feat">★ Pack Premium</div>
+      <div class="pay-price">290€<small>/mois</small></div>
+      <div class="pay-period">Pour aller plus loin · Engagement 6 mois</div>
+      <div class="pay-divider"></div>
+      <div class="pay-title">Pour fidéliser et automatiser</div>
+      <ul class="pay-list">
+        <li><strong>Tout du Pack Essentiel</strong>, plus :</li>
+        <li><strong>Modifications illimitées</strong> sur le site (jusqu'à 5 par semaine)</li>
+        <li><strong>4 posts Google par mois</strong> (vs 1)</li>
+        <li><strong>Réponses automatiques aux avis Google</strong> sous 24h (positifs ET négatifs)</li>
+        <li><strong>Messages WhatsApp automatiques de relance</strong> envoyés à un client qui n'est pas revenu depuis 2 semaines (gratuit, plus personnel que SMS)</li>
+        <li><strong>Reporting mensuel</strong> chiffré (vs trimestriel)</li>
+        <li><strong>Support WhatsApp prioritaire</strong> (réponse sous 4h en semaine, sous 24h soirs & week-ends)</li>
+      </ul>
+      <a href="#contact" class="pay-cta featured">Choisir Premium →</a>
+    </div>
+  </div>
+
+  <!-- CE QUI N'EST PAS COMPRIS -->
+  <div class="not-incl anim">
+    <div class="not-incl-title">⚠️ Pour être 100% transparent : voici ce qui N'EST PAS compris</div>
+    <div class="not-incl-grid">
+      <div class="not-incl-item">
+        <div class="not-incl-h">Pack Flyers anti-Uber (option)</div>
+        <div class="not-incl-d">Si tu veux booster ta bascule Uber → direct, je peux te livrer 1 000 flyers prêts à glisser dans tes sacs livraison (visuel + impression + livraison). <strong>+150€ une fois.</strong> Recommandé si tu fais plus de 20 commandes Uber/jour.</div>
+      </div>
+      <div class="not-incl-item">
+        <div class="not-incl-h">Les photos professionnelles sur place</div>
+        <div class="not-incl-d">Si tu veux que je vienne faire les photos de ton resto, c'est en option (180€ pour 30 photos pro). Sinon, on utilise les photos que tu m'envoies depuis ton téléphone, et ça marche très bien aussi.</div>
+      </div>
+      <div class="not-incl-item">
+        <div class="not-incl-h">Tes adresses email pro</div>
+        <div class="not-incl-d">Tes adresses email pro (genre tarik@tonresto.fr) ne sont pas incluses. Si tu en veux, je te conseille Google Workspace à 6€/mois (chez Google, pas chez moi). Je te configure ça gratuitement.</div>
+      </div>
+      <div class="not-incl-item">
+        <div class="not-incl-h">Aucun abonnement caché</div>
+        <div class="not-incl-d">Pas de logiciel mystérieux à 50€/mois en plus. Pas de "frais de maintenance technique" surprise. Pas de surcoût SEO. <strong>Le prix annoncé = le prix payé.</strong></div>
+      </div>
+    </div>
+    <div class="not-incl-bottom"><strong>C'est tout.</strong> Aucun autre frais caché. Je préfère que tu saches dès le départ : comme ça tu sais où tu vas.</div>
+  </div>
+
+  <div class="off-final-cta anim">
+    <a href="#contact" class="btn-a">Parler à Tarik (5 min, gratuit)</a>
+    <a href="tel:+33768789800" class="btn-tel">📞 07 68 78 98 00</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="sec">
+  <div class="srv-hdr">
+    <div>
+      <div class="eyebrow">Ce que je fais</div>
+      <h2 class="sec-h">Des services<br><span>qui rapportent.</span></h2>
+    </div>
+    <p class="srv-sub">Chaque prestation est pensée pour ramener de <strong style="color:var(--w);">vrais clients qui commandent chez toi en direct</strong>. Pas des likes, pas des clics inutiles. Des personnes du quartier qui te paient sans intermédiaire.</p>
+  </div>
+  <div class="srv-grid">
+    <div class="srv-card anim"><div class="srv-n">01</div><span class="srv-ico">🌐</span><div class="srv-name">Votre site internet</div><p class="srv-desc">Un beau site professionnel visible sur Google, rapide sur téléphone. Vos clients trouvent votre adresse, votre menu, vos services. Livré en 48h.</p><div class="srv-tags"><span class="srv-tag">Mobile-first</span><span class="srv-tag">SEO intégré</span><span class="srv-tag">Rapide</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">02</div><span class="srv-ico">📱</span><div class="srv-name">Commander par WhatsApp</div><p class="srv-desc">Vos clients commandent depuis votre site via WhatsApp. Vous recevez une alerte immédiate. Zéro commission, zéro intermédiaire.</p><div class="srv-tags"><span class="srv-tag">Panier</span><span class="srv-tag">Upsell</span><span class="srv-tag">Fidélité</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">03</div><span class="srv-ico">🛒</span><div class="srv-name">Suggestion au panier</div><p class="srv-desc">Quand un client commande, le site lui propose un produit complémentaire (boisson, frites, dessert…). +15 à 25% sur le montant des commandes sans rien faire de plus.</p><div class="srv-tags"><span class="srv-tag">Plus de marge</span><span class="srv-tag">Sans effort</span><span class="srv-tag">Auto</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">04</div><span class="srv-ico">🔍</span><div class="srv-name">Visible sur Google</div><p class="srv-desc">Quand quelqu'un cherche ton activité près de chez lui, c'est toi qui apparais. Fiche Google optimisée + posts mensuels + récolte d'avis.</p><div class="srv-tags"><span class="srv-tag">Fiche Google</span><span class="srv-tag">SEO local</span><span class="srv-tag">Maps</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">05</div><span class="srv-ico">⭐</span><div class="srv-name">Fidéliser vos clients</div><p class="srv-desc">Carte de fidélité digitale, collecte d'avis Google automatique, messages de relance. Vos clients reviennent et parlent de vous.</p><div class="srv-tags"><span class="srv-tag">Fidélité</span><span class="srv-tag">Avis Google</span><span class="srv-tag">Relances</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">06</div><span class="srv-ico">📊</span><div class="srv-name">Tout gérer pour vous</div><p class="srv-desc">Site, pub, réseaux sociaux, messages automatiques. Une seule personne qui connaît votre business par cœur. Vous faites votre métier.</p><div class="srv-tags"><span class="srv-tag">Stratégie</span><span class="srv-tag">Automation</span><span class="srv-tag">Reporting</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">07</div><span class="srv-ico">🔔</span><div class="srv-name">Alertes commandes temps réel</div><p class="srv-desc">Dès qu'un client commande, vous recevez une notification WhatsApp avec tous les détails. Nom, commande, montant, mode de livraison. Zéro raté.</p><div class="srv-tags"><span class="srv-tag">WhatsApp</span><span class="srv-tag">Instantané</span><span class="srv-tag">Zéro raté</span></div></div>
+    <div class="srv-card anim"><div class="srv-n">08</div><span class="srv-ico">💌</span><div class="srv-name">Messages promos automatiques</div><p class="srv-desc">Envoie des offres à tes clients au bon moment : "Ce soir -20%", "Ça fait longtemps, voici un cadeau". Tes clients reviennent sans que tu fasses quoi que ce soit.</p><div class="srv-tags"><span class="srv-tag">Automatique</span><span class="srv-tag">Promo</span><span class="srv-tag">Relance</span></div></div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="sec">
+  <div class="eyebrow">Ma méthode</div>
+  <h2 class="sec-h">Simple.<br><span>Rapide. Efficace.</span></h2>
+  <div class="proc-layout">
+    <div>
+      <div class="step anim"><div class="step-n">00</div><div><div class="step-title">Audit Express 47€ : pour tester sans risque</div><div class="step-desc">30 min en visio. J'identifie 5 trucs qui te plombent sur Google et on les corrige en LIVE. Tu repars avec un PDF + plan 7 jours. Si ça t'a pas plu, tu pars. Pas grave.</div></div></div>
+      <div class="step anim"><div class="step-n">01</div><div><div class="step-title">Démo de ton site en 48h</div><div class="step-desc">Tu choisis une offre, je te montre une vraie version live de ton site dans les 48h. Pas un mockup PDF, du vrai code sur ton vrai contenu.</div></div></div>
+      <div class="step anim"><div class="step-n">02</div><div><div class="step-title">Mise en ligne en 7 jours</div><div class="step-desc">On ajuste ensemble jusqu'à ce que tu valides. Mise en ligne, configuration Google, commande WhatsApp testée. Tu encaisses tes premières commandes en direct.</div></div></div>
+      <div class="step anim"><div class="step-n">03</div><div><div class="step-title">Suivi mensuel chiffré</div><div class="step-desc">Chaque mois, mini rapport : appels Google, vues fiche, commandes en direct, classement sur tes mots-clés. Tu vois si ça marche. Si non, je le corrige ou tu pars.</div></div></div>
+      <div class="step anim"><div class="step-n">04</div><div><div class="step-title">Je reste joignable, toujours</div><div class="step-desc">Pas de "service après-vente" à l'autre bout du monde. Tu m'écris sur WhatsApp, je réponds. Le soir, le week-end, quand t'as besoin.</div></div></div>
+    </div>
+    <div class="proc-vis">
+      <div class="pv-row"><span class="pv-l">Délai démo</span><span class="pv-v">48h chrono</span></div>
+      <div class="bar-lbl">Performance Lighthouse</div>
+      <div class="bar"><div class="bar-f" data-w="92"></div></div>
+      <div class="bar-lbl">Score SEO</div>
+      <div class="bar"><div class="bar-f" data-w="95"></div></div>
+      <div class="bar-lbl">Mobile-friendly</div>
+      <div class="bar"><div class="bar-f" data-w="100"></div></div>
+      <div class="tags-wrap">
+        <span class="tag-g">Site complet</span>
+        <span class="tag-g">Hébergement</span>
+        <span class="tag-g">SEO technique</span>
+        <span class="tag-g">WhatsApp setup</span>
+        <span class="tag-g">Google Analytics</span>
+        <span class="tag-g">Support continu</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="about-layout">
+    <div class="about-card anim">
+      <div class="about-name">Tarik</div>
+      <div class="about-role">Fondateur · Développeur & Stratège Digital</div>
+      <p class="about-bio">Pendant 7 ans j'ai livré les emballages des restos halal du Nord (Lille, Roubaix, Valenciennes, Douai, Lens). J'ai vu de l'intérieur ce qui marche, ce qui tue, ce qui plombe une marge. Aujourd'hui j'utilise tout ça pour aider mes confrères restaurateurs à <strong>reprendre leurs clients à Uber</strong> et devenir premiers sur Google.</p>
+      <div class="skills">
+        <span class="skill">Web Dev</span><span class="skill">SEO local</span><span class="skill">Fiche Google</span>
+        <span class="skill">WhatsApp API</span><span class="skill">Auto fidélité</span><span class="skill">N8N</span>
+      </div>
+    </div>
+    <div class="about-txt">
+      <div class="eyebrow">Qui je suis</div>
+      <h2 class="sec-h" style="margin-bottom:22px;">Pas une grosse<br><span>agence anonyme.</span></h2>
+      <p>Tu ne parles pas à un commercial qui balance ton dossier à un sous-traitant en Inde. <strong>C'est moi qui fais le boulot : code, pub, suivi, support.</strong> Toujours un seul numéro WhatsApp.</p>
+      <p>Je connais ton métier <strong>de l'intérieur</strong>. Les marges qui fondent, les commandes Uber qui arnaquent, les clients qui galèrent à trouver tes horaires. Et je sais exactement quoi faire pour <strong>récupérer cette marge et ces clients</strong>.</p>
+      <div class="nums">
+        <div class="num-c anim"><div class="num-v">7 ans</div><div class="num-l">Au service des restos Nord</div></div>
+        <div class="num-c anim"><div class="num-v">90j</div><div class="num-l">Top 3 Google ou remboursé</div></div>
+        <div class="num-c anim"><div class="num-v">0€</div><div class="num-l">Engagement · Commission</div></div>
+        <div class="num-c anim"><div class="num-v">47€</div><div class="num-l">Pour tester sans risque</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="sec">
+  <div class="eyebrow">Tes questions, mes réponses</div>
+  <h2 class="sec-h">Pas de bullshit.<br><span>Pas de blabla.</span></h2>
+  <div class="faq-list">
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Combien ça coûte vraiment ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in"><strong>790€ une seule fois pour la création du site, puis 190€/mois (Pack Essentiel) ou 290€/mois (Pack Premium)</strong> selon le niveau de service que tu choisis. <strong>Tout est inclus</strong> : hébergement, nom de domaine, SSL, Google, WhatsApp, support. <strong>Engagement minimum 6 mois</strong> parce que les résultats demandent du temps. Pas de surprise, pas de frais cachés.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Et si dans 1 an je veux partir ou changer de prestataire ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Tu pars avec <strong>ton site, ton domaine, tes contenus. Tout.</strong>. Je te transfère le tout en 24h sur ton compte personnel. À partir de là, tu paies directement OVH (~12€/an pour ton domaine) et l'hébergement (~5-10€/mois). <strong>Moi, je ne touche plus rien. Aucune prise d'otage. Aucun frais de sortie.</strong> Contrairement à Linkeo / Solocal qui gardent ton domaine si tu pars.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">J'ai déjà été arnaqué une fois. Pourquoi je te ferais confiance ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Je comprends. <strong>35% des restaurateurs ont été arnaqués par une agence web</strong>. C'est exactement pour ça que je m'engage <strong>avant</strong> que tu paies : site en ligne en 7 jours ou setup remboursé, engagement seulement 6 mois (vs 48 mois chez Linkeo / Solocal), ton site t'appartient à 100%. <strong>Le risque, c'est moi qui le prends, pas toi.</strong></div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">J'ai pas le temps. Combien ça me prend de mon côté ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in"><strong>30 minutes au total.</strong> Un appel WhatsApp pour qu'on cale ce que tu veux, un échange de photos, une validation. Le reste, je m'en occupe. Tu continues ton métier.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Mes clients viennent par bouche-à-oreille. J'ai besoin d'un site ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in"><strong>Le bouche-à-oreille en 2026 c'est Google.</strong> Quand quelqu'un te recommande, son ami tape ton nom + ta ville sur Google. Si tu n'apparais pas en 1er, ou si la fiche est moche, ou si l'horaire est faux, il va chez ton concurrent. <strong>Sans Google bien fait, tu perds 30-50% des recommandations.</strong></div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Je suis sur Uber Eats / Deliveroo, c'est suffisant non ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Suffisant pour qu'ils prennent <strong>30% de commission sur chaque commande</strong>. Utilise mon calculateur plus haut. Tu vas voir : à 20 commandes/jour à 18€, c'est <strong>~3 240€/mois aspirés</strong>. Sur un an, ~39 000€ de marge perdue. Mon offre la plus chère coûte ~10 000€/an. Le calcul est vite fait.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Je suis sur Insta. Pourquoi en plus un site ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Insta c'est <strong>la vitrine</strong>, mais 80% des clients qui veulent commander tapent sur Google. Insta + Google + WhatsApp = la combinaison qui marche. Je m'occupe des 3.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">J'ai un cousin qui m'a fait un site. Il fait pas le boulot que tu fais ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Avoir un site ≠ être visible. <strong>Si tu n'apparais pas dans les 3 premiers résultats Google quand on cherche ton activité dans ta ville, ton site sert à rien.</strong> Je peux te faire un audit Google à 47€ pour qu'on regarde ensemble où tu en es. Tu décides après.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">C'est rapide ? J'ai besoin de résultats vite.</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in"><strong>Démo du site en 48h. Site complet en ligne en 7 jours. Top 3 Google en 90 jours.</strong> Et la commande WhatsApp marche dès la mise en ligne.</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-t">Tu travailles avec qui ? J'ai des références dans le Nord ?</span><span class="faq-plus">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Oui ! Regarde la section "Projets" plus haut : <strong>Poulet Braisé Triolo (Villeneuve-d'Ascq), La Dalle Burger, La Slica (pizzeria), Installation Électrique IRVE Douai</strong>. Plus 7 ans d'historique en tant que fournisseur emballages dans le Nord.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="cont-layout">
+    <div>
+      <div class="eyebrow">On démarre ?</div>
+      <h2 class="sec-h">On démarre<br><span>quand vous voulez.</span></h2>
+      <p class="cont-sub">Tu me dis ton activité + ta ville + ce que tu veux. Je te réponds sous 24h avec un plan concret et un prix précis. <strong style="color:var(--w);">Pas de bullshit. Pas de devis interminable.</strong></p>
+      <div class="ci"><div class="ci-ico">📍</div><div class="ci-txt"><span>Localisation</span>Douai, Nord de France</div></div>
+      <div class="ci"><div class="ci-ico">🌐</div><div class="ci-txt"><span>Zone</span>Nord & toute la France</div></div>
+      <div class="ci"><div class="ci-ico">⏱</div><div class="ci-txt"><span>Disponibilité</span>Réponse sous 24h</div></div>
+      <a href="tel:+33768789800" class="ci" style="text-decoration:none;cursor:pointer;"><div class="ci-ico">📞</div><div class="ci-txt"><span>Téléphone (appel direct)</span><strong style="font-size:16px;color:var(--a);">07 68 78 98 00</strong></div></a>
+      <a href="https://wa.me/33768789800" target="_blank" class="ci" style="text-decoration:none;cursor:pointer;"><div class="ci-ico">💬</div><div class="ci-txt"><span>WhatsApp (réponse rapide)</span>07 68 78 98 00</div></a>
+      <a href="https://www.instagram.com/tk_digital-nord" target="_blank" class="ci" style="text-decoration:none;cursor:pointer;"><div class="ci-ico">📸</div><div class="ci-txt"><span>Instagram</span>@tk_digital-nord</div></a>
+      <a href="https://www.facebook.com/tk.digital.nord" target="_blank" class="ci" style="text-decoration:none;cursor:pointer;"><div class="ci-ico">👍</div><div class="ci-txt"><span>Facebook</span>tk.digital.nord</div></a>
+    </div>
+    <div class="cont-form">
+      <div class="form-ttl">Dites-moi ce qu'il vous faut</div>
+      <label class="f-lbl">Votre prénom & activité *</label>
+      <input class="f-inp" type="text" id="cf-prenom" placeholder="Ex : Karim, Restaurant à Douai">
+      <label class="f-lbl">Ce que vous voulez * (plusieurs choix)</label>
+      <div class="checks">
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Mon site internet</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Commande WhatsApp</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Suggestion d'un produit en plus à la commande</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Visible sur Google</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Fidéliser mes clients</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Alertes commandes</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Messages promos auto</label>
+        <label class="chk" onclick="toggleChk(this)"><span class="chk-box">☐</span> Tout gérer pour moi</label>
+      </div>
+      <button class="btn-wa" onclick="sendWA()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Envoyer sur WhatsApp (gratuit)
+      </button>
+      <p class="f-note">En 1 clic · Réponse sous 24h · Sans engagement</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <div class="ft-logo-txt">TK <span>Digital</span></div>
+      <p class="ft-tagline">Sites web, marketing digital & fidélisation. Nord de France & toute la France.</p>
+    </div>
+    <div class="ft-cols">
+      <div class="ft-col">
+        <div class="ft-col-ttl">Offre</div>
+        <a href="#offres">Setup 790€ une fois</a>
+        <a href="#offres">Pack Essentiel 190€/mois</a>
+        <a href="#offres">Pack Premium 290€/mois</a>
+        <a href="#offres">Engagement 6 mois</a>
+        <a href="#garantie">Garanties</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-ttl">Navigation</div>
+        <a href="#calculateur">Calculateur Uber</a>
+        <a href="#garantie">Garantie 90j</a>
+        <a href="#portfolio">Projets</a>
+        <a href="#why">Pourquoi moi</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-ttl">Contact</div>
+        <a href="https://wa.me/33768789800" target="_blank">WhatsApp</a>
+        <a href="https://www.instagram.com/tk_digital-nord" target="_blank">Instagram</a>
+        <a href="https://www.facebook.com/tk.digital.nord" target="_blank">Facebook</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span class="ft-copy">© 2026 TK Digital · Tarik · Douai, Nord de France</span>
+    <span class="ft-copy">Fait avec ⚡ dans le Nord</span>
+  </div>
+</footer>
+
+<!-- MODALE PREVIEW -->
+<div id="previewModal">
+  <div class="pm-box">
+    <div class="pm-bar">
+      <div class="pm-dots">
+        <div class="pm-dot r"></div>
+        <div class="pm-dot y"></div>
+        <div class="pm-dot g"></div>
+      </div>
+      <div class="pm-url" id="pm-url">https://...</div>
+      <a class="pm-ext" id="pm-ext" href="#" target="_blank">↗ Ouvrir</a>
+      <button class="pm-close" id="pm-close">✕</button>
+    </div>
+    <iframe class="pm-frame" id="pm-frame" src="about:blank"></iframe>
+  </div>
+</div>
+
+<!-- BOT -->
+<div id="bot">
+  <button id="bot-btn" onclick="botToggle()">🤖<div class="bot-ping"></div></button>
+  <div id="bot-panel">
+    <div class="bp-head">
+      <div class="bp-av">🤖</div>
+      <div><div class="bp-name">TK Assistant</div><div class="bp-st">● En ligne</div></div>
+      <button id="bp-close" onclick="botToggle()">✕</button>
+    </div>
+    <div id="bp-msgs"></div>
+    <div id="bp-sugs">
+      <button class="bsug" onclick="botSug(this)">💰 Combien ça coûte ?</button>
+      <button class="bsug" onclick="botSug(this)">⏱ C'est rapide ?</button>
+      <button class="bsug" onclick="botSug(this)">🌐 Vous faites quoi ?</button>
+      <button class="bsug" onclick="botSug(this)">📞 Parler à Tarik</button>
+    </div>
+    <div id="bp-inp-row">
+      <input id="bp-inp" type="text" placeholder="Votre question...">
+      <button id="bp-send">➤</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── TOUT LE JS EN BAS DU BODY — DOM TOUJOURS PRÊT ──
+
+// CURSOR
+(function(){
+  var c = document.getElementById('cur');
+  var r = document.getElementById('curR');
+  if (!c) return;
+  document.addEventListener('mousemove', function(e){
+    c.style.left = e.clientX + 'px';
+    c.style.top  = e.clientY + 'px';
+    r.style.left = e.clientX + 'px';
+    r.style.top  = e.clientY + 'px';
+  });
+  document.querySelectorAll('a,button,.srv-card,.proj,.step,.bsug,.chk').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ c.style.width='20px'; c.style.height='20px'; r.style.width='50px'; r.style.height='50px'; });
+    el.addEventListener('mouseleave', function(){ c.style.width='12px'; c.style.height='12px'; r.style.width='36px'; r.style.height='36px'; });
+  });
+})();
+
+// NAV
+window.addEventListener('scroll', function(){
+  document.getElementById('nav').classList.toggle('solid', window.scrollY > 60);
+});
+
+// SCROLL ANIMATIONS
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('vis'); });
+}, {threshold: 0.08});
+document.querySelectorAll('.anim').forEach(function(el, i){
+  el.style.transitionDelay = (i % 6) * 0.07 + 's';
+  obs.observe(el);
+});
+
+// CALCULATEUR ANTI-UBER
+function calcUber(){
+  var o = parseFloat(document.getElementById('calc-orders').value) || 0;
+  var b = parseFloat(document.getElementById('calc-basket').value) || 0;
+  var c = parseFloat(document.getElementById('calc-commission').value) || 0;
+  var month = o * b * (c/100) * 30;
+  var year = month * 12;
+  document.getElementById('calc-month').textContent = month.toLocaleString('fr-FR',{maximumFractionDigits:0}) + '€';
+  document.getElementById('calc-year').textContent = year.toLocaleString('fr-FR',{maximumFractionDigits:0}) + '€';
+}
+['calc-orders','calc-basket','calc-commission'].forEach(function(id){
+  var el = document.getElementById(id);
+  if(el) el.addEventListener('input', calcUber);
+});
+calcUber();
+
+// BARS ANIMATION
+var barObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.bar-f').forEach(function(f){ f.style.width = f.dataset.w + '%'; });
+    }
+  });
+}, {threshold: 0.3});
+var procVis = document.querySelector('.proc-vis');
+if(procVis) barObs.observe(procVis);
+
+// ── PREVIEW MODALE ──
+function openPreview(url) {
+  var modal = document.getElementById('previewModal');
+  var frame = document.getElementById('pm-frame');
+  var urlEl = document.getElementById('pm-url');
+  var ext   = document.getElementById('pm-ext');
+  urlEl.textContent = url;
+  ext.href = url;
+  frame.src = url;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closePreview() {
+  var modal = document.getElementById('previewModal');
+  var frame = document.getElementById('pm-frame');
+  modal.classList.remove('active');
+  frame.src = 'about:blank';
+  document.body.style.overflow = '';
+}
+document.getElementById('pm-close').addEventListener('click', closePreview);
+document.getElementById('previewModal').addEventListener('click', function(e){
+  if (e.target === this) closePreview();
+});
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePreview(); });
+
+// ── FORMULAIRE ──
+function toggleChk(el) {
+  el.classList.toggle('on');
+  var b = el.querySelector('.chk-box');
+  if(b) b.textContent = el.classList.contains('on') ? '☑' : '☐';
+}
+function sendWA() {
+  var prenom = document.getElementById('cf-prenom').value.trim();
+  if(!prenom){ alert("Entrez votre prénom et activité"); document.getElementById('cf-prenom').focus(); return; }
+  var sel = Array.from(document.querySelectorAll('.chk.on')).map(function(el){ return el.textContent.replace('☑','').trim(); });
+  if(!sel.length){ alert('Cochez au moins un service'); return; }
+  var txt = 'Bonjour Tarik ! 👋\n\n' + prenom + '\n\nJe suis intéressé par :\n' + sel.map(function(s){ return '• ' + s; }).join('\n') + '\n\nMerci de me recontacter !';
+  window.open('https://wa.me/33768789800?text=' + encodeURIComponent(txt), '_blank');
+}
+
+// ── BOT ──
+var botOpen = false, botInit = false, botStep = 0, botData = {};
+
+var BQA = {
+  'prix':       '790€ une seule fois pour créer ton site, puis 2 formules au choix : Pack Essentiel à 190€/mois (site + Google + WhatsApp + suggestions panier + récolte d\'avis) ou Pack Premium à 290€/mois (en plus : modifs illimitées + auto-réponses avis + relances fidélité + support 7j/7). Engagement 6 mois 😊',
+  'cout':       '790€ une seule fois pour créer ton site, puis 2 formules au choix : Pack Essentiel à 190€/mois (site + Google + WhatsApp + suggestions panier + récolte d\'avis) ou Pack Premium à 290€/mois (en plus : modifs illimitées + auto-réponses avis + relances fidélité + support 7j/7). Engagement 6 mois 😊',
+  'combi':      '790€ une seule fois pour créer ton site, puis 2 formules au choix : Pack Essentiel à 190€/mois (site + Google + WhatsApp + suggestions panier + récolte d\'avis) ou Pack Premium à 290€/mois (en plus : modifs illimitées + auto-réponses avis + relances fidélité + support 7j/7). Engagement 6 mois 😊',
+  'tarif':      '790€ une seule fois pour créer ton site, puis 2 formules au choix : Pack Essentiel à 190€/mois (site + Google + WhatsApp + suggestions panier + récolte d\'avis) ou Pack Premium à 290€/mois (en plus : modifs illimitées + auto-réponses avis + relances fidélité + support 7j/7). Engagement 6 mois 😊',
+  'budget':     '790€ une seule fois pour créer ton site, puis 2 formules au choix : Pack Essentiel à 190€/mois (site + Google + WhatsApp + suggestions panier + récolte d\'avis) ou Pack Premium à 290€/mois (en plus : modifs illimitées + auto-réponses avis + relances fidélité + support 7j/7). Engagement 6 mois 😊',
+  'rapide':     'La première version de votre site est prête en 48h. Vous validez, on ajuste, on met en ligne en moins d\'une semaine.',
+  'delai':      'La première version de votre site est prête en 48h. Vous validez, on ajuste, on met en ligne en moins d\'une semaine.',
+  'faite':      'Je crée des sites web, je configure ta fiche Google, je mets en place la commande WhatsApp et les suggestions au panier, je récolte les avis automatiquement, et je gère les relances fidélité. Tout sans jargon.',
+  'service':    'Je crée des sites web, je configure ta fiche Google, je mets en place la commande WhatsApp et les suggestions au panier, je récolte les avis automatiquement, et je gère les relances fidélité. Tout sans jargon.',
+  'tarik':      'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
+  'parler':     'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
+  'contact':    'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank">Écrire sur WhatsApp</a>',
+  'google':     'Votre site est optimisé pour apparaître sur Google quand quelqu\'un cherche votre activité dans votre ville.',
+  'fideli':     'La carte de fidélité digitale + relances automatiques pour les clients qui ne sont pas revenus depuis 2 semaines (Pack Premium). Tes clients reviennent sans que tu fasses rien.',
+  'panier':     'Quand un client commande sur ton site, on lui propose 1 produit complémentaire (boisson, frites, dessert) → +15 à 25% sur le montant des commandes sans effort. Inclus dans tous les packs.',
+  'suggestion': 'Quand un client commande sur ton site, on lui propose 1 produit complémentaire (boisson, frites, dessert) → +15 à 25% sur le montant des commandes sans effort. Inclus dans tous les packs.',
+  'command':    'Vos clients commandent depuis votre site via WhatsApp. Vous recevez une notification immédiate. Zéro commission.',
+  'whatsapp':   'Vos clients commandent depuis votre site via WhatsApp. Vous recevez une notification immédiate. Zéro commission.',
+  'resto':      'Oui, beaucoup de restaurants ! Commande WhatsApp, fidélité, pub ciblée. Regardez les projets dans la section Portfolio.',
+  'restaurant': 'Oui, beaucoup de restaurants ! Commande WhatsApp, fidélité, pub ciblée. Regardez les projets dans la section Portfolio.',
+  'autre':      'Mon focus principal c\'est les restos halal du Nord (kebabs, pizzerias, snacks, fast-foods). Si t\'es dans une autre activité du Nord, on peut en parler.',
+};
+
+function botReply(msg) {
+  var low = msg.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  for(var k in BQA){ if(low.indexOf(k)>=0) return BQA[k]; }
+  botStep++;
+  if(botStep===1){ botData.q1=msg; return 'Je comprends 😊 Avez-vous déjà un site internet actuellement ?'; }
+  if(botStep===2){ botData.q2=msg; return 'Quel est votre type d\'activité ? (restaurant, boutique, coiffeur...)'; }
+  var wa='https://wa.me/33768789800?text='+encodeURIComponent('Bonjour Tarik !\n\n'+botData.q1+'\nSite actuel : '+botData.q2+'\nActivité : '+msg);
+  return 'Parfait ! Cliquez ici pour envoyer vos infos à Tarik 👉 <a href="'+wa+'" target="_blank" style="color:var(--a);font-weight:700;">Envoyer sur WhatsApp →</a>';
+}
+
+function botAdd(txt, who) {
+  var d = document.createElement('div');
+  d.className = 'bm ' + who;
+  d.innerHTML = txt;
+  document.getElementById('bp-msgs').appendChild(d);
+  document.getElementById('bp-msgs').scrollTop = 9999;
+}
+
+function botType(cb) {
+  var t = document.createElement('div');
+  t.className = 'btyp'; t.id = 'btyp-el';
+  t.innerHTML = '<span></span><span></span><span></span>';
+  document.getElementById('bp-msgs').appendChild(t);
+  document.getElementById('bp-msgs').scrollTop = 9999;
+  setTimeout(function(){
+    var el = document.getElementById('btyp-el');
+    if(el) el.remove();
+    cb();
+    document.getElementById('bp-msgs').scrollTop = 9999;
+  }, 800);
+}
+
+function botSend() {
+  var inp = document.getElementById('bp-inp');
+  var msg = inp.value.trim();
+  if(!msg) return;
+  botAdd(msg, 'u');
+  inp.value = '';
+  document.getElementById('bp-sugs').style.display = 'none';
+  botType(function(){ botAdd(botReply(msg), 'b'); });
+}
+
+function botSug(el) {
+  var txt = el.textContent.trim();
+  botAdd(txt, 'u');
+  document.getElementById('bp-sugs').style.display = 'none';
+  var low = txt.toLowerCase();
+  var r = (low.indexOf('tarik')>=0||low.indexOf('parler')>=0)
+    ? 'Tarik est disponible maintenant 👉 <a href="https://wa.me/33768789800" target="_blank" style="color:var(--a);">Écrire sur WhatsApp →</a>'
+    : botReply(txt);
+  botType(function(){ botAdd(r, 'b'); });
+}
+
+function botToggle() {
+  botOpen = !botOpen;
+  document.getElementById('bot-panel').classList.toggle('open', botOpen);
+  if(botOpen && !botInit) {
+    botInit = true;
+    botType(function(){ botAdd('Bonjour 👋 Je suis l\'assistant TK Digital. Comment puis-je vous aider ?', 'b'); });
+  }
+  if(botOpen) document.getElementById('bp-inp').focus();
+}
+
+// Événements bot
+document.getElementById('bp-send').addEventListener('click', botSend);
+document.getElementById('bp-inp').addEventListener('keydown', function(e){ if(e.key==='Enter') botSend(); });
+
+// Auto-ouvre après 10s d'inactivité
+var idleT;
+function resetIdle(){ clearTimeout(idleT); idleT=setTimeout(function(){ if(!botOpen&&!botInit) botToggle(); },10000); }
+['mousemove','scroll','keypress','touchstart'].forEach(function(e){ document.addEventListener(e,resetIdle,{passive:true}); });
+resetIdle();
+</script>
+</body>
+</html>
