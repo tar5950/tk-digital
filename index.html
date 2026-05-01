@@ -223,18 +223,31 @@ h1 .l3{display:block;color:var(--w);opacity:0;animation:fup .8s .8s forwards;}
 /* PORTFOLIO */
 #portfolio{background:var(--n2);}
 .port-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:20px;}
-.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
-.proj{position:relative;overflow:hidden;background:var(--n3);aspect-ratio:16/9;cursor:pointer;}
-.proj:first-child{grid-column:span 2;aspect-ratio:21/9;}
-.proj-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:64px;transition:transform .6s;}
-.proj:hover .proj-bg{transform:scale(1.06);}
-.proj-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.95) 0%,transparent 55%);opacity:0;transition:opacity .3s;}
-.proj:hover .proj-ov{opacity:1;}
-.proj-info{position:absolute;bottom:0;left:0;right:0;padding:28px;transform:translateY(16px);opacity:0;transition:all .3s;}
-.proj:hover .proj-info{transform:translateY(0);opacity:1;}
-.proj-cat{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:6px;}
-.proj-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--w);}
-.proj-lnk{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--n);background:var(--a);padding:4px 12px;border-radius:2px;}
+.port-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
+.proj{position:relative;overflow:hidden;background:var(--n3);aspect-ratio:16/10;cursor:pointer;border-radius:8px;border:1px solid transparent;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s;background-size:cover;background-position:center;}
+.proj:nth-child(1){grid-column:span 4;aspect-ratio:21/9;}
+.proj:nth-child(2){grid-column:span 2;}
+.proj:nth-child(3){grid-column:span 2;}
+.proj:nth-child(4){grid-column:span 2;}
+.proj:nth-child(5){grid-column:span 2;}
+.proj::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .8s cubic-bezier(.2,.8,.2,1);z-index:0;}
+.proj:hover{transform:translateY(-4px);border-color:rgba(200,241,53,.4);box-shadow:0 18px 48px rgba(0,0,0,.5),0 0 0 1px rgba(200,241,53,.15);}
+.proj:hover::before{transform:scale(1.08);}
+.proj-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.95) 0%,rgba(5,5,5,.55) 50%,rgba(5,5,5,.25) 100%);z-index:1;transition:background .35s;}
+.proj:hover .proj-ov{background:linear-gradient(to top,rgba(5,5,5,.96) 0%,rgba(5,5,5,.7) 60%,rgba(5,5,5,.35) 100%);}
+.proj-info{position:absolute;bottom:0;left:0;right:0;padding:24px;z-index:2;}
+.proj-cat{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:8px;background:rgba(200,241,53,.12);border:1px solid rgba(200,241,53,.25);padding:3px 10px;border-radius:2px;backdrop-filter:blur(6px);}
+.proj-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--w);line-height:1.15;letter-spacing:-.005em;text-shadow:0 2px 12px rgba(0,0,0,.6);}
+.proj:nth-child(1) .proj-name{font-size:30px;}
+.proj-lnk{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--n);background:var(--a);padding:8px 14px;border-radius:3px;transform:translateY(6px);opacity:0;transition:transform .3s,opacity .3s;}
+.proj:hover .proj-lnk{transform:translateY(0);opacity:1;}
+
+/* Photos Unsplash en background (libres de droits) */
+.proj-1::before{background-image:url('https://images.unsplash.com/photo-1508615263227-c5d58c1e5821?w=1600&q=80');}
+.proj-2::before{background-image:url('https://images.unsplash.com/photo-1730987878944-4d0b9e8db415?w=1200&q=80');}
+.proj-3::before{background-image:url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&q=80');}
+.proj-4::before{background-image:url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1200&q=80');}
+.proj-5::before{background-image:url('https://images.unsplash.com/photo-1663579748061-b53ee57b6974?w=1200&q=80');}
 
 /* STATUS BADGES (NEW — HONNÊTES) */
 .proj-status{
@@ -578,12 +591,16 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
 /* RESPONSIVE */
 @media(max-width:1024px){
   .srv-grid{grid-template-columns:repeat(2,1fr);}
-  .port-grid{grid-template-columns:1fr;}
-  .proj:first-child{grid-column:auto;aspect-ratio:16/9;}
+  .port-grid{grid-template-columns:repeat(2,1fr);}
+  .proj:nth-child(1),.proj:nth-child(2),.proj:nth-child(3),.proj:nth-child(4),.proj:nth-child(5){grid-column:span 1;aspect-ratio:16/10;}
+  .proj:nth-child(1) .proj-name{font-size:22px;}
   .proc-layout,.about-layout,.cont-layout,.srv-hdr{grid-template-columns:1fr;gap:40px;}
   .ft-top{flex-direction:column;}
 }
 @media(max-width:600px){
+  .port-grid{grid-template-columns:1fr;}
+  .proj{aspect-ratio:4/3;}
+  .proj:nth-child(1) .proj-name{font-size:20px;}
   nav{padding:0 4%;}
   .nav-links{display:none;}
   .sec{padding:64px 4%;}
@@ -889,50 +906,45 @@ footer{background:var(--n2);border-top:1px solid var(--n4);padding:56px 5% 28px;
     <p style="font-size:13px;color:var(--mid);max-width:280px;line-height:1.6;">Cliquez sur un projet pour le voir en direct — sans quitter cette page.</p>
   </div>
   <div class="port-grid">
-    <div class="proj anim" onclick="openPreview('https://tar5950.github.io/poulet-brais-4/')">
-      <div class="proj-status active"><span class="dot-st"></span>Client actif</div>
-      <div class="proj-bg">🔥</div>
+    <div class="proj proj-1 anim" onclick="openPreview('https://tar5950.github.io/poulet-brais-4/')">
       <div class="proj-ov"></div>
+      <div class="proj-status active"><span class="dot-st"></span>Client actif</div>
       <div class="proj-info">
         <div class="proj-cat">Restaurant · Villeneuve-d'Ascq</div>
         <div class="proj-name">Poulet Braisé Triolo</div>
         <span class="proj-lnk">Voir le site →</span>
       </div>
     </div>
-    <div class="proj anim" onclick="openPreview('https://tar5950.github.io/la-dalle-burger/')">
-      <div class="proj-status demo"><span class="dot-st"></span>Démo portfolio</div>
-      <div class="proj-bg">🍔</div>
+    <div class="proj proj-2 anim" onclick="openPreview('https://tar5950.github.io/la-dalle-burger/')">
       <div class="proj-ov"></div>
+      <div class="proj-status demo"><span class="dot-st"></span>Démo portfolio</div>
       <div class="proj-info">
         <div class="proj-cat">Street Food · Concept</div>
         <div class="proj-name">La Dalle Burger</div>
         <span class="proj-lnk">Voir la démo →</span>
       </div>
     </div>
-    <div class="proj anim" onclick="openPreview('https://tar5950.github.io/la-slica/')">
-      <div class="proj-status demo"><span class="dot-st"></span>Démo portfolio</div>
-      <div class="proj-bg">🍕</div>
+    <div class="proj proj-3 anim" onclick="openPreview('https://tar5950.github.io/la-slica/')">
       <div class="proj-ov"></div>
+      <div class="proj-status demo"><span class="dot-st"></span>Démo portfolio</div>
       <div class="proj-info">
         <div class="proj-cat">Pizzeria · Concept</div>
         <div class="proj-name">La Slica</div>
         <span class="proj-lnk">Voir la démo →</span>
       </div>
     </div>
-    <div class="proj anim" onclick="openPreview('https://tar5950.github.io/prestige-barber/')">
-      <div class="proj-status demo"><span class="dot-st"></span>Démo portfolio</div>
-      <div class="proj-bg">💈</div>
+    <div class="proj proj-4 anim" onclick="openPreview('https://tar5950.github.io/prestige-barber/')">
       <div class="proj-ov"></div>
+      <div class="proj-status demo"><span class="dot-st"></span>Démo portfolio</div>
       <div class="proj-info">
         <div class="proj-cat">Barbershop · Concept</div>
         <div class="proj-name">Prestige Barber</div>
         <span class="proj-lnk">Voir la démo →</span>
       </div>
     </div>
-    <div class="proj anim">
-      <div class="proj-status soon"><span class="dot-st"></span>Bientôt</div>
-      <div class="proj-bg">⚡</div>
+    <div class="proj proj-5 anim">
       <div class="proj-ov"></div>
+      <div class="proj-status soon"><span class="dot-st"></span>Bientôt</div>
       <div class="proj-info">
         <div class="proj-cat">Électricien IRVE · Douai</div>
         <div class="proj-name">Installation Électrique</div>
