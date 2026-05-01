@@ -71,20 +71,21 @@ nav.solid{background:rgba(5,5,5,.96);border-color:var(--border);backdrop-filter:
 
 /* HERO */
 #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5% 80px;position:relative;overflow:hidden;}
-.hbg{position:absolute;inset:0;}
-.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,241,53,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,241,53,.03) 1px,transparent 1px);background-size:60px 60px;}
+.hbg{position:absolute;inset:0;background:url('images/hero-restaurateur.png') center/cover no-repeat;}
+.hbg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,5,5,.92) 0%,rgba(5,5,5,.7) 50%,rgba(5,5,5,.95) 100%);}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,241,53,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(200,241,53,.025) 1px,transparent 1px);background-size:60px 60px;z-index:1;}
 .hglow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(200,241,53,.07) 0%,transparent 65%);top:-200px;right:-150px;pointer-events:none;}
-.htag{position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;background:var(--n3);border:1px solid var(--border);padding:6px 14px;border-radius:2px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:28px;opacity:0;animation:fup .6s .2s forwards;}
+.htag{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;background:rgba(20,20,20,.85);backdrop-filter:blur(8px);border:1px solid var(--border);padding:6px 14px;border-radius:2px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--a);margin-bottom:28px;opacity:0;animation:fup .6s .2s forwards;}
 .htag-dot{width:6px;height:6px;background:var(--a);border-radius:50%;animation:bth 2s infinite;}
 .htag-urg{background:rgba(255,140,66,.08);border:1px solid rgba(255,140,66,.3);color:#ff8c42;}
 .htag-urg .htag-dot{background:#ff8c42;}
-h1{position:relative;z-index:1;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,4vw,58px);line-height:1.15;letter-spacing:-.01em;margin-bottom:36px;}
+h1{position:relative;z-index:2;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,4vw,58px);line-height:1.15;letter-spacing:-.01em;margin-bottom:36px;text-shadow:0 2px 12px rgba(0,0,0,.5);}
 h1 .l1{display:block;color:var(--w);opacity:0;animation:fup .8s .4s forwards;}
 h1 .l2{display:block;color:var(--a);opacity:0;animation:fup .8s .6s forwards;}
 h1 .l3{display:block;color:var(--w);opacity:0;animation:fup .8s .8s forwards;}
-.hbot{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:28px;opacity:0;animation:fup .6s 1.2s forwards;}
-.hsub{font-size:15px;font-weight:300;color:var(--mid);line-height:1.8;max-width:400px;}
-.hsub strong{color:var(--w);font-weight:400;}
+.hbot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:28px;opacity:0;animation:fup .6s 1.2s forwards;}
+.hsub{font-size:15px;font-weight:300;color:var(--w2);line-height:1.8;max-width:520px;text-shadow:0 1px 6px rgba(0,0,0,.4);}
+.hsub strong{color:var(--w);font-weight:500;}
 .hbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
 .btn-a{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--n);background:var(--a);padding:14px 28px;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:background .2s;}
 .btn-a:hover{background:var(--a2);}
