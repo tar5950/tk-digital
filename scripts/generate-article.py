@@ -882,7 +882,8 @@ def main():
     if related:
         log(f"🔗 Related articles for internal linking: {[a['slug'] for a in related]}")
 
-    # Génère le HTML
+    # Génère le HTML (s'assure que le dossier existe)
+    ARTICLES.mkdir(parents=True, exist_ok=True)
     date_str = datetime.date.today().isoformat()
     filename = f"{date_str}-{topic['slug']}.html"
     filepath = ARTICLES / filename
