@@ -396,6 +396,77 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
   border-bottom: 1px solid var(--n4);
 }
 .calc-row:last-child { border-bottom: none; }
+.calc-row.is-hidden { display: none; }
+
+/* Checkboxes options Planity */
+.calc-options {
+  margin-top: 18px;
+  padding: 16px;
+  background: var(--n3);
+  border: 1px solid var(--n4);
+  border-radius: 2px;
+}
+.calc-options-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 12px;
+}
+.calc-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  cursor: pointer;
+  user-select: none;
+}
+.calc-opt input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  border: 1px solid var(--n4);
+  background: var(--n2);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  margin-top: 2px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.calc-opt input[type="checkbox"]:checked {
+  background: var(--a);
+  border-color: var(--a);
+}
+.calc-opt input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--n);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.calc-opt-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--w2);
+  line-height: 1.5;
+}
+.calc-opt-text strong { color: var(--w); font-weight: 500; }
+.calc-opt-text em {
+  display: block;
+  font-style: normal;
+  font-size: 11px;
+  color: var(--mid);
+  margin-top: 2px;
+}
 .calc-label {
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
@@ -964,6 +1035,34 @@ details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
       </div>
     </div>
 
+    <div class="calc-options">
+      <p class="calc-options-title">Coche ce qui s'applique chez toi</p>
+
+      <label class="calc-opt">
+        <input type="checkbox" id="opt-acquisition">
+        <span class="calc-opt-text">
+          <strong>J'utilise l'option «&nbsp;Acquisition de clients&nbsp;» Planity</strong>
+          <em>Commission de 25% sur le 1er RDV des nouveaux clients amenés via planity.com (~10% de tes RDV en moyenne)</em>
+        </span>
+      </label>
+
+      <label class="calc-opt">
+        <input type="checkbox" id="opt-pay">
+        <span class="calc-opt-text">
+          <strong>J'encaisse via Planity Pay (acomptes / CB en ligne)</strong>
+          <em>Commission ~1.5% sur les transactions en ligne (estimation 30% de ton CA payé en ligne)</em>
+        </span>
+      </label>
+
+      <label class="calc-opt">
+        <input type="checkbox" id="opt-marketplace">
+        <span class="calc-opt-text">
+          <strong>Mes clients voient mes concurrents sur planity.com</strong>
+          <em>Cannibalisation marketplace&nbsp;: estimation prudente 2% de tes clients fidèles partent chez un concurrent vu sur Planity</em>
+        </span>
+      </label>
+    </div>
+
     <div class="calc-detail">
       <div class="calc-row">
         <span class="calc-label">Abonnement Planity Pro</span>
@@ -980,6 +1079,18 @@ details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
       <div class="calc-row">
         <span class="calc-label">Clients dormants non-relançables (5% du CA)</span>
         <span class="calc-val" id="lc-dormants">—</span>
+      </div>
+      <div class="calc-row is-hidden" id="row-acquisition">
+        <span class="calc-label">Commission Acquisition Planity (25% du 1er RDV)</span>
+        <span class="calc-val" id="lc-acquisition">—</span>
+      </div>
+      <div class="calc-row is-hidden" id="row-pay">
+        <span class="calc-label">Commission Planity Pay (~1.5% des paiements en ligne)</span>
+        <span class="calc-val" id="lc-pay">—</span>
+      </div>
+      <div class="calc-row is-hidden" id="row-marketplace">
+        <span class="calc-label">Cannibalisation marketplace (2% clients fidèles)</span>
+        <span class="calc-val" id="lc-marketplace">—</span>
       </div>
     </div>
 
@@ -1154,7 +1265,7 @@ details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>Sources&nbsp;: Trustpilot Planity (avis Sara Angelovski 2022, ALS 2022, et autres avis vérifiés 1★) · BreizhApp 2025 (analyse modèle économique Planity, propriété des données clients) · Reddit r/coiffure et r/conseiljuridique (témoignages barbiers et juridique RGPD) · CNIL (art. 20 RGPD — droit à la portabilité des données). Les calculs sont des estimations basées sur 89€/mois (tarif Planity Pro 2026 indicatif), un taux de no-shows moyen de 12% (source enquêtes secteur coiffure/barbier FR), une hausse de +12%/an composée sur 36 mois (estimation prudente fondée sur les hausses observées sur les plateformes SaaS du secteur), et une perte de 5% du CA annuel sur les clients dormants non-relançables (estimation très conservatrice — le marketing direct récupère habituellement 15 à 30% des clients dormants via une simple relance WhatsApp/SMS, impossible sans fichier client à toi). Aucune garantie de résultat exprimée ou implicite. TK Digital · Tarik · 07 68 78 98 00 · Douai, Nord de France.</p>
+    <p>Sources&nbsp;: Trustpilot Planity (avis Sara Angelovski 2022, ALS 2022, et autres avis vérifiés 1★) · BreizhApp 2025 (analyse modèle économique Planity, propriété des données clients) · Reddit r/coiffure et r/conseiljuridique (témoignages barbiers et juridique RGPD) · CNIL (art. 20 RGPD — droit à la portabilité des données). Les calculs sont des estimations basées sur 89€/mois (tarif Planity Pro 2026 indicatif), un taux de no-shows moyen de 12% (source enquêtes secteur coiffure/barbier FR), une hausse de +12%/an composée sur 36 mois (estimation prudente fondée sur les hausses observées sur les plateformes SaaS du secteur), et une perte de 5% du CA annuel sur les clients dormants non-relançables (estimation très conservatrice — le marketing direct récupère habituellement 15 à 30% des clients dormants via une simple relance WhatsApp/SMS, impossible sans fichier client à toi). Options optionnelles&nbsp;: commission Acquisition Planity 25% sur le 1er RDV des nouveaux clients (source&nbsp;: conditions Planity, option activable côté pro)&nbsp;; Planity Pay ~1.5% sur paiements en ligne (source&nbsp;: tarifs Planity Pay)&nbsp;; cannibalisation marketplace 2% (estimation interne, observable sur planity.com où la recherche par ville liste tous les barbiers concurrents). Aucune garantie de résultat exprimée ou implicite. TK Digital · Tarik · 07 68 78 98 00 · Douai, Nord de France.</p>
   </footer>
 
 </div>
@@ -1228,7 +1339,24 @@ details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
     // (le marketing direct récupère habituellement 15-30% des dormants — on prend 5% pour être prudent).
     var caAnnuel = prixCoupe * rdvMois * 12;
     var dormantsAnnuel = caAnnuel * 0.05;
-    var totalAnnuel = aboAnnuel + noShowsPerdusAnnuel + dormantsAnnuel;
+
+    // Options conditionnelles
+    var optAcquisition = document.getElementById('opt-acquisition').checked;
+    var optPay = document.getElementById('opt-pay').checked;
+    var optMarketplace = document.getElementById('opt-marketplace').checked;
+
+    // Acquisition Planity : 10% des RDV = nouveaux clients via planity.com, commission 25% sur le 1er RDV
+    var acquisitionAnnuel = optAcquisition ? rdvMois * 0.10 * prixCoupe * 0.25 * 12 : 0;
+    // Planity Pay : ~1.5% sur 30% du CA payé en ligne
+    var payAnnuel = optPay ? caAnnuel * 0.30 * 0.015 : 0;
+    // Cannibalisation marketplace : 2% des clients fidèles partent chez un concurrent vu sur planity.com
+    var marketplaceAnnuel = optMarketplace ? caAnnuel * 0.02 : 0;
+
+    document.getElementById('row-acquisition').classList.toggle('is-hidden', !optAcquisition);
+    document.getElementById('row-pay').classList.toggle('is-hidden', !optPay);
+    document.getElementById('row-marketplace').classList.toggle('is-hidden', !optMarketplace);
+
+    var totalAnnuel = aboAnnuel + noShowsPerdusAnnuel + dormantsAnnuel + acquisitionAnnuel + payAnnuel + marketplaceAnnuel;
     var totalMois = totalAnnuel / 12;
 
     var caMois = prixCoupe * rdvMois;
@@ -1246,12 +1374,18 @@ details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
     anim('lc-tva', fmt(noShowsPerdusAnnuel));
     anim('lc-ref', '+ ' + fmt(haussesCumul36Mois) + ' sur 36 mois');
     anim('lc-dormants', fmt(dormantsAnnuel));
+    if (optAcquisition) anim('lc-acquisition', fmt(acquisitionAnnuel));
+    if (optPay) anim('lc-pay', fmt(payAnnuel));
+    if (optMarketplace) anim('lc-marketplace', fmt(marketplaceAnnuel));
     anim('lc-total', fmt(totalMois));
     anim('lc-annuel', fmt(totalAnnuel) + ' sur l\'année (hors hausses)');
   }
 
   ['l-panier','l-cmds','l-jours'].forEach(function(id){
     document.getElementById(id).addEventListener('input', calcLanding);
+  });
+  ['opt-acquisition','opt-pay','opt-marketplace'].forEach(function(id){
+    document.getElementById(id).addEventListener('change', calcLanding);
   });
 
   calcLanding();
