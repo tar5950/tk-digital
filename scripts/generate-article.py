@@ -375,7 +375,8 @@ def markdown_to_html(md):
             if not in_ol:
                 out.append("<ol>")
                 in_ol = True
-            out.append(f"<li>{re.sub(r'^\d+\.\s', '', stripped)}</li>")
+            item_text = re.sub(r"^\d+\.\s", "", stripped)
+            out.append(f"<li>{item_text}</li>")
             continue
 
         # Paragraphe normal
