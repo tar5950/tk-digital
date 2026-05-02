@@ -974,7 +974,7 @@ details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
         <span class="calc-val" id="lc-tva">—</span>
       </div>
       <div class="calc-row">
-        <span class="calc-label">Hausses tarifaires sur 24 mois (~12%/an)</span>
+        <span class="calc-label">Hausses +12%/an composées (surcoût 36 mois)</span>
         <span class="calc-val" id="lc-ref">—</span>
       </div>
     </div>
@@ -1213,12 +1213,13 @@ details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
     var rdvMois = parseFloat(document.getElementById('l-cmds').value) || 0;
     var noShowPct = Math.min(parseFloat(document.getElementById('l-jours').value) || 0, 50);
 
-    // Formule Planity : abo + no-shows non comblés (50%) + hausses tarifaires cumulées sur 24 mois
+    // Formule Planity : abo + no-shows non comblés (50%) + hausses +12%/an composées sur 36 mois
     var aboMois = 89; // Plan Pro standard
     var aboAnnuel = aboMois * 12;
     var noShowsPerdusAnnuel = rdvMois * (noShowPct / 100) * prixCoupe * 0.5 * 12;
-    var haussesCumul24Mois = aboAnnuel * 0.25; // ~12%/an sur 2 ans
-    var totalAnnuel = aboAnnuel + noShowsPerdusAnnuel + haussesCumul24Mois;
+    // Hausse 12%/an composée. Année 1 = 0 surcoût, Année 2 = +12%, Année 3 = +25.44% (1.12² − 1)
+    var haussesCumul36Mois = aboAnnuel * (0.12 + 0.2544);
+    var totalAnnuel = aboAnnuel + noShowsPerdusAnnuel;
     var totalMois = totalAnnuel / 12;
 
     var caMois = prixCoupe * rdvMois;
@@ -1234,9 +1235,9 @@ details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
 
     anim('lc-com', fmt(aboAnnuel));
     anim('lc-tva', fmt(noShowsPerdusAnnuel));
-    anim('lc-ref', fmt(haussesCumul24Mois) + ' (estimation)');
+    anim('lc-ref', '+ ' + fmt(haussesCumul36Mois) + ' sur 36 mois');
     anim('lc-total', fmt(totalMois));
-    anim('lc-annuel', fmt(totalAnnuel) + ' sur l\'année');
+    anim('lc-annuel', fmt(totalAnnuel) + ' sur l\'année (hors hausses)');
   }
 
   ['l-panier','l-cmds','l-jours'].forEach(function(id){
