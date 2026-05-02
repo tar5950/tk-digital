@@ -1,0 +1,85 @@
+{
+  "_comment": "Verbatims condensés des personas resto + barbier, à injecter dans le brief Gemini pour ancrer chaque article dans la voix client réelle.",
+  "restos": {
+    "pain_points": [
+      "Uber Eats prend 25-35% de commission sur chaque commande",
+      "Les nouveaux livreurs jettent le sac à la porte au lieu de sonner",
+      "Les jeunes mangent 3 menus puis laissent 1★ pour la sauce froide",
+      "L'algorithme Uber a changé du jour au lendemain, je suis page 3",
+      "Les agences digitales m'ont tout promis et n'ont rien livré",
+      "Mes concurrents bidouillent les avis Google",
+      "Janvier-février, le compte en banque est à sec",
+      "Le commercial Uber Eats m'a vendu 'Pro Tier' à 35% — c'est de l'arnaque légale"
+    ],
+    "verbatims_directs": [
+      "30% c'est de l'arnaque légalisée",
+      "Uber il connaît mon client mieux que moi maintenant",
+      "L'agence m'a tout promis, elle a rien livré, et elle m'a bloqué le numéro",
+      "Mon avis 1 étoile est resté en haut pendant 2 ans, ça me rend dingue",
+      "Le commercial Uber Eats m'appelle pour me vendre Pro Tier à 35% de commission",
+      "Si Uber me déréférence demain, c'est -40% du jour au lendemain"
+    ],
+    "vocabulaire": [
+      "kebab", "pizzeria", "snack", "fast-food halal", "doner", "tacos",
+      "ticket moyen", "commande Uber", "no-show", "sac livraison", "comptoir",
+      "marge", "trésorerie", "saisonnalité", "Ramadan", "rentrée scolaire"
+    ],
+    "geo": ["Lille", "Roubaix", "Tourcoing", "Valenciennes", "Douai", "Lens", "Béthune", "Cambrai", "Arras"]
+  },
+  "barbiers": {
+    "pain_points": [
+      "Planity garde le fichier client (relation client volée)",
+      "Hausse +12%/an automatique sans communication",
+      "Avis filtrés avant publication par Planity",
+      "SMS de rappel limités sur les plans de base",
+      "No-shows à 12-15% non comblés à temps",
+      "Pas de données numéro client sans confirmation RDV",
+      "Migration vers une solution alternative perçue comme risquée",
+      "Service client Planity automatisé / inaccessible"
+    ],
+    "verbatims_directs_sources": [
+      {"quote": "FUYEZ !!", "auteur": "Sara Angelovski", "source": "Trustpilot 1★ 2022", "context": "Résiliation refusée + 212€ prélevés"},
+      {"quote": "Mon institut est fermé mais je dois payer 70€", "auteur": "Trustpilot 1★", "source": "Trustpilot 2022"},
+      {"quote": "Aucun service client : une réponse automatique est générée", "auteur": "ALS", "source": "Trustpilot 1★ 2022"},
+      {"quote": "Je paye 69€/mois et en plus on me prend une commission sur les nouveaux clients", "auteur": "Reddit r/conseiljuridique", "source": "Reddit 2025"},
+      {"quote": "Vous ne possédez ni les données clients, ni l'application, ni la relation directe", "auteur": "BreizhApp", "source": "BreizhApp blog 2025"}
+    ],
+    "vocabulaire": [
+      "barbier", "coiffeur homme", "barbershop", "Planity", "Treatwell", "Booksy",
+      "agenda en ligne", "RDV", "no-show", "acompte", "fichier client",
+      "rappel WhatsApp", "récolte d'avis", "fidélisation"
+    ],
+    "geo": ["Lille", "Roubaix", "Tourcoing", "Valenciennes", "Douai", "Lens", "Béthune"]
+  },
+  "tarik_authority": {
+    "histoire": "Tarik, basé à Douai. 7 ans à livrer les emballages des restos halal du Nord (Lille, Roubaix, Valenciennes, Douai, Lens). Aujourd'hui il code des sites web et configure Google + WhatsApp pour les commerces du Nord.",
+    "differenciateurs": [
+      "Un seul interlocuteur (lui), pas de commercial qui passe le dossier",
+      "Engagement 6 mois (vs 24-48 mois chez Linkeo/Solocal)",
+      "Site et fichier client appartiennent à 100% au commerçant",
+      "Aucune commission sur les ventes",
+      "Setup 790€ + 290€/mois tout inclus (transparent)"
+    ]
+  },
+  "regles_redaction": {
+    "ton": "Conversationnel, direct, tutoiement. Comme si Tarik écrivait lui-même.",
+    "INTERDIT": [
+      "Inventer des chiffres précis sans source vérifiable",
+      "Utiliser des superlatifs creux ('le meilleur', 'incroyable', 'révolutionnaire')",
+      "Faire des promesses irréalistes ('multiplier ton CA par 3 en 30 jours')",
+      "Diffamer un concurrent (Planity, Uber, Linkeo) avec des claims non sourcés",
+      "Inventer des témoignages clients fictifs",
+      "Utiliser du jargon marketing ('synergie', 'ROI optimisé', 'leviers digitaux')",
+      "Vouvoyer (toujours tutoyer)",
+      "Garantir un résultat précis ('top 3 Google en 30 jours' = interdit)"
+    ],
+    "OBLIGATOIRE": [
+      "Citer la source quand on donne un chiffre (BreizhApp, Trustpilot, INSEE, etc.)",
+      "Utiliser un verbatim authentique des personas chaque fois que possible",
+      "Conclure avec un CTA vers la landing page indiquée (cta_landing)",
+      "800-1200 mots, structurés H2/H3",
+      "Inclure FAQ courte (3-5 questions) en fin d'article",
+      "Méta description (155 chars max) + slug URL clair"
+    ]
+  }
+}

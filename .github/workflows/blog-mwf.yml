@@ -1,0 +1,41 @@
+name: Blog Auto-Publish (Mon/Wed/Fri 08h)
+
+on:
+  schedule:
+    # 08h Paris = 06h UTC (heure d'été) / 07h UTC (heure d'hiver)
+    # On pose 06h UTC = 08h Paris l'été. En hiver ça tombera à 07h Paris, OK aussi.
+    - cron: '0 6 * * 1,3,5'   # Mon, Wed, Fri à 06h UTC
+  workflow_dispatch:           # Permet de lancer manuellement depuis l'onglet Actions
+
+permissions:
+  contents: write              # Pour pouvoir commit + push
+
+jobs:
+  generate-article:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run article generator
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/generate-article.py
+
+      - name: Commit & push if changes
+        run: |
+          git config user.name "TK Digital Bot"
+          git config user.email "bot@tk-digital.local"
+          if [[ -n $(git status --porcelain) ]]; then
+            git add blog/
+            git commit -m "📝 Article auto-publié $(date -u +'%Y-%m-%d')"
+            git push origin main
+            echo "✅ Article publié et déployé."
+          else
+            echo "ℹ️ Aucun changement (probablement tous les sujets déjà publiés)."
+          fi

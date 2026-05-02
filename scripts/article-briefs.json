@@ -1,0 +1,137 @@
+{
+  "_comment": "Liste de sujets pour le blog TK Digital. Le script alterne auto-magiquement entre restos, barbiers et SEO local généraliste.",
+  "topics": [
+    {
+      "id": 1,
+      "category": "restos",
+      "slug": "uber-eats-cout-reel-restaurant-halal",
+      "title": "Combien Uber Eats coûte vraiment à un resto halal du Nord (calcul complet)",
+      "keyword_principal": "coût Uber Eats restaurant",
+      "keyword_secondaires": ["commission Uber Eats", "alternative Uber Eats", "restaurant halal Nord"],
+      "intent": "informational",
+      "angle": "Calcul transparent et chiffré du coût total Uber Eats sur un cas type 200 commandes/mois × 18€. Casser le mythe '30% c'est juste la commission'.",
+      "cta_landing": "restaurateurs.html"
+    },
+    {
+      "id": 2,
+      "category": "barbiers",
+      "slug": "alternative-planity-barbier-2026",
+      "title": "Alternatives à Planity en 2026 : ce qu'aucune agence ne te dit",
+      "keyword_principal": "alternative Planity",
+      "keyword_secondaires": ["sortir de Planity", "Planity prix 2026", "barbier indépendant"],
+      "intent": "commercial",
+      "angle": "Comparatif honnête Planity vs alternatives directes (site direct + WhatsApp + agenda perso). Sourcé verbatims Trustpilot.",
+      "cta_landing": "barbiers.html"
+    },
+    {
+      "id": 3,
+      "category": "seo_local",
+      "slug": "premier-google-commerce-nord-france",
+      "title": "Comment passer premier sur Google quand on est un commerce local du Nord",
+      "keyword_principal": "premier sur Google commerce local",
+      "keyword_secondaires": ["SEO local Nord France", "fiche Google optimisée", "Google Business Profile"],
+      "intent": "informational",
+      "angle": "Guide pratique fiche Google + posts hebdo + récolte d'avis. Ce qui marche vraiment pour un commerce du Nord.",
+      "cta_landing": "index.html"
+    },
+    {
+      "id": 4,
+      "category": "restos",
+      "slug": "recuperer-clients-uber-en-direct",
+      "title": "Récupérer ses clients Uber en commande directe : la méthode 90 jours",
+      "keyword_principal": "récupérer clients Uber Eats direct",
+      "keyword_secondaires": ["sortir Uber Eats", "commande directe restaurant", "WhatsApp restaurant"],
+      "intent": "commercial",
+      "angle": "Étapes concrètes pour basculer 30-50% des commandes Uber en direct. Sans casser le volume Uber pendant la transition.",
+      "cta_landing": "restaurateurs.html"
+    },
+    {
+      "id": 5,
+      "category": "barbiers",
+      "slug": "no-shows-barbier-comment-reduire",
+      "title": "No-shows chez le barbier : comment passer de 15% à 5%",
+      "keyword_principal": "réduire no-shows barbier",
+      "keyword_secondaires": ["acompte barbier", "rappel WhatsApp RDV", "agenda barbier"],
+      "intent": "informational",
+      "angle": "Trois leviers concrets : acompte 5€, rappel WhatsApp J-1 et J-1h, liste d'attente automatique. Avec chiffres sourcés.",
+      "cta_landing": "barbiers.html"
+    },
+    {
+      "id": 6,
+      "category": "seo_local",
+      "slug": "fiche-google-optimisee-restaurateur",
+      "title": "Fiche Google d'un restaurant : 7 erreurs qui te font perdre des clients",
+      "keyword_principal": "fiche Google restaurant erreurs",
+      "keyword_secondaires": ["Google Business Profile restaurant", "optimisation Google Maps", "avis Google"],
+      "intent": "informational",
+      "angle": "Audit visuel des erreurs courantes : photos, catégorie, attributs, horaires, posts, Q&R. Conseils actionnables.",
+      "cta_landing": "index.html"
+    },
+    {
+      "id": 7,
+      "category": "restos",
+      "slug": "whatsapp-business-restaurant-guide",
+      "title": "WhatsApp Business pour restaurant halal : guide pratique 2026",
+      "keyword_principal": "WhatsApp Business restaurant",
+      "keyword_secondaires": ["commande WhatsApp restaurant", "wa.me restaurant", "alerte commande"],
+      "intent": "informational",
+      "angle": "Setup WhatsApp Business + bouton commande sur site + messages auto + alertes. Comment ça marche concrètement pour un restaurateur.",
+      "cta_landing": "restaurateurs.html"
+    },
+    {
+      "id": 8,
+      "category": "barbiers",
+      "slug": "fichier-client-barbier-recuperer-planity",
+      "title": "Récupérer son fichier client chez Planity : la procédure RGPD complète",
+      "keyword_principal": "récupérer fichier client Planity",
+      "keyword_secondaires": ["export client Planity", "RGPD coiffeur", "données client Planity"],
+      "intent": "informational",
+      "angle": "Procédure exacte pour exporter son fichier client (mail à contact@planity.com), délai légal RGPD, ce qu'on récupère vraiment.",
+      "cta_landing": "barbiers.html"
+    },
+    {
+      "id": 9,
+      "category": "seo_local",
+      "slug": "avis-google-comment-recolter-commerce",
+      "title": "Récolter des avis Google pour son commerce : 5 méthodes qui marchent vraiment",
+      "keyword_principal": "récolter avis Google commerce",
+      "keyword_secondaires": ["QR code avis Google", "demande avis client", "réputation locale"],
+      "intent": "informational",
+      "angle": "QR code en boutique, lien direct par WhatsApp, post-prestation auto. Méthodes testées avec chiffres réalistes.",
+      "cta_landing": "index.html"
+    },
+    {
+      "id": 10,
+      "category": "restos",
+      "slug": "site-internet-kebab-pizzeria-snack",
+      "title": "Site internet pour kebab, pizzeria, snack : ce qu'il faut vraiment dedans",
+      "keyword_principal": "site internet kebab",
+      "keyword_secondaires": ["site web pizzeria", "création site snack", "site fast food halal"],
+      "intent": "commercial",
+      "angle": "Liste des fonctionnalités essentielles pour un site qui convertit : menu visible, commande WhatsApp, fiche Google, avis. Pas un site vitrine qui dort.",
+      "cta_landing": "restaurateurs.html"
+    },
+    {
+      "id": 11,
+      "category": "barbiers",
+      "slug": "site-barbier-pourquoi-quoi-mettre",
+      "title": "Site internet de barbier : pourquoi en avoir un et quoi mettre dedans",
+      "keyword_principal": "site internet barbier",
+      "keyword_secondaires": ["site web barbershop", "création site coiffeur", "agenda barbier en ligne"],
+      "intent": "commercial",
+      "angle": "Pourquoi un site direct (vs Planity) + sections obligatoires (prestations, prix, RDV en 1 clic, photos, avis Google). Cohérent avec la solution TK Digital.",
+      "cta_landing": "barbiers.html"
+    },
+    {
+      "id": 12,
+      "category": "seo_local",
+      "slug": "ads-google-meta-petit-commerce-arnaque",
+      "title": "Pub Google et Meta pour un petit commerce : ce qui marche, ce qui te ruine",
+      "keyword_principal": "pub Google petit commerce",
+      "keyword_secondaires": ["Meta Ads commerce local", "publicité Facebook restaurant", "budget pub commerce"],
+      "intent": "informational",
+      "angle": "Vraie analyse : à partir de quel budget c'est rentable, à éviter sans tracking, alternatives gratuites (SEO local, posts Google).",
+      "cta_landing": "index.html"
+    }
+  ]
+}
