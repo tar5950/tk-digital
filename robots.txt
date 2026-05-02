@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tar5950.github.io/tk-digital/sitemap.xml

@@ -1,0 +1,40 @@
+name: Blog Refresh Old Articles (10/mois)
+
+on:
+  schedule:
+    # Le 10 de chaque mois à 09h UTC = 11h Paris (été) / 10h Paris (hiver)
+    - cron: '0 9 10 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-article:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run refresh
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/refresh-article.py
+
+      - name: Commit & push if changes
+        run: |
+          git config user.name "TK Digital Bot"
+          git config user.email "bot@tk-digital.local"
+          if [[ -n $(git status --porcelain) ]]; then
+            git add blog/articles/
+            git commit -m "🔄 Article rafraîchi $(date -u +'%Y-%m-%d')"
+            git push origin main
+            echo "✅ Article rafraîchi et déployé."
+          else
+            echo "ℹ️ Aucun article à rafraîchir."
+          fi

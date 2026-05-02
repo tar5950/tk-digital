@@ -269,8 +269,41 @@ def validate_article(article):
     return True, "OK"
 
 
-def render_article_html(article, topic, date_str):
+def find_related_articles(current_topic, all_articles, limit=3):
+    """Trouve les articles existants les plus pertinents (même catégorie ou keywords proches)."""
+    if not all_articles:
+        return []
+
+    scored = []
+    current_keywords = set([current_topic["keyword_principal"].lower()] +
+                           [k.lower() for k in current_topic["keyword_secondaires"]])
+
+    for art in all_articles:
+        score = 0
+        # Bonus si même catégorie
+        if art.get("category") == current_topic["category"]:
+            score += 5
+        # Bonus si keywords overlap dans le titre
+        title_lower = art.get("title", "").lower()
+        for kw in current_keywords:
+            if kw in title_lower:
+                score += 3
+        # Bonus si excerpt mentionne keywords
+        excerpt_lower = art.get("excerpt", "").lower()
+        for kw in current_keywords:
+            if kw in excerpt_lower:
+                score += 1
+        if score > 0:
+            scored.append((score, art))
+
+    scored.sort(key=lambda x: x[0], reverse=True)
+    return [a for _, a in scored[:limit]]
+
+
+def render_article_html(article, topic, date_str, related_articles=None):
     """Génère le HTML complet de l'article."""
+    related_articles = related_articles or []
+
     sections_html = ""
     for sec in article["sections"]:
         sections_html += f'\n      <h2>{sec["h2"]}</h2>\n      {sec["content"]}\n'
@@ -283,6 +316,71 @@ def render_article_html(article, topic, date_str):
         faq_html += "\n      </div>"
 
     canonical_url = f"https://tar5950.github.io/tk-digital/blog/articles/{date_str}-{topic['slug']}.html"
+
+    # Internal linking : section "À lire aussi" en fin
+    related_html = ""
+    if related_articles:
+        related_html = '\n  <section class="related">\n    <h2>À lire aussi</h2>\n    <div class="related-grid">'
+        for art in related_articles:
+            related_html += f"""
+      <a href="{art['date']}-{art['slug']}.html" class="related-card">
+        <div class="related-cat">{art['category'].replace('_', ' ').title()}</div>
+        <div class="related-title">{art['title']}</div>
+      </a>"""
+        related_html += "\n    </div>\n  </section>"
+
+    # Schema.org enrichi (Article + Author + Organization + BreadcrumbList)
+    schema_article = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": article['title'],
+        "description": article['meta_description'],
+        "datePublished": date_str,
+        "dateModified": date_str,
+        "author": {
+            "@type": "Person",
+            "name": "Tarik",
+            "url": "https://tar5950.github.io/tk-digital/blog/auteur/tarik.html",
+            "jobTitle": "Fondateur de TK Digital"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TK Digital",
+            "url": "https://tar5950.github.io/tk-digital/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://tar5950.github.io/tk-digital/favicon-192.png"
+            }
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": canonical_url}
+    }
+
+    # Schema FAQPage si on a des FAQ
+    schema_faq = ""
+    if article.get("faq"):
+        faq_data = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": item["q"],
+                    "acceptedAnswer": {"@type": "Answer", "text": item["a"]}
+                }
+                for item in article["faq"]
+            ]
+        }
+        schema_faq = f'\n<script type="application/ld+json">{json.dumps(faq_data, ensure_ascii=False)}</script>'
+
+    schema_breadcrumb = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://tar5950.github.io/tk-digital/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tar5950.github.io/tk-digital/blog/"},
+            {"@type": "ListItem", "position": 3, "name": article['title'], "item": canonical_url}
+        ]
+    }
 
     html = f"""<!DOCTYPE html>
 <html lang="fr">
@@ -297,9 +395,8 @@ def render_article_html(article, topic, date_str):
 <meta property="og:title" content="{article['title']}">
 <meta property="og:description" content="{article['meta_description']}">
 <meta property="og:url" content="{canonical_url}">
-<script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"BlogPosting","headline":{json.dumps(article['title'], ensure_ascii=False)},"description":{json.dumps(article['meta_description'], ensure_ascii=False)},"datePublished":"{date_str}","author":{{"@type":"Person","name":"Tarik"}},"publisher":{{"@type":"Organization","name":"TK Digital"}}}}
-</script>
+<script type="application/ld+json">{json.dumps(schema_article, ensure_ascii=False)}</script>
+<script type="application/ld+json">{json.dumps(schema_breadcrumb, ensure_ascii=False)}</script>{schema_faq}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -337,6 +434,20 @@ article a{{color:var(--a);}}
 .cta-final p{{color:var(--w);font-size:16px;margin-bottom:16px;}}
 .cta-final a.btn-a{{display:inline-block;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--n);background:var(--a);padding:14px 28px;text-decoration:none;border-radius:3px;}}
 .cta-final a.btn-a:hover{{background:var(--a2);}}
+.author-byline{{display:flex;align-items:center;gap:14px;background:var(--n3);border:1px solid var(--n4);border-radius:8px;padding:14px 18px;margin:24px 0 32px;}}
+.author-byline-img{{width:42px;height:42px;border-radius:50%;background:var(--n4) center/cover;flex-shrink:0;border:2px solid var(--a);}}
+.author-byline-txt{{font-size:13px;color:var(--mid);line-height:1.5;}}
+.author-byline-txt a{{color:var(--w);font-weight:600;text-decoration:none;}}
+.author-byline-txt a:hover{{color:var(--a);}}
+.author-byline-txt span{{font-size:11px;color:var(--mid);display:block;margin-top:2px;}}
+.related{{max-width:760px;margin:48px auto 0;padding:32px 5% 0;border-top:1px solid var(--n4);}}
+.related h2{{font-family:'Syne',sans-serif;font-size:20px;color:var(--w);margin-bottom:18px;}}
+.related-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}}
+.related-card{{background:var(--n3);border:1px solid var(--n4);border-radius:8px;padding:18px;text-decoration:none;color:inherit;transition:border-color .25s,transform .25s;}}
+.related-card:hover{{border-color:rgba(200,241,53,.4);transform:translateY(-2px);}}
+.related-cat{{font-family:'Syne',sans-serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--a);margin-bottom:8px;}}
+.related-title{{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--w);line-height:1.35;}}
+@media(max-width:768px){{.related-grid{{grid-template-columns:1fr;}}}}
 footer{{background:var(--n2);border-top:1px solid var(--n4);padding:32px 5%;text-align:center;font-size:12px;color:var(--mid);}}
 footer a{{color:var(--a);text-decoration:none;}}
 </style>
@@ -361,6 +472,14 @@ footer a{{color:var(--a);text-decoration:none;}}
 
   <h1>{article['title']}</h1>
 
+  <div class="author-byline">
+    <div class="author-byline-img" style="background-image:url('../../images/hero-restaurateur.png');"></div>
+    <div class="author-byline-txt">
+      Écrit par <a href="../auteur/tarik.html">Tarik</a>, fondateur de TK Digital
+      <span>7 ans dans la restauration halal du Nord avant de coder pour ses confrères commerçants. <a href="../auteur/tarik.html" style="color:var(--a);">En savoir plus →</a></span>
+    </div>
+  </div>
+
   <p class="intro">{article['intro']}</p>
 
   {sections_html}
@@ -372,6 +491,7 @@ footer a{{color:var(--a);text-decoration:none;}}
     <a href="../../{topic['cta_landing']}" class="btn-a">Voir la solution →</a>
   </div>
 </article>
+{related_html}
 
 <footer>
   © 2026 TK Digital · Tarik · Douai, Nord de France · <a href="../../index.html">Retour au site</a>
@@ -463,6 +583,45 @@ footer a{{color:var(--a);text-decoration:none;}}
     INDEX_BLOG.write_text(html, encoding="utf-8")
 
 
+def generate_sitemap(all_articles):
+    """Génère sitemap.xml à la racine du repo, listant toutes les pages SEO."""
+    today = datetime.date.today().isoformat()
+    base = "https://tar5950.github.io/tk-digital"
+
+    static_pages = [
+        {"loc": f"{base}/", "lastmod": today, "priority": "1.0", "changefreq": "weekly"},
+        {"loc": f"{base}/restaurateurs.html", "lastmod": today, "priority": "0.9", "changefreq": "weekly"},
+        {"loc": f"{base}/barbiers.html", "lastmod": today, "priority": "0.9", "changefreq": "weekly"},
+        {"loc": f"{base}/blog/", "lastmod": today, "priority": "0.8", "changefreq": "daily"},
+        {"loc": f"{base}/blog/auteur/tarik.html", "lastmod": today, "priority": "0.7", "changefreq": "monthly"},
+    ]
+
+    article_entries = ""
+    for art in all_articles:
+        url = f"{base}/blog/articles/{art['date']}-{art['slug']}.html"
+        article_entries += f'\n  <url>\n    <loc>{url}</loc>\n    <lastmod>{art["date"]}</lastmod>\n    <priority>0.7</priority>\n    <changefreq>monthly</changefreq>\n  </url>'
+
+    static_entries = ""
+    for p in static_pages:
+        static_entries += f'\n  <url>\n    <loc>{p["loc"]}</loc>\n    <lastmod>{p["lastmod"]}</lastmod>\n    <priority>{p["priority"]}</priority>\n    <changefreq>{p["changefreq"]}</changefreq>\n  </url>'
+
+    sitemap = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{static_entries}{article_entries}
+</urlset>
+"""
+    sitemap_path = ROOT / "sitemap.xml"
+    sitemap_path.write_text(sitemap, encoding="utf-8")
+    log(f"✅ Sitemap regenerated ({len(all_articles)} articles + {len(static_pages)} static pages)")
+
+    # robots.txt avec lien sitemap
+    robots = f"""User-agent: *
+Allow: /
+
+Sitemap: {base}/sitemap.xml
+"""
+    (ROOT / "robots.txt").write_text(robots, encoding="utf-8")
+
+
 def gather_published_articles():
     """Scanne /blog/articles/ et extrait métadonnées de chaque article."""
     arts = []
@@ -550,18 +709,27 @@ def main():
 
     log(f"✅ Article validated: {article['title']}")
 
+    # Récupère les articles existants AVANT de créer le nouveau (pour internal linking)
+    existing_articles = gather_published_articles()
+    related = find_related_articles(topic, existing_articles, limit=3)
+    if related:
+        log(f"🔗 Related articles for internal linking: {[a['slug'] for a in related]}")
+
     # Génère le HTML
     date_str = datetime.date.today().isoformat()
     filename = f"{date_str}-{topic['slug']}.html"
     filepath = ARTICLES / filename
-    html = render_article_html(article, topic, date_str)
+    html = render_article_html(article, topic, date_str, related_articles=related)
     filepath.write_text(html, encoding="utf-8")
     log(f"✅ Article written: {filepath}")
 
-    # Update index blog
+    # Update index blog (avec le nouvel article inclus)
     all_articles = gather_published_articles()
     update_blog_index(briefs, all_articles)
     log(f"✅ Blog index updated ({len(all_articles)} articles total)")
+
+    # Update sitemap.xml + robots.txt
+    generate_sitemap(all_articles)
 
     log("Done.")
 
