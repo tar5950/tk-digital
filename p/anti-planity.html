@@ -977,6 +977,10 @@ details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
         <span class="calc-label">Hausses +12%/an composées (surcoût 36 mois)</span>
         <span class="calc-val" id="lc-ref">—</span>
       </div>
+      <div class="calc-row">
+        <span class="calc-label">Clients dormants non-relançables (5% du CA)</span>
+        <span class="calc-val" id="lc-dormants">—</span>
+      </div>
     </div>
 
     <!-- CAMEMBERT -->
@@ -1150,7 +1154,7 @@ details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>Sources&nbsp;: Trustpilot Planity (avis Sara Angelovski 2022, ALS 2022, et autres avis vérifiés 1★) · BreizhApp 2025 (analyse modèle économique Planity, propriété des données clients) · Reddit r/coiffure et r/conseiljuridique (témoignages barbiers et juridique RGPD) · CNIL (art. 20 RGPD — droit à la portabilité des données). Les calculs sont des estimations basées sur 89€/mois (tarif Planity Pro 2026 indicatif), un taux de no-shows moyen de 12% (source enquêtes secteur coiffure/barbier FR), et une hausse cumulée de 25% sur 24 mois (estimation prudente fondée sur les hausses observées sur les plateformes SaaS du secteur). Aucune garantie de résultat exprimée ou implicite. TK Digital · Tarik · 07 68 78 98 00 · Douai, Nord de France.</p>
+    <p>Sources&nbsp;: Trustpilot Planity (avis Sara Angelovski 2022, ALS 2022, et autres avis vérifiés 1★) · BreizhApp 2025 (analyse modèle économique Planity, propriété des données clients) · Reddit r/coiffure et r/conseiljuridique (témoignages barbiers et juridique RGPD) · CNIL (art. 20 RGPD — droit à la portabilité des données). Les calculs sont des estimations basées sur 89€/mois (tarif Planity Pro 2026 indicatif), un taux de no-shows moyen de 12% (source enquêtes secteur coiffure/barbier FR), une hausse de +12%/an composée sur 36 mois (estimation prudente fondée sur les hausses observées sur les plateformes SaaS du secteur), et une perte de 5% du CA annuel sur les clients dormants non-relançables (estimation très conservatrice — le marketing direct récupère habituellement 15 à 30% des clients dormants via une simple relance WhatsApp/SMS, impossible sans fichier client à toi). Aucune garantie de résultat exprimée ou implicite. TK Digital · Tarik · 07 68 78 98 00 · Douai, Nord de France.</p>
   </footer>
 
 </div>
@@ -1219,7 +1223,12 @@ details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
     var noShowsPerdusAnnuel = rdvMois * (noShowPct / 100) * prixCoupe * 0.5 * 12;
     // Hausse 12%/an composée. Année 1 = 0 surcoût, Année 2 = +12%, Année 3 = +25.44% (1.12² − 1)
     var haussesCumul36Mois = aboAnnuel * (0.12 + 0.2544);
-    var totalAnnuel = aboAnnuel + noShowsPerdusAnnuel;
+    // Clients dormants non-relançables : sans fichier client à toi, tu ne peux pas relancer
+    // par WhatsApp les clients qui ne reviennent plus. Estimation conservatrice : 5% du CA annuel
+    // (le marketing direct récupère habituellement 15-30% des dormants — on prend 5% pour être prudent).
+    var caAnnuel = prixCoupe * rdvMois * 12;
+    var dormantsAnnuel = caAnnuel * 0.05;
+    var totalAnnuel = aboAnnuel + noShowsPerdusAnnuel + dormantsAnnuel;
     var totalMois = totalAnnuel / 12;
 
     var caMois = prixCoupe * rdvMois;
@@ -1236,6 +1245,7 @@ details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
     anim('lc-com', fmt(aboAnnuel));
     anim('lc-tva', fmt(noShowsPerdusAnnuel));
     anim('lc-ref', '+ ' + fmt(haussesCumul36Mois) + ' sur 36 mois');
+    anim('lc-dormants', fmt(dormantsAnnuel));
     anim('lc-total', fmt(totalMois));
     anim('lc-annuel', fmt(totalAnnuel) + ' sur l\'année (hors hausses)');
   }
