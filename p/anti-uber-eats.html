@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Uber Eats te prend 30%. Récupère ta marge. | TK Digital</title>
+<meta name="description" content="Commission 30%, TVA perdue, zéro donnée client. Calcule ce qu'Uber Eats te coûte et découvre comment récupérer ta marge avec un canal direct.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --n: #050505;
+  --n2: #0c0c0c;
+  --n3: #141414;
+  --n4: #1e1e1e;
+  --n5: #2a2a2a;
+  --a: #c8f135;
+  --a2: #d4ff4a;
+  --border: rgba(200,241,53,0.12);
+  --w: #f5f5f0;
+  --w2: #e8e8e2;
+  --mid: #888880;
+  --wa: #25D366;
+  --wa2: #1da855;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  background: var(--n);
+  color: var(--w);
+  line-height: 1.55;
+  padding-bottom: 90px;
+  cursor: none;
+}
+
+/* CURSEUR */
+#cursor-dot {
+  width: 6px; height: 6px;
+  background: var(--a);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+#cursor-ring {
+  width: 28px; height: 28px;
+  border: 1.5px solid rgba(200,241,53,0.6);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s;
+}
+
+/* TRUST BAR */
+.trust-bar {
+  background: #000;
+  padding: 8px 20px;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+}
+.trust-bar a { color: var(--a); text-decoration: none; font-weight: 700; }
+.trust-sep { margin: 0 10px; color: var(--n5); }
+
+/* TICKER */
+.ticker-wrap {
+  background: var(--a);
+  overflow: hidden;
+  height: 34px;
+  display: flex;
+  align-items: center;
+}
+.ticker-inner {
+  display: flex;
+  white-space: nowrap;
+  animation: tick 22s linear infinite;
+}
+.ticker-text {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--n);
+  padding: 0 32px;
+}
+@keyframes tick {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* HEADER */
+.header {
+  background: var(--n2);
+  border-bottom: 1px solid var(--n4);
+  padding: 20px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.logo-svg { width: 36px; height: 36px; flex-shrink: 0; }
+.logo-text {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--w);
+}
+.logo-text span { color: var(--a); }
+.header-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--a);
+  color: var(--n);
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.15s;
+  white-space: nowrap;
+}
+.header-cta:hover { background: var(--a2); transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+  position: relative;
+  background: var(--n);
+  padding: 80px 5% 88px;
+  text-align: center;
+  overflow: hidden;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(200,241,53,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(200,241,53,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 55% at 50% 85%, rgba(200,241,53,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--a);
+  margin-bottom: 20px;
+  animation: fup 0.7s ease-out both;
+}
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(32px, 4vw, 58px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--w);
+  max-width: 700px;
+  margin: 0 auto 20px;
+  animation: fup 0.7s 0.1s ease-out both;
+}
+.hero h1 .accent { color: var(--a); }
+.hero-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--mid);
+  max-width: 500px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+  animation: fup 0.7s 0.2s ease-out both;
+}
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fup 0.7s 0.3s ease-out both;
+}
+.btn-lime {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 16px 28px;
+  background: var(--a);
+  color: var(--n);
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(200,241,53,0.25);
+  transition: background 0.15s, transform 0.15s;
+}
+.btn-lime:hover { background: var(--a2); transform: translateY(-1px); }
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 15px 28px;
+  background: transparent;
+  color: var(--w);
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(245,245,240,0.2);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+}
+.btn-outline:hover { border-color: var(--a); color: var(--a); transform: translateY(-1px); }
+
+@keyframes fup {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* CONTAINER */
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* SECTION */
+.section { margin-top: 72px; }
+.section-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--a);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--w);
+  margin-bottom: 28px;
+}
+.section-title .accent { color: var(--a); }
+
+/* STATS GRID */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--n4);
+  border: 1px solid var(--n4);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+.stat-cell {
+  background: var(--n3);
+  padding: 28px 20px;
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 5vw, 38px);
+  font-weight: 800;
+  color: var(--a);
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--mid);
+  line-height: 1.4;
+}
+.section-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.7;
+}
+.section-body strong { color: var(--a); font-weight: 700; }
+
+/* CALCULATEUR SECTION */
+.calc-wrap {
+  margin-top: 72px;
+  background: var(--n2);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 40px 32px;
+}
+.calc-wrap .section-eyebrow { margin-bottom: 10px; }
+.calc-wrap .section-title { margin-bottom: 28px; }
+
+.field { margin-bottom: 18px; }
+.field label {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--w2);
+  margin-bottom: 8px;
+}
+.input-wrap { position: relative; display: flex; align-items: center; }
+.input-prefix {
+  position: absolute;
+  left: 14px;
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--mid);
+  pointer-events: none;
+}
+input[type="number"] {
+  width: 100%;
+  padding: 14px 14px 14px 32px;
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  border: 1px solid var(--n4);
+  border-radius: 2px;
+  background: var(--n3);
+  color: var(--w);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  -moz-appearance: textfield;
+}
+input[type="number"]:focus {
+  border-color: var(--a);
+  box-shadow: 0 0 0 2px rgba(200,241,53,0.08);
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+.input-no-prefix { padding-left: 14px !important; }
+.input-suffix {
+  position: absolute;
+  right: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--mid);
+}
+
+.calc-détail {
+  background: var(--n3);
+  border: 1px solid var(--n4);
+  border-radius: 2px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.calc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--n4);
+}
+.calc-row:last-child { border-bottom: none; }
+.calc-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--mid);
+  flex: 1;
+}
+.calc-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--a);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  transition: opacity 0.15s;
+}
+
+/* CAMEMBERT LANDING */
+.donut-center-wrap {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.donut-wrap {
+  position: relative;
+  display: inline-block;
+  width: 280px;
+  height: 280px;
+}
+.donut-svg { width: 280px; height: 280px; transform: rotate(-90deg); }
+.donut-bg { fill: none; stroke: var(--n4); stroke-width: 32; }
+.donut-arc {
+  fill: none;
+  stroke: var(--a);
+  stroke-width: 32;
+  stroke-linecap: butt;
+  stroke-dasharray: 0 879;
+  transition: stroke-dasharray 0.9s ease-out;
+}
+.donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.donut-pct {
+  font-family: 'Syne', sans-serif;
+  font-size: 54px;
+  font-weight: 800;
+  color: var(--a);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.donut-pct-sign {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--a);
+}
+.donut-caption {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--mid);
+  margin-top: 4px;
+}
+
+.calc-total {
+  margin-top: 20px;
+  background: var(--n3);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 24px;
+  text-align: center;
+}
+.calc-total-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 10px;
+}
+.calc-total-amount {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(38px, 8vw, 56px);
+  font-weight: 800;
+  color: var(--a);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  transition: opacity 0.2s;
+}
+.calc-total-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--mid);
+  margin-top: 6px;
+}
+.calc-total-year {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--w2);
+  margin-top: 10px;
+}
+
+/* TEMOIGNAGES */
+.testi-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--n4);
+  border: 1px solid var(--n4);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.testi-card {
+  background: var(--n3);
+  padding: 28px;
+  position: relative;
+  border-top: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+.testi-card:hover { border-top-color: var(--a); }
+.testi-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(200,241,53,0.5);
+  letter-spacing: 0.1em;
+  margin-bottom: 14px;
+}
+.testi-highlight {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--a);
+  background: rgba(200,241,53,0.07);
+  padding: 4px 10px;
+  border-radius: 50px;
+  margin-bottom: 14px;
+}
+.testi-quote {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--w2);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+.testi-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.testi-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--a);
+  flex-shrink: 0;
+  animation: bth 2s infinite;
+}
+@keyframes bth {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.testi-who {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--mid);
+}
+.testi-who strong { color: var(--w2); }
+
+/* LEVIERS */
+.leviers {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--n4);
+  border: 1px solid var(--n4);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.lever {
+  background: var(--n3);
+  padding: 24px 28px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  border-top: 2px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+}
+.lever:hover { border-top-color: var(--a); background: var(--n2); }
+.lever-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(200,241,53,0.5);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.lever-body { flex: 1; }
+.lever-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--w);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.lever-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.55;
+}
+
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; gap: 1px; background: var(--n4); border: 1px solid var(--n4); border-radius: 2px; overflow: hidden; }
+.faq-item { background: var(--n3); }
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--w);
+  cursor: pointer;
+  gap: 14px;
+  user-select: none;
+  list-style: none;
+  transition: color 0.15s;
+}
+.faq-q:hover { color: var(--a); }
+.faq-q::-webkit-details-marker { display: none; }
+.faq-arrow {
+  font-size: 18px;
+  color: var(--mid);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+}
+details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
+.faq-a {
+  padding: 0 24px 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.65;
+}
+
+/* CTA FINAL */
+.cta-final {
+  margin-top: 72px;
+  background: var(--n2);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 52px 36px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-final-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(200,241,53,0.025) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(200,241,53,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.cta-final h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(24px, 4vw, 36px);
+  letter-spacing: -0.02em;
+  color: var(--w);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.cta-final p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--mid);
+  margin-bottom: 32px;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-triple {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.btn-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 17px 28px;
+  background: var(--a);
+  color: var(--n);
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(200,241,53,0.25);
+  transition: background 0.15s, transform 0.15s;
+}
+.btn-main:hover { background: var(--a2); transform: translateY(-1px); }
+.btn-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 28px;
+  background: var(--wa);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(37,211,102,0.3);
+  transition: background 0.15s, transform 0.15s;
+}
+.btn-wa:hover { background: var(--wa2); transform: translateY(-1px); }
+.btn-email {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 28px;
+  background: transparent;
+  color: var(--w2);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  border: 1px solid rgba(245,245,240,0.15);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-email:hover { border-color: var(--a); color: var(--a); }
+.cta-note {
+  margin-top: 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--mid);
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 40px;
+  padding: 24px 20px;
+  border-top: 1px solid var(--n4);
+  text-align: center;
+}
+.footer p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* STICKY MOBILE */
+.sticky-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: var(--n2);
+  border-top: 1px solid var(--n4);
+  padding: 12px 16px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  gap: 10px;
+}
+.sticky-bar a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 12px;
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: transform 0.15s;
+}
+.sticky-bar a:active { transform: scale(0.97); }
+.sticky-tel { background: var(--a); color: var(--n); }
+.sticky-wa { background: var(--wa); color: #fff; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .sticky-bar { display: flex; }
+}
+@media (max-width: 600px) {
+  body { cursor: auto; }
+  #cursor-dot, #cursor-ring { display: none; }
+  .hero { padding: 56px 5% 64px; }
+  .calc-wrap { padding: 28px 20px; }
+  .donut-wrap { width: 200px; height: 200px; }
+  .donut-svg { width: 200px; height: 200px; }
+  .donut-arc { stroke-width: 28; }
+  .donut-bg { stroke-width: 28; }
+  .donut-pct { font-size: 40px; }
+  .cta-final { padding: 40px 24px; }
+}
+@media (max-width: 480px) {
+  .header-cta { display: none; }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas a { width: 100%; justify-content: center; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .testi-card { padding: 20px; }
+  .lever { padding: 18px 20px; }
+}
+@media (max-width: 380px) {
+  .hero h1 { font-size: 28px; }
+  .cta-triple { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSEUR CUSTOM -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- TRUST BAR (page privée préparée par Tarik) -->
+<div class="trust-bar" style="background:#0d0808;color:#ff8c66;border-bottom:1px solid rgba(255,140,66,.2);">
+  ✋ Page privée préparée pour toi par Tarik
+  <span class="trust-sep">·</span>
+  <a href="tel:0768789800" style="color:#c8f135;">07 68 78 98 00</a>
+  <span class="trust-sep">·</span>
+  Réponse sous 24h
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ticker-text">✦ 0% de commission ✦ Tes clients, pas les leurs ✦ Canal direct ✦ QR code ✦ WhatsApp commande ✦ 0% de commission ✦ Tes clients, pas les leurs ✦ Canal direct ✦ QR code ✦ WhatsApp commande ✦</span>
+    <span class="ticker-text">✦ 0% de commission ✦ Tes clients, pas les leurs ✦ Canal direct ✦ QR code ✦ WhatsApp commande ✦ 0% de commission ✦ Tes clients, pas les leurs ✦ Canal direct ✦ QR code ✦ WhatsApp commande ✦</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="#" class="logo" aria-label="TK Digital">
+    <svg class="logo-svg" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+      <rect width="36" height="36" fill="#c8f135"/>
+      <path d="M7 10H29M18 10V26" stroke="#050505" stroke-width="3" stroke-linecap="square"/>
+      <path d="M18 18L27 26M18 18L27 10" stroke="#050505" stroke-width="3" stroke-linecap="square"/>
+    </svg>
+    <span class="logo-text">TK <span>Digital</span></span>
+  </a>
+  <a href="tel:0768789800" class="header-cta">📞 07 68 78 98 00</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <p class="hero-eyebrow">Pour les restaurateurs sur Uber Eats</p>
+  <h1>Uber Eats te prend <span class="accent">30%</span>.<br>Récupère ta marge.</h1>
+  <p class="hero-sub">Commission sur le TTC, zéro donnée client, remboursements à ta charge. Le système est fait pour eux, pas pour toi. Il existe une alternative.</p>
+  <div class="hero-ctas">
+    <a href="tel:0768789800" class="btn-lime">📞 Appelle Tarik</a>
+    <a href="https://wa.me/33768789800?text=Bonjour%20Tarik%2C%20je%20veux%20sortir%20d'Uber%20Eats." class="btn-outline" target="_blank" rel="noopener">💬 WhatsApp</a>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- STATS -->
+  <div class="section">
+    <p class="section-eyebrow">Les chiffres qui font mal</p>
+    <h2 class="section-title">La réalité <span class="accent">mathématique</span></h2>
+    <div class="stats-grid">
+      <div class="stat-cell">
+        <span class="stat-num">30%</span>
+        <p class="stat-desc">de commission sur chaque commande, prise sur le TTC, pas le HT</p>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">10%</span>
+        <p class="stat-desc">de TVA perdue en plus, car la commission inclut ta taxe</p>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">100%</span>
+        <p class="stat-desc">dû remboursement à ta charge si un client clique "commande incorrecte"</p>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">0</span>
+        <p class="stat-desc">donnée client récupérée. Pas de nom, pas d'email, pas de téléphone.</p>
+      </div>
+    </div>
+    <p class="section-body">Sur chaque commande a 15€, tu touches environ 10€ avant matieres premières. Avec 4€ de matieres et 0,80€ d'emballage, il te reste <strong>5,20€</strong> pour le loyer, l'energie, tes employes et tes charges. Et Uber Eats garde ton client pour la prochaine commande.</p>
+  </div>
+
+  <!-- CALCULATEUR -->
+  <div class="calc-wrap" id="calculateur">
+    <p class="section-eyebrow">Calcul en temps reel</p>
+    <h2 class="section-title">Ton chiffre a <span class="accent">toi</span></h2>
+
+    <div class="field">
+      <label for="l-panier">Panier moyen par commande</label>
+      <div class="input-wrap">
+        <span class="input-prefix">€</span>
+        <input type="number" id="l-panier" value="20" min="1" max="9999" step="1" inputmode="numeric">
+      </div>
+    </div>
+    <div class="field">
+      <label for="l-cmds">Commandes Uber Eats par jour</label>
+      <div class="input-wrap">
+        <input type="number" id="l-cmds" value="15" min="1" max="9999" step="1" class="input-no-prefix" inputmode="numeric">
+        <span class="input-suffix">cmd / jour</span>
+      </div>
+    </div>
+    <div class="field">
+      <label for="l-jours">Jours ouverts par semaine</label>
+      <div class="input-wrap">
+        <input type="number" id="l-jours" value="6" min="1" max="7" step="1" class="input-no-prefix" inputmode="numeric">
+        <span class="input-suffix">jours / sem</span>
+      </div>
+    </div>
+
+    <div class="calc-détail">
+      <div class="calc-row">
+        <span class="calc-label">Commission 30% (sur TTC)</span>
+        <span class="calc-val" id="lc-com">—</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-label">TVA perdue sur la commission</span>
+        <span class="calc-val" id="lc-tva">—</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-label">Remboursements abusifs (1%)</span>
+        <span class="calc-val" id="lc-ref">—</span>
+      </div>
+    </div>
+
+    <!-- CAMEMBERT -->
+    <div class="donut-center-wrap">
+      <div class="donut-wrap">
+        <svg class="donut-svg" viewBox="0 0 280 280" aria-hidden="true">
+          <circle class="donut-bg" cx="140" cy="140" r="104"/>
+          <circle class="donut-arc" id="l-donut-arc" cx="140" cy="140" r="104"/>
+        </svg>
+        <div class="donut-center">
+          <span class="donut-pct" id="l-donut-pct">32<span class="donut-pct-sign">%</span></span>
+          <span class="donut-caption">de ton CA part</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-total">
+      <p class="calc-total-label">Perdu par mois</p>
+      <div class="calc-total-amount" id="lc-total">—</div>
+      <p class="calc-total-sub">soit sur 12 mois</p>
+      <p class="calc-total-year" id="lc-annuel">—</p>
+    </div>
+  </div>
+
+  <!-- TEMOIGNAGES -->
+  <div class="section">
+    <p class="section-eyebrow">Ce que disent les restaurateurs</p>
+    <h2 class="section-title">Ils l'ont <span class="accent">vécu</span></h2>
+    <div class="testi-grid">
+
+      <div class="testi-card">
+        <p class="testi-num">01</p>
+        <span class="testi-highlight">France — Pizzeria indépendante</span>
+        <p class="testi-quote">"On n'a plus de marge ! La commission qu'il prélève s'applique sur le prix TTC, alors en plus de leur donner 30% de commission je perds la TVA. En dehors dû chiffre d'affaires et dû nombre de commandes par jour, on n'a accès a aucune donnée client."</p>
+        <div class="testi-meta">
+          <div class="testi-dot"></div>
+          <p class="testi-who"><strong>Nimrod Krief</strong> · Mambo Pizza · Nice · Source : RestoConnection.fr</p>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <p class="testi-num">02</p>
+        <span class="testi-highlight">Etats-Unis — 188 000 $ de frais en 1 an</span>
+        <p class="testi-quote">"That's losses on us." Apres avoir payé 188 000 $ en frais de plateforme sur un an, ce restaurateur d'Omaha a quitte DoorDash et Uber Eats. Les commissions etaient devenues une perte seche sur chaque commande.</p>
+        <div class="testi-meta">
+          <div class="testi-dot"></div>
+          <p class="testi-who"><strong>Restaurateur indépendant</strong> · Omaha, Nebraska · Source : Entrepreneur.com / Moneywise</p>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <p class="testi-num">03</p>
+        <span class="testi-highlight">Etats-Unis — "We will never use Uber Eats again"</span>
+        <p class="testi-quote">Un restaurateur de l'Ohio déclare etre dû de plus de 1 000 $ bloqués par Uber Eats, sans aucune reponse humaine dû support. Uniquement des emails automatiques, pendant des semaines.</p>
+        <div class="testi-meta">
+          <div class="testi-dot"></div>
+          <p class="testi-who"><strong>Restaurateur indépendant</strong> · Avon, Ohio · Source : Cleveland19, mars 2024</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LEVIERS -->
+  <div class="section">
+    <p class="section-eyebrow">Ce qu'on peut faire</p>
+    <h2 class="section-title">3 leviers <span class="accent">concrets</span></h2>
+    <div class="leviers">
+      <div class="lever">
+        <span class="lever-num">01</span>
+        <div class="lever-body">
+          <p class="lever-title">Un site de commande direct a ton nom</p>
+          <p class="lever-desc">Page ou mini-site a ton nom, commande en ligne, 0% de commission. Le client commande chez toi, pas chez Uber. Tu récupères le contact, pas eux.</p>
+        </div>
+      </div>
+      <div class="lever">
+        <span class="lever-num">02</span>
+        <div class="lever-body">
+          <p class="lever-title">WhatsApp Business pour relancer tes clients</p>
+          <p class="lever-desc">Tu récupères les numéros, tu envoies les promos quand tu veux, tu fidelines. Ce sont tes clients. Pas ceux d'une plateforme qui peut te couper demain.</p>
+        </div>
+      </div>
+      <div class="lever">
+        <span class="lever-num">03</span>
+        <div class="lever-body">
+          <p class="lever-title">QR code en salle et sur tes emballages</p>
+          <p class="lever-desc">Chaque client qui mange chez toi ou récupère une commande voit un QR code. Il scanne, il commande direct la prochaine fois. Zéro intermediaire.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <p class="section-eyebrow">Questions frequentes</p>
+    <h2 class="section-title">Ce que tu te demandes <span class="accent">sûrement</span></h2>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Ca coûte combien ?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <p class="faq-a">On en parle directement. Ca dépend de ta situation, de ce que tu veux mettre en place et de la vitesse a laquelle tu veux te déployer. L'objectif c'est que tu récupères plus que tu n'investis, rapidement.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Je dois quitter Uber Eats ?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <p class="faq-a">Pas forcement tout de suite. L'idee c'est de construire un canal direct à côté, de le faire monter en volume, et de décider quand ca fait sens de reduire ou de couper Uber. Tu gardes le contrôle.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Et si je perds le volume qu'Uber m'apporte ?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <p class="faq-a">C'est la vraie question. Uber Eats apporte de la visibilite — mais si chaque commande te coûte de l'argent net, plus de volume egale plus de perte. L'enjeu c'est de convertir ces clients sur ton propre canal avant de reduire la voilure.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          En combien de temps ca se met en place ?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <p class="faq-a">Un premier canal simple (page de commande, QR code, WhatsApp Business configure) peut etre opérationnel en quelques jours. On définit ensemble les priorités selon ce qui te rapporte le plus vite.</p>
+      </details>
+
+    </div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div class="cta-final">
+    <div class="cta-final-grid" aria-hidden="true"></div>
+    <h2>On regarde ta situation ensemble ?</h2>
+    <p>Un échange rapide, sans engagement. Tu decris tes chiffres, on voit ce qui fait sens pour toi.</p>
+    <div class="cta-triple">
+      <a href="tel:0768789800" class="btn-main">📞 07 68 78 98 00</a>
+      <a href="https://wa.me/33768789800?text=Bonjour%20Tarik%2C%20je%20veux%20qu'on%20regarde%20ma%20situation%20Uber%20Eats%20ensemble." class="btn-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a href="mailto:tk.digitalnord@gmail.com" class="btn-email">✉️ tk.digitalnord@gmail.com</a>
+    </div>
+    <p class="cta-note">Réponse sous 24h · Pas de demarchage agressif</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Sources : RestoConnection.fr (Nimrod Krief, Mambo Pizza Nice) · Entrepreneur.com / Moneywise (cas Omaha, 188 000 $) · Cleveland19, mars 2024 (cas Avon, Ohio) · Restaurant Business Online, 2026 · Restaurant Dive, 2026. Les calculs sont des estimations basees sur une commission de 30% (taux standard Uber Eats France 2026) et 1% de remboursements abusifs par commande. Aucune garantie de resultat exprimee ou implicite. TK Digital · Tarik · 07 68 78 98 00 · Douai, Nord de France.</p>
+  </footer>
+
+</div>
+
+<!-- STICKY MOBILE -->
+<div class="sticky-bar" role="navigation" aria-label="Contact rapide">
+  <a href="tel:0768789800" class="sticky-tel">📞 07 68 78 98 00</a>
+  <a href="https://wa.me/33768789800" class="sticky-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
+</div>
+
+<script>
+(function(){
+  // Curseur desktop seulement
+  if (window.innerWidth > 600) {
+    var dot = document.getElementById('cursor-dot');
+    var ring = document.getElementById('cursor-ring');
+    var mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', function(e){
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px';
+      dot.style.top = my + 'px';
+    });
+    function animRing(){
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    }
+    animRing();
+  }
+
+  // Fade-up au scroll
+  var fupEls = document.querySelectorAll('.section, .calc-wrap, .cta-final');
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.style.animation = 'fup 0.7s ease-out both';
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  fupEls.forEach(function(el){ obs.observe(el); });
+
+  // Calcul
+  var CIRC = 2 * Math.PI * 104;
+
+  function fmt(n){
+    return new Intl.NumberFormat('fr-FR', { style:'currency', currency:'EUR', maximumFractionDigits:0 }).format(Math.round(n));
+  }
+
+  function anim(id, val){
+    var el = document.getElementById(id);
+    el.style.opacity = '0.3';
+    setTimeout(function(){ el.textContent = val; el.style.opacity = '1'; }, 110);
+  }
+
+  function calcLanding(){
+    var panier = parseFloat(document.getElementById('l-panier').value) || 0;
+    var cmds = parseFloat(document.getElementById('l-cmds').value) || 0;
+    var jours = Math.min(parseFloat(document.getElementById('l-jours').value) || 0, 7);
+
+    var cmdsMois = cmds * jours * (52 / 12);
+    var caMois = panier * cmdsMois;
+    var commission = caMois * 0.30;
+    var tvaPerdue = commission * (0.10 / 1.10);
+    var refunds = cmdsMois * 0.01 * panier;
+    var total = commission + tvaPerdue + refunds;
+    var annuel = total * 12;
+
+    var pct = caMois > 0 ? Math.round((total / caMois) * 100) : 32;
+    pct = Math.min(pct, 99);
+
+    var dashLen = (pct / 100) * CIRC;
+    var arc = document.getElementById('l-donut-arc');
+    arc.style.strokeDasharray = dashLen + ' ' + CIRC;
+
+    var pctEl = document.getElementById('l-donut-pct');
+    pctEl.innerHTML = pct + '<span class="donut-pct-sign">%</span>';
+
+    anim('lc-com', fmt(commission));
+    anim('lc-tva', fmt(tvaPerdue));
+    anim('lc-ref', fmt(refunds));
+    anim('lc-total', fmt(total));
+    anim('lc-annuel', fmt(annuel) + ' perdus');
+  }
+
+  ['l-panier','l-cmds','l-jours'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', calcLanding);
+  });
+
+  calcLanding();
+})();
+</script>
+</body>
+</html>
