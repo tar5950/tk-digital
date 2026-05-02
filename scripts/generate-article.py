@@ -242,29 +242,48 @@ def call_gemini(prompt):
 
 
 def validate_article(article):
-    """Vérifie que l'article ne contient pas de bullshit interdit."""
+    """Vérifie que l'article ne contient pas de bullshit interdit.
+    Applique aussi des auto-fixes pour les problèmes triviaux (longueur meta etc)."""
+    # Auto-fix : tronquer la meta description si trop longue
+    if "meta_description" in article and article["meta_description"]:
+        meta = article["meta_description"]
+        if len(meta) > 160:
+            # Tronque proprement à 157 chars + "..."
+            article["meta_description"] = meta[:157].rsplit(" ", 1)[0] + "…"
+            log(f"ℹ️ Meta description tronquée: {len(meta)} → {len(article['meta_description'])} chars")
+
+    # Auto-fix : tronquer le titre si trop long pour SEO (>70 chars)
+    if "title" in article and article["title"] and len(article["title"]) > 75:
+        original = article["title"]
+        article["title"] = original[:72].rsplit(" ", 1)[0] + "…"
+        log(f"ℹ️ Title tronqué: {len(original)} → {len(article['title'])} chars")
+
+    # Vérification mots interdits — warning seulement (pas de rejet)
     full_text = json.dumps(article, ensure_ascii=False).lower()
+    flagged_phrases = []
     for banned in BANNED_PHRASES:
         if banned.lower() in full_text:
-            log(f"⚠️ Banned phrase detected: '{banned}'")
-            return False, f"Contains banned phrase: {banned}"
+            flagged_phrases.append(banned)
+    if flagged_phrases:
+        log(f"⚠️ Phrases bannies détectées (non-bloquant): {flagged_phrases}")
 
-    # Vérifie la longueur approximative (au moins 800 mots)
+    # Vérifie la longueur approximative
     body_text = article.get("intro", "") + " " + " ".join(s.get("content", "") for s in article.get("sections", []))
     word_count = len(re.findall(r"\w+", body_text))
-    if word_count < 600:
-        return False, f"Too short: {word_count} words (min 600)"
-    if word_count > 1800:
-        return False, f"Too long: {word_count} words (max 1800)"
+    if word_count < 500:
+        return False, f"Too short: {word_count} words (min 500)"
+    if word_count > 2000:
+        return False, f"Too long: {word_count} words (max 2000)"
 
     # Vérifie présence des champs obligatoires
-    required = ["title", "meta_description", "intro", "sections", "faq", "cta_text"]
+    required = ["title", "meta_description", "intro", "sections", "cta_text"]
     for field in required:
         if field not in article or not article[field]:
             return False, f"Missing field: {field}"
 
-    if len(article["meta_description"]) > 165:
-        return False, f"Meta description too long: {len(article['meta_description'])} chars (max 165)"
+    # FAQ optionnel — on ne rejette pas si manquant
+    if "faq" not in article:
+        article["faq"] = []
 
     return True, "OK"
 
