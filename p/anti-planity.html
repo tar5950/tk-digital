@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Planity te prend 89€/mois. Et garde ton fichier client. | TK Digital</title>
+<meta name="description" content="89€/mois d'abonnement, hausses +12%/an, no-shows non comblés, ton fichier client à eux. Calcule ce que Planity te coûte vraiment et découvre comment reprendre la main.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --n: #050505;
+  --n2: #0c0c0c;
+  --n3: #141414;
+  --n4: #1e1e1e;
+  --n5: #2a2a2a;
+  --a: #c8f135;
+  --a2: #d4ff4a;
+  --border: rgba(200,241,53,0.12);
+  --w: #f5f5f0;
+  --w2: #e8e8e2;
+  --mid: #888880;
+  --wa: #25D366;
+  --wa2: #1da855;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  background: var(--n);
+  color: var(--w);
+  line-height: 1.55;
+  padding-bottom: 90px;
+  cursor: none;
+}
+
+/* CURSEUR */
+#cursor-dot {
+  width: 6px; height: 6px;
+  background: var(--a);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+#cursor-ring {
+  width: 28px; height: 28px;
+  border: 1.5px solid rgba(200,241,53,0.6);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s;
+}
+
+/* TRUST BAR */
+.trust-bar {
+  background: #000;
+  padding: 8px 20px;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+}
+.trust-bar a { color: var(--a); text-decoration: none; font-weight: 700; }
+.trust-sep { margin: 0 10px; color: var(--n5); }
+
+/* TICKER */
+.ticker-wrap {
+  background: var(--a);
+  overflow: hidden;
+  height: 34px;
+  display: flex;
+  align-items: center;
+}
+.ticker-inner {
+  display: flex;
+  white-space: nowrap;
+  animation: tick 22s linear infinite;
+}
+.ticker-text {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--n);
+  padding: 0 32px;
+}
+@keyframes tick {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* HEADER */
+.header {
+  background: var(--n2);
+  border-bottom: 1px solid var(--n4);
+  padding: 20px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.logo-svg { width: 36px; height: 36px; flex-shrink: 0; }
+.logo-text {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--w);
+}
+.logo-text span { color: var(--a); }
+.header-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--a);
+  color: var(--n);
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.15s;
+  white-space: nowrap;
+}
+.header-cta:hover { background: var(--a2); transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+  position: relative;
+  background: var(--n);
+  padding: 80px 5% 88px;
+  text-align: center;
+  overflow: hidden;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(200,241,53,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(200,241,53,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 55% at 50% 85%, rgba(200,241,53,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--a);
+  margin-bottom: 20px;
+  animation: fup 0.7s ease-out both;
+}
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(32px, 4vw, 58px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--w);
+  max-width: 700px;
+  margin: 0 auto 20px;
+  animation: fup 0.7s 0.1s ease-out both;
+}
+.hero h1 .accent { color: var(--a); }
+.hero-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--mid);
+  max-width: 500px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+  animation: fup 0.7s 0.2s ease-out both;
+}
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fup 0.7s 0.3s ease-out both;
+}
+.btn-lime {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 16px 28px;
+  background: var(--a);
+  color: var(--n);
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(200,241,53,0.25);
+  transition: background 0.15s, transform 0.15s;
+}
+.btn-lime:hover { background: var(--a2); transform: translateY(-1px); }
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 15px 28px;
+  background: transparent;
+  color: var(--w);
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(245,245,240,0.2);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+}
+.btn-outline:hover { border-color: var(--a); color: var(--a); transform: translateY(-1px); }
+
+@keyframes fup {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* CONTAINER */
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* SECTION */
+.section { margin-top: 72px; }
+.section-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--a);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--w);
+  margin-bottom: 28px;
+}
+.section-title .accent { color: var(--a); }
+
+/* STATS GRID */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--n4);
+  border: 1px solid var(--n4);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+.stat-cell {
+  background: var(--n3);
+  padding: 28px 20px;
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 5vw, 38px);
+  font-weight: 800;
+  color: var(--a);
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--mid);
+  line-height: 1.4;
+}
+.section-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.7;
+}
+.section-body strong { color: var(--a); font-weight: 700; }
+
+/* CALCULATEUR SECTION */
+.calc-wrap {
+  margin-top: 72px;
+  background: var(--n2);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 40px 32px;
+}
+.calc-wrap .section-eyebrow { margin-bottom: 10px; }
+.calc-wrap .section-title { margin-bottom: 28px; }
+
+.field { margin-bottom: 18px; }
+.field label {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--w2);
+  margin-bottom: 8px;
+}
+.input-wrap { position: relative; display: flex; align-items: center; }
+.input-prefix {
+  position: absolute;
+  left: 14px;
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--mid);
+  pointer-events: none;
+}
+input[type="number"] {
+  width: 100%;
+  padding: 14px 14px 14px 32px;
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  border: 1px solid var(--n4);
+  border-radius: 2px;
+  background: var(--n3);
+  color: var(--w);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  -moz-appearance: textfield;
+}
+input[type="number"]:focus {
+  border-color: var(--a);
+  box-shadow: 0 0 0 2px rgba(200,241,53,0.08);
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+.input-no-prefix { padding-left: 14px&nbsp;!important; }
+.input-suffix {
+  position: absolute;
+  right: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--mid);
+}
+
+.calc-detail {
+  background: var(--n3);
+  border: 1px solid var(--n4);
+  border-radius: 2px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.calc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--n4);
+}
+.calc-row:last-child { border-bottom: none; }
+.calc-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--mid);
+  flex: 1;
+}
+.calc-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--a);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  transition: opacity 0.15s;
+}
+
+/* CAMEMBERT LANDING */
+.donut-center-wrap {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.donut-wrap {
+  position: relative;
+  display: inline-block;
+  width: 280px;
+  height: 280px;
+}
+.donut-svg { width: 280px; height: 280px; transform: rotate(-90deg); }
+.donut-bg { fill: none; stroke: var(--n4); stroke-width: 32; }
+.donut-arc {
+  fill: none;
+  stroke: var(--a);
+  stroke-width: 32;
+  stroke-linecap: butt;
+  stroke-dasharray: 0 879;
+  transition: stroke-dasharray 0.9s ease-out;
+}
+.donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.donut-pct {
+  font-family: 'Syne', sans-serif;
+  font-size: 54px;
+  font-weight: 800;
+  color: var(--a);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.donut-pct-sign {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--a);
+}
+.donut-caption {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--mid);
+  margin-top: 4px;
+}
+
+.calc-total {
+  margin-top: 20px;
+  background: var(--n3);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 24px;
+  text-align: center;
+}
+.calc-total-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 10px;
+}
+.calc-total-amount {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(38px, 8vw, 56px);
+  font-weight: 800;
+  color: var(--a);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  transition: opacity 0.2s;
+}
+.calc-total-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--mid);
+  margin-top: 6px;
+}
+.calc-total-year {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--w2);
+  margin-top: 10px;
+}
+
+/* TEMOIGNAGES */
+.testi-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--n4);
+  border: 1px solid var(--n4);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.testi-card {
+  background: var(--n3);
+  padding: 28px;
+  position: relative;
+  border-top: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+.testi-card:hover { border-top-color: var(--a); }
+.testi-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(200,241,53,0.5);
+  letter-spacing: 0.1em;
+  margin-bottom: 14px;
+}
+.testi-highlight {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--a);
+  background: rgba(200,241,53,0.07);
+  padding: 4px 10px;
+  border-radius: 50px;
+  margin-bottom: 14px;
+}
+.testi-quote {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--w2);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+.testi-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.testi-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--a);
+  flex-shrink: 0;
+  animation: bth 2s infinite;
+}
+@keyframes bth {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.testi-who {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--mid);
+}
+.testi-who strong { color: var(--w2); }
+
+/* LEVIERS */
+.leviers {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--n4);
+  border: 1px solid var(--n4);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.lever {
+  background: var(--n3);
+  padding: 24px 28px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  border-top: 2px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+}
+.lever:hover { border-top-color: var(--a); background: var(--n2); }
+.lever-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(200,241,53,0.5);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.lever-body { flex: 1; }
+.lever-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--w);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.lever-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.55;
+}
+
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; gap: 1px; background: var(--n4); border: 1px solid var(--n4); border-radius: 2px; overflow: hidden; }
+.faq-item { background: var(--n3); }
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--w);
+  cursor: pointer;
+  gap: 14px;
+  user-select: none;
+  list-style: none;
+  transition: color 0.15s;
+}
+.faq-q:hover { color: var(--a); }
+.faq-q::-webkit-details-marker { display: none; }
+.faq-arrow {
+  font-size: 18px;
+  color: var(--mid);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+}
+details[open] .faq-arrow { transform: rotate(45deg); color: var(--a); }
+.faq-a {
+  padding: 0 24px 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.65;
+}
+
+/* CTA FINAL */
+.cta-final {
+  margin-top: 72px;
+  background: var(--n2);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 52px 36px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-final-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(200,241,53,0.025) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(200,241,53,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.cta-final h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(24px, 4vw, 36px);
+  letter-spacing: -0.02em;
+  color: var(--w);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.cta-final p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--mid);
+  margin-bottom: 32px;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-triple {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.btn-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 17px 28px;
+  background: var(--a);
+  color: var(--n);
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(200,241,53,0.25);
+  transition: background 0.15s, transform 0.15s;
+}
+.btn-main:hover { background: var(--a2); transform: translateY(-1px); }
+.btn-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 28px;
+  background: var(--wa);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(37,211,102,0.3);
+  transition: background 0.15s, transform 0.15s;
+}
+.btn-wa:hover { background: var(--wa2); transform: translateY(-1px); }
+.btn-email {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 28px;
+  background: transparent;
+  color: var(--w2);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  border: 1px solid rgba(245,245,240,0.15);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-email:hover { border-color: var(--a); color: var(--a); }
+.cta-note {
+  margin-top: 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--mid);
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 40px;
+  padding: 24px 20px;
+  border-top: 1px solid var(--n4);
+  text-align: center;
+}
+.footer p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* STICKY MOBILE */
+.sticky-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: var(--n2);
+  border-top: 1px solid var(--n4);
+  padding: 12px 16px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  gap: 10px;
+}
+.sticky-bar a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 12px;
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: transform 0.15s;
+}
+.sticky-bar a:active { transform: scale(0.97); }
+.sticky-tel { background: var(--a); color: var(--n); }
+.sticky-wa { background: var(--wa); color: #fff; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .sticky-bar { display: flex; }
+}
+@media (max-width: 600px) {
+  body { cursor: auto; }
+  #cursor-dot, #cursor-ring { display: none; }
+  .hero { padding: 56px 5% 64px; }
+  .calc-wrap { padding: 28px 20px; }
+  .donut-wrap { width: 200px; height: 200px; }
+  .donut-svg { width: 200px; height: 200px; }
+  .donut-arc { stroke-width: 28; }
+  .donut-bg { stroke-width: 28; }
+  .donut-pct { font-size: 40px; }
+  .cta-final { padding: 40px 24px; }
+}
+@media (max-width: 480px) {
+  .header-cta { display: none; }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas a { width: 100%; justify-content: center; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .testi-card { padding: 20px; }
+  .lever { padding: 18px 20px; }
+}
+@media (max-width: 380px) {
+  .hero h1 { font-size: 28px; }
+  .cta-triple { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSEUR CUSTOM -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- TRUST BAR (page privée préparée par Tarik) -->
+<div class="trust-bar" style="background:#0d0808;color:#ff8c66;border-bottom:1px solid rgba(255,140,66,.2);">
+  ✋ Page privée préparée pour toi par Tarik
+  <span class="trust-sep">·</span>
+  <a href="tel:0768789800" style="color:#c8f135;">07 68 78 98 00</a>
+  <span class="trust-sep">·</span>
+  Réponse sous 24h
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ticker-text">✦ Ton fichier à toi ✦ Sans engagement long ✦ Rappels WhatsApp gratuits ✦ Pas de hausses surprises ✦ Ton fichier à toi ✦ Sans engagement long ✦ Rappels WhatsApp gratuits ✦ Pas de hausses surprises ✦</span>
+    <span class="ticker-text">✦ Ton fichier à toi ✦ Sans engagement long ✦ Rappels WhatsApp gratuits ✦ Pas de hausses surprises ✦ Ton fichier à toi ✦ Sans engagement long ✦ Rappels WhatsApp gratuits ✦ Pas de hausses surprises ✦</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="#" class="logo" aria-label="TK Digital">
+    <svg class="logo-svg" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+      <rect width="36" height="36" fill="#c8f135"/>
+      <path d="M7 10H29M18 10V26" stroke="#050505" stroke-width="3" stroke-linecap="square"/>
+      <path d="M18 18L27 26M18 18L27 10" stroke="#050505" stroke-width="3" stroke-linecap="square"/>
+    </svg>
+    <span class="logo-text">TK <span>Digital</span></span>
+  </a>
+  <a href="tel:0768789800" class="header-cta">📞 07 68 78 98 00</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <p class="hero-eyebrow">Pour les barbiers sur Planity</p>
+  <h1>Planity te prend <span class="accent">89€/mois</span>.<br>Et garde ton fichier client.</h1>
+  <p class="hero-sub">Abonnement de base 89€/mois, hausses +12%/an automatiques, no-shows non comblés, ton fichier client à eux. <strong style="color:var(--w);">C'est pas un partenariat&nbsp;— c'est de la sous-traitance déguisée.</strong></p>
+  <div class="hero-ctas">
+    <a href="#calculateur" class="btn-lime">🧮 Calcule ton vrai coût</a>
+    <a href="https://wa.me/33768789800?text=Bonjour%20Tarik%2C%20je%20veux%20sortir%20de%20Planity." class="btn-outline" target="_blank" rel="noopener">💬 WhatsApp Tarik</a>
+  </div>
+  <div class="hero-trust" style="margin-top:36px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;font-size:12px;color:var(--mid);font-weight:500;letter-spacing:.04em;">
+    <span style="display:inline-flex;align-items:center;gap:6px;"><span style="color:var(--a);font-weight:700;">✓</span> Site en 7 jours ou setup remboursé</span>
+    <span style="display:inline-flex;align-items:center;gap:6px;"><span style="color:var(--a);font-weight:700;">✓</span> 6 mois d'engagement seulement</span>
+    <span style="display:inline-flex;align-items:center;gap:6px;"><span style="color:var(--a);font-weight:700;">✓</span> Ton fichier client à 100%</span>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- STATS -->
+  <div class="section">
+    <p class="section-eyebrow">Les chiffres qui font mal</p>
+    <h2 class="section-title">La réalité <span class="accent">brute</span></h2>
+    <div class="stats-grid">
+      <div class="stat-cell">
+        <span class="stat-num">89€</span>
+        <p class="stat-desc">par mois facturés sur ton compte, hors options et hausses annuelles</p>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">+12%</span>
+        <p class="stat-desc">de hausse moyenne par an, sans communication officielle préalable</p>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">12%</span>
+        <p class="stat-desc">de no-shows en moyenne (INSEE / QueueFast). Créneaux non comblés à temps.</p>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">0</span>
+        <p class="stat-desc"><strong>TON</strong> fichier client. C'est légalement à toi mais tu dois envoyer un mail pour l'exporter.</p>
+      </div>
+    </div>
+    <p class="section-body">Tu paies 89€/mois pour un agenda en ligne. Sauf que <strong>tes clients sont enregistrés chez Planity</strong>, pas chez toi. Tes <strong>no-shows</strong> rongent ta marge sans rappel WhatsApp efficace. Et chaque année, l'<strong>abonnement augmente</strong> sans qu'on te demande ton avis. Le jour où tu pars, tu repars de zéro.</p>
+  </div>
+
+  <!-- CALCULATEUR -->
+  <div class="calc-wrap" id="calculateur">
+    <p class="section-eyebrow">Calcul en temps réel</p>
+    <h2 class="section-title">Ton chiffre à <span class="accent">toi</span></h2>
+
+    <div class="field">
+      <label for="l-panier">Prix moyen d'une coupe</label>
+      <div class="input-wrap">
+        <span class="input-prefix">€</span>
+        <input type="number" id="l-panier" value="28" min="1" max="999" step="1" inputmode="numeric">
+      </div>
+    </div>
+    <div class="field">
+      <label for="l-cmds">RDV par mois</label>
+      <div class="input-wrap">
+        <input type="number" id="l-cmds" value="200" min="1" max="9999" step="1" class="input-no-prefix" inputmode="numeric">
+        <span class="input-suffix">RDV / mois</span>
+      </div>
+    </div>
+    <div class="field">
+      <label for="l-jours">% de no-shows (RDV non venus)</label>
+      <div class="input-wrap">
+        <input type="number" id="l-jours" value="12" min="0" max="50" step="1" class="input-no-prefix" inputmode="numeric">
+        <span class="input-suffix">% no-shows</span>
+      </div>
+    </div>
+
+    <div class="calc-detail">
+      <div class="calc-row">
+        <span class="calc-label">Abonnement Planity Pro</span>
+        <span class="calc-val" id="lc-com">—</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-label">No-shows non comblés (50% perdus)</span>
+        <span class="calc-val" id="lc-tva">—</span>
+      </div>
+      <div class="calc-row">
+        <span class="calc-label">Hausses tarifaires sur 24 mois (~12%/an)</span>
+        <span class="calc-val" id="lc-ref">—</span>
+      </div>
+    </div>
+
+    <!-- CAMEMBERT -->
+    <div class="donut-center-wrap">
+      <div class="donut-wrap">
+        <svg class="donut-svg" viewBox="0 0 280 280" aria-hidden="true">
+          <circle class="donut-bg" cx="140" cy="140" r="104"/>
+          <circle class="donut-arc" id="l-donut-arc" cx="140" cy="140" r="104"/>
+        </svg>
+        <div class="donut-center">
+          <span class="donut-pct" id="l-donut-pct">22<span class="donut-pct-sign">%</span></span>
+          <span class="donut-caption">de ton CA part chez Planity</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-total">
+      <p class="calc-total-label">Perdu par mois</p>
+      <div class="calc-total-amount" id="lc-total">—</div>
+      <p class="calc-total-sub">Perdu sur l'année complète&nbsp;:</p>
+      <p class="calc-total-year" id="lc-annuel">—</p>
+    </div>
+  </div>
+
+  <!-- TEMOIGNAGES -->
+  <div class="section">
+    <p class="section-eyebrow">Ce que disent les restaurateurs</p>
+    <h2 class="section-title">Ils l'ont <span class="accent">vécu</span></h2>
+    <div class="testi-grid">
+
+      <div class="testi-card">
+        <p class="testi-num">01</p>
+        <span class="testi-highlight">Trustpilot 1★ — Salon parti de Planity</span>
+        <p class="testi-quote">"FUYEZ&nbsp;!! 212€ prélevés de leur part et le service Compta ne peut rien faire&nbsp;!"</p>
+        <div class="testi-meta">
+          <div class="testi-dot"></div>
+          <p class="testi-who"><strong>Sara Angelovski</strong> · Trustpilot 1★ · 2022 · Résiliation refusée + prélèvement contesté</p>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <p class="testi-num">02</p>
+        <span class="testi-highlight">Trustpilot 1★ — Service client absent</span>
+        <p class="testi-quote">"Aucun service client Planity, une réponse automatique est générée à chaque demande. J'ai perdu temps et argent."</p>
+        <div class="testi-meta">
+          <div class="testi-dot"></div>
+          <p class="testi-who"><strong>ALS</strong> · Trustpilot 1★ · 2022 · Refus de remboursement après prestation manquée</p>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <p class="testi-num">03</p>
+        <span class="testi-highlight">BreizhApp 2025 — Analyse coût Planity</span>
+        <p class="testi-quote">"Vous ne possédez ni les données clients, ni l'application, ni la relation directe avec votre clientèle. Vos clients restent en partie clients de Planity, pas uniquement les vôtres."</p>
+        <div class="testi-meta">
+          <div class="testi-dot"></div>
+          <p class="testi-who"><strong>BreizhApp</strong> · Blog spécialisé · 2025 · Analyse modèle économique Planity</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LEVIERS -->
+  <div class="section">
+    <p class="section-eyebrow">Ce qu'on peut faire</p>
+    <h2 class="section-title">3 leviers <span class="accent">concrets</span></h2>
+    <div class="leviers">
+      <div class="lever">
+        <span class="lever-num">01</span>
+        <div class="lever-body">
+          <p class="lever-title">Ton site de réservation direct, à ton nom</p>
+          <p class="lever-desc">Page ou mini-site à ton image, prise de RDV en ligne 24/7, <strong>0€ d'abonnement mensuel</strong>. Le client réserve chez toi, pas chez Planity. Et c'est <strong>ton fichier client</strong>, pas le leur.</p>
+        </div>
+      </div>
+      <div class="lever">
+        <span class="lever-num">02</span>
+        <div class="lever-body">
+          <p class="lever-title">Rappels WhatsApp J-1 et H-1 anti no-shows</p>
+          <p class="lever-desc">Message WhatsApp automatique la veille et 1h avant le RDV. Possibilité d'<strong>acompte</strong> à la réservation. Tu réduis tes no-shows de 12% à 2-3%. Le calcul est vite fait sur 200 RDV/mois.</p>
+        </div>
+      </div>
+      <div class="lever">
+        <span class="lever-num">03</span>
+        <div class="lever-body">
+          <p class="lever-title">Récup' de ton fichier client Planity (RGPD)</p>
+          <p class="lever-desc">Tu as <strong>le droit légal</strong> de récupérer ton fichier client chez Planity (RGPD, art. 20 — droit à la portabilité). Je te guide sur la demande à envoyer. Tes clients redeviennent <strong>les tiens</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <p class="section-eyebrow">Questions fréquentes</p>
+    <h2 class="section-title">Ce que tu te demandes <span class="accent">sûrement</span></h2>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Ça coûte combien&nbsp;?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <p class="faq-a">On en parle directement quand tu m'appelles ou que tu m'écris sur WhatsApp. Le tarif dépend de ce que tu veux mettre en place et de la vitesse à laquelle tu veux te déployer. <strong>L'objectif&nbsp;: que tu récupères beaucoup plus que tu n'investis</strong>, et rapidement. Promis, c'est pas un piège — devis clair et honnête sous 24h.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          C'est quoi la garantie&nbsp;?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <p class="faq-a">Site et système de RDV en ligne en <strong>7 jours</strong> après que tu m'aies validé tes contenus (photos, prestations). Si je dépasse, je te rembourse le setup intégralement. <strong>Engagement 6 mois</strong>, et après tu pars quand tu veux <strong>avec ton site, ton domaine et ton fichier client à 100%</strong>. Pas d'augmentation surprise, pas de contrat à rallonge.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Je dois quitter Planity tout de suite&nbsp;?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <p class="faq-a">Non. On construit ton canal direct <strong>à côté</strong> de Planity. Tu fais migrer tes clients fidèles en douceur (rappels WhatsApp, QR code en salon, post Instagram). Quand ton agenda direct tourne, tu coupes Planity et tu économises 89€/mois. Tu gardes le contrôle du timing.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Comment je récupère mon fichier client Planity&nbsp;?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <p class="faq-a">Le RGPD te donne le <strong>droit à la portabilité</strong> de tes données (art. 20). Tu envoies une demande écrite à Planity, ils ont <strong>1 mois</strong> pour te fournir l'export (nom, prénom, téléphone, historique RDV). Je te file le modèle de mail tout fait. Si tu veux, on le fait ensemble en 5 minutes.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Et si mes clients ne réservent que via Planity&nbsp;?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <p class="faq-a">C'est la vraie question. La transition se fait sur 60-90 jours&nbsp;: QR code à la caisse, lien WhatsApp dans tes posts Instagram, message à chaque client après sa coupe ("la prochaine fois, réserve direct ici, c'est plus simple"). Tu verras&nbsp;: une fois qu'ils ont ton lien, 80% reviennent en direct.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          En combien de temps ca se met en place&nbsp;?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <p class="faq-a">Le système de RDV en ligne + WhatsApp configuré&nbsp;: <strong>quelques jours</strong>. Le site complet&nbsp;: 7 jours. La récup' de ton fichier client Planity&nbsp;: 1 mois max (délai légal RGPD). On démarre dès que tu veux.</p>
+      </details>
+
+    </div>
+  </div>
+
+  <!-- QUI PARLE -->
+  <div class="section" style="margin-top:64px;">
+    <p class="section-eyebrow">Qui parle&nbsp;?</p>
+    <h2 class="section-title">Tarik. <span class="accent">Pas une agence.</span></h2>
+    <div style="background:var(--n3);border:1px solid var(--n4);border-left:3px solid var(--a);border-radius:0 8px 8px 0;padding:24px;">
+      <p style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--w);margin-bottom:12px;">Tarik · Fondateur TK Digital · Douai</p>
+      <p style="font-size:14px;color:var(--mid);line-height:1.7;">Pendant <strong style="color:var(--w);">7 ans j'ai livré les commerces</strong> de proximité du Nord (Lille, Roubaix, Valenciennes, Douai, Lens) — restos, snacks, salons, barbershops. Je connais le quotidien d'un commerçant de quartier&nbsp;: la marge serrée, les abonnements qui s'empilent, les outils qu'on subit. Aujourd'hui je code des sites pour mes confrères. <strong style="color:var(--w);">Un seul interlocuteur. Toujours moi.</strong></p>
+    </div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div class="cta-final">
+    <div class="cta-final-grid" aria-hidden="true"></div>
+    <h2>5 places ce mois-ci. Tu en veux une&nbsp;?</h2>
+    <p>Un échange WhatsApp ou un appel de 12 minutes. Tu décris tes chiffres, on voit ce qui fait sens pour toi. <strong>Sans engagement. Réponse sous 24h.</strong></p>
+    <div class="cta-triple">
+      <a href="https://wa.me/33768789800?text=Bonjour%20Tarik%2C%20je%20veux%20qu'on%20regarde%20ma%20situation%20Planity%20ensemble." class="btn-main" target="_blank" rel="noopener">💬 WhatsApp Tarik</a>
+      <a href="tel:0768789800" class="btn-wa" style="background:transparent;border:1px solid var(--a);color:var(--a);">📞 07 68 78 98 00</a>
+    </div>
+    <p class="cta-note">Pas de démarchage agressif. Si je peux pas t'aider, je te le dis franchement.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Sources&nbsp;: Trustpilot Planity (avis Sara Angelovski 2022, ALS 2022, et autres avis vérifiés 1★) · BreizhApp 2025 (analyse modèle économique Planity, propriété des données clients) · Reddit r/coiffure et r/conseiljuridique (témoignages barbiers et juridique RGPD) · CNIL (art. 20 RGPD — droit à la portabilité des données). Les calculs sont des estimations basées sur 89€/mois (tarif Planity Pro 2026 indicatif), un taux de no-shows moyen de 12% (source enquêtes secteur coiffure/barbier FR), et une hausse cumulée de 25% sur 24 mois (estimation prudente fondée sur les hausses observées sur les plateformes SaaS du secteur). Aucune garantie de résultat exprimée ou implicite. TK Digital · Tarik · 07 68 78 98 00 · Douai, Nord de France.</p>
+  </footer>
+
+</div>
+
+<!-- STICKY MOBILE -->
+<div class="sticky-bar" role="navigation" aria-label="Contact rapide">
+  <a href="tel:0768789800" class="sticky-tel">📞 07 68 78 98 00</a>
+  <a href="https://wa.me/33768789800" class="sticky-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
+</div>
+
+<script>
+(function(){
+  // Curseur desktop seulement
+  if (window.innerWidth > 600) {
+    var dot = document.getElementById('cursor-dot');
+    var ring = document.getElementById('cursor-ring');
+    var mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', function(e){
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px';
+      dot.style.top = my + 'px';
+    });
+    function animRing(){
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    }
+    animRing();
+  }
+
+  // Fade-up au scroll
+  var fupEls = document.querySelectorAll('.section, .calc-wrap, .cta-final');
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.style.animation = 'fup 0.7s ease-out both';
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  fupEls.forEach(function(el){ obs.observe(el); });
+
+  // Calcul
+  var CIRC = 2 * Math.PI * 104;
+
+  function fmt(n){
+    return new Intl.NumberFormat('fr-FR', { style:'currency', currency:'EUR', maximumFractionDigits:0 }).format(Math.round(n));
+  }
+
+  function anim(id, val){
+    var el = document.getElementById(id);
+    el.style.opacity = '0.3';
+    setTimeout(function(){ el.textContent = val; el.style.opacity = '1'; }, 110);
+  }
+
+  function calcLanding(){
+    var prixCoupe = parseFloat(document.getElementById('l-panier').value) || 0;
+    var rdvMois = parseFloat(document.getElementById('l-cmds').value) || 0;
+    var noShowPct = Math.min(parseFloat(document.getElementById('l-jours').value) || 0, 50);
+
+    // Formule Planity : abo + no-shows non comblés (50%) + hausses tarifaires cumulées sur 24 mois
+    var aboMois = 89; // Plan Pro standard
+    var aboAnnuel = aboMois * 12;
+    var noShowsPerdusAnnuel = rdvMois * (noShowPct / 100) * prixCoupe * 0.5 * 12;
+    var haussesCumul24Mois = aboAnnuel * 0.25; // ~12%/an sur 2 ans
+    var totalAnnuel = aboAnnuel + noShowsPerdusAnnuel + haussesCumul24Mois;
+    var totalMois = totalAnnuel / 12;
+
+    var caMois = prixCoupe * rdvMois;
+    var pct = caMois > 0 ? Math.round((totalMois / caMois) * 100) : 22;
+    pct = Math.min(pct, 99);
+
+    var dashLen = (pct / 100) * CIRC;
+    var arc = document.getElementById('l-donut-arc');
+    arc.style.strokeDasharray = dashLen + ' ' + CIRC;
+
+    var pctEl = document.getElementById('l-donut-pct');
+    pctEl.innerHTML = pct + '<span class="donut-pct-sign">%</span>';
+
+    anim('lc-com', fmt(aboAnnuel));
+    anim('lc-tva', fmt(noShowsPerdusAnnuel));
+    anim('lc-ref', fmt(haussesCumul24Mois) + ' (estimation)');
+    anim('lc-total', fmt(totalMois));
+    anim('lc-annuel', fmt(totalAnnuel) + ' sur l\'année');
+  }
+
+  ['l-panier','l-cmds','l-jours'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', calcLanding);
+  });
+
+  calcLanding();
+})();
+</script>
+</body>
+</html>
