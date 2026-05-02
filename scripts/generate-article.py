@@ -170,33 +170,46 @@ Articles ciblés : {', '.join(geo)}. Mentionne 1-2 villes du Nord de France si p
 # STRUCTURE DE L'ARTICLE
 1. **Titre H1** (le titre proposé, ou une variation plus accrocheuse)
 2. **Intro** (3-4 phrases, hook + promesse de l'article)
-3. **3-5 sections H2** avec sous-titres clairs
-4. **Sous-sections H3** si pertinent
-5. **FAQ courte** (3-5 questions) en fin d'article
-6. **CTA final** : 1-2 phrases qui invitent à visiter "{topic['cta_landing']}" (sur le même site, lien relatif)
+3. **3-4 sections H2** avec sous-titres clairs
+4. **FAQ courte** (3 questions) en fin d'article
+5. **CTA final** : 1-2 phrases qui invitent à visiter "{topic['cta_landing']}"
 
 # FORMAT DE SORTIE — TRÈS IMPORTANT
-Réponds UNIQUEMENT avec un objet JSON valide (pas de markdown, pas de ```json), avec ces clés :
+Réponds UNIQUEMENT avec un objet JSON valide. **Le contenu des sections est en MARKDOWN** (pas en HTML), pour éviter les problèmes de guillemets.
+
+Format Markdown autorisé dans les sections :
+- Paragraphes (séparés par ligne vide)
+- Listes : `- item` ou `1. item`
+- Gras : `**mot**`
+- Italique : `*mot*`
+- Sous-titre : `### Titre H3`
+- PAS de guillemets typographiques « » — utilise " "
+
+Exemple de structure JSON :
 
 {{
   "title": "Titre H1 final",
-  "meta_description": "Méta description SEO (max 155 caractères)",
-  "intro": "Paragraphe d'intro (3-4 phrases)",
+  "meta_description": "Méta description SEO (max 150 caractères)",
+  "intro": "Paragraphe d'intro court, 2-3 phrases.",
   "sections": [
-    {{ "h2": "Titre section 1", "content": "Contenu de la section en HTML simple (paragraphes <p>, listes <ul><li>, sous-titres <h3>)" }},
-    {{ "h2": "Titre section 2", "content": "..." }},
-    ...
+    {{ "h2": "Titre section 1", "content": "Paragraphe 1 en markdown.\\n\\nParagraphe 2.\\n\\n- Liste item 1\\n- Liste item 2" }},
+    {{ "h2": "Titre section 2", "content": "Contenu markdown..." }}
   ],
   "faq": [
-    {{ "q": "Question 1 ?", "a": "Réponse courte" }},
-    ...
+    {{ "q": "Question 1 ?", "a": "Réponse courte" }}
   ],
-  "cta_text": "Texte du CTA final (1-2 phrases avec lien vers {topic['cta_landing']})",
+  "cta_text": "Phrase courte invitant à visiter {topic['cta_landing']}",
   "reading_time_min": 4
 }}
 
-Longueur totale : 800-1200 mots. Pas plus, pas moins.
+# LONGUEUR
+Longueur totale : 700-1000 mots. Pas plus.
 N'invente AUCUN chiffre. Si tu cites un chiffre, il doit venir des sources fournies (BreizhApp, Trustpilot, INSEE, etc.) ou être un calcul transparent du type "30% × 200 commandes × 18€ = 1 080€/mois".
+
+# IMPORTANT - ÉCHAPPEMENT JSON
+- Dans les valeurs JSON, échappe les retours à la ligne en \\n
+- Évite les guillemets droits " dans le contenu markdown (utilise des guillemets simples ' à la place)
+- N'utilise JAMAIS de tabulations
 """
     return prompt
 
@@ -288,6 +301,125 @@ def validate_article(article):
     return True, "OK"
 
 
+def markdown_to_html(md):
+    """Convertit du markdown simple en HTML. Géré : paragraphes, listes, gras, italique, h3."""
+    if not md:
+        return ""
+
+    lines = md.split("\n")
+    out = []
+    in_ul = False
+    in_ol = False
+    para = []
+
+    def flush_para():
+        nonlocal para
+        if para:
+            text = " ".join(para).strip()
+            if text:
+                out.append(f"<p>{text}</p>")
+            para = []
+
+    def flush_ul():
+        nonlocal in_ul
+        if in_ul:
+            out.append("</ul>")
+            in_ul = False
+
+    def flush_ol():
+        nonlocal in_ol
+        if in_ol:
+            out.append("</ol>")
+            in_ol = False
+
+    for line in lines:
+        stripped = line.strip()
+
+        # Ligne vide = nouveau paragraphe
+        if not stripped:
+            flush_para()
+            flush_ul()
+            flush_ol()
+            continue
+
+        # H3
+        if stripped.startswith("### "):
+            flush_para()
+            flush_ul()
+            flush_ol()
+            out.append(f"<h3>{stripped[4:]}</h3>")
+            continue
+
+        # H4 (rare)
+        if stripped.startswith("#### "):
+            flush_para()
+            flush_ul()
+            flush_ol()
+            out.append(f"<h4>{stripped[5:]}</h4>")
+            continue
+
+        # Liste UL
+        if stripped.startswith("- ") or stripped.startswith("* "):
+            flush_para()
+            flush_ol()
+            if not in_ul:
+                out.append("<ul>")
+                in_ul = True
+            out.append(f"<li>{stripped[2:]}</li>")
+            continue
+
+        # Liste OL
+        if re.match(r"^\d+\.\s", stripped):
+            flush_para()
+            flush_ul()
+            if not in_ol:
+                out.append("<ol>")
+                in_ol = True
+            out.append(f"<li>{re.sub(r'^\d+\.\s', '', stripped)}</li>")
+            continue
+
+        # Paragraphe normal
+        para.append(stripped)
+
+    # Flush final
+    flush_para()
+    flush_ul()
+    flush_ol()
+
+    html = "\n".join(out)
+
+    # Inline formatting : **gras**, *italique*
+    html = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", html)
+    html = re.sub(r"(?<!\*)\*([^*]+?)\*(?!\*)", r"<em>\1</em>", html)
+
+    return html
+
+
+def repair_json(text):
+    """Tente de réparer un JSON tronqué/malformé en cherchant la dernière } valide."""
+    # Cherche la dernière accolade fermante
+    last_brace = text.rfind("}")
+    if last_brace == -1:
+        return text
+    candidate = text[:last_brace + 1]
+    try:
+        json.loads(candidate)
+        return candidate
+    except json.JSONDecodeError:
+        pass
+    # Tentative : tronquer juste avant le point de panne et fermer manuellement
+    # Cherche la dernière virgule suivie d'un objet valide
+    for cut in range(last_brace, 0, -1):
+        if text[cut] == ",":
+            try:
+                attempt = text[:cut] + "\n]}"  # ferme array sections + objet
+                json.loads(attempt)
+                return attempt
+            except json.JSONDecodeError:
+                continue
+    return text
+
+
 def find_related_articles(current_topic, all_articles, limit=3):
     """Trouve les articles existants les plus pertinents (même catégorie ou keywords proches)."""
     if not all_articles:
@@ -325,7 +457,9 @@ def render_article_html(article, topic, date_str, related_articles=None):
 
     sections_html = ""
     for sec in article["sections"]:
-        sections_html += f'\n      <h2>{sec["h2"]}</h2>\n      {sec["content"]}\n'
+        # Convertit le markdown du content en HTML
+        content_html = markdown_to_html(sec.get("content", ""))
+        sections_html += f'\n      <h2>{sec["h2"]}</h2>\n      {content_html}\n'
 
     faq_html = ""
     if article.get("faq"):
@@ -710,14 +844,27 @@ def main():
                 log("❌ Gemini failed 3 times. Aborting.")
                 sys.exit(1)
 
-    # Parse JSON
-    try:
-        article = json.loads(raw)
-    except json.JSONDecodeError:
-        # Tentative de cleanup ```json ... ```
-        cleaned = re.sub(r"^```(?:json)?\s*", "", raw.strip())
-        cleaned = re.sub(r"\s*```\s*$", "", cleaned)
-        article = json.loads(cleaned)
+    # Parse JSON avec multi-fallback
+    article = None
+    parse_error = None
+    for attempt_label, candidate in [
+        ("raw", raw),
+        ("cleaned", re.sub(r"\s*```\s*$", "", re.sub(r"^```(?:json)?\s*", "", raw.strip()))),
+        ("repaired", repair_json(raw)),
+    ]:
+        try:
+            article = json.loads(candidate)
+            log(f"✅ JSON parsed via: {attempt_label}")
+            break
+        except json.JSONDecodeError as e:
+            parse_error = e
+            log(f"⚠️ Parse {attempt_label} failed: {e}")
+
+    if article is None:
+        log(f"❌ Tous les parse attempts ont échoué. Erreur: {parse_error}")
+        log(f"Premier 500 chars: {raw[:500]}")
+        log(f"Derniers 500 chars: {raw[-500:]}")
+        sys.exit(1)
 
     # Validation garde-fous
     ok, reason = validate_article(article)
