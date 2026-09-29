@@ -212,6 +212,26 @@ textarea:focus,input.f:focus,select.f:focus{border-color:var(--red)}
 .gift .ic{font-size:30px}.gift p{margin:0;flex:1;font-size:12.5px;color:#e6e6ee;min-width:0}.gift p b{color:#fff;display:block;font-size:14px}
 .gift button{background:#fff;color:#111;border-radius:10px;padding:9px 12px;font-weight:700;font-size:13px;white-space:nowrap}
 .gift-howto{margin:8px 16px 0;font-size:12.5px;color:#cfcfd6;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.reco{position:fixed;left:0;right:0;bottom:0;z-index:61;max-width:560px;margin:0 auto;background:var(--bg2);border-radius:22px 22px 0 0;padding:16px 16px calc(14px + var(--safe-b));transform:translateY(110%);visibility:hidden;transition:transform .3s cubic-bezier(.2,.9,.3,1),visibility 0s .3s;border-top:1px solid var(--line)}
+.reco.on{transform:none;visibility:visible;transition:transform .3s cubic-bezier(.2,.9,.3,1)}
+.reco h3{margin:0 0 2px;font-family:Anton,Impact,'Arial Narrow',sans-serif;font-weight:400;font-size:22px;text-transform:uppercase}
+.reco .why{font-size:12.5px;color:var(--mute);margin:0 0 12px}
+.why-tag{display:block;font-size:10.5px;font-weight:600;color:#ffd23b;margin-top:3px}
+.welcome{position:fixed;inset:0;z-index:95;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.72);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+.welcome.on{opacity:1;visibility:visible;transition:opacity .3s}
+.welcome .card-w{width:min(100%,400px);background:var(--bg2);border-radius:24px;overflow:hidden;border:1px solid var(--line);transform:scale(.9);transition:transform .35s cubic-bezier(.2,1.3,.4,1);position:relative}
+.welcome.on .card-w{transform:none}
+.welcome .card-w img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 30%}
+.welcome .wb{padding:16px}
+.welcome h2{margin:0;font-family:Anton,Impact,'Arial Narrow',sans-serif;font-weight:400;font-size:28px;text-transform:uppercase;line-height:1.05}
+.welcome p{margin:6px 0 14px;color:#cfcfd6;font-size:14px}
+.grp{margin:0 16px;display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none;padding:8px 0}
+.grp::-webkit-scrollbar{display:none}
+.grp .lbl{font-size:12px;color:var(--mute);white-space:nowrap}
+.who{flex:0 0 auto;padding:7px 12px;border-radius:99px;border:1.5px solid var(--line);background:var(--bg2);font-size:13px;font-weight:600}
+.who.on{border-color:#ffd23b;background:rgba(255,210,59,.15);color:#fff}
+.who.add{border-style:dashed;color:var(--mute)}
+.pers{margin-top:14px;font-size:13px;font-weight:700;color:#ffd23b;display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:6px}
 .reorder .ic{font-size:26px}.reorder p{margin:0;flex:1;font-size:12.5px;color:var(--mute);min-width:0}.reorder p b{color:#fff;display:block;font-size:14px}
 .reorder button{background:var(--red);border-radius:10px;padding:9px 12px;font-weight:700;font-size:13px;white-space:nowrap}
 .stamps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
@@ -262,7 +282,7 @@ footer{padding:26px 16px 10px;text-align:center;color:#55555e;font-size:11px}
       <input id="q" type="search" placeholder="Burger, tiramisu, escalope…" autocomplete="off">
     </div>
 
-    <nav class="cats"><div class="cats-in" id="cats"></div></nav>
+    <nav class="cats"><div class="cats-in" id="cats"></div><div id="grpBar"></div></nav>
     <div id="sections"></div>
     <footer>Mister Grill · 22 rue Chaligny 75012 Paris<br>Photos non contractuelles · Prix TTC</footer>
   </main>
@@ -287,6 +307,8 @@ footer{padding:26px 16px 10px;text-align:center;color:#55555e;font-size:11px}
 </div></nav>
 
 <div class="scrim" id="scrim"></div>
+<div class="reco" id="reco"></div>
+<div class="welcome" id="welcome"></div>
 <div class="sheet" id="sheet"></div>
 <div class="toast" id="toast"></div>
 
@@ -315,6 +337,8 @@ let gift = store.get('gift', 'locked');   // locked | unlocked | used
 if (GIFT && gift === 'locked' && standalone()) { gift = 'unlocked'; store.set('gift', gift); }
 const giftActive = () => GIFT && gift === 'unlocked';
 let howto = false;
+let group = store.get('group', null);   // { names:[...], cur:0 } commande de groupe
+const whoName = l => group && l.who != null ? group.names[l.who] : null;
 let order = null;                     // commande en cours de confirmation
 if (last) last.lines = last.lines.filter(l => ITEMS[l.id]);
 let form = store.get('form', { mode: C.modes[0], name: '', phone: '', time: 'asap', note: '' });
@@ -382,7 +406,7 @@ function renderMenu(filter = '') {
   });
   if (!f && BEST.length) html = `<section class="sec-top"><div class="sec-h"><h2>Top ventes</h2><p>Les + commandés cette semaine</p></div>
     <div class="hs">${BEST.filter(id => ITEMS[id]).map((id, k) => { const it = ITEMS[id]; return `<button class="mini-card" data-item="${id}"><span class="rk">#${k + 1}</span><img src="${it.img}" alt="" loading="lazy"><div class="t">${esc(it.name)}<span>${eur(it.price)}</span></div></button>`; }).join('')}</div></section>` + html;
-  renderReorder(); renderGift();
+  renderReorder(); renderGift(); renderGroupBar();
   $('#sections').innerHTML = html || `<div class="empty">Aucun plat ne correspond à « ${esc(filter)} »</div>`;
   $('#cats').innerHTML = MENU.filter(s => !f || $('#s-' + s.id)).map(s => `<button class="cat" data-cat="${s.id}">${esc(s.title)}</button>`).join('');
   spy();
@@ -413,6 +437,67 @@ function renderGift() {
       ${howto ? `<div class="gift-howto">${isIOS ? 'Dans <b>Safari</b> : touche <b>Partager</b> ⬆️ puis <b>Sur l\'écran d\'accueil</b>. Ouvre ensuite Mister Grill depuis l\'icône : ton cadeau apparaît.' : 'Dans le menu du navigateur ⋮ : <b>Installer l\'application</b> ou <b>Ajouter à l\'écran d\'accueil</b>. Ouvre ensuite Mister Grill depuis l\'icône : ton cadeau apparaît.'}</div>` : ''}`;
   } else el.innerHTML = '';
 }
+/* ---------- suggestions intelligentes ---------- */
+const MAINS = ['smash', 'homemade', 'classique', 'sandwich', 'brasserie', 'pasta', 'gratins', 'salades', 'offres', 'enfant'];
+function suggest(max = 3, forItem = null) {
+  const inCart = new Set(cart.map(l => l.id)), cats = cart.map(l => ITEMS[l.id].cat);
+  const mains = cart.filter(l => MAINS.includes(ITEMS[l.id].cat)).reduce((a, l) => a + l.qty, 0);
+  const has = c => cats.includes(c), h = new Date().getHours();
+  const base = forItem ? forItem.name : (cart[0] ? ITEMS[cart[0].id].name : '');
+  const out = [], push = (id, why) => { if (ITEMS[id] && !inCart.has(id) && !out.some(o => o.id === id) && !(giftActive() && id === GIFT.item) && !(ITEMS[id].opts || []).some(o => o.required)) out.push({ id, why }); };
+  // 1. plat sans frites incluses (brasserie, pasta, salades, gratins) -> frites
+  if (cats.some(c => ['brasserie', 'pasta', 'salades', 'gratins'].includes(c)) && !has('frenchies')) push('frites-maison', 'Parfait avec ton plat');
+  // 2. burger / sandwich -> un extra à grignoter
+  if (cats.some(c => ['smash', 'homemade', 'classique', 'sandwich'].includes(c)) && !has('extras')) {
+    push(forItem && /chicken|crunchy|tender|crousty|poulet/i.test(forItem.name) ? 'x-mozza' : 'x-tenders', base ? 'Souvent pris avec ' + base : 'Le + commandé en extra');
+    push('x-camembert', 'Le coup de cœur des habitués');
+  }
+  // 3. à plusieurs -> à partager
+  if (mains >= 2) { push('x-nuggets', 'À partager (' + mains + ' plats)'); push('d-tiramisu-barq', 'Le dessert à partager'); }
+  // 4. dessert selon l'heure
+  if (!has('desserts')) {
+    if (h >= 14 && h < 19) { push('d-milkshake', 'Idéal l\'après-midi'); push('d-smoothie', 'Frais et fruité'); }
+    else if (h >= 19) { push('d-pain-perdu', 'Pour finir en douceur'); push('d-waffle-cone', 'Notre dessert star'); }
+    else { push('d-cookie', 'Le petit plus à 2,90 €'); push('d-waffle-cup', 'Notre dessert star'); }
+  }
+  UPSELL.forEach(id => push(id, 'Populaire en ce moment'));
+  return out.slice(0, max);
+}
+function upCard(s) { const it = ITEMS[s.id]; return `<button class="up" data-quick="${s.id}"><img src="${it.img}" alt="" loading="lazy"><div>${esc(it.name)}<span class="why-tag" style="margin:0">${esc(s.why)}</span><span>${eur(it.price)}<i>+</i></span></div></button>`; }
+function openReco(it) {
+  const list = suggest(3, it); if (!list.length) return;
+  $('#reco').innerHTML = `<h3>Ça irait bien avec…</h3><p class="why">Complète ta commande en un appui</p>
+    <div class="ups">${list.map(upCard).join('')}</div>
+    <button class="btn" data-close-reco="1" style="width:100%;margin-top:12px">Non merci</button>`;
+  $('#reco').classList.add('on'); $('#scrim').classList.add('on');
+}
+function closeReco() { $('#reco').classList.remove('on'); if (!$('#sheet').classList.contains('on')) $('#scrim').classList.remove('on'); }
+
+/* ---------- commande de groupe ---------- */
+function renderGroupBar() {
+  const el = $('#grpBar'); if (!el) return;
+  if (!group) { el.innerHTML = ''; return; }
+  el.innerHTML = `<div class="grp"><span class="lbl">👥 Ajout pour :</span>${group.names.map((n, i) => `<button class="who ${i === group.cur ? 'on' : ''}" data-who="${i}">${esc(n)}</button>`).join('')}<button class="who add" data-grp-add="1">+ Ajouter</button><button class="who add" data-grp-end="1">Terminer</button></div>`;
+}
+function openGroup() {
+  $('#sheet').innerHTML = `<button class="close" data-close>✕</button><div class="scroll"><div class="p-bd" style="padding-top:22px">
+    <h2>Commande de groupe</h2>
+    <p class="desc">Tout le monde commande sur un seul panier, chacun voit ce qu'il a pris, et le resto reçoit <b>un seul ticket</b> trié par personne.</p>
+    <div class="field"><label>Ton prénom (organisateur)</label><input class="f" id="gHost" value="${esc(form.name || '')}" placeholder="Ex : Yanis"></div>
+    <div class="field"><label>Les autres (séparés par une virgule)</label><input class="f" id="gOthers" placeholder="Ex : Sam, Inès, Karim"></div>
+    <div class="warn" style="background:rgba(255,255,255,.05);border-color:var(--line);color:#cfcfd6">Astuce : passe le téléphone à chacun, ou demande-lui son choix, puis sélectionne son prénom en haut de la carte avant d'ajouter.</div>
+  </div></div>
+  <div class="p-ft"><button class="cta" id="gStart">Lancer la commande de groupe</button></div>`;
+  openSheet();
+}
+function startGroup() {
+  const host = $('#gHost').value.trim() || 'Moi';
+  const names = [host, ...$('#gOthers').value.split(',').map(x => x.trim()).filter(Boolean)].slice(0, 12);
+  group = { names, cur: 0 }; store.set('group', group);
+  cart.forEach(l => { if (l.who == null) l.who = 0; }); store.set('cart', cart);
+  closeSheet(); show('menu'); toast('👥 Groupe lancé · ' + names.length + ' personne(s)');
+}
+
 function renderReorder() {
   const el = $('#reorder'); if (!el) return;
   if (!last || !last.lines.length || cart.length) { el.innerHTML = ''; return; }
@@ -484,10 +569,12 @@ function pick(oid, k) {
 }
 function addCur() {
   const { it, sel, qty, editIdx } = cur, note = $('#pNote').value.trim();
-  const line = { id: it.id, sel, qty, note, key: it.id + JSON.stringify(sel) + note };
+  const who = editIdx != null ? cart[editIdx].who : (group ? group.cur : undefined);
+  const line = { id: it.id, sel, qty, note, who, key: it.id + JSON.stringify(sel) + note + (who ?? '') };
   if (editIdx != null) cart[editIdx] = line;
   else { const ex = cart.find(l => l.key === line.key); ex ? ex.qty += qty : cart.push(line); }
-  saveCart(); closeSheet(); toast(editIdx != null ? 'Panier mis à jour' : `✓ ${it.name} ajouté`);
+  saveCart(); closeSheet(); toast(editIdx != null ? 'Panier mis à jour' : `✓ ${it.name} ajouté${group ? ' pour ' + group.names[group.cur] : ''}`);
+  if (editIdx == null) setTimeout(() => openReco(it), 450);
   if (navigator.vibrate) navigator.vibrate(15);
 }
 function openSheet() { $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); $('#sheet .scroll').scrollTop = 0; document.body.style.overflow = 'hidden'; }
@@ -516,8 +603,11 @@ function renderCart() {
   const sl = slots(); if (!sl.find(s => s.v === form.time)) form.time = sl[0] ? sl[0].v : '';
   const open = isOpen();
   $('#cartBody').innerHTML = `
-    <h1 class="h1">Ton panier</h1>
-    ${cart.map((l, i) => { const it = ITEMS[l.id], d = lineDetail(l); return `
+    <h1 class="h1">${group ? 'Panier du groupe' : 'Ton panier'}</h1>
+    ${group ? '' : '<button class="btn" data-grp-open="1" style="width:100%;margin-bottom:6px">👥 Commander à plusieurs (commande de groupe)</button>'}
+    ${cart.map((l, i) => ({ l, i })).sort((a, b) => (a.l.who ?? 0) - (b.l.who ?? 0)).map(({ l, i }, k, arr) => { const it = ITEMS[l.id], d = lineDetail(l);
+      const head = group && (k === 0 || (arr[k - 1].l.who ?? 0) !== (l.who ?? 0)) ? `<div class="pers"><span>👤 ${esc(whoName(l) || group.names[0])}</span><span>${eur(cart.filter(x => (x.who ?? 0) === (l.who ?? 0)).reduce((a, x) => a + unitPrice(ITEMS[x.id], x.sel) * x.qty, 0))}</span></div>` : '';
+      return head + `
       <div class="line"><img src="${it.img}" alt="">
         <div class="i"><b>${esc(it.name)}</b>${d.map(x => `<small>• ${esc(x)}</small>`).join('')}${l.note ? `<small>✎ ${esc(l.note)}</small>` : ''}
           <small><a href="#" data-edit="${i}" style="color:var(--red);font-weight:600">Modifier</a></small></div>
@@ -527,8 +617,7 @@ function renderCart() {
     ${giftActive() ? `<div class="line"><img src="${ITEMS[GIFT.item].img}" alt=""><div class="i"><b>🎁 ${esc(ITEMS[GIFT.item].name)}</b><small>Cadeau installation de l'app</small></div><div class="r"><span class="price" style="font-size:16px">Offert</span></div></div>` : ''}
     <div class="tot"><span>Total</span><span class="price">${eur(total())}</span></div>
     <div style="font-size:12px;color:var(--mute)">Paiement au comptoir (CB ou espèces) au moment du retrait.</div>
-    ${(() => { const ups = UPSELL.filter(id => ITEMS[id] && !(giftActive() && id === GIFT.item) && !cart.some(l => l.id === id) && !(ITEMS[id].opts || []).some(o => o.required)).slice(0, 6);
-      return ups.length ? `<div class="box"><h3>On ajoute ?</h3><div class="ups">${ups.map(id => { const it = ITEMS[id]; return `<button class="up" data-quick="${id}"><img src="${it.img}" alt="" loading="lazy"><div>${esc(it.name)}<span>${eur(it.price)}<i>+</i></span></div></button>`; }).join('')}</div></div>` : ''; })()}
+    ${(() => { const ups = suggest(6); return ups.length ? `<div class="box"><h3>On ajoute ?</h3><div class="ups">${ups.map(upCard).join('')}</div></div>` : ''; })()}
 
     <div class="box"><h3>Comment veux-tu ta commande ?</h3>
       <div class="seg">${C.modes.map(m => `<button data-mode="${esc(m)}" class="${form.mode === m ? 'on' : ''}">${m === 'Sur place' ? '🍽 ' : '🛍 '}${esc(m)}</button>`).join('')}</div>
@@ -547,12 +636,13 @@ function renderCart() {
     <p style="font-size:11.5px;color:var(--mute);text-align:center;margin:10px 0 0">Ta commande part directement au restaurant sur WhatsApp. 0 frais de service.</p>`;
 }
 function orderText() {
-  const lines = cart.map(l => {
-    const it = ITEMS[l.id], d = lineDetail(l);
-    return `▪️ ${l.qty}× *${it.name}* — ${eur(unitPrice(it, l.sel) * l.qty)}` + d.map(x => `\n     • ${x}`).join('') + (l.note ? `\n     ✎ ${l.note}` : '');
-  });
+  const fmt = l => { const it = ITEMS[l.id], d = lineDetail(l);
+    return `▪️ ${l.qty}× *${it.name}* — ${eur(unitPrice(it, l.sel) * l.qty)}` + d.map(x => `\n     • ${x}`).join('') + (l.note ? `\n     ✎ ${l.note}` : ''); };
+  const lines = group
+    ? group.names.map((n, i) => { const ls = cart.filter(l => (l.who ?? 0) === i); return ls.length ? `👤 *${n}* (${eur(ls.reduce((a, l) => a + unitPrice(ITEMS[l.id], l.sel) * l.qty, 0))})\n` + ls.map(fmt).join('\n') : ''; }).filter(Boolean).map((x, i, arr) => i < arr.length - 1 ? x + '\n' : x)
+    : cart.map(fmt);
   const t = slots().find(s => s.v === form.time);
-  return `🔥 *NOUVELLE COMMANDE ${order.no} — MISTER GRILL*\n\n` +
+  return `🔥 *NOUVELLE COMMANDE ${order.no} — MISTER GRILL*${group ? ` · 👥 GROUPE (${group.names.length})` : ''}\n\n` +
     `👤 ${form.name} · ${form.phone}\n` +
     `${form.mode === 'Sur place' ? '🍽' : '🛍'} ${form.mode}\n` +
     `⏰ ${t ? t.t : form.time}\n\n` +
@@ -613,7 +703,7 @@ function markSent() {
   order.sent = true; stamps++; store.set('stamps', stamps);
   if (order.gift) { gift = 'used'; store.set('gift', gift); }
   last = { lines: order.lines, at: Date.now() }; store.set('last', last);
-  cart = []; store.set('cart', cart); refreshCounters();
+  cart = []; store.set('cart', cart); group = null; store.set('group', null); refreshCounters();
   setTimeout(() => { renderDone(); window.scrollTo(0, 0); if (stamps % C.loyalty.goal === 0) toast('🎁 Carte complète ! ' + C.loyalty.reward); }, 400);
 }
 
@@ -665,7 +755,19 @@ document.addEventListener('click', e => {
   else if (d.inc) { cart[+d.inc].qty++; saveCart(); }
   else if (d.dec) { const l = cart[+d.dec]; l.qty > 1 ? l.qty-- : cart.splice(+d.dec, 1); saveCart(); }
   else if (d.mode) { form.mode = d.mode; store.set('form', form); $$('[data-mode]').forEach(b => b.classList.toggle('on', b.dataset.mode === form.mode)); }
-  else if (d.quick) { const it = ITEMS[d.quick], sel = {}; (it.opts || []).forEach(o => sel[o.id] = []); cart.push({ id: it.id, sel, qty: 1, note: '', key: it.id + JSON.stringify(sel) }); saveCart(); toast(`✓ ${it.name} ajouté`); }
+  else if (d.welcomeClose) closeWelcome();
+  else if (d.welcomeAct) { const a = d.welcomeAct; closeWelcome();
+    if (a === 'reorder') { cart = JSON.parse(JSON.stringify(last.lines)); saveCart(); show('cart'); }
+    else if (a === 'install') { if (deferred) installApp(); else { howto = true; renderGift(); window.scrollTo({ top: 0, behavior: 'smooth' }); } }
+    else if (a.startsWith('go:')) goCat(a.slice(3));
+    else if (a.startsWith('item:')) openItem(a.slice(5)); }
+  else if (d.closeReco) closeReco();
+  else if (d.grpOpen) openGroup();
+  else if (d.who) { group.cur = +d.who; store.set('group', group); renderGroupBar(); toast('Ajout pour ' + group.names[group.cur]); }
+  else if (d.grpAdd) { renderGroupBar(); $('#grpBar .grp').insertAdjacentHTML('beforeend', '<input class="f" id="gNew" placeholder="Prénom + Entrée" style="width:150px;padding:7px 10px;flex:0 0 auto">'); $('#gNew').focus(); }
+  else if (d.grpEnd) { group = null; store.set('group', null); cart.forEach(l => delete l.who); saveCart(); renderGroupBar(); toast('Commande de groupe terminée'); }
+  else if (t.id === 'gStart') startGroup();
+  else if (d.quick) { const it = ITEMS[d.quick], sel = {}; (it.opts || []).forEach(o => sel[o.id] = []); const who = group ? group.cur : undefined; const ex = cart.find(l => l.id === it.id && l.who === who && !l.note); ex ? ex.qty++ : cart.push({ id: it.id, sel, qty: 1, note: '', who, key: it.id + JSON.stringify(sel) + (who ?? '') }); saveCart(); toast(`✓ ${it.name} ajouté`); if ($('#reco').classList.contains('on')) { const next = suggest(3); next.length ? openReco(null) : closeReco(); } }
   else if (d.reorder) { cart = JSON.parse(JSON.stringify(last.lines)); saveCart(); show('cart'); toast('Ta dernière commande est dans le panier'); }
   else if (d.sendwa) markSent();
   else if (t.id === 'installBtn' || t.id === 'giftInstall') installApp();
@@ -675,8 +777,11 @@ document.addEventListener('click', e => {
   else if (t.id === 'copyTxt') navigator.clipboard.writeText($('#doneBody').dataset.txt).then(() => toast('Message copié'), () => toast('Copie impossible'));
   else if (t.id === 'newOrder') { order = null; cart = []; saveCart(); show('menu'); window.scrollTo(0, 0); }
 });
-$('#scrim').addEventListener('click', closeSheet);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+$('#scrim').addEventListener('click', () => { closeSheet(); closeReco(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeSheet(); closeReco(); closeWelcome(); }
+  if (e.key === 'Enter' && e.target.id === 'gNew' && e.target.value.trim()) { group.names.push(e.target.value.trim()); group.cur = group.names.length - 1; store.set('group', group); renderGroupBar(); }
+});
 document.addEventListener('input', e => {
   if (e.target.id === 'q') renderMenu(e.target.value);
   if (['fName', 'fPhone', 'fNote'].includes(e.target.id)) { form[{ fName: 'name', fPhone: 'phone', fNote: 'note' }[e.target.id]] = e.target.value; store.set('form', form); }
@@ -700,6 +805,31 @@ if ('serviceWorker' in navigator) window.addEventListener('load', () => navigato
 renderStatus(); renderPromos(); renderMenu(); refreshCounters();
 setInterval(renderStatus, 60000);
 setTimeout(() => $('#splash').classList.add('hide'), 1200);
+
+/* ---------- écran d'accueil (1 s après l'ouverture) ---------- */
+function welcomeOffer() {
+  const et = ITEMS['menu-etudiant'];
+  if (last && last.lines.length) {
+    const n = last.lines.reduce((a, l) => a + l.qty, 0);
+    return { img: ITEMS[last.lines[0].id].img, t: 'Content de te revoir !', p: `On te remet ta dernière commande (${n} article${n > 1 ? 's' : ''}) ? Un appui et c'est dans le panier.`, cta: 'Recommander', act: 'reorder' };
+  }
+  if (et && inWindow(et)) return { img: 'img/promo-etudiant.jpg', t: 'Menu Étudiant 8,90 €', p: 'Burger, sandwich ou wrap + frites + canette. Jusqu\'à 15h aujourd\'hui.', cta: 'J\'en profite', act: 'go:offres' };
+  if (GIFT && gift === 'locked' && !standalone()) return { img: ITEMS[GIFT.item].img, t: 'Un cadeau pour toi 🎁', p: `Installe l'app Mister Grill sur ton écran d'accueil : ${ITEMS[GIFT.item].name.toLowerCase()} offert sur ta prochaine commande.`, cta: deferred ? 'Installer l\'app' : 'Comment faire ?', act: 'install' };
+  const h = new Date().getHours();
+  if (h >= 14 && h < 19) return { img: 'img/promo-milkshakes.jpg', t: 'Pause gourmande', p: 'Milkshakes et smoothies à partir de 4,50 €.', cta: 'Voir les boissons', act: 'go:desserts' };
+  return { img: 'img/smash-pepper.jpg', t: 'Le Smash Pepper', p: '4 steaks smashés, 4 cheddars, sauce pepper. Le plus gros de la carte, servi avec frites et boisson.', cta: 'Je le veux', act: 'item:smash-pepper' };
+}
+function showWelcome() {
+  let seen = false; try { seen = sessionStorage.getItem('mg:welcome') === '1'; sessionStorage.setItem('mg:welcome', '1'); } catch {}
+  if (seen) return;
+  const w = welcomeOffer();
+  $('#welcome').innerHTML = `<div class="card-w"><button class="close" data-welcome-close="1" aria-label="Fermer">✕</button><img src="${w.img}" alt="">
+    <div class="wb"><h2>${esc(w.t)}</h2><p>${esc(w.p)}</p><button class="cta" style="width:100%" data-welcome-act="${w.act}">${esc(w.cta)}</button>
+    <button class="btn" data-welcome-close="1" style="width:100%;margin-top:8px;background:none;border:0;color:var(--mute)">Voir la carte</button></div></div>`;
+  $('#welcome').classList.add('on');
+}
+function closeWelcome() { $('#welcome').classList.remove('on'); }
+setTimeout(showWelcome, 2200);
 })();
 </script>
 </body>
