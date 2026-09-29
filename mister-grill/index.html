@@ -465,7 +465,7 @@ function renderCart() {
     </div>
     <button class="cta wa" id="send" style="width:100%;margin-top:16px;height:54px">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
-      Envoyer ma commande · ${eur(total())}</button>
+      Valider ma commande · ${eur(total())}</button>
     <p style="font-size:11.5px;color:var(--mute);text-align:center;margin:10px 0 0">Ta commande part directement au restaurant sur WhatsApp. 0 frais de service.</p>`;
 }
 function orderText() {
@@ -488,16 +488,16 @@ function send() {
   if (!form.name) { $('#fName').focus(); return toast('Ajoute ton prénom'); }
   if (form.phone.replace(/\D/g, '').length < 9) { $('#fPhone').focus(); return toast('Numéro de téléphone invalide'); }
   const txt = orderText();
-  window.open(`https://wa.me/${C.whatsapp}?text=${encodeURIComponent(txt)}`, '_blank');
   const t = slots().find(s => s.v === form.time);
   $('#doneBody').innerHTML = `
     <div style="text-align:center;padding-top:30px">
       <div style="font-size:64px">🔥</div>
       <h1 class="h1" style="margin-top:10px">Merci ${esc(form.name)} !</h1>
-      <p style="color:#cfcfd6">Ta commande s'est ouverte dans WhatsApp.<br><b>Appuie sur « Envoyer »</b> pour la transmettre au restaurant.</p>
+      <p style="color:#cfcfd6">Ta commande est prête.<br><b>Envoie-la au restaurant sur WhatsApp</b> pour la valider.</p>
       <div class="box" style="text-align:left"><h3>Récap</h3>
         <div style="font-size:13px;color:#cfcfd6;line-height:1.6">${form.mode} · ${esc(t ? t.t : form.time)}<br>${count()} article(s) · <b style="color:#fff">${eur(total())}</b></div></div>
-      <button class="cta wa" id="resend" style="width:100%;margin-top:16px">Rouvrir WhatsApp</button>
+      <a class="cta wa" href="https://wa.me/${C.whatsapp}?text=${encodeURIComponent(txt)}" target="_blank" rel="noopener" style="width:100%;margin-top:16px;text-decoration:none;color:#fff">Envoyer sur WhatsApp</a>
+      <button class="btn" id="copyTxt" style="width:100%;margin-top:10px">Copier le message</button>
       <button class="btn" id="newOrder" style="width:100%;margin-top:10px">Nouvelle commande</button>
     </div>`;
   $('#doneBody').dataset.txt = txt;
@@ -554,7 +554,7 @@ document.addEventListener('click', e => {
   else if (t.id === 'pAdd') addCur();
   else if (t.id === 'cartbar') show('cart');
   else if (t.id === 'send') send();
-  else if (t.id === 'resend') window.open(`https://wa.me/${C.whatsapp}?text=${encodeURIComponent($('#doneBody').dataset.txt)}`, '_blank');
+  else if (t.id === 'copyTxt') navigator.clipboard.writeText($('#doneBody').dataset.txt).then(() => toast('Message copié'), () => toast('Copie impossible'));
   else if (t.id === 'newOrder') { cart = []; saveCart(); show('menu'); window.scrollTo(0, 0); }
 });
 $('#scrim').addEventListener('click', closeSheet);
