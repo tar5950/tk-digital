@@ -232,6 +232,42 @@ textarea:focus,input.f:focus,select.f:focus{border-color:var(--red)}
 .who.on{border-color:#ffd23b;background:rgba(255,210,59,.15);color:#fff}
 .who.add{border-style:dashed;color:var(--mute)}
 .pers{margin-top:14px;font-size:13px;font-weight:700;color:#ffd23b;display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:6px}
+.dash-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.dash-top .h1{margin:0;font-size:28px}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 12px;padding:0 16px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:8px 13px;border-radius:10px;background:var(--bg2);border:1px solid var(--line);font-size:13px;font-weight:600;color:#ccc}
+.tab.on{background:#fff;color:#111;border-color:#fff}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.kpi b{display:block;font-family:Anton,Impact,'Arial Narrow',sans-serif;font-weight:400;font-size:28px;font-variant-numeric:tabular-nums}
+.kpi span{font-size:11.5px;color:var(--mute)}
+.col-h{display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px;font-size:13px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.col-h i{font-style:normal;background:var(--red);border-radius:99px;padding:1px 9px;font-size:12px}
+.tk{background:#f4f1ea;color:#111;border-radius:12px;padding:12px 12px 10px;margin-bottom:10px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;position:relative;border-top:6px solid var(--red)}
+.tk.st-preparation{border-top-color:#ffb020}.tk.st-prete{border-top-color:var(--ok)}.tk.st-recuperee,.tk.st-annulee{opacity:.55;border-top-color:#888}
+.tk.fresh{animation:ring 1s ease-in-out 3}
+@keyframes ring{0%,100%{transform:none}25%{transform:rotate(-1.2deg)}75%{transform:rotate(1.2deg)}}
+.tk .hd{display:flex;justify-content:space-between;font-weight:800;font-size:15px}
+.tk .meta{font-size:11.5px;color:#555;margin:2px 0 6px}
+.tk .ln{padding:2px 0;border-top:1px dashed #ccc}.tk .ln small{display:block;color:#555}
+.tk .who-h{font-weight:800;margin-top:6px}
+.tk .acts{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.tk .acts button{flex:1;min-width:90px;padding:9px 8px;border-radius:9px;font:700 12.5px Poppins,system-ui,sans-serif;background:#111;color:#fff}
+.tk .acts button.go{background:var(--red)}.tk .acts button.ok{background:var(--ok)}.tk .acts button.x{background:#ddd;color:#333;flex:0 0 auto;min-width:0}
+.row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;align-items:center}
+.row .l{min-width:0}.row .l b{display:block;font-size:14px}.row .l small{color:var(--mute)}
+.bar-row{display:grid;grid-template-columns:44px 1fr 34px;gap:8px;align-items:center;font-size:12px;margin:4px 0;font-variant-numeric:tabular-nums}
+.bar-row div{height:10px;border-radius:5px;background:var(--red)}
+.sw{position:relative;width:44px;height:26px;border-radius:13px;background:#3a3a42;flex:0 0 auto;transition:.2s}
+.sw.on{background:var(--ok)}.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}.sw.on::after{left:21px}
+.seg3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.seg3 button{padding:12px 6px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg2);font-weight:700;font-size:13px}
+.seg3 button.on{border-color:var(--red);background:rgba(227,16,31,.16)}
+.notif{position:fixed;left:12px;right:12px;top:calc(12px + env(safe-area-inset-top,0px));z-index:92;max-width:536px;margin:0 auto;background:#fff;color:#111;border-radius:16px;padding:12px 14px;display:flex;gap:12px;align-items:center;box-shadow:0 12px 40px rgba(0,0,0,.5);transform:translateY(-140%);transition:transform .35s cubic-bezier(.2,1.2,.4,1)}
+.notif.on{transform:none}.notif .ic{font-size:28px}.notif p{margin:0;font-size:13px;flex:1;min-width:0}.notif p b{display:block;font-size:15px}
+.soldout{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.55);font-family:Anton,Impact,'Arial Narrow',sans-serif;font-size:22px;letter-spacing:1px;text-transform:uppercase}
+.card .ph{position:relative}
 .reorder .ic{font-size:26px}.reorder p{margin:0;flex:1;font-size:12.5px;color:var(--mute);min-width:0}.reorder p b{color:#fff;display:block;font-size:14px}
 .reorder button{background:var(--red);border-radius:10px;padding:9px 12px;font-weight:700;font-size:13px;white-space:nowrap}
 .stamps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
@@ -295,6 +331,9 @@ footer{padding:26px 16px 10px;text-align:center;color:#55555e;font-size:11px}
 
   <!-- ===== CONFIRMATION ===== -->
   <section id="v-done" class="view"><div class="pad" id="doneBody"></div></section>
+
+  <!-- ===== DASHBOARD RESTAURATEUR (#caisse) ===== -->
+  <section id="v-dash" class="view"><div class="pad" id="dashBody"></div></section>
 </div>
 
 <button class="cartbar" id="cartbar"><span><span class="n" id="cbN">0</span>Voir le panier</span><span id="cbT">0,00 €</span></button>
@@ -311,6 +350,7 @@ footer{padding:26px 16px 10px;text-align:center;color:#55555e;font-size:11px}
 <div class="welcome" id="welcome"></div>
 <div class="sheet" id="sheet"></div>
 <div class="toast" id="toast"></div>
+<div class="notif" id="notif"></div>
 
 <script src="menu.js"></script>
 <script>
@@ -339,13 +379,17 @@ const giftActive = () => GIFT && gift === 'unlocked';
 let howto = false;
 let group = store.get('group', null);   // { names:[...], cur:0 } commande de groupe
 const whoName = l => group && l.who != null ? group.names[l.who] : null;
+/* ---------- caisse / base partagée (capability db) ---------- */
+let DB = null, IS_ADMIN = false, resto = { status: 'open', soldOut: [] }, orderUnsub = null;
+let dash = { tab: 'orders', orders: [], unsub: null, first: true, fresh: new Set(), sound: false };
+const soldOut = id => (resto.soldOut || []).includes(id);
 let order = null;                     // commande en cours de confirmation
 if (last) last.lines = last.lines.filter(l => ITEMS[l.id]);
 let form = store.get('form', { mode: C.modes[0], name: '', phone: '', time: 'asap', note: '' });
 
 /* ---------- horaires ---------- */
 function nowMin(d = new Date()) { return d.getHours() * 60 + d.getMinutes(); }
-function isOpen(d = new Date()) { const [o, c] = C.hours[d.getDay()]; const m = nowMin(d); return m >= o && m < c; }
+function isOpen(d = new Date()) { if (resto.status === 'closed') return false; const [o, c] = C.hours[d.getDay()]; const m = nowMin(d); return m >= o && m < c; }
 function nextOpen(d = new Date()) {
   for (let k = 0; k < 8; k++) {
     const day = (d.getDay() + k) % 7, [o] = C.hours[day];
@@ -353,6 +397,8 @@ function nextOpen(d = new Date()) {
   }
 }
 function openLabel() {
+  if (resto.status === 'closed') return { on: false, t: 'Fermeture exceptionnelle' };
+  if (resto.status === 'pause' && isOpen()) return { on: true, t: 'Coup de feu · attente ~40 min' };
   if (isOpen()) return { on: true, t: 'Ouvert · jusqu\'à ' + hm(C.hours[new Date().getDay()][1]) };
   const n = nextOpen(); return { on: false, t: 'Fermé · ouvre ' + (n.k === 0 ? 'à ' : n.k === 1 ? 'demain ' : DAYS[n.day].toLowerCase() + ' ') + hm(n.o) };
 }
@@ -362,8 +408,9 @@ function inWindow(it, d = new Date()) {
 }
 function slots() {
   const out = [], d = new Date();
+  if (resto.status === 'closed') return out;
   if (isOpen(d)) {
-    out.push({ v: 'asap', t: 'Dès que possible (~20 min)' });
+    out.push({ v: 'asap', t: resto.status === 'pause' ? 'Dès que possible (~40 min, coup de feu)' : 'Dès que possible (~20 min)' });
     const close = C.hours[d.getDay()][1];
     for (let m = Math.ceil((nowMin(d) + 30) / 15) * 15; m <= close - 15; m += 15) out.push({ v: hm(m), t: 'Aujourd\'hui à ' + hm(m) });
   } else {
@@ -387,7 +434,7 @@ function qtyOf(id) { return cart.filter(l => l.id === id).reduce((a, l) => a + l
 function cardHTML(it, wide) {
   const q = qtyOf(it.id), off = !inWindow(it);
   return `<button class="card${wide ? ' wide' : ''}${off ? ' off' : ''}" data-item="${it.id}">
-    <div class="ph"><img src="${it.img}" alt="${esc(it.name)}" loading="lazy"></div>
+    <div class="ph"><img src="${it.img}" alt="${esc(it.name)}" loading="lazy">${soldOut(it.id) ? '<span class="soldout">Épuisé</span>' : ''}</div>
     ${it.badge ? `<span class="badge sticker">${esc(it.badge)}</span>` : ''}
     ${q ? `<span class="qtyb">${q}</span>` : ''}
     <div class="bd"><h3>${esc(it.name)}</h3><div class="ds">${esc(it.desc)}</div>
@@ -514,6 +561,7 @@ function stampsHTML(n) {
 let cur = null;
 function openItem(id, editIdx = null) {
   const it = ITEMS[id]; const line = editIdx != null ? cart[editIdx] : null;
+  if (soldOut(id) && editIdx == null) return toast(it.name + ' est épuisé pour le moment');
   cur = { it, qty: line ? line.qty : 1, sel: line ? JSON.parse(JSON.stringify(line.sel)) : {}, note: line ? line.note : '', editIdx };
   (it.opts || []).forEach(o => { if (!cur.sel[o.id]) cur.sel[o.id] = []; });
   const served = ['smash', 'homemade', 'classique', 'sandwich'].includes(it.cat);
@@ -623,7 +671,7 @@ function renderCart() {
       <div class="seg">${C.modes.map(m => `<button data-mode="${esc(m)}" class="${form.mode === m ? 'on' : ''}">${m === 'Sur place' ? '🍽 ' : '🛍 '}${esc(m)}</button>`).join('')}</div>
       <div class="field"><label>Heure de retrait</label>
         <select class="f" id="fTime">${sl.map(s => `<option value="${esc(s.v)}" ${s.v === form.time ? 'selected' : ''}>${esc(s.t)}</option>`).join('')}</select></div>
-      ${!open ? `<div class="warn">Le restaurant est fermé pour le moment : ta commande sera préparée pour le créneau choisi.</div>` : ''}
+      ${resto.status === 'closed' ? `<div class="warn">Fermeture exceptionnelle : le restaurant ne prend pas de commande pour le moment.</div>` : !open ? `<div class="warn">Le restaurant est fermé pour le moment : ta commande sera préparée pour le créneau choisi.</div>` : resto.status === 'pause' ? `<div class="warn">Coup de feu en cuisine : compte environ 40 min.</div>` : ''}
     </div>
     <div class="box"><h3>Tes coordonnées</h3>
       <div class="field"><label>Prénom *</label><input class="f" id="fName" autocomplete="given-name" value="${esc(form.name)}" placeholder="Ex : Yanis"></div>
@@ -632,8 +680,8 @@ function renderCart() {
     </div>
     <button class="cta wa" id="send" style="width:100%;margin-top:16px;height:54px">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
-      Valider ma commande · ${eur(total())}</button>
-    <p style="font-size:11.5px;color:var(--mute);text-align:center;margin:10px 0 0">Ta commande part directement au restaurant sur WhatsApp. 0 frais de service.</p>`;
+      ${DB ? 'Envoyer en caisse' : 'Valider ma commande'} · ${eur(total())}</button>
+    <p style="font-size:11.5px;color:var(--mute);text-align:center;margin:10px 0 0">${DB ? 'Ta commande arrive directement en caisse, tu suis sa préparation en direct.' : 'Ta commande part directement au restaurant sur WhatsApp.'} Paiement au comptoir, 0 frais de service.</p>`;
 }
 function orderText() {
   const fmt = l => { const it = ITEMS[l.id], d = lineDetail(l);
@@ -652,7 +700,7 @@ function orderText() {
     (form.note ? `\n\n📝 ${form.note}` : '');
 }
 function readyAt() {
-  if (form.time === 'asap') { const d = new Date(Date.now() + 20 * 60000); return hm(d.getHours() * 60 + d.getMinutes()); }
+  if (form.time === 'asap') { const d = new Date(Date.now() + (resto.status === 'pause' ? 40 : 20) * 60000); return hm(d.getHours() * 60 + d.getMinutes()); }
   return form.time.split(' ').pop();
 }
 function send() {
@@ -663,8 +711,65 @@ function send() {
   order = { no: '#' + String(Math.floor(1000 + Math.random() * 9000)), sent: false, total: total(), n: count(), lines: JSON.parse(JSON.stringify(cart)) };
   order.gift = giftActive();
   order.txt = orderText();
+  if (DB) return sendToCaisse();
   renderDone();
   show('done');
+}
+async function sendToCaisse() {
+  if (resto.status === 'closed' || !form.time) return toast('Le restaurant ne prend pas de commande pour le moment');
+  const t = slots().find(s => s.v === form.time);
+  const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  const doc = {
+    no: order.no, createdAt: Date.now(), status: 'recue', total: order.total,
+    customer: { name: form.name, phone: form.phone }, mode: form.mode, slot: t ? t.t : form.time, readyAt: readyAt(), note: form.note || '',
+    group: group ? group.names : null, gift: order.gift ? ITEMS[GIFT.item].name : null, payment: 'Au comptoir',
+    lines: cart.map(l => ({ id: l.id, name: ITEMS[l.id].name, qty: l.qty, price: +(unitPrice(ITEMS[l.id], l.sel) * l.qty).toFixed(2), details: lineDetail(l), note: l.note || '', who: whoName(l) || '' })),
+  };
+  const btn = $('#send'); if (btn) { btn.disabled = true; btn.textContent = 'Envoi en caisse…'; }
+  try { await DB.collection('orders').doc(id).set(doc); }
+  catch (e) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Réessayer'; }
+    return toast(e && e.code === 'quota_exceeded' ? 'Plus de place pour de nouvelles commandes' : 'Envoi impossible, réessaie');
+  }
+  order.remote = id; order.status = 'recue'; order.view = doc;
+  store.set('active', { id, no: order.no });
+  markSent(); watchOrder(id); show('done');
+}
+const STEPS = [['recue', 'Reçue en caisse', 'Le resto a bien ta commande'], ['preparation', 'En préparation', 'Tes plats sont en cuisine 👨‍🍳'], ['prete', 'Prête à récupérer', 'Viens la chercher au comptoir 🔔'], ['recuperee', 'Récupérée', 'Bon appétit !']];
+function stepsHTML(st, rdy) {
+  if (st === 'annulee') return `<div class="warn">Commande annulée par le restaurant. Appelle-le ou recommande.</div>`;
+  const k = STEPS.findIndex(x => x[0] === st);
+  return `<div class="steps">${STEPS.map(([id, t, d], i) => `<div class="step ${i < k || st === 'recuperee' ? 'done' : i === k ? 'cur' : ''}"><span class="b">${i < k || st === 'recuperee' ? '✓' : i + 1}</span><p><b>${t}</b>${i === 2 && k < 2 ? 'Vers ' + esc(rdy) : d}</p></div>`).join('')}</div>`;
+}
+function watchOrder(id) {
+  if (!DB) return; if (orderUnsub) orderUnsub();
+  orderUnsub = DB.doc('orders/' + id).onSnapshot(sn => {
+    if (!sn.exists) return;
+    const d = sn.data(), prev = order && order.remote === id ? order.status : null;
+    if (!order || order.remote !== id) order = { remote: id, no: d.no, sent: true, total: d.total, n: d.lines.reduce((a, l) => a + l.qty, 0), lines: [], gift: !!d.gift, txt: '', view: d, status: d.status };
+    order.status = d.status; order.view = d;
+    if (prev && prev !== d.status) notifyStatus(d);
+    if (['recuperee', 'annulee'].includes(d.status)) store.set('active', null);
+    if ($('#v-done').classList.contains('on')) renderDone();
+  }, () => {});
+}
+let notifT;
+function notifyStatus(d) {
+  const m = { preparation: ['👨‍🍳', 'Commande ' + d.no + ' en préparation', 'Elle est en cuisine.'], prete: ['🔔', 'Ta commande ' + d.no + ' est prête !', 'Viens la récupérer au comptoir.'], recuperee: ['😋', 'Bon appétit !', 'Merci pour ta commande.'], annulee: ['⚠️', 'Commande ' + d.no + ' annulée', 'Le restaurant a annulé ta commande.'] }[d.status];
+  if (!m) return;
+  $('#notif').innerHTML = `<span class="ic">${m[0]}</span><p><b>${esc(m[1])}</b>${esc(m[2])}</p><button class="btn" data-v="done" style="padding:8px 10px">Voir</button>`;
+  $('#notif').classList.add('on'); clearTimeout(notifT); notifT = setTimeout(() => $('#notif').classList.remove('on'), 7000);
+  beep(d.status === 'prete' ? 3 : 1); if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+  try { if (window.Notification && Notification.permission === 'granted') new Notification(m[1], { body: m[2], icon: 'img/icon-192.png' }); } catch {}
+  if (document.hidden) { const o = document.title; document.title = m[0] + ' ' + m[1]; setTimeout(() => document.title = o, 8000); }
+}
+let AC;
+function beep(n = 1) {
+  try { AC = AC || new (window.AudioContext || window.webkitAudioContext)();
+    for (let i = 0; i < n; i++) { const o = AC.createOscillator(), g = AC.createGain(), t = AC.currentTime + i * 0.35;
+      o.type = 'sine'; o.frequency.setValueAtTime(880, t); o.frequency.setValueAtTime(1320, t + 0.12);
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.3, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
+      o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + 0.32); } } catch {}
 }
 function renderDone() {
   if (!order) return;
@@ -674,17 +779,19 @@ function renderDone() {
     <div style="text-align:center;padding-top:14px">
       <div style="font-size:12px;color:var(--mute);font-weight:600;letter-spacing:1px">COMMANDE</div>
       <div class="onum">${order.no}</div>
-      <h1 class="h1" style="font-size:26px;margin:6px 0 4px">${order.sent ? 'Merci ' + esc(form.name) + ' !' : 'Dernière étape, ' + esc(form.name)}</h1>
-      <p style="color:#cfcfd6;margin:0">${order.sent ? 'Ta commande est partie au restaurant.' : 'Envoie ta commande au restaurant sur WhatsApp pour la valider.'}</p>
+      <h1 class="h1" style="font-size:26px;margin:6px 0 4px">${order.sent ? 'Merci ' + esc(order.view ? order.view.customer.name : form.name) + ' !' : 'Dernière étape, ' + esc(form.name)}</h1>
+      <p style="color:#cfcfd6;margin:0">${order.remote ? 'Ta commande est arrivée en caisse. Tu es prévenu ici à chaque étape.' : order.sent ? 'Ta commande est partie au restaurant.' : 'Envoie ta commande au restaurant sur WhatsApp pour la valider.'}</p>
     </div>
     ${order.sent ? '' : `<a class="cta wa" data-sendwa="1" href="https://wa.me/${C.whatsapp}?text=${encodeURIComponent(order.txt)}" target="_blank" rel="noopener" style="width:100%;margin-top:16px;text-decoration:none;color:#fff;height:54px">Envoyer sur WhatsApp · ${eur(order.total)}</a>`}
-    <div class="box"><h3>Suivi</h3><div class="steps">
+    ${order.remote ? `<div class="box"><h3>Suivi en direct <span class="chip" style="float:right;font-size:11px;padding:3px 9px"><i class="dot"></i>Live</span></h3>${stepsHTML(order.status, order.view.readyAt)}
+      ${window.Notification && Notification.permission === 'default' ? '<button class="btn" id="askNotif" style="width:100%;margin-top:4px">🔔 Me prévenir même si je quitte la page</button>' : ''}</div>` : ''}
+    <div class="box" ${order.remote ? 'hidden' : ''}><h3>Suivi</h3><div class="steps">
       <div class="step ${order.sent ? 'done' : 'cur'}"><span class="b">${order.sent ? '✓' : '1'}</span><p><b>Commande envoyée</b>${order.sent ? 'Reçue sur le WhatsApp du restaurant' : 'En attente de ton envoi WhatsApp'}</p></div>
       <div class="step ${order.sent ? 'cur' : ''}"><span class="b">2</span><p><b>En préparation</b>Le resto te confirme sur WhatsApp</p></div>
       <div class="step"><span class="b">3</span><p><b>Prête à récupérer</b>Vers ${readyAt()} · ${esc(form.mode)} · ${esc(t ? t.t : form.time)}</p></div>
     </div></div>
     <div class="box"><h3>Récap · ${order.n} article(s) · ${eur(order.total)}</h3>
-      ${order.lines.map(l => `<div style="font-size:13px;color:#cfcfd6;padding:3px 0">${l.qty}× ${esc(ITEMS[l.id].name)}</div>`).join('')}
+      ${(order.view ? order.view.lines : order.lines).map(l => `<div style="font-size:13px;color:#cfcfd6;padding:3px 0">${l.qty}× ${esc(l.name || ITEMS[l.id].name)}${l.who ? ' · ' + esc(l.who) : ''}</div>`).join('')}
       ${order.gift ? `<div style="font-size:13px;color:#fff;padding:3px 0">🎁 1× ${esc(ITEMS[GIFT.item].name)} · offert</div>` : ''}
       <div style="font-size:12px;color:var(--mute);margin-top:6px">Paiement au comptoir au retrait.</div></div>
     <div class="box"><h3>Carte fidélité · ${stamps % g}/${g}</h3>
@@ -694,7 +801,7 @@ function renderDone() {
     ${order.sent && !standalone() ? `<div class="box" id="installBox" style="background:linear-gradient(90deg,rgba(29,63,184,.3),rgba(227,16,31,.3))"><h3>📲 Installe l'app${GIFT && gift === 'locked' ? ' : ' + esc(GIFT.label.toLowerCase()) : ''}</h3>
       <div style="font-size:12.5px;color:#cfcfd6">${GIFT && gift === 'locked' ? esc(ITEMS[GIFT.item].name) + ' offert sur ta prochaine commande. ' : ''}${deferred ? 'Recommande en 2 clics depuis ton écran d\'accueil.' : isIOS ? 'Dans Safari : touche <b>Partager</b> puis <b>Sur l\'écran d\'accueil</b>.' : 'Dans le menu du navigateur : <b>Ajouter à l\'écran d\'accueil</b>.'}</div>
       ${deferred ? '<button class="cta" id="installBtn" style="width:100%;margin-top:10px">Installer l\'app</button>' : ''}</div>` : ''}
-    <button class="btn" id="copyTxt" style="width:100%;margin-top:14px">Copier le message</button>
+    ${order.remote ? '' : '<button class="btn" id="copyTxt" style="width:100%;margin-top:14px">Copier le message</button>'}
     <button class="btn" id="newOrder" style="width:100%;margin-top:10px">Nouvelle commande</button>`;
   $('#doneBody').dataset.txt = order.txt;
 }
@@ -702,7 +809,7 @@ function markSent() {
   if (!order || order.sent) return;
   order.sent = true; stamps++; store.set('stamps', stamps);
   if (order.gift) { gift = 'used'; store.set('gift', gift); }
-  last = { lines: order.lines, at: Date.now() }; store.set('last', last);
+  if (order.lines.length) { last = { lines: order.lines, at: Date.now() }; store.set('last', last); }
   cart = []; store.set('cart', cart); group = null; store.set('group', null); refreshCounters();
   setTimeout(() => { renderDone(); window.scrollTo(0, 0); if (stamps % C.loyalty.goal === 0) toast('🎁 Carte complète ! ' + C.loyalty.reward); }, 400);
 }
@@ -721,10 +828,82 @@ function renderInfo() {
     <div class="box"><h3>⏰ Horaires <span class="chip" style="float:right;font-size:11px;padding:3px 9px"><i class="dot ${s.on ? '' : 'off'}"></i>${s.on ? 'Ouvert' : 'Fermé'}</span></h3>
       <table class="hours">${order.map(d => `<tr class="${d === today ? 'today' : ''}"><td>${DAYS[d]}</td><td>${hm(C.hours[d][0])} – ${hm(C.hours[d][1])}</td></tr>`).join('')}</table></div>
     <div class="box"><h3>🔥 Ma carte fidélité · ${stamps % C.loyalty.goal}/${C.loyalty.goal}</h3><div style="font-size:12.5px;color:#cfcfd6">1 commande = 1 tampon. ${esc(C.loyalty.reward)}.</div>${stampsHTML(stamps)}</div>
+    ${IS_ADMIN ? '<button class="cta" data-v="dash" style="width:100%;margin-top:14px">🧾 Espace restaurateur (caisse & dashboard)</button>' : ''}
     <div class="box halal"><div class="hb">HALAL</div><div><b>100 % Halal</b><div style="font-size:12.5px;color:var(--mute)">Toutes nos viandes sont certifiées halal.</div></div></div>
     <div class="box"><h3>🎓 Menu Étudiant · 8,90 €</h3><div style="font-size:13px;color:#cfcfd6">Du lundi au vendredi de 11h à 15h, hors vacances et jours fériés. Burger, sandwich ou wrap + frites + canette.</div>
       <button class="cta" style="width:100%;margin-top:12px" data-go="offres">Commander le menu étudiant</button></div>
     <div class="box"><h3>Une expérience complète.</h3><div style="font-size:13px;color:#cfcfd6">Smash burgers, home made burgers au steak 150 g façon boucher, sandwichs, brasserie, pasta, gratins et desserts maison — le tout halal, au cœur du 12e.</div></div>`;
+}
+
+/* ---------- dashboard restaurateur ---------- */
+const dayKey = ts => { const d = new Date(ts); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); };
+const hhmm = ts => { const d = new Date(ts); return String(d.getHours()).padStart(2, '0') + 'h' + String(d.getMinutes()).padStart(2, '0'); };
+const intlPhone = p => { const d = (p || '').replace(/\D/g, ''); return d.startsWith('0') ? '33' + d.slice(1) : d; };
+function startDash() {
+  if (!DB || dash.unsub) return;
+  dash.unsub = DB.collection('orders').orderBy('createdAt', 'desc').limit(300).onSnapshot(sn => {
+    dash.orders = sn.docs.map(x => ({ id: x.id, ...x.data() }));
+    if (!dash.first) sn.docChanges().forEach(c => { if (c.type === 'added' && c.doc.data().status === 'recue') { dash.fresh.add(c.doc.id); if (dash.sound) beep(4); toast('🔔 Nouvelle commande ' + c.doc.data().no); } });
+    dash.first = false;
+    if ($('#v-dash').classList.contains('on')) renderDash();
+  }, () => toast('Connexion à la caisse perdue, recharge la page'));
+}
+function ticketHTML(o) {
+  const next = { recue: ['preparation', 'Accepter · en cuisine', 'go'], preparation: ['prete', 'Prête 🔔', 'ok'], prete: ['recuperee', 'Récupérée', ''] }[o.status];
+  const byWho = o.group ? o.group.map(n => [n, o.lines.filter(l => l.who === n)]).filter(x => x[1].length) : [['', o.lines]];
+  return `<div class="tk st-${o.status} ${dash.fresh.has(o.id) ? 'fresh' : ''}">
+    <div class="hd"><span>${esc(o.no)}</span><span>${eur(o.total)}</span></div>
+    <div class="meta">${hhmm(o.createdAt)} · <b>${esc(o.customer.name)}</b> · ${esc(o.customer.phone)}<br>${o.mode === 'Sur place' ? '🍽' : '🛍'} ${esc(o.mode)} · ⏰ ${esc(o.slot)}${o.group ? ' · 👥 groupe' : ''} · 💶 ${esc(o.payment || 'Au comptoir')}</div>
+    ${byWho.map(([n, ls]) => (n ? `<div class="who-h">👤 ${esc(n)}</div>` : '') + ls.map(l => `<div class="ln">${l.qty}× <b>${esc(l.name)}</b> <span style="float:right">${eur(l.price)}</span>${l.details.map(x => `<small>• ${esc(x)}</small>`).join('')}${l.note ? `<small>✎ ${esc(l.note)}</small>` : ''}</div>`).join('')).join('')}
+    ${o.gift ? `<div class="ln">1× <b>${esc(o.gift)}</b> <span style="float:right">OFFERT 🎁</span></div>` : ''}
+    ${o.note ? `<div class="ln"><small>📝 ${esc(o.note)}</small></div>` : ''}
+    ${next ? `<div class="acts"><button class="${next[2]}" data-st="${o.id}:${next[0]}">${next[1]}</button>${o.status === 'recue' ? `<button class="x" data-st="${o.id}:annulee">Refuser</button>` : ''}</div>` : ''}
+  </div>`;
+}
+function renderDash() {
+  if (!IS_ADMIN) { $('#dashBody').innerHTML = '<div class="empty">Espace réservé au restaurateur.</div>'; return; }
+  const today = dayKey(Date.now()), all = dash.orders, td = all.filter(o => dayKey(o.createdAt) === today && o.status !== 'annulee');
+  const ca = td.reduce((a, o) => a + o.total, 0), s = openLabel();
+  const tabs = [['orders', '🧾 Commandes'], ['today', '📊 Aujourd\'hui'], ['clients', '👥 Clients'], ['menu', '🍔 Ruptures'], ['settings', '⚙️ Statut'], ['reviews', '⭐ Avis']];
+  let body = '';
+  if (dash.tab === 'orders') {
+    const col = (st, t) => { const l = all.filter(o => o.status === st && (st !== 'recuperee' || dayKey(o.createdAt) === today)); return `<div class="col-h"><span>${t}</span><i>${l.length}</i></div>${l.map(ticketHTML).join('') || '<div style="font-size:12.5px;color:var(--mute)">Rien pour l\'instant.</div>'}`; };
+    body = (dash.sound ? '' : '<button class="cta" id="dashSound" style="width:100%">🔔 Activer la sonnerie des nouvelles commandes</button>') + col('recue', '🆕 Nouvelles') + col('preparation', '👨‍🍳 En préparation') + col('prete', '✅ Prêtes') + col('recuperee', 'Récupérées aujourd\'hui');
+  } else if (dash.tab === 'today') {
+    const top = {}; td.forEach(o => o.lines.forEach(l => top[l.name] = (top[l.name] || 0) + l.qty));
+    const hours = {}; td.forEach(o => { const h = new Date(o.createdAt).getHours(); hours[h] = (hours[h] || 0) + 1; });
+    const hmax = Math.max(1, ...Object.values(hours)), clients = new Set(td.map(o => o.customer.phone));
+    body = `<div class="kpis"><div class="kpi"><b>${td.length}</b><span>Commandes</span></div><div class="kpi"><b>${eur(ca)}</b><span>Encaissé au comptoir</span></div>
+      <div class="kpi"><b>${eur(td.length ? ca / td.length : 0)}</b><span>Panier moyen</span></div><div class="kpi"><b>${clients.size}</b><span>Clients</span></div></div>
+      <div class="box"><h3>Top articles</h3>${Object.entries(top).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([n, q]) => `<div class="row"><span>${esc(n)}</span><b>${q}</b></div>`).join('') || '<div style="font-size:12.5px;color:var(--mute)">Pas encore de vente aujourd\'hui.</div>'}</div>
+      <div class="box"><h3>Commandes par heure</h3>${Object.keys(hours).sort((a, b) => a - b).map(h => `<div class="bar-row"><span>${h}h</span><div style="width:${hours[h] / hmax * 100}%"></div><span>${hours[h]}</span></div>`).join('') || '<div style="font-size:12.5px;color:var(--mute)">—</div>'}</div>
+      <div class="box"><h3>Sur 7 jours</h3><div class="row"><span>Commandes</span><b>${all.filter(o => o.status !== 'annulee' && Date.now() - o.createdAt < 7 * 864e5).length}</b></div><div class="row"><span>Chiffre d'affaires</span><b>${eur(all.filter(o => o.status !== 'annulee' && Date.now() - o.createdAt < 7 * 864e5).reduce((a, o) => a + o.total, 0))}</b></div><div class="row" style="border:0"><span>Commission versée</span><b style="color:var(--ok)">0,00 €</b></div></div>`;
+  } else if (dash.tab === 'clients') {
+    const cl = {}; all.filter(o => o.status !== 'annulee').forEach(o => { const k = o.customer.phone; cl[k] = cl[k] || { name: o.customer.name, phone: k, n: 0, spent: 0, last: 0 }; cl[k].n++; cl[k].spent += o.total; cl[k].last = Math.max(cl[k].last, o.createdAt); });
+    const list = Object.values(cl).sort((a, b) => b.n - a.n);
+    body = `<div style="font-size:12.5px;color:var(--mute);margin-bottom:6px">${list.length} client(s). « Relancer » ouvre WhatsApp avec un message prêt à envoyer.</div>` + list.map(c => { const days = Math.floor((Date.now() - c.last) / 864e5);
+      const msg = `Salut ${c.name} ! Ça fait ${days > 1 ? days + ' jours' : 'un moment'} 😉 Ton Mister Grill t'attend : -10 % sur ta prochaine commande avec le code RETOUR10. À très vite ! 🔥`;
+      return `<div class="row"><div class="l"><b>${esc(c.name)}</b><small>${c.n} commande(s) · ${eur(c.spent)} · ${days === 0 ? 'aujourd\'hui' : 'il y a ' + days + ' j'} · fidélité ${c.n % C.loyalty.goal}/${C.loyalty.goal}</small></div><a class="btn" style="padding:8px 10px;flex:0 0 auto" href="https://wa.me/${intlPhone(c.phone)}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Relancer</a></div>`; }).join('');
+  } else if (dash.tab === 'menu') {
+    body = `<div style="font-size:12.5px;color:var(--mute);margin-bottom:6px">Un plat épuisé disparaît de la commande en direct chez tous les clients.</div>` + MENU.map(sec => `<div class="col-h"><span>${esc(sec.title)}</span></div>` + sec.items.map(it => `<div class="row"><span>${esc(it.name)}</span><button class="sw ${soldOut(it.id) ? '' : 'on'}" data-stock="${it.id}" aria-label="Disponible"></button></div>`).join('')).join('');
+  } else if (dash.tab === 'settings') {
+    body = `<div class="box"><h3>Statut du restaurant</h3><div class="seg3">${[['open', '🟢 Ouvert'], ['pause', '🔥 Coup de feu'], ['closed', '⛔ Fermé']].map(([k, t]) => `<button data-rstatus="${k}" class="${resto.status === k ? 'on' : ''}">${t}</button>`).join('')}</div>
+      <div style="font-size:12.5px;color:var(--mute);margin-top:10px">Coup de feu : l'attente affichée passe à ~40 min. Fermé : plus aucune commande possible (fermeture exceptionnelle).</div></div>
+      <div class="box"><h3>Paiement</h3><div class="row" style="border:0"><span>Paiement au comptoir (CB / espèces)</span><b style="color:var(--ok)">Actif</b></div></div>`;
+  } else if (dash.tab === 'reviews') {
+    body = `<div class="box"><h3>Avis Google</h3><div style="font-size:13px;color:#cfcfd6">Chaque client est invité à laisser un avis juste après sa commande.</div><a class="btn" href="${C.googleReviewUrl}" target="_blank" rel="noopener" style="margin-top:10px">Voir la fiche Google</a></div>`;
+  }
+  $('#dashBody').innerHTML = `<div class="dash-top"><h1 class="h1">Caisse</h1><span class="chip"><i class="dot ${s.on ? '' : 'off'}"></i>${esc(s.t)}</span></div>
+    <div class="tabs">${tabs.map(([k, t]) => `<button class="tab ${dash.tab === k ? 'on' : ''}" data-dtab="${k}">${t}</button>`).join('')}</div>${body}
+    <button class="btn" data-v="menu" style="width:100%;margin-top:18px">← Revenir à l'app client</button>`;
+}
+async function setStatus(id, st) {
+  dash.fresh.delete(id);
+  try { await DB.doc('orders/' + id).update({ status: st, updatedAt: Date.now() }); } catch { toast('Mise à jour impossible'); }
+}
+async function saveResto(patch) {
+  const next = { status: resto.status, soldOut: [...(resto.soldOut || [])], ...patch };
+  try { await DB.doc('settings/resto').set(next); } catch { toast('Enregistrement impossible'); }
 }
 
 /* ---------- navigation ---------- */
@@ -734,6 +913,8 @@ function show(v) {
   $$('.nav button').forEach(b => b.classList.toggle('on', b.dataset.v === v || (v === 'done' && b.dataset.v === 'cart')));
   if (v === 'cart') renderCart();
   if (v === 'info') renderInfo();
+  if (v === 'dash') { startDash(); renderDash(); }
+  if (v === 'done' && !order) return show('menu');
   if (v === 'menu') renderMenu($('#q').value);
   if (v !== 'menu') window.scrollTo(0, 0);
   refreshCounters();
@@ -755,6 +936,12 @@ document.addEventListener('click', e => {
   else if (d.inc) { cart[+d.inc].qty++; saveCart(); }
   else if (d.dec) { const l = cart[+d.dec]; l.qty > 1 ? l.qty-- : cart.splice(+d.dec, 1); saveCart(); }
   else if (d.mode) { form.mode = d.mode; store.set('form', form); $$('[data-mode]').forEach(b => b.classList.toggle('on', b.dataset.mode === form.mode)); }
+  else if (d.dtab) { dash.tab = d.dtab; renderDash(); }
+  else if (d.st) { const [id, st] = d.st.split(':'); setStatus(id, st); }
+  else if (d.stock) { const s2 = new Set(resto.soldOut || []); s2.has(d.stock) ? s2.delete(d.stock) : s2.add(d.stock); saveResto({ soldOut: [...s2] }); }
+  else if (d.rstatus) saveResto({ status: d.rstatus });
+  else if (t.id === 'dashSound') { dash.sound = true; beep(1); renderDash(); }
+  else if (t.id === 'askNotif') { try { Notification.requestPermission().then(() => renderDone()); } catch { toast('Notifications non disponibles ici'); } }
   else if (d.welcomeClose) closeWelcome();
   else if (d.welcomeAct) { const a = d.welcomeAct; closeWelcome();
     if (a === 'reorder') { cart = JSON.parse(JSON.stringify(last.lines)); saveCart(); show('cart'); }
@@ -829,7 +1016,24 @@ function showWelcome() {
   $('#welcome').classList.add('on');
 }
 function closeWelcome() { $('#welcome').classList.remove('on'); }
-setTimeout(showWelcome, 2200);
+setTimeout(() => { if (!$('#v-dash').classList.contains('on')) showWelcome(); }, 2200);
+
+(async () => {
+  if (!window.claude || !window.claude.use) return;
+  try {
+    const [db, u] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
+    DB = db; IS_ADMIN = u ? await u.canEdit() : false;
+    if (!DB) return;
+    DB.doc('settings/resto').onSnapshot(sn => {
+      resto = Object.assign({ status: 'open', soldOut: [] }, sn.exists ? sn.data() : {});
+      renderStatus(); if ($('#v-menu').classList.contains('on')) renderMenu($('#q').value);
+      if ($('#v-dash').classList.contains('on')) renderDash(); if ($('#v-cart').classList.contains('on')) renderCart();
+    }, () => {});
+    const act = store.get('active', null); if (act) watchOrder(act.id);
+    if (IS_ADMIN) { startDash(); if (location.hash === '#caisse') { closeWelcome(); show('dash'); } }
+    if ($('#v-cart').classList.contains('on')) renderCart();
+  } catch {}
+})();
 })();
 </script>
 </body>
