@@ -127,8 +127,8 @@ body.bar{padding-bottom:calc(150px + var(--safe-b))}
 /* ===== Sheets ===== */
 .scrim{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:60;opacity:0;visibility:hidden;transition:.25s}
 .scrim.on{opacity:1;visibility:visible}
-.sheet{position:fixed;left:0;right:0;bottom:0;z-index:61;max-width:560px;margin:0 auto;background:var(--bg2);border-radius:24px 24px 0 0;max-height:92vh;display:flex;flex-direction:column;transform:translateY(105%);transition:transform .32s cubic-bezier(.2,.9,.3,1)}
-.sheet.on{transform:none}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:61;max-width:560px;margin:0 auto;background:var(--bg2);border-radius:24px 24px 0 0;max-height:92vh;display:flex;flex-direction:column;transform:translateY(105%);visibility:hidden;transition:transform .32s cubic-bezier(.2,.9,.3,1),visibility 0s .32s}
+.sheet.on{transform:none;visibility:visible;transition:transform .32s cubic-bezier(.2,.9,.3,1)}
 .sheet .scroll{overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
 .sheet .close{position:absolute;top:12px;right:12px;z-index:2;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.6);display:grid;place-items:center;font-size:20px}
 .p-img{aspect-ratio:4/3;background:#b0101b;border-radius:24px 24px 0 0;overflow:hidden}
@@ -197,6 +197,40 @@ textarea:focus,input.f:focus,select.f:focus{border-color:var(--red)}
 .install.on{display:flex}
 .install p{margin:0;font-size:12.5px;flex:1}
 .install button{background:#fff;color:#111;font-weight:700;border-radius:10px;padding:8px 12px;font-size:13px}
+/* best-sellers */
+.hs{display:flex;gap:10px;overflow-x:auto;padding:2px 16px 6px;scrollbar-width:none;scroll-snap-type:x proximity}
+.hs::-webkit-scrollbar{display:none}
+.mini-card{flex:0 0 138px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-align:left;position:relative}
+.mini-card img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.mini-card .t{padding:8px 10px 10px;font-size:12.5px;font-weight:700;line-height:1.2}
+.mini-card .t span{display:block;font-family:Anton,Impact,'Arial Narrow',sans-serif;font-weight:400;font-size:16px;margin-top:3px}
+.mini-card .rk{position:absolute;top:6px;left:6px;background:var(--red);color:#fff;font:800 11px Poppins,system-ui,sans-serif;border-radius:8px;padding:2px 7px}
+.sec-top{padding:18px 0 2px}.sec-top .sec-h{padding:0 16px}
+/* recommander + fidélité */
+.reorder{margin:12px 16px 0;display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.reorder .ic{font-size:26px}.reorder p{margin:0;flex:1;font-size:12.5px;color:var(--mute);min-width:0}.reorder p b{color:#fff;display:block;font-size:14px}
+.reorder button{background:var(--red);border-radius:10px;padding:9px 12px;font-weight:700;font-size:13px;white-space:nowrap}
+.stamps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
+.stamp{aspect-ratio:1/1;border-radius:50%;border:2px dashed #3a3a42;display:grid;place-items:center;font-size:18px}
+.stamp.on{border:2px solid var(--red);background:rgba(227,16,31,.18)}
+.stamp.gift{border-style:solid;border-color:#ffd23b}
+/* upsell */
+.ups{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px}
+.ups::-webkit-scrollbar{display:none}
+.up{flex:0 0 118px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:left}
+.up img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.up div{padding:7px 9px 9px;font-size:12px;font-weight:600;line-height:1.2}
+.up div span{display:flex;justify-content:space-between;align-items:center;margin-top:5px;font-weight:800}
+.up div span i{font-style:normal;background:var(--red);border-radius:8px;width:24px;height:24px;display:grid;place-items:center}
+/* suivi */
+.onum{font-family:Anton,Impact,'Arial Narrow',sans-serif;font-size:44px;letter-spacing:1px;line-height:1;margin:4px 0}
+.steps{display:grid;gap:0;margin-top:6px}
+.step{display:flex;gap:12px;align-items:flex-start;position:relative;padding-bottom:16px}
+.step:not(:last-child)::before{content:"";position:absolute;left:13px;top:28px;bottom:0;width:2px;background:var(--line)}
+.step .b{width:28px;height:28px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;font-size:13px;font-weight:800;background:var(--bg2);border:2px solid var(--line);position:relative;z-index:1}
+.step.done .b{background:var(--ok);border-color:var(--ok)}
+.step.cur .b{border-color:var(--red);box-shadow:0 0 0 4px rgba(227,16,31,.2)}
+.step p{margin:3px 0 0;font-size:13px;color:var(--mute);min-width:0}.step p b{color:#fff;display:block;font-size:14px}
 footer{padding:26px 16px 10px;text-align:center;color:#55555e;font-size:11px}
 </style>
 </head>
@@ -216,7 +250,7 @@ footer{padding:26px 16px 10px;text-align:center;color:#55555e;font-size:11px}
     </header>
 
     <div class="promos" id="promos"></div>
-    <div class="install" id="install"><p><b>Installe l'app Mister Grill</b><br>Commande en 2 clics depuis ton écran d'accueil.</p><button id="installBtn">Installer</button></div>
+    <div id="reorder"></div>
 
     <div class="search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -254,7 +288,7 @@ footer{padding:26px 16px 10px;text-align:center;color:#55555e;font-size:11px}
 <script src="menu.js"></script>
 <script>
 (() => {
-const C = window.MG_CONFIG, MENU = window.MG_MENU, PROMOS = window.MG_PROMOS;
+const C = window.MG_CONFIG, MENU = window.MG_MENU, PROMOS = window.MG_PROMOS, BEST = window.MG_BEST || [], UPSELL = window.MG_UPSELL || [];
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const eur = n => n.toFixed(2).replace('.', ',') + ' €';
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -268,6 +302,10 @@ const store = {
   set(k, v) { try { localStorage.setItem('mg:' + k, JSON.stringify(v)); } catch {} }
 };
 let cart = store.get('cart', []).filter(l => ITEMS[l.id]);
+let last = store.get('last', null);   // dernière commande envoyée
+let stamps = store.get('stamps', 0);  // tampons fidélité
+let order = null;                     // commande en cours de confirmation
+if (last) last.lines = last.lines.filter(l => ITEMS[l.id]);
 let form = store.get('form', { mode: C.modes[0], name: '', phone: '', time: 'asap', note: '' });
 
 /* ---------- horaires ---------- */
@@ -331,6 +369,9 @@ function renderMenu(filter = '') {
     html += `<section class="sec" id="s-${s.id}"><div class="sec-h"><h2>${esc(s.title)}</h2><p>${esc(s.sub || '')}</p></div>
       <div class="grid">${items.map(i => cardHTML(i, wide)).join('')}</div></section>`;
   });
+  if (!f && BEST.length) html = `<section class="sec-top"><div class="sec-h"><h2>Top ventes</h2><p>Les + commandés cette semaine</p></div>
+    <div class="hs">${BEST.filter(id => ITEMS[id]).map((id, k) => { const it = ITEMS[id]; return `<button class="mini-card" data-item="${id}"><span class="rk">#${k + 1}</span><img src="${it.img}" alt="" loading="lazy"><div class="t">${esc(it.name)}<span>${eur(it.price)}</span></div></button>`; }).join('')}</div></section>` + html;
+  renderReorder();
   $('#sections').innerHTML = html || `<div class="empty">Aucun plat ne correspond à « ${esc(filter)} »</div>`;
   $('#cats').innerHTML = MENU.filter(s => !f || $('#s-' + s.id)).map(s => `<button class="cat" data-cat="${s.id}">${esc(s.title)}</button>`).join('');
   spy();
@@ -348,6 +389,18 @@ function spy() {
 function goCat(id) {
   show('menu');
   const el = $('#s-' + id); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - 58, behavior: 'smooth' });
+}
+
+function renderReorder() {
+  const el = $('#reorder'); if (!el) return;
+  if (!last || !last.lines.length || cart.length) { el.innerHTML = ''; return; }
+  const n = last.lines.reduce((a, l) => a + l.qty, 0);
+  const names = last.lines.map(l => ITEMS[l.id].name).slice(0, 2).join(', ') + (last.lines.length > 2 ? '…' : '');
+  el.innerHTML = `<div class="reorder"><span class="ic">↻</span><p><b>Comme la dernière fois ?</b>${n} article(s) · ${esc(names)}</p><button data-reorder="1">Recommander</button></div>`;
+}
+function stampsHTML(n) {
+  const g = C.loyalty.goal, cur = n % g;
+  return `<div class="stamps">${Array.from({ length: g }, (_, i) => `<span class="stamp ${i < cur ? 'on' : ''} ${i === g - 1 ? 'gift' : ''}">${i < cur ? '🔥' : i === g - 1 ? '🎁' : ''}</span>`).join('')}</div>`;
 }
 
 /* ---------- fiche produit ---------- */
@@ -451,6 +504,8 @@ function renderCart() {
       </div>`; }).join('')}
     <div class="tot"><span>Total</span><span class="price">${eur(total())}</span></div>
     <div style="font-size:12px;color:var(--mute)">Paiement au comptoir (CB ou espèces) au moment du retrait.</div>
+    ${(() => { const ups = UPSELL.filter(id => ITEMS[id] && !cart.some(l => l.id === id) && !(ITEMS[id].opts || []).some(o => o.required)).slice(0, 6);
+      return ups.length ? `<div class="box"><h3>On ajoute ?</h3><div class="ups">${ups.map(id => { const it = ITEMS[id]; return `<button class="up" data-quick="${id}"><img src="${it.img}" alt="" loading="lazy"><div>${esc(it.name)}<span>${eur(it.price)}<i>+</i></span></div></button>`; }).join('')}</div></div>` : ''; })()}
 
     <div class="box"><h3>Comment veux-tu ta commande ?</h3>
       <div class="seg">${C.modes.map(m => `<button data-mode="${esc(m)}" class="${form.mode === m ? 'on' : ''}">${m === 'Sur place' ? '🍽 ' : '🛍 '}${esc(m)}</button>`).join('')}</div>
@@ -474,7 +529,7 @@ function orderText() {
     return `▪️ ${l.qty}× *${it.name}* — ${eur(unitPrice(it, l.sel) * l.qty)}` + d.map(x => `\n     • ${x}`).join('') + (l.note ? `\n     ✎ ${l.note}` : '');
   });
   const t = slots().find(s => s.v === form.time);
-  return `🔥 *NOUVELLE COMMANDE — MISTER GRILL*\n\n` +
+  return `🔥 *NOUVELLE COMMANDE ${order.no} — MISTER GRILL*\n\n` +
     `👤 ${form.name} · ${form.phone}\n` +
     `${form.mode === 'Sur place' ? '🍽' : '🛍'} ${form.mode}\n` +
     `⏰ ${t ? t.t : form.time}\n\n` +
@@ -482,26 +537,57 @@ function orderText() {
     `\n\n💰 *TOTAL : ${eur(total())}* (paiement au comptoir)` +
     (form.note ? `\n\n📝 ${form.note}` : '');
 }
+function readyAt() {
+  if (form.time === 'asap') { const d = new Date(Date.now() + 20 * 60000); return hm(d.getHours() * 60 + d.getMinutes()); }
+  return form.time.split(' ').pop();
+}
 function send() {
   form.name = $('#fName').value.trim(); form.phone = $('#fPhone').value.trim(); form.note = $('#fNote').value.trim(); form.time = $('#fTime').value;
   store.set('form', form);
   if (!form.name) { $('#fName').focus(); return toast('Ajoute ton prénom'); }
   if (form.phone.replace(/\D/g, '').length < 9) { $('#fPhone').focus(); return toast('Numéro de téléphone invalide'); }
-  const txt = orderText();
-  const t = slots().find(s => s.v === form.time);
-  $('#doneBody').innerHTML = `
-    <div style="text-align:center;padding-top:30px">
-      <div style="font-size:64px">🔥</div>
-      <h1 class="h1" style="margin-top:10px">Merci ${esc(form.name)} !</h1>
-      <p style="color:#cfcfd6">Ta commande est prête.<br><b>Envoie-la au restaurant sur WhatsApp</b> pour la valider.</p>
-      <div class="box" style="text-align:left"><h3>Récap</h3>
-        <div style="font-size:13px;color:#cfcfd6;line-height:1.6">${form.mode} · ${esc(t ? t.t : form.time)}<br>${count()} article(s) · <b style="color:#fff">${eur(total())}</b></div></div>
-      <a class="cta wa" href="https://wa.me/${C.whatsapp}?text=${encodeURIComponent(txt)}" target="_blank" rel="noopener" style="width:100%;margin-top:16px;text-decoration:none;color:#fff">Envoyer sur WhatsApp</a>
-      <button class="btn" id="copyTxt" style="width:100%;margin-top:10px">Copier le message</button>
-      <button class="btn" id="newOrder" style="width:100%;margin-top:10px">Nouvelle commande</button>
-    </div>`;
-  $('#doneBody').dataset.txt = txt;
+  order = { no: '#' + String(Math.floor(1000 + Math.random() * 9000)), sent: false, total: total(), n: count(), lines: JSON.parse(JSON.stringify(cart)) };
+  order.txt = orderText();
+  renderDone();
   show('done');
+}
+function renderDone() {
+  if (!order) return;
+  const t = slots().find(s => s.v === form.time), g = C.loyalty.goal;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent), standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  $('#doneBody').innerHTML = `
+    <div style="text-align:center;padding-top:14px">
+      <div style="font-size:12px;color:var(--mute);font-weight:600;letter-spacing:1px">COMMANDE</div>
+      <div class="onum">${order.no}</div>
+      <h1 class="h1" style="font-size:26px;margin:6px 0 4px">${order.sent ? 'Merci ' + esc(form.name) + ' !' : 'Dernière étape, ' + esc(form.name)}</h1>
+      <p style="color:#cfcfd6;margin:0">${order.sent ? 'Ta commande est partie au restaurant.' : 'Envoie ta commande au restaurant sur WhatsApp pour la valider.'}</p>
+    </div>
+    ${order.sent ? '' : `<a class="cta wa" data-sendwa="1" href="https://wa.me/${C.whatsapp}?text=${encodeURIComponent(order.txt)}" target="_blank" rel="noopener" style="width:100%;margin-top:16px;text-decoration:none;color:#fff;height:54px">Envoyer sur WhatsApp · ${eur(order.total)}</a>`}
+    <div class="box"><h3>Suivi</h3><div class="steps">
+      <div class="step ${order.sent ? 'done' : 'cur'}"><span class="b">${order.sent ? '✓' : '1'}</span><p><b>Commande envoyée</b>${order.sent ? 'Reçue sur le WhatsApp du restaurant' : 'En attente de ton envoi WhatsApp'}</p></div>
+      <div class="step ${order.sent ? 'cur' : ''}"><span class="b">2</span><p><b>En préparation</b>Le resto te confirme sur WhatsApp</p></div>
+      <div class="step"><span class="b">3</span><p><b>Prête à récupérer</b>Vers ${readyAt()} · ${esc(form.mode)} · ${esc(t ? t.t : form.time)}</p></div>
+    </div></div>
+    <div class="box"><h3>Récap · ${order.n} article(s) · ${eur(order.total)}</h3>
+      ${order.lines.map(l => `<div style="font-size:13px;color:#cfcfd6;padding:3px 0">${l.qty}× ${esc(ITEMS[l.id].name)}</div>`).join('')}
+      <div style="font-size:12px;color:var(--mute);margin-top:6px">Paiement au comptoir au retrait.</div></div>
+    <div class="box"><h3>Carte fidélité · ${stamps % g}/${g}</h3>
+      <div style="font-size:12.5px;color:#cfcfd6">${order.sent ? '+1 tampon pour cette commande 🔥 ' : '1 commande envoyée = 1 tampon. '}${esc(C.loyalty.reward)}.</div>${stampsHTML(stamps)}</div>
+    ${order.sent ? `<div class="box"><h3>⭐ Tu as aimé ?</h3><div style="font-size:12.5px;color:#cfcfd6">Un avis Google aide énormément le resto. Ça prend 20 secondes.</div>
+      <a class="btn" href="${C.googleReviewUrl}" target="_blank" rel="noopener" style="margin-top:10px">Laisser un avis Google</a></div>` : ''}
+    ${order.sent && !standalone ? `<div class="box" id="installBox" style="background:linear-gradient(90deg,rgba(29,63,184,.3),rgba(227,16,31,.3))"><h3>📲 Garde Mister Grill sur ton téléphone</h3>
+      <div style="font-size:12.5px;color:#cfcfd6">${deferred ? 'Recommande en 2 clics depuis ton écran d\'accueil.' : isIOS ? 'Dans Safari : touche <b>Partager</b> puis <b>Sur l\'écran d\'accueil</b>.' : 'Dans le menu du navigateur : <b>Ajouter à l\'écran d\'accueil</b>.'}</div>
+      ${deferred ? '<button class="cta" id="installBtn" style="width:100%;margin-top:10px">Installer l\'app</button>' : ''}</div>` : ''}
+    <button class="btn" id="copyTxt" style="width:100%;margin-top:14px">Copier le message</button>
+    <button class="btn" id="newOrder" style="width:100%;margin-top:10px">Nouvelle commande</button>`;
+  $('#doneBody').dataset.txt = order.txt;
+}
+function markSent() {
+  if (!order || order.sent) return;
+  order.sent = true; stamps++; store.set('stamps', stamps);
+  last = { lines: order.lines, at: Date.now() }; store.set('last', last);
+  cart = []; store.set('cart', cart); refreshCounters();
+  setTimeout(() => { renderDone(); window.scrollTo(0, 0); if (stamps % C.loyalty.goal === 0) toast('🎁 Carte complète ! ' + C.loyalty.reward); }, 400);
 }
 
 /* ---------- infos ---------- */
@@ -517,6 +603,7 @@ function renderInfo() {
       ${C.phone ? `<a class="btn" href="tel:${esc(C.phone)}">📞 Appeler</a>` : `<a class="btn" href="${C.instagram}" target="_blank" rel="noopener">📸 Instagram</a>`}</div></div>
     <div class="box"><h3>⏰ Horaires <span class="chip" style="float:right;font-size:11px;padding:3px 9px"><i class="dot ${s.on ? '' : 'off'}"></i>${s.on ? 'Ouvert' : 'Fermé'}</span></h3>
       <table class="hours">${order.map(d => `<tr class="${d === today ? 'today' : ''}"><td>${DAYS[d]}</td><td>${hm(C.hours[d][0])} – ${hm(C.hours[d][1])}</td></tr>`).join('')}</table></div>
+    <div class="box"><h3>🔥 Ma carte fidélité · ${stamps % C.loyalty.goal}/${C.loyalty.goal}</h3><div style="font-size:12.5px;color:#cfcfd6">1 commande = 1 tampon. ${esc(C.loyalty.reward)}.</div>${stampsHTML(stamps)}</div>
     <div class="box halal"><div class="hb">HALAL</div><div><b>100 % Halal</b><div style="font-size:12.5px;color:var(--mute)">Toutes nos viandes sont certifiées halal.</div></div></div>
     <div class="box"><h3>🎓 Menu Étudiant · 8,90 €</h3><div style="font-size:13px;color:#cfcfd6">Du lundi au vendredi de 11h à 15h, hors vacances et jours fériés. Burger, sandwich ou wrap + frites + canette.</div>
       <button class="cta" style="width:100%;margin-top:12px" data-go="offres">Commander le menu étudiant</button></div>
@@ -551,11 +638,15 @@ document.addEventListener('click', e => {
   else if (d.inc) { cart[+d.inc].qty++; saveCart(); }
   else if (d.dec) { const l = cart[+d.dec]; l.qty > 1 ? l.qty-- : cart.splice(+d.dec, 1); saveCart(); }
   else if (d.mode) { form.mode = d.mode; store.set('form', form); $$('[data-mode]').forEach(b => b.classList.toggle('on', b.dataset.mode === form.mode)); }
+  else if (d.quick) { const it = ITEMS[d.quick], sel = {}; (it.opts || []).forEach(o => sel[o.id] = []); cart.push({ id: it.id, sel, qty: 1, note: '', key: it.id + JSON.stringify(sel) }); saveCart(); toast(`✓ ${it.name} ajouté`); }
+  else if (d.reorder) { cart = JSON.parse(JSON.stringify(last.lines)); saveCart(); show('cart'); toast('Ta dernière commande est dans le panier'); }
+  else if (d.sendwa) markSent();
+  else if (t.id === 'installBtn') installApp();
   else if (t.id === 'pAdd') addCur();
   else if (t.id === 'cartbar') show('cart');
   else if (t.id === 'send') send();
   else if (t.id === 'copyTxt') navigator.clipboard.writeText($('#doneBody').dataset.txt).then(() => toast('Message copié'), () => toast('Copie impossible'));
-  else if (t.id === 'newOrder') { cart = []; saveCart(); show('menu'); window.scrollTo(0, 0); }
+  else if (t.id === 'newOrder') { order = null; cart = []; saveCart(); show('menu'); window.scrollTo(0, 0); }
 });
 $('#scrim').addEventListener('click', closeSheet);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
@@ -568,8 +659,8 @@ let raf; window.addEventListener('scroll', () => { cancelAnimationFrame(raf); ra
 
 /* ---------- PWA ---------- */
 let deferred;
-window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; $('#install').classList.add('on'); });
-$('#installBtn').addEventListener('click', async () => { if (!deferred) return; deferred.prompt(); await deferred.userChoice; deferred = null; $('#install').classList.remove('on'); });
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; });
+async function installApp() { if (!deferred) return; deferred.prompt(); await deferred.userChoice; deferred = null; const b = $('#installBox'); if (b) b.remove(); }
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 
 /* ---------- init ---------- */

@@ -1,5 +1,5 @@
 /* Mister Grill — cache hors-ligne. Incrémenter VERSION après chaque mise à jour du menu. */
-const VERSION = 'mg-v1';
+const VERSION = 'mg-v2';
 const CORE = ['./', 'index.html', 'menu.js', 'manifest.webmanifest', 'img/logo.png', 'img/icon-192.png'];
 
 self.addEventListener('install', e => {

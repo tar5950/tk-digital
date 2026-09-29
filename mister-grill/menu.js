@@ -10,6 +10,10 @@ window.MG_CONFIG = {
   address: "22 rue Chaligny, 75012 Paris",
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Mister+Grill+22+rue+Chaligny+75012+Paris",
   instagram: "https://www.instagram.com/mistergrillofficiel/",
+  // Lien "laisser un avis" Google (idéalement https://g.page/r/<ID>/review)
+  googleReviewUrl: "https://www.google.com/maps/search/?api=1&query=Mister+Grill+22+rue+Chaligny+75012+Paris",
+  // Carte de fidélité : 1 tampon par commande, récompense au palier
+  loyalty: { goal: 10, reward: "Ta 10e commande : un menu Classique offert" },
   // Horaires : [jour 0=dim..6=sam] -> [ouverture, fermeture] en minutes (1440 = minuit)
   hours: { 0: [660, 1440], 1: [660, 1440], 2: [660, 1440], 3: [660, 1440], 4: [660, 1440], 5: [840, 1440], 6: [660, 1440] },
   modes: ["À emporter", "Sur place"],
@@ -175,6 +179,11 @@ window.MG_CONFIG = {
       ]
     },
   ];
+
+  // "Les + commandés" (à ajuster avec les vraies ventes)
+  window.MG_BEST = ["sw-phenomene", "smash-bacon", "hm-chevre-miel", "crunchy-smash", "cl-big-crousty", "sw-wrap", "d-waffle-cone"];
+  // Suggestions "On ajoute ?" dans le panier (plats sans option obligatoire)
+  window.MG_UPSELL = ["frites-maison", "x-tenders", "x-mozza", "d-cookie", "d-milkshake", "d-pain-perdu", "x-nuggets"];
 
   window.MG_PROMOS = [
     { img: "img/promo-etudiant.jpg", title: "Menu Étudiant 8,90 €", text: "Lun → Ven · 11h-15h", target: "offres" },
