@@ -208,6 +208,10 @@ textarea:focus,input.f:focus,select.f:focus{border-color:var(--red)}
 .sec-top{padding:18px 0 2px}.sec-top .sec-h{padding:0 16px}
 /* recommander + fidélité */
 .reorder{margin:12px 16px 0;display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.gift{margin:12px 16px 0;display:flex;align-items:center;gap:12px;border-radius:var(--r);padding:12px 14px;background:linear-gradient(90deg,rgba(29,63,184,.4),rgba(227,16,31,.4));border:1px solid rgba(255,255,255,.14)}
+.gift .ic{font-size:30px}.gift p{margin:0;flex:1;font-size:12.5px;color:#e6e6ee;min-width:0}.gift p b{color:#fff;display:block;font-size:14px}
+.gift button{background:#fff;color:#111;border-radius:10px;padding:9px 12px;font-weight:700;font-size:13px;white-space:nowrap}
+.gift-howto{margin:8px 16px 0;font-size:12.5px;color:#cfcfd6;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
 .reorder .ic{font-size:26px}.reorder p{margin:0;flex:1;font-size:12.5px;color:var(--mute);min-width:0}.reorder p b{color:#fff;display:block;font-size:14px}
 .reorder button{background:var(--red);border-radius:10px;padding:9px 12px;font-weight:700;font-size:13px;white-space:nowrap}
 .stamps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
@@ -250,6 +254,7 @@ footer{padding:26px 16px 10px;text-align:center;color:#55555e;font-size:11px}
     </header>
 
     <div class="promos" id="promos"></div>
+    <div id="giftBar"></div>
     <div id="reorder"></div>
 
     <div class="search">
@@ -304,6 +309,12 @@ const store = {
 let cart = store.get('cart', []).filter(l => ITEMS[l.id]);
 let last = store.get('last', null);   // dernière commande envoyée
 let stamps = store.get('stamps', 0);  // tampons fidélité
+const GIFT = C.installGift && ITEMS[C.installGift.item] ? C.installGift : null;
+const standalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+let gift = store.get('gift', 'locked');   // locked | unlocked | used
+if (GIFT && gift === 'locked' && standalone()) { gift = 'unlocked'; store.set('gift', gift); }
+const giftActive = () => GIFT && gift === 'unlocked';
+let howto = false;
 let order = null;                     // commande en cours de confirmation
 if (last) last.lines = last.lines.filter(l => ITEMS[l.id]);
 let form = store.get('form', { mode: C.modes[0], name: '', phone: '', time: 'asap', note: '' });
@@ -371,7 +382,7 @@ function renderMenu(filter = '') {
   });
   if (!f && BEST.length) html = `<section class="sec-top"><div class="sec-h"><h2>Top ventes</h2><p>Les + commandés cette semaine</p></div>
     <div class="hs">${BEST.filter(id => ITEMS[id]).map((id, k) => { const it = ITEMS[id]; return `<button class="mini-card" data-item="${id}"><span class="rk">#${k + 1}</span><img src="${it.img}" alt="" loading="lazy"><div class="t">${esc(it.name)}<span>${eur(it.price)}</span></div></button>`; }).join('')}</div></section>` + html;
-  renderReorder();
+  renderReorder(); renderGift();
   $('#sections').innerHTML = html || `<div class="empty">Aucun plat ne correspond à « ${esc(filter)} »</div>`;
   $('#cats').innerHTML = MENU.filter(s => !f || $('#s-' + s.id)).map(s => `<button class="cat" data-cat="${s.id}">${esc(s.title)}</button>`).join('');
   spy();
@@ -391,6 +402,17 @@ function goCat(id) {
   const el = $('#s-' + id); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - 58, behavior: 'smooth' });
 }
 
+function renderGift() {
+  const el = $('#giftBar'); if (!el || !GIFT) return;
+  const it = ITEMS[GIFT.item];
+  if (gift === 'unlocked') {
+    el.innerHTML = `<div class="gift"><span class="ic">🎁</span><p><b>${esc(GIFT.label)} débloqué !</b>Merci d'avoir installé l'app. Il est ajouté automatiquement à ta prochaine commande.</p></div>`;
+  } else if (gift === 'locked' && !standalone()) {
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    el.innerHTML = `<div class="gift"><span class="ic">🎁</span><p><b>Installe l'app : ${esc(GIFT.label.toLowerCase())} !</b>Ajoute Mister Grill à ton écran d'accueil, ${esc(it.name.toLowerCase())} offert sur ta prochaine commande.</p><button id="giftInstall">${deferred ? 'Installer' : 'Comment ?'}</button></div>
+      ${howto ? `<div class="gift-howto">${isIOS ? 'Dans <b>Safari</b> : touche <b>Partager</b> ⬆️ puis <b>Sur l\'écran d\'accueil</b>. Ouvre ensuite Mister Grill depuis l\'icône : ton cadeau apparaît.' : 'Dans le menu du navigateur ⋮ : <b>Installer l\'application</b> ou <b>Ajouter à l\'écran d\'accueil</b>. Ouvre ensuite Mister Grill depuis l\'icône : ton cadeau apparaît.'}</div>` : ''}`;
+  } else el.innerHTML = '';
+}
 function renderReorder() {
   const el = $('#reorder'); if (!el) return;
   if (!last || !last.lines.length || cart.length) { el.innerHTML = ''; return; }
@@ -502,9 +524,10 @@ function renderCart() {
         <div class="r"><span class="price" style="font-size:16px">${eur(unitPrice(it, l.sel) * l.qty)}</span>
           <div class="mini"><button data-dec="${i}">${l.qty === 1 ? '🗑' : '−'}</button><span>${l.qty}</span><button data-inc="${i}">+</button></div></div>
       </div>`; }).join('')}
+    ${giftActive() ? `<div class="line"><img src="${ITEMS[GIFT.item].img}" alt=""><div class="i"><b>🎁 ${esc(ITEMS[GIFT.item].name)}</b><small>Cadeau installation de l'app</small></div><div class="r"><span class="price" style="font-size:16px">Offert</span></div></div>` : ''}
     <div class="tot"><span>Total</span><span class="price">${eur(total())}</span></div>
     <div style="font-size:12px;color:var(--mute)">Paiement au comptoir (CB ou espèces) au moment du retrait.</div>
-    ${(() => { const ups = UPSELL.filter(id => ITEMS[id] && !cart.some(l => l.id === id) && !(ITEMS[id].opts || []).some(o => o.required)).slice(0, 6);
+    ${(() => { const ups = UPSELL.filter(id => ITEMS[id] && !(giftActive() && id === GIFT.item) && !cart.some(l => l.id === id) && !(ITEMS[id].opts || []).some(o => o.required)).slice(0, 6);
       return ups.length ? `<div class="box"><h3>On ajoute ?</h3><div class="ups">${ups.map(id => { const it = ITEMS[id]; return `<button class="up" data-quick="${id}"><img src="${it.img}" alt="" loading="lazy"><div>${esc(it.name)}<span>${eur(it.price)}<i>+</i></span></div></button>`; }).join('')}</div></div>` : ''; })()}
 
     <div class="box"><h3>Comment veux-tu ta commande ?</h3>
@@ -534,6 +557,7 @@ function orderText() {
     `${form.mode === 'Sur place' ? '🍽' : '🛍'} ${form.mode}\n` +
     `⏰ ${t ? t.t : form.time}\n\n` +
     lines.join('\n') +
+    (giftActive() ? `\n▪️ 1× *${ITEMS[GIFT.item].name}* — OFFERT 🎁 (cadeau installation app)` : '') +
     `\n\n💰 *TOTAL : ${eur(total())}* (paiement au comptoir)` +
     (form.note ? `\n\n📝 ${form.note}` : '');
 }
@@ -547,6 +571,7 @@ function send() {
   if (!form.name) { $('#fName').focus(); return toast('Ajoute ton prénom'); }
   if (form.phone.replace(/\D/g, '').length < 9) { $('#fPhone').focus(); return toast('Numéro de téléphone invalide'); }
   order = { no: '#' + String(Math.floor(1000 + Math.random() * 9000)), sent: false, total: total(), n: count(), lines: JSON.parse(JSON.stringify(cart)) };
+  order.gift = giftActive();
   order.txt = orderText();
   renderDone();
   show('done');
@@ -554,7 +579,7 @@ function send() {
 function renderDone() {
   if (!order) return;
   const t = slots().find(s => s.v === form.time), g = C.loyalty.goal;
-  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent), standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
   $('#doneBody').innerHTML = `
     <div style="text-align:center;padding-top:14px">
       <div style="font-size:12px;color:var(--mute);font-weight:600;letter-spacing:1px">COMMANDE</div>
@@ -570,13 +595,14 @@ function renderDone() {
     </div></div>
     <div class="box"><h3>Récap · ${order.n} article(s) · ${eur(order.total)}</h3>
       ${order.lines.map(l => `<div style="font-size:13px;color:#cfcfd6;padding:3px 0">${l.qty}× ${esc(ITEMS[l.id].name)}</div>`).join('')}
+      ${order.gift ? `<div style="font-size:13px;color:#fff;padding:3px 0">🎁 1× ${esc(ITEMS[GIFT.item].name)} · offert</div>` : ''}
       <div style="font-size:12px;color:var(--mute);margin-top:6px">Paiement au comptoir au retrait.</div></div>
     <div class="box"><h3>Carte fidélité · ${stamps % g}/${g}</h3>
       <div style="font-size:12.5px;color:#cfcfd6">${order.sent ? '+1 tampon pour cette commande 🔥 ' : '1 commande envoyée = 1 tampon. '}${esc(C.loyalty.reward)}.</div>${stampsHTML(stamps)}</div>
     ${order.sent ? `<div class="box"><h3>⭐ Tu as aimé ?</h3><div style="font-size:12.5px;color:#cfcfd6">Un avis Google aide énormément le resto. Ça prend 20 secondes.</div>
       <a class="btn" href="${C.googleReviewUrl}" target="_blank" rel="noopener" style="margin-top:10px">Laisser un avis Google</a></div>` : ''}
-    ${order.sent && !standalone ? `<div class="box" id="installBox" style="background:linear-gradient(90deg,rgba(29,63,184,.3),rgba(227,16,31,.3))"><h3>📲 Garde Mister Grill sur ton téléphone</h3>
-      <div style="font-size:12.5px;color:#cfcfd6">${deferred ? 'Recommande en 2 clics depuis ton écran d\'accueil.' : isIOS ? 'Dans Safari : touche <b>Partager</b> puis <b>Sur l\'écran d\'accueil</b>.' : 'Dans le menu du navigateur : <b>Ajouter à l\'écran d\'accueil</b>.'}</div>
+    ${order.sent && !standalone() ? `<div class="box" id="installBox" style="background:linear-gradient(90deg,rgba(29,63,184,.3),rgba(227,16,31,.3))"><h3>📲 Installe l'app${GIFT && gift === 'locked' ? ' : ' + esc(GIFT.label.toLowerCase()) : ''}</h3>
+      <div style="font-size:12.5px;color:#cfcfd6">${GIFT && gift === 'locked' ? esc(ITEMS[GIFT.item].name) + ' offert sur ta prochaine commande. ' : ''}${deferred ? 'Recommande en 2 clics depuis ton écran d\'accueil.' : isIOS ? 'Dans Safari : touche <b>Partager</b> puis <b>Sur l\'écran d\'accueil</b>.' : 'Dans le menu du navigateur : <b>Ajouter à l\'écran d\'accueil</b>.'}</div>
       ${deferred ? '<button class="cta" id="installBtn" style="width:100%;margin-top:10px">Installer l\'app</button>' : ''}</div>` : ''}
     <button class="btn" id="copyTxt" style="width:100%;margin-top:14px">Copier le message</button>
     <button class="btn" id="newOrder" style="width:100%;margin-top:10px">Nouvelle commande</button>`;
@@ -585,6 +611,7 @@ function renderDone() {
 function markSent() {
   if (!order || order.sent) return;
   order.sent = true; stamps++; store.set('stamps', stamps);
+  if (order.gift) { gift = 'used'; store.set('gift', gift); }
   last = { lines: order.lines, at: Date.now() }; store.set('last', last);
   cart = []; store.set('cart', cart); refreshCounters();
   setTimeout(() => { renderDone(); window.scrollTo(0, 0); if (stamps % C.loyalty.goal === 0) toast('🎁 Carte complète ! ' + C.loyalty.reward); }, 400);
@@ -641,7 +668,7 @@ document.addEventListener('click', e => {
   else if (d.quick) { const it = ITEMS[d.quick], sel = {}; (it.opts || []).forEach(o => sel[o.id] = []); cart.push({ id: it.id, sel, qty: 1, note: '', key: it.id + JSON.stringify(sel) }); saveCart(); toast(`✓ ${it.name} ajouté`); }
   else if (d.reorder) { cart = JSON.parse(JSON.stringify(last.lines)); saveCart(); show('cart'); toast('Ta dernière commande est dans le panier'); }
   else if (d.sendwa) markSent();
-  else if (t.id === 'installBtn') installApp();
+  else if (t.id === 'installBtn' || t.id === 'giftInstall') installApp();
   else if (t.id === 'pAdd') addCur();
   else if (t.id === 'cartbar') show('cart');
   else if (t.id === 'send') send();
@@ -659,8 +686,14 @@ let raf; window.addEventListener('scroll', () => { cancelAnimationFrame(raf); ra
 
 /* ---------- PWA ---------- */
 let deferred;
-window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; });
-async function installApp() { if (!deferred) return; deferred.prompt(); await deferred.userChoice; deferred = null; const b = $('#installBox'); if (b) b.remove(); }
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; renderGift(); });
+window.addEventListener('appinstalled', () => { if (GIFT && gift === 'locked') { gift = 'unlocked'; store.set('gift', gift); renderGift(); toast('🎁 ' + GIFT.label + ' débloqué !'); } });
+async function installApp() {
+  if (!deferred) { howto = !howto; renderGift(); return; }
+  deferred.prompt(); const r = await deferred.userChoice; deferred = null;
+  if (r && r.outcome === 'accepted' && GIFT && gift === 'locked') { gift = 'unlocked'; store.set('gift', gift); toast('🎁 ' + GIFT.label + ' débloqué !'); }
+  const b = $('#installBox'); if (b) b.remove(); renderGift();
+}
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 
 /* ---------- init ---------- */

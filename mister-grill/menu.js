@@ -13,6 +13,8 @@ window.MG_CONFIG = {
   // Lien "laisser un avis" Google (idéalement https://g.page/r/<ID>/review)
   googleReviewUrl: "https://www.google.com/maps/search/?api=1&query=Mister+Grill+22+rue+Chaligny+75012+Paris",
   // Carte de fidélité : 1 tampon par commande, récompense au palier
+  // Cadeau débloqué quand le client installe l'app sur son écran d'accueil (1 fois, sur la commande suivante)
+  installGift: { item: "d-cookie", label: "Cookie offert" },
   loyalty: { goal: 10, reward: "Ta 10e commande : un menu Classique offert" },
   // Horaires : [jour 0=dim..6=sam] -> [ouverture, fermeture] en minutes (1440 = minuit)
   hours: { 0: [660, 1440], 1: [660, 1440], 2: [660, 1440], 3: [660, 1440], 4: [660, 1440], 5: [840, 1440], 6: [660, 1440] },
