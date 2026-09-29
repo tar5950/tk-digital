@@ -1,0 +1,16 @@
+{
+  "name": "Mister Grill — Fast Casual",
+  "short_name": "Mister Grill",
+  "description": "Commande chez Mister Grill, 22 rue Chaligny, Paris 12e.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#000000",
+  "theme_color": "#0a0a0b",
+  "lang": "fr",
+  "icons": [
+    { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
