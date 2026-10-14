@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Son — Améliorer le son d'une vidéo gratuitement | TK Digital</title>
+<meta name="description" content="Améliore le son de tes vidéos en 1 clic : suppression du bruit de fond, du souffle et du ronflement, voix plus claire, volume calé pour TikTok, Reels, YouTube. 100 % gratuit, sans inscription, rien n'est envoyé sur un serveur.">
+<meta name="keywords" content="améliorer son vidéo, enlever bruit de fond vidéo, réduction de bruit en ligne, débruiteur audio gratuit, voix claire vidéo, normaliser volume tiktok, son reels, son youtube, supprimer souffle micro">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tar5950.github.io/tk-digital/outils/son-video.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Studio Son — Le son de tes vidéos, version pro, en 1 clic">
+<meta property="og:description" content="Bruit de fond, ronflement, voix étouffée, volume trop bas : tout se corrige dans ton navigateur. Gratuit et 100 % privé.">
+<meta property="og:url" content="https://tar5950.github.io/tk-digital/outils/son-video.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Studio Son — TK Digital","url":"https://tar5950.github.io/tk-digital/outils/son-video.html","applicationCategory":"MultimediaApplication","operatingSystem":"Navigateur web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":"Outil gratuit d'amélioration du son des vidéos : débruitage, anti-ronflement, égalisation automatique de la voix, de-esser, compression et normalisation LUFS, traitement local dans le navigateur.","creator":{"@type":"Organization","name":"TK Digital","url":"https://tar5950.github.io/tk-digital/"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --n:#050505; --n2:#0c0c0c; --n3:#141414; --n4:#1e1e1e; --n5:#2a2a2a;
+  --a:#c8f135; --a2:#d4ff4a; --a-dim:rgba(200,241,53,.14);
+  --w:#f5f5f0; --w2:#e8e8e2; --mid:#8f8f87;
+  --border:rgba(200,241,53,0.12); --line:rgba(255,255,255,.08);
+  --before:#7d7d76; --bad:#ff6b5b; --wa:#25D366;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+[hidden]{display:none!important;}
+html{scroll-behavior:smooth;}
+body{background:var(--n);color:var(--w);font-family:'DM Sans',sans-serif;line-height:1.6;overflow-x:hidden;}
+a{color:var(--a);}
+button,select,input{font:inherit;color:inherit;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px;}
+h1,h2,h3{font-family:'Syne',sans-serif;line-height:1.08;letter-spacing:-.01em;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:rgba(5,5,5,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+nav .wrap{height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--w);text-decoration:none;}
+.logo span{color:var(--a);}
+.nav-cta{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--n);background:var(--a);padding:10px 16px;border-radius:999px;text-decoration:none;white-space:nowrap;}
+.nav-cta:hover{background:var(--a2);}
+
+/* HERO */
+.hero{padding:64px 0 28px;text-align:center;position:relative;}
+.hero::before{content:"";position:absolute;inset:-40px 0 auto;height:420px;background:radial-gradient(ellipse 60% 70% at 50% 0%,rgba(200,241,53,.13),transparent 70%);pointer-events:none;}
+.kicker{display:inline-flex;gap:8px;align-items:center;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--a);border:1px solid var(--border);background:var(--a-dim);padding:7px 14px;border-radius:999px;margin-bottom:22px;}
+.hero h1{font-size:clamp(34px,6.4vw,72px);font-weight:800;max-width:900px;margin:0 auto 18px;position:relative;}
+.hero h1 em{font-style:normal;color:var(--a);}
+.hero p.sub{font-size:clamp(16px,2vw,19px);color:var(--w2);max-width:640px;margin:0 auto;opacity:.85;}
+.pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px;}
+.pill{font-size:13px;color:var(--w2);border:1px solid var(--line);background:var(--n2);padding:7px 13px;border-radius:999px;}
+.pill b{color:var(--a);font-weight:700;}
+
+/* DROPZONE */
+.drop{display:block;margin:36px auto 0;max-width:860px;border:2px dashed rgba(200,241,53,.35);border-radius:22px;background:linear-gradient(180deg,var(--n2),var(--n));padding:52px 24px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s,transform .2s;position:relative;}
+.drop:hover,.drop.over{border-color:var(--a);background:linear-gradient(180deg,#10140a,var(--n));}
+.drop.over{transform:scale(1.01);}
+.drop .ico{width:64px;height:64px;margin:0 auto 18px;border-radius:18px;background:var(--a);display:grid;place-items:center;color:var(--n);}
+.drop h2{font-size:clamp(20px,3vw,28px);margin-bottom:8px;}
+.drop p{color:var(--mid);font-size:15px;}
+.drop .btn{margin-top:20px;}
+.drop input{display:none;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:12px;padding:13px 20px;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;transition:transform .15s,background .2s,opacity .2s;}
+.btn:active{transform:scale(.98);}
+.btn-a{background:var(--a);color:var(--n);}
+.btn-a:hover{background:var(--a2);}
+.btn-g{background:var(--n4);color:var(--w);border:1px solid var(--line);}
+.btn-g:hover{background:var(--n5);}
+.btn[disabled]{opacity:.45;cursor:not-allowed;}
+
+/* STUDIO */
+#studio{display:none;padding-top:28px;padding-bottom:40px;scroll-margin-top:72px;}
+#studio.on{display:block;}
+.file-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px;}
+.file-name{font-weight:700;font-size:15px;word-break:break-all;}
+.file-meta{font-size:13px;color:var(--mid);}
+.grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);grid-template-areas:"player side" "result side";gap:18px;align-items:start;}
+.g-player{grid-area:player;}
+.g-result{grid-area:result;}
+.side{grid-area:side;}
+.card{background:var(--n2);border:1px solid var(--line);border-radius:18px;padding:18px;}
+.card h3{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;font-family:'DM Sans',sans-serif;font-weight:700;}
+
+.player{position:relative;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9;display:grid;place-items:center;}
+.player video{width:100%;height:100%;object-fit:contain;display:block;background:#000;}
+.player .audio-only{position:absolute;inset:0;display:none;place-items:center;color:var(--mid);font-size:14px;text-align:center;padding:20px;}
+.player.audio .audio-only{display:grid;}
+.player.audio video{opacity:0;}
+.ab{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;align-items:center;}
+.ab-switch{display:inline-flex;background:var(--n4);border:1px solid var(--line);border-radius:12px;padding:4px;}
+.ab-switch button{border:0;background:transparent;padding:10px 18px;border-radius:9px;font-weight:700;cursor:pointer;color:var(--mid);font-size:14px;}
+.ab-switch button.on{background:var(--w);color:var(--n);}
+.ab-switch button[data-v=after].on{background:var(--a);}
+.ab-hint{font-size:12.5px;color:var(--mid);}
+.ctl-play{width:46px;height:46px;border-radius:50%;padding:0;}
+.time{font-variant-numeric:tabular-nums;font-size:13px;color:var(--mid);margin-left:auto;}
+
+.viz{margin-top:14px;position:relative;}
+.viz canvas{width:100%;display:block;border-radius:10px;background:var(--n);}
+#wave{height:120px;cursor:pointer;}
+#spec{height:78px;margin-top:8px;}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--mid);margin-top:8px;flex-wrap:wrap;}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;}
+
+/* Presets */
+.presets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+.preset{text-align:left;background:var(--n3);border:1px solid var(--line);border-radius:12px;padding:11px 12px;cursor:pointer;transition:border-color .2s,background .2s;}
+.preset:hover{border-color:rgba(200,241,53,.4);}
+.preset.on{border-color:var(--a);background:#11150a;}
+.preset b{display:block;font-size:14px;}
+.preset span{display:block;font-size:12px;color:var(--mid);line-height:1.35;margin-top:2px;}
+.preset.auto{grid-column:1/-1;background:linear-gradient(90deg,#141b07,var(--n3));}
+.preset.auto b{color:var(--a);}
+
+.field{margin-top:16px;}
+.field label,.row-lbl{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;font-weight:500;margin-bottom:6px;gap:10px;}
+.field label output{font-variant-numeric:tabular-nums;color:var(--a);font-weight:700;font-size:13px;}
+.field small{display:block;color:var(--mid);font-size:12px;margin-top:3px;line-height:1.4;}
+input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:6px;border-radius:6px;background:var(--n5);outline:none;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--a);border:3px solid var(--n);box-shadow:0 0 0 1px var(--a);cursor:pointer;}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--a);border:3px solid var(--n);cursor:pointer;}
+select{width:100%;background:var(--n3);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px;}
+.toggles{display:grid;gap:8px;margin-top:16px;}
+.tg{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;background:var(--n3);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;}
+.tg small{display:block;color:var(--mid);font-size:12px;}
+.tg input{appearance:none;-webkit-appearance:none;width:40px;height:22px;border-radius:22px;background:var(--n5);position:relative;flex:none;cursor:pointer;transition:background .2s;}
+.tg input::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--w);transition:transform .2s;}
+.tg input:checked{background:var(--a);}
+.tg input:checked::after{transform:translateX(18px);background:var(--n);}
+details.adv{margin-top:16px;border-top:1px solid var(--line);padding-top:12px;}
+details.adv summary{cursor:pointer;font-size:14px;font-weight:700;color:var(--w2);list-style:none;}
+details.adv summary::before{content:"+ ";color:var(--a);}
+details.adv[open] summary::before{content:"− ";}
+
+/* Status */
+.status{margin-top:14px;font-size:13px;color:var(--mid);min-height:20px;}
+.bar{height:6px;border-radius:6px;background:var(--n4);overflow:hidden;margin-top:8px;}
+.bar i{display:block;height:100%;width:0;background:var(--a);transition:width .15s;}
+.busy .bar i{box-shadow:0 0 12px var(--a);}
+
+/* Report */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;}
+.stat{background:var(--n3);border:1px solid var(--line);border-radius:12px;padding:12px;}
+.stat .k{font-size:11.5px;color:var(--mid);text-transform:uppercase;letter-spacing:.07em;}
+.stat .v{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;margin-top:4px;font-variant-numeric:tabular-nums;}
+.stat .v small{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--mid);font-weight:500;}
+.stat .d{font-size:12.5px;color:var(--mid);margin-top:2px;}
+.stat .d b{color:var(--a);}
+.steps{list-style:none;margin-top:14px;display:grid;gap:6px;}
+.steps li{font-size:14px;padding-left:24px;position:relative;}
+.steps li::before{content:"✓";position:absolute;left:0;top:0;color:var(--a);font-weight:800;}
+.warn{margin-top:12px;font-size:13px;color:#ffcf6b;background:rgba(255,207,107,.08);border:1px solid rgba(255,207,107,.25);padding:10px 12px;border-radius:10px;display:none;}
+.warn.on{display:block;}
+.export{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+.export .btn{flex:1 1 200px;}
+.side{display:grid;gap:18px;}
+
+/* Content */
+section.info{padding:56px 0;border-top:1px solid var(--line);}
+section.info h2{font-size:clamp(26px,4vw,40px);margin-bottom:28px;}
+.feat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.feat div{background:var(--n2);border:1px solid var(--line);border-radius:16px;padding:20px;}
+.feat h3{font-size:18px;margin-bottom:8px;}
+.feat p{font-size:14.5px;color:var(--w2);opacity:.8;}
+.feat .n{font-family:'Syne',sans-serif;color:var(--a);font-weight:800;font-size:13px;margin-bottom:8px;display:block;}
+.faq details{border-bottom:1px solid var(--line);padding:16px 0;}
+.faq summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px;}
+.faq summary::after{content:"+";color:var(--a);font-size:22px;line-height:1;}
+.faq details[open] summary::after{content:"−";}
+.faq p{margin-top:10px;color:var(--w2);opacity:.85;font-size:15px;max-width:820px;}
+.cta{background:linear-gradient(120deg,#151c06,var(--n2));border:1px solid var(--border);border-radius:22px;padding:32px;display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap;}
+.cta h2{font-size:clamp(22px,3vw,30px);margin:0 0 6px!important;}
+.cta p{color:var(--w2);opacity:.8;}
+.btn-wa{background:var(--wa);color:#fff;}
+footer{padding:28px 0 40px;color:var(--mid);font-size:13px;border-top:1px solid var(--line);}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+footer a{color:var(--w2);}
+
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(calc(100% + 40px));visibility:hidden;background:var(--w);color:var(--n);padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;z-index:99;transition:transform .3s;max-width:calc(100% - 32px);}
+.toast.on{transform:translateX(-50%) translateY(0);visibility:visible;}
+.toast.err{background:var(--bad);color:#fff;}
+
+@media(max-width:960px){
+  .grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"player" "side" "result";}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .feat{grid-template-columns:minmax(0,1fr);}
+}
+@media(max-width:520px){
+  .wrap{padding:0 16px;}
+  .hero{padding-top:40px;}
+  .drop{padding:36px 16px;}
+  .presets{grid-template-columns:minmax(0,1fr);}
+  .nav-cta{padding:9px 12px;font-size:11px;}
+  .ab-switch button{padding:9px 13px;}
+  .cta{padding:22px;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="../">TK <span>Digital</span></a>
+    <a class="nav-cta" href="https://wa.me/33768789800?text=Salam%20Tarik%2C%20je%20viens%20du%20Studio%20Son" target="_blank" rel="noopener">Un projet ? WhatsApp</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">● Studio Son · Outil gratuit</div>
+    <h1>Le son de tes vidéos, <em>version pro</em>, en 1 clic.</h1>
+    <p class="sub">Bruit de fond, souffle, ronflement électrique, voix étouffée, volume trop faible : dépose ta vidéo, écoute l'avant / après, télécharge. C'est tout.</p>
+    <div class="pills">
+      <span class="pill"><b>100 %</b> gratuit, sans filigrane</span>
+      <span class="pill"><b>0</b> envoi : tout reste sur ton appareil</span>
+      <span class="pill">Prêt pour <b>TikTok · Reels · YouTube</b></span>
+    </div>
+
+    <label class="drop" id="drop" tabindex="0">
+      <div class="ico" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10v4M6 6v12M10 3v18M14 8v8M18 5v14M22 10v4"/></svg>
+      </div>
+      <h2>Dépose ta vidéo ici</h2>
+      <p>MP4, MOV, WebM, MKV — ou un fichier audio (MP3, WAV, M4A…)</p>
+      <span class="btn btn-a">Choisir un fichier</span>
+      <input type="file" id="file" accept="video/*,audio/*,.mkv,.mov,.m4a,.flac,.ogg">
+    </label>
+  </div>
+</header>
+
+<main id="studio" class="wrap" aria-live="polite">
+  <div class="file-bar">
+    <div>
+      <div class="file-name" id="fname">—</div>
+      <div class="file-meta" id="fmeta"></div>
+    </div>
+    <button class="btn btn-g" id="another">Changer de fichier</button>
+  </div>
+
+  <div class="grid">
+      <div class="card g-player">
+        <div class="player" id="player">
+          <video id="video" playsinline muted preload="auto"></video>
+          <div class="audio-only">🎧 Fichier audio — lance la lecture avec le bouton ci-dessous</div>
+        </div>
+        <div class="ab">
+          <button class="btn btn-a ctl-play" id="play" aria-label="Lecture">
+            <svg id="icPlay" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>
+            <svg id="icPause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+          </button>
+          <div class="ab-switch" role="group" aria-label="Comparer">
+            <button data-v="before">Avant</button>
+            <button data-v="after" class="on">Après ✨</button>
+          </div>
+          <span class="time" id="time">0:00 / 0:00</span>
+        </div>
+        <div class="ab-hint" style="margin-top:8px">Astuce : appuie sur <b>A</b> pour basculer avant / après pendant la lecture, <b>espace</b> pour lire.</div>
+        <div class="viz">
+          <canvas id="wave" aria-label="Forme d'onde, clique pour te déplacer"></canvas>
+          <canvas id="spec" aria-hidden="true"></canvas>
+          <div class="legend"><span><i style="background:var(--before)"></i>Original (haut)</span><span><i style="background:var(--a)"></i>Amélioré (bas)</span></div>
+        </div>
+        <div class="status" id="status">Analyse…</div>
+        <div class="bar"><i id="bar"></i></div>
+      </div>
+
+      <div class="card g-result">
+        <h3>Résultat</h3>
+        <div class="stats" id="stats"></div>
+        <ul class="steps" id="steps"></ul>
+        <div class="warn" id="warn"></div>
+        <div class="export">
+          <button class="btn btn-a" id="dlVideo" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 11l6 6 6-6M4 21h16"/></svg>
+            <span>Télécharger la vidéo</span>
+          </button>
+          <button class="btn btn-g" id="dlWav" disabled>Audio seul (WAV)</button>
+        </div>
+      </div>
+
+    <div class="side">
+      <div class="card">
+        <h3>1 · Type de vidéo</h3>
+        <div class="presets" id="presets">
+          <button class="preset auto on" data-p="auto"><b>✨ Automatique</b><span>Analyse ton son et choisit les meilleurs réglages</span></button>
+          <button class="preset" data-p="face"><b>Face caméra</b><span>Vlog, story, tuto, prise de parole</span></button>
+          <button class="preset" data-p="outdoor"><b>Extérieur / rue</b><span>Vent, circulation, foule</span></button>
+          <button class="preset" data-p="interview"><b>Interview / micro-trottoir</b><span>Plusieurs voix, pièce qui résonne</span></button>
+          <button class="preset" data-p="mix"><b>Voix + musique</b><span>Garde l'ambiance, clarifie la voix</span></button>
+          <button class="preset" data-p="podcast"><b>Podcast</b><span>Voix posée, volume constant</span></button>
+          <button class="preset" data-p="music"><b>Musique / ambiance</b><span>Pas de traitement voix</span></button>
+        </div>
+
+        <div class="field">
+          <label for="target">2 · Plateforme</label>
+          <select id="target">
+            <option value="-14">TikTok · Reels · Shorts · YouTube (-14 LUFS)</option>
+            <option value="-16">Podcast · Spotify · Apple (-16 LUFS)</option>
+            <option value="-11">Très fort / pub (-11 LUFS)</option>
+            <option value="-23">TV / diffusion EBU R128 (-23 LUFS)</option>
+            <option value="off">Ne pas toucher au volume</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>3 · Réglages fins</h3>
+        <div class="field">
+          <label for="denoise">Réduction du bruit <output id="denoiseV"></output></label>
+          <input type="range" id="denoise" min="0" max="100" step="1">
+          <small>Souffle, clim, frigo, ventilo, circulation, brouhaha.</small>
+        </div>
+        <div class="field">
+          <label for="clarity">Clarté de la voix <output id="clarityV"></output></label>
+          <input type="range" id="clarity" min="0" max="100" step="1">
+          <small>Moins « dans une boîte », plus présente et intelligible.</small>
+        </div>
+        <div class="field">
+          <label for="compress">Volume constant <output id="compressV"></output></label>
+          <input type="range" id="compress" min="0" max="100" step="1">
+          <small>Rapproche les passages forts et faibles.</small>
+        </div>
+        <div class="toggles">
+          <label class="tg"><span>Égalisation auto de la voix<small>Calée sur le spectre d'une voix de référence</small></span><input type="checkbox" id="autoEq"></label>
+          <label class="tg"><span>Nettoyer les silences<small>Plus aucun souffle entre les phrases</small></span><input type="checkbox" id="expandT"></label>
+          <label class="tg"><span>Adoucir les « s » qui sifflent<small>De-esser</small></span><input type="checkbox" id="deessT"></label>
+        </div>
+        <details class="adv">
+          <summary>Avancé</summary>
+          <div class="field">
+            <label for="highpass">Coupe-bas (grondements, vent) <output id="highpassV"></output></label>
+            <input type="range" id="highpass" min="0" max="160" step="5">
+          </div>
+          <div class="field">
+            <label for="dehum">Ronflement électrique</label>
+            <select id="dehum">
+              <option value="auto">Détection automatique</option>
+              <option value="50">Forcer 50 Hz (Europe)</option>
+              <option value="60">Forcer 60 Hz (Amériques)</option>
+              <option value="0">Désactivé</option>
+            </select>
+          </div>
+          <div class="toggles">
+            <label class="tg"><span>Voix centrée (mono)<small>Utile si la voix n'est que d'un côté</small></span><input type="checkbox" id="monoT"></label>
+            <label class="tg"><span>Réparer la saturation<small>Reconstruit les crêtes écrêtées</small></span><input type="checkbox" id="declipT" checked></label>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section class="info">
+  <div class="wrap">
+    <h2>Ce que fait le Studio Son, en coulisses</h2>
+    <div class="feat">
+      <div><span class="n">01 · DÉBRUITAGE</span><h3>Le bruit disparaît, la voix reste</h3><p>L'outil repère tout seul les moments sans parole, apprend « l'empreinte » du bruit, puis le retire fréquence par fréquence (filtrage de Wiener) sans effet robotique.</p></div>
+      <div><span class="n">02 · ANTI-RONFLEMENT</span><h3>Fini le bzzzz électrique</h3><p>Le ronflement 50 / 60 Hz d'un câble ou d'un néon est détecté et supprimé avec ses harmoniques, sans toucher au reste.</p></div>
+      <div><span class="n">03 · VOIX</span><h3>Une voix de studio</h3><p>Égalisation automatique comparée à une voix de référence, présence, coupe des graves boueux et des « s » qui sifflent.</p></div>
+      <div><span class="n">04 · DYNAMIQUE</span><h3>Plus besoin de monter le son</h3><p>Compression douce pour que chaque mot s'entende, et nettoyage des silences entre les phrases.</p></div>
+      <div><span class="n">05 · VOLUME</span><h3>Calé pour chaque plateforme</h3><p>Normalisation en LUFS (norme ITU-R BS.1770) et limiteur : ta vidéo sonne aussi fort que les autres, sans saturer.</p></div>
+      <div><span class="n">06 · VIDÉO INTACTE</span><h3>Zéro perte d'image</h3><p>L'image est recopiée telle quelle, sans réencodage : même qualité, même résolution. Seul le son est remplacé.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="info faq">
+  <div class="wrap">
+    <h2>Questions fréquentes</h2>
+    <details><summary>Ma vidéo est-elle envoyée quelque part ?</summary><p>Non. Tout le traitement se fait dans ton navigateur, sur ton téléphone ou ton ordinateur. Aucun fichier ne quitte ton appareil : tu peux même couper Internet une fois la page chargée.</p></details>
+    <details><summary>Comment enlever le bruit de fond d'une vidéo ?</summary><p>Dépose la vidéo, laisse le mode « Automatique » : il mesure le niveau de bruit et règle la réduction tout seul. Si la voix devient métallique, baisse le curseur « Réduction du bruit » ; s'il reste du souffle, monte-le ou active « Nettoyer les silences ».</p></details>
+    <details><summary>Quel volume pour TikTok, Instagram et YouTube ?</summary><p>Ces plateformes ramènent le son autour de -14 LUFS. En calant ta vidéo dessus, elle ne sera ni plus faible que les autres, ni écrasée par leur normalisation.</p></details>
+    <details><summary>Quels formats sont acceptés ?</summary><p>MP4, MOV (iPhone), WebM, MKV et la plupart des fichiers audio. La vidéo ressort dans le même format, avec la même image. Pour les formats exotiques, tu peux télécharger l'audio seul (WAV) et le recaler dans CapCut, Premiere ou DaVinci.</p></details>
+    <details><summary>Y a-t-il une limite de durée ?</summary><p>Pas de limite fixe, mais tout se passe en mémoire : jusqu'à 20–30 minutes sur ordinateur, 5–10 minutes sur téléphone selon le modèle. Chrome, Edge et Safari récents donnent les meilleurs résultats.</p></details>
+  </div>
+</section>
+
+<section class="info">
+  <div class="wrap">
+    <div class="cta">
+      <div>
+        <h2>Le son est réglé. Et ta visibilité ?</h2>
+        <p>Site web, fiche Google, commande WhatsApp : TK Digital fait venir les clients jusqu'à ta porte.</p>
+      </div>
+      <a class="btn btn-wa" href="https://wa.me/33768789800?text=Salam%20Tarik%2C%20je%20viens%20du%20Studio%20Son%20et%20j%27ai%20un%20projet" target="_blank" rel="noopener">Parler à Tarik sur WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© TK Digital — Studio Son. Traitement 100 % local.</span>
+    <span><a href="../">Accueil</a> · <a href="../blog/">Blog</a> · Export vidéo propulsé par <a href="https://mediabunny.dev" target="_blank" rel="noopener">Mediabunny</a> (MPL-2.0)</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script type="module" src="son-video-app.js"></script>
+</body>
+</html>
