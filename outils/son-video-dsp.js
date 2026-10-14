@@ -277,6 +277,7 @@ function analyze(chs, fs) {
     speechDb: speech,
     snrDb: speech - noiseFloor,
     hum: hum.prominence > 8 ? hum.freq : 0,
+    t60: estimateT60(mid, fs),
     humProminence: hum.prominence,
     clipRatio: clip.ratio,
   };
@@ -333,7 +334,11 @@ function humFilters(freq, fs) {
  * pour éviter le « bruit musical ». Les gains sont calculés sur le signal mono
  * et appliqués à chaque canal pour préserver l'image stéréo.
  */
-function spectralDenoise(chs, fs, strength, progress) {
+function spectralDenoise(chs, fs, strength, progress, opts = {}) {
+  // Option : réduction de la réverbération tardive (Lebart / Habets) — la
+  // puissance réverbérée est prédite à partir du spectre passé décroissant selon T60.
+  const derev = Math.max(0, Math.min(1, (opts.dereverb || 0) / 100));
+  const t60 = Math.max(0.15, opts.t60 || 0.5);
   const N = fs >= 32000 ? 2048 : 1024;
   const hop = N / 4;
   const bins = N / 2 + 1;
@@ -371,7 +376,8 @@ function spectralDenoise(chs, fs, strength, progress) {
     for (let k = 0; k < bins; k++) noise[k] += re[k] * re[k] + im[k] * im[k];
     nCount++;
   }
-  if (!nCount) return;
+  if (!nCount && !derev) return;
+  if (!nCount) nCount = 1;
   // Lissage du profil (évite les trous) + marge.
   const prof = new Float64Array(bins);
   for (let k = 0; k < bins; k++) {
@@ -381,8 +387,12 @@ function spectralDenoise(chs, fs, strength, progress) {
   }
 
   const st = strength / 100;
-  const beta = 1 + st * 1.6;                       // sur-soustraction
-  const floor = dbToLin(-(6 + st * 26));           // jusqu'à -32 dB
+  const beta = st > 0 ? 1 + st * 1.6 : 0;           // sur-soustraction (0 = pas de débruitage)
+  const floor = dbToLin(-Math.max(6 + st * 26, derev ? 8 + derev * 12 : 0));
+  const histLen = Math.max(1, Math.round((0.05 * fs) / hop)); // Td ≈ 50 ms
+  const decay = Math.exp(-2 * ((3 * Math.log(10)) / t60) * ((histLen * hop) / fs)) * derev * 1.4;
+  const hist = Array.from({ length: histLen }, () => new Float64Array(bins));
+  const smP = new Float64Array(bins);
   const alpha = 0.97;
   const prevPow = new Float64Array(bins);
   const prevGain = new Float64Array(bins).fill(1);
@@ -418,7 +428,13 @@ function spectralDenoise(chs, fs, strength, progress) {
       const mr = stereo ? 0.5 * (rL[k] + rR[k]) : rL[k];
       const mi = stereo ? 0.5 * (iL[k] + iR[k]) : iL[k];
       const p = mr * mr + mi * mi;
-      const nk = prof[k] * beta;
+      let nk = prof[k] * beta + 1e-14;
+      if (derev) {
+        const hp = hist[f % histLen];
+        nk += decay * hp[k];
+        smP[k] = 0.6 * smP[k] + 0.4 * p;
+        hp[k] = smP[k];
+      }
       const post = p / nk;
       const prior = alpha * (prevGain[k] * prevGain[k] * prevPow[k]) / nk + (1 - alpha) * Math.max(post - 1, 0);
       let g = prior / (1 + prior);
@@ -499,9 +515,9 @@ function autoEqFilters(mid, fs, amount) {
     const f = EQ_BANDS[b];
     if (f >= fs * 0.45) break;
     if (b === 0) continue; // le grave est géré par le coupe-bas
-    let corr = (LTASS[b] - (meas[b] + off)) * 0.6 * amount;
-    // On ne remonte pas ce qui n'existe pas (micro bas de gamme, bruit) : boost limité.
-    corr = Math.max(-6, Math.min(b >= 6 ? 3 : 4.5, corr));
+    let corr = (LTASS[b] - (meas[b] + off)) * 0.4 * amount;
+    // Correction prudente : on rapproche du profil moyen sans le forcer.
+    corr = Math.max(-4, Math.min(b >= 6 ? 2 : 3, corr));
     if (Math.abs(corr) > 0.3) fl.push(biquad('peaking', f, fs, 1.2, corr));
   }
   return fl;
@@ -550,8 +566,9 @@ function deEss(chs, fs, amount) {
 function compress(chs, fs, amount, speechDb) {
   if (amount <= 0) return;
   const a = amount / 100;
-  const ratio = 1.5 + a * 3;
-  const thr = speechDb - (3 + a * 9);
+  // Doux : le niveleur gère déjà les écarts lents, ici on ne tient que les pics.
+  const ratio = 1.4 + a * 2;
+  const thr = speechDb - (2 + a * 5);
   const knee = 8;
   // Détecteur rapide (2 ms) : les attaques sont prises, sinon le facteur de crête augmente.
   const atk = Math.exp(-1 / (0.002 * fs)), rel = Math.exp(-1 / (0.12 * fs));
@@ -573,46 +590,109 @@ function compress(chs, fs, amount, speechDb) {
   for (const c of chs) for (let i = 0; i < c.length; i++) c[i] *= gainLin[i];
 }
 
-// Expandeur vers le bas : nettoie les blancs entre les phrases.
+// Nettoyage des blancs : détection de parole par blocs de 10 ms (seuil relatif
+// au niveau de la voix), masque élargi avant/après pour ne jamais couper une
+// attaque ni une fin de mot, puis atténuation douce des vrais silences.
 function expand(chs, fs, amount) {
   if (amount <= 0) return;
   const mid = mixMid(chs);
-  const levels = blockLevels(mid, fs, 0.05);
-  if (levels.length < 10) return;
-  const floorDb = percentile(levels, 0.1), speech = percentile(levels, 0.9);
-  if (speech - floorDb < 10) return;
-  const thr = floorDb + (speech - floorDb) * 0.3;
-  const maxRed = 6 + 10 * (amount / 100);
-  const atk = Math.exp(-1 / (0.003 * fs)), rel = Math.exp(-1 / (0.03 * fs));
-  const gAtk = Math.exp(-1 / (0.002 * fs)), gRel = Math.exp(-1 / (0.12 * fs));
-  const hold = Math.round(0.12 * fs);
-  let env = 0, gDb = 0, held = 0;
-  const gain = new Float32Array(mid.length);
-  for (let i = 0; i < mid.length; i++) {
-    const p = mid[i] * mid[i];
-    env = p > env ? atk * env + (1 - atk) * p : rel * env + (1 - rel) * p;
-    const lvl = 10 * Math.log10(env + 1e-12);
-    let red = 0;
-    if (lvl >= thr) held = hold;
-    else if (held > 0) held--;
-    else red = Math.min(maxRed, (thr - lvl) * 1.0);
-    gDb = red < gDb ? gAtk * gDb + (1 - gAtk) * red : gRel * gDb + (1 - gRel) * red;
-    gain[i] = dbToLin(-gDb);
+  const B = Math.round(0.01 * fs);
+  const nb = Math.floor(mid.length / B);
+  if (nb < 50) return;
+  const lv = new Float64Array(nb);
+  for (let b = 0; b < nb; b++) {
+    let e = 0;
+    for (let j = b * B; j < (b + 1) * B; j++) e += mid[j] * mid[j];
+    lv[b] = 10 * Math.log10(e / B + 1e-14);
   }
-  for (const c of chs) for (let i = 0; i < c.length; i++) c[i] *= gain[i];
+  const arr = Array.from(lv);
+  const floor = percentile(arr, 0.1), top = percentile(arr, 0.95);
+  if (top - floor < 12) return;
+  const thr = Math.max(floor + 6, top - 38);
+  const speech = new Uint8Array(nb);
+  for (let b = 0; b < nb; b++) if (lv[b] > thr) speech[b] = 1;
+  // Dilatation : 80 ms avant (attaques), 200 ms après (fins de mots, souffle naturel).
+  const mask = new Uint8Array(nb);
+  for (let b = 0; b < nb; b++) {
+    if (!speech[b]) continue;
+    for (let k = Math.max(0, b - 8); k <= Math.min(nb - 1, b + 20); k++) mask[k] = 1;
+  }
+  const range = -(6 + 0.18 * amount); // jusqu'à -24 dB
+  // Rampe de 40 ms (moyenne glissante du masque).
+  const R = 4;
+  const gDb = new Float64Array(nb);
+  for (let b = 0; b < nb; b++) {
+    let s = 0, c = 0;
+    for (let k = Math.max(0, b - R); k <= Math.min(nb - 1, b + R); k++) { s += mask[k]; c++; }
+    gDb[b] = (1 - s / c) * range;
+  }
+  for (const c of chs) {
+    for (let i = 0; i < c.length; i++) {
+      const p = i / B - 0.5;
+      const b0 = Math.max(0, Math.min(nb - 1, Math.floor(p))), b1 = Math.min(nb - 1, b0 + 1);
+      const f = Math.max(0, Math.min(1, p - b0));
+      c[i] *= dbToLin(gDb[b0] + (gDb[b1] - gDb[b0]) * f);
+    }
+  }
 }
 
-// Limiteur à anticipation (hors-ligne) : aucune crête ne dépasse `ceilDb`.
-function limit(chs, fs, ceilDb) {
-  const ceil = dbToLin(ceilDb);
+// Interpolateur ×4 (sinc fenêtré, 32 coefficients) pour estimer les crêtes
+// réelles entre échantillons (« true peak », ITU-R BS.1770 annexe 2).
+const TP_TAPS = 16;
+const TP_KERNELS = [0.25, 0.5, 0.75].map((frac) => {
+  const k = new Float64Array(2 * TP_TAPS);
+  let sum = 0;
+  for (let j = 0; j < 2 * TP_TAPS; j++) {
+    const t = j - TP_TAPS + 1 - frac;
+    const w = 0.42 + 0.5 * Math.cos((Math.PI * t) / (TP_TAPS + 1)) + 0.08 * Math.cos((2 * Math.PI * t) / (TP_TAPS + 1));
+    k[j] = (t === 0 ? 1 : Math.sin(Math.PI * t) / (Math.PI * t)) * w;
+    sum += k[j];
+  }
+  for (let j = 0; j < k.length; j++) k[j] /= sum;
+  return k;
+});
+
+function truePeakEnvelope(chs) {
   const n = chs[0].length;
+  const env = new Float32Array(n);
+  for (const c of chs) {
+    for (let i = 0; i < n; i++) {
+      let p = Math.abs(c[i]);
+      if (i >= TP_TAPS - 1 && i + TP_TAPS < n) {
+        for (const k of TP_KERNELS) {
+          let v = 0;
+          for (let j = 0, o = i - TP_TAPS + 1; j < 2 * TP_TAPS; j++) v += k[j] * c[o + j];
+          const a = Math.abs(v);
+          if (a > p) p = a;
+        }
+      }
+      if (p > env[i]) env[i] = p;
+    }
+  }
+  return env;
+}
+
+function truePeak(chs) {
+  const e = truePeakEnvelope(chs);
+  let p = 0;
+  for (let i = 0; i < e.length; i++) if (e[i] > p) p = e[i];
+  return p;
+}
+
+// Limiteur à anticipation (hors-ligne) sur crêtes réelles : rien ne dépasse `ceilDb` dBTP.
+// Avec `ratio` fini, il devient un compresseur de crêtes à genou dur (même lissage).
+function limit(chs, fs, ceilDb, ratio = Infinity, releaseSec = 0.08) {
+  const ceil = dbToLin(ceilDb);
+  const slope = Number.isFinite(ratio) ? 1 - 1 / ratio : 1;
+  const n = chs[0].length;
+  const env = truePeakEnvelope(chs);
   const req = new Float32Array(n);
   for (let i = 0; i < n; i++) {
-    let p = 0;
-    for (const c of chs) { const a = Math.abs(c[i]); if (a > p) p = a; }
-    req[i] = p > ceil ? ceil / p : 1;
+    // Une crête inter-échantillons dépend des voisins : on protège i et i+1.
+    const p = Math.max(env[i], i > 0 ? env[i - 1] : 0);
+    req[i] = p > ceil ? Math.pow(ceil / p, slope) : 1;
   }
-  const L = Math.max(1, Math.round(0.002 * fs));
+  const L = Math.max(1, Math.round(0.0025 * fs));
   // Minimum glissant symétrique (fenêtre 2L+1) via deque.
   const mn = new Float32Array(n);
   const dq = new Int32Array(n + 2 * L + 2);
@@ -631,11 +711,10 @@ function limit(chs, fs, ceilDb) {
   // Moyenne glissante (même fenêtre) → transitions douces, toujours ≤ requis.
   const cs = new Float64Array(n + 1);
   for (let i = 0; i < n; i++) cs[i + 1] = cs[i] + mn[i];
-  const rel = 1 - Math.exp(-1 / (0.08 * fs));
+  const rel = 1 - Math.exp(-1 / (releaseSec * fs));
   let g = 1;
   for (let i = 0; i < n; i++) {
     const a = Math.max(0, i - L), b = Math.min(n, i + L + 1);
-    // Bords : on complète avec 1 (pas de réduction) mais on borne au minimum local.
     const avg = Math.min((cs[b] - cs[a] + (2 * L + 1 - (b - a))) / (2 * L + 1), mn[i]);
     g = avg < g ? avg : g + (avg - g) * rel;
     for (const c of chs) c[i] *= g;
@@ -662,7 +741,7 @@ function noiseReduction(orig, out, fs) {
   if (blocks.length < 20) return null;
   const sorted = blocks.map((x) => x[0]).sort((x, y) => x - y);
   const lo = sorted[Math.floor(sorted.length * 0.15)], hi = sorted[Math.floor(sorted.length * 0.85)];
-  if (10 * Math.log10(hi / lo) < 12) return null; // pas de vrais blancs : mesure non fiable
+  if (10 * Math.log10(hi / lo) < 3) return null; // signal sans aucune dynamique : mesure impossible
   let qa = 0, qb = 0, la = 0, lb = 0;
   for (const [ea, eb] of blocks) {
     if (ea <= lo) { qa += ea; qb += eb; }
@@ -671,53 +750,298 @@ function noiseReduction(orig, out, fs) {
   return 10 * Math.log10((lb / Math.max(qb, 1e-20)) / (la / qa));
 }
 
+/* ------------------------------------------------- Rééchantillonnage */
+
+// Sinc fenêtré (Blackman, 32 zéros de chaque côté), noyau tabulé et interpolé.
+function resample(x, from, to) {
+  if (from === to) return Float32Array.from(x);
+  const ratio = to / from;
+  const n = Math.floor(x.length * ratio);
+  const y = new Float32Array(n);
+  const Z = 32, PH = 512;
+  const cutoff = Math.min(1, ratio) * 0.97;
+  const table = new Float32Array(Z * PH + 2);
+  for (let i = 0; i <= Z * PH + 1; i++) {
+    const t = i / PH;
+    const w = t >= Z ? 0 : 0.42 + 0.5 * Math.cos((Math.PI * t) / Z) + 0.08 * Math.cos((2 * Math.PI * t) / Z);
+    const a = Math.PI * t * cutoff;
+    table[i] = (t === 0 ? 1 : Math.sin(a) / a) * w * cutoff;
+  }
+  const step = Math.min(1, ratio); // échelle du noyau dans le domaine source
+  const span = Math.ceil(Z / step);
+  for (let i = 0; i < n; i++) {
+    const pos = i / ratio;
+    const c = Math.floor(pos);
+    let acc = 0;
+    for (let k = c - span + 1; k <= c + span; k++) {
+      if (k < 0 || k >= x.length) continue;
+      const d = Math.abs(pos - k) * step * PH;
+      const di = d | 0;
+      if (di >= Z * PH) continue;
+      const f = d - di;
+      acc += x[k] * (table[di] + (table[di + 1] - table[di]) * f);
+    }
+    y[i] = acc;
+  }
+  return y;
+}
+
+/* ------------------------------------------- Débruitage IA (DeepFilterNet3) */
+
+const DF_RATE = 48000;
+
+function channelsIdentical(chs) {
+  if (chs.length < 2) return true;
+  const a = chs[0], b = chs[1];
+  let d = 0, e = 0;
+  for (let i = 0; i < a.length; i += 3) { const x = a[i] - b[i]; d += x * x; e += a[i] * a[i] + b[i] * b[i]; }
+  return d <= e * 1e-4;
+}
+
+/*
+ * DeepFilterNet3 (Schröter et al., 2023) : réseau de neurones de rehaussement
+ * de la parole pleine bande 48 kHz. On l'« amorce » avec le début du signal
+ * renversé pour qu'il ait déjà appris le bruit à t = 0, puis on compense son
+ * retard algorithmique (3 trames).
+ */
+async function aiDenoise(chs, fs, strength, createDF, progress) {
+  // Plafond d'atténuation : plus bas = plus naturel ; 100 % = suppression totale.
+  const limitDb = strength >= 100 ? 100 : 10 + strength * 0.35;
+  const same = channelsIdentical(chs);
+  const todo = same ? [chs[0]] : chs;
+  const outs = [];
+  for (let c = 0; c < todo.length; c++) {
+    const df = await createDF(limitDb);
+    const F = df.frameLength;
+    const delay = 3 * F;
+    // Le réseau est entraîné sur des signaux dans [-1, 1] : on cale la crête à 0,7
+    // (les crêtes reconstruites par le déclipping peuvent dépasser 1).
+    let peak = 0;
+    for (let i = 0; i < todo[c].length; i++) peak = Math.max(peak, Math.abs(todo[c][i]));
+    const norm = peak > 1e-6 ? 0.7 / peak : 1;
+    const x = resample(todo[c], fs, DF_RATE);
+    for (let i = 0; i < x.length; i++) x[i] *= norm;
+    const prime = Math.min(x.length, 2 * DF_RATE);
+    const total = prime + x.length + delay;
+    const frames = Math.ceil(total / F);
+    const out = new Float32Array(frames * F);
+    const frame = new Float32Array(F);
+    const reportEvery = Math.max(1, Math.floor(frames / 40));
+    for (let f = 0; f < frames; f++) {
+      for (let i = 0; i < F; i++) {
+        const k = f * F + i;
+        frame[i] = k < prime ? x[prime - 1 - k] : k - prime < x.length ? x[k - prime] : 0;
+      }
+      out.set(df.process(frame), f * F);
+      if (progress && f % reportEvery === 0) progress((c + f / frames) / todo.length);
+    }
+    df.destroy();
+    const y = out.subarray(prime + delay, prime + delay + x.length);
+    const back = resample(y, DF_RATE, fs);
+    const res = new Float32Array(todo[c].length);
+    res.set(back.subarray(0, res.length));
+    for (let i = 0; i < res.length; i++) res[i] /= norm;
+    outs.push(res);
+  }
+  for (let c = 0; c < chs.length; c++) chs[c].set(outs[same ? 0 : c]);
+}
+
+/* ------------------------------------------------- Réverbération (T60) */
+
+// Estimation aveugle du temps de réverbération : distribution des pentes de
+// décroissance de l'enveloppe (Löllmann/Vary simplifié). Dans une pièce qui
+// résonne, les fins de syllabes décroissent au rythme de la salle ; en son sec,
+// elles chutent beaucoup plus vite.
+function estimateT60(mid, fs) {
+  const H = Math.round(0.01 * fs), W = 2 * H;
+  const lv = [];
+  for (let i = 0; i + W <= mid.length; i += H) {
+    let e = 0;
+    for (let j = i; j < i + W; j++) e += mid[j] * mid[j];
+    lv.push(10 * Math.log10(e / W + 1e-14));
+  }
+  if (lv.length < 100) return null;
+  const floor = percentile(lv, 0.1), top = percentile(lv, 0.97);
+  if (top - floor < 15) return null;
+  const slopes = [];
+  let i = 0;
+  while (i < lv.length - 1) {
+    if (lv[i] < top - 25 || lv[i + 1] >= lv[i]) { i++; continue; }
+    let j = i;
+    while (j + 1 < lv.length && lv[j + 1] < lv[j] + 0.5 && lv[j + 1] > floor + 5) j++;
+    const drop = lv[i] - lv[j], dur = (j - i) * 0.01;
+    if (dur >= 0.05 && drop >= 4) slopes.push(drop / dur);
+    i = j + 1;
+  }
+  if (slopes.length < 8) return null;
+  return Math.max(0.1, Math.min(2, 60 / percentile(slopes, 0.5)));
+}
+
+/* ---------------------------------------------------- Niveleur de voix */
+
+// Remonte les voix lointaines (jusqu'à +18 dB) / baisse les voix proches, en ne
+// mesurant que les passages parlés : équivalent d'un « leveler » de studio.
+function levelVoices(chs, fs, amount) {
+  const mid = mixMid(chs);
+  const B = Math.round(0.05 * fs);
+  const nb = Math.floor(mid.length / B);
+  if (nb < 40) return 0;
+  const lv = new Float64Array(nb);
+  for (let b = 0; b < nb; b++) {
+    let e = 0;
+    for (let j = b * B; j < (b + 1) * B; j++) e += mid[j] * mid[j];
+    lv[b] = 10 * Math.log10(e / B + 1e-14);
+  }
+  const floor = percentile(Array.from(lv), 0.1), top = percentile(Array.from(lv), 0.97);
+  const actThr = Math.max(floor + 8, top - 30);
+  const W = 30; // ±1,5 s
+  const loc = new Float64Array(nb).fill(NaN);
+  for (let b = 0; b < nb; b++) {
+    let e = 0, c = 0;
+    for (let k = Math.max(0, b - W); k <= Math.min(nb - 1, b + W); k++) {
+      if (lv[k] > actThr) { e += Math.pow(10, lv[k] / 10); c++; }
+    }
+    if (c >= 6) loc[b] = 10 * Math.log10(e / c);
+  }
+  const active = [];
+  for (let b = 0; b < nb; b++) if (lv[b] > actThr && Number.isFinite(loc[b])) active.push(loc[b]);
+  if (active.length < 20) return 0;
+  const target = percentile(active, 0.6);
+  const a = amount / 100;
+  const g = new Float64Array(nb);
+  // Distance (en blocs) à la parole la plus proche : on ne remonte jamais un vrai silence.
+  const near = new Int32Array(nb).fill(1 << 20);
+  for (let b = 0, d = 1 << 20; b < nb; b++) { d = lv[b] > actThr ? 0 : d + 1; near[b] = d; }
+  for (let b = nb - 1, d = 1 << 20; b >= 0; b--) { d = lv[b] > actThr ? 0 : d + 1; near[b] = Math.min(near[b], d); }
+  let last = 0;
+  for (let b = 0; b < nb; b++) {
+    if (Number.isFinite(loc[b]) && lv[b] > actThr) last = Math.max(-10, Math.min(18, target - loc[b])) * a;
+    g[b] = near[b] > 10 ? Math.min(last, 0) : last;
+  }
+  // Lissage symétrique (~0,6 s) pour des transitions inaudibles.
+  const S = 6;
+  const gs = new Float64Array(nb);
+  for (let b = 0; b < nb; b++) {
+    let s = 0, c = 0;
+    for (let k = Math.max(0, b - S); k <= Math.min(nb - 1, b + S); k++) { s += g[k]; c++; }
+    gs[b] = s / c;
+  }
+  let maxAbs = 0;
+  for (const c of chs) {
+    for (let i = 0; i < c.length; i++) {
+      const p = i / B - 0.5;
+      const b0 = Math.max(0, Math.min(nb - 1, Math.floor(p)));
+      const b1 = Math.min(nb - 1, b0 + 1);
+      const f = Math.max(0, Math.min(1, p - b0));
+      const db = gs[b0] + (gs[b1] - gs[b0]) * f;
+      c[i] *= dbToLin(db);
+    }
+  }
+  for (let b = 0; b < nb; b++) maxAbs = Math.max(maxAbs, Math.abs(gs[b]));
+  return maxAbs;
+}
+
+/* ------------------------------------------------------- Préréglages */
+
+export function autoSettings(a) {
+  const snr = a ? a.snrDb : 30;
+  const reverberant = a && a.t60 && a.t60 > 0.42;
+  let denoise = snr < 12 ? 90 : snr < 20 ? 80 : snr < 28 ? 65 : snr < 38 ? 45 : 25;
+  if (a && a.noiseFloorDb < -72) denoise = Math.min(denoise, 20);
+  // L'IA brille sur le bruit et l'écho ; sur un son déjà propre (ou saturé) le
+  // filtrage classique, plus transparent, donne un meilleur résultat mesuré.
+  const engine = snr < 30 || reverberant ? 'ai' : 'classic';
+  if (engine === 'classic') denoise = Math.min(denoise, 35);
+  return {
+    mode: 'voice', engine, denoise, dereverb: 'auto', clarity: 35, compress: 45, level: 90,
+    autoEq: true, expand: 60, deess: 45, highpass: 70, dehum: 'auto', declip: true, monoVoice: false,
+  };
+}
+
 /* ------------------------------------------------------------ Pipeline */
 
-function processAudio(input, fs, s, progress) {
-  const chs = input.map((c) => Float32Array.from(c));
+/*
+ * deps.createDF(limitDb) → instance DeepFilterNet (ou null si indisponible).
+ * cache : objet persistant entre appels ; l'étape lourde (réparation + IA +
+ * déréverbération) n'est recalculée que si ses réglages changent.
+ */
+export async function processAudio(input, fs, s, progress = () => {}, deps = {}, cache = null) {
   const report = { steps: [] };
   const step = (name, base, span) => (p) => progress(base + span * p, name);
-
-  const before = analyze(chs, fs);
+  const before = cache && cache.before ? cache.before : analyze(input, fs);
+  if (cache) cache.before = before;
   report.before = before;
-  progress(0.03, 'Analyse');
-
-  if (s.monoVoice && chs.length > 1) {
-    const m = mixMid(chs);
-    for (const c of chs) c.set(m);
-    report.steps.push('Voix recentrée en mono');
-  }
-
-  if (s.declip && before.clipRatio > 0.00005) {
-    let fixed = 0;
-    for (const c of chs) fixed += declip(c);
-    if (fixed) report.steps.push(`Saturation réparée (${fixed.toLocaleString('fr-FR')} échantillons)`);
-  }
-  progress(0.06, 'Coupe-bas');
-
-  // Coupe-bas 24 dB/oct + suppression composante continue.
-  if (s.highpass > 0) {
-    const hp = biquad('highpass', s.highpass, fs, 0.5412);
-    const hp2 = biquad('highpass', s.highpass, fs, 1.3066);
-    for (const c of chs) runChain([hp, hp2], c);
-    report.steps.push(`Coupe-bas ${s.highpass} Hz (grondements, vent, manipulations)`);
-  }
-
-  const humFreq = s.dehum === 'auto' ? before.hum : Number(s.dehum) || 0;
-  if (humFreq) {
-    const fl = humFilters(humFreq, fs);
-    for (const c of chs) runChain(fl, c);
-    report.steps.push(`Ronflement électrique ${humFreq} Hz supprimé (${fl.length} harmoniques)`);
-  }
-  progress(0.1, 'Débruitage');
-
-  if (s.denoise > 0) {
-    spectralDenoise(chs, fs, s.denoise, step('Débruitage', 0.1, 0.6));
-    report.steps.push(`Bruit de fond réduit (intensité ${s.denoise} %)`);
-  }
-  progress(0.72, 'Égalisation');
+  progress(0.02, 'Analyse');
 
   const voice = s.mode !== 'music';
+  const useAI = voice && s.mode !== 'mix' && s.engine !== 'classic' && s.denoise > 0 && !!deps.createDF;
+  const humFreq = s.dehum === 'auto' ? before.hum : Number(s.dehum) || 0;
+  const keyA = JSON.stringify([s.monoVoice, s.declip, s.highpass, humFreq, s.denoise, useAI, s.engine, s.dereverb, s.mode]);
+  let chs, stepsA, t60 = null, nrA = null;
+
+  if (cache && cache.keyA === keyA) {
+    chs = cache.chsA.map((c) => Float32Array.from(c));
+    stepsA = cache.stepsA; t60 = cache.t60; nrA = cache.nrA;
+  } else {
+    chs = input.map((c) => Float32Array.from(c));
+    stepsA = [];
+    if (s.monoVoice && chs.length > 1) {
+      const m = mixMid(chs);
+      for (const c of chs) c.set(m);
+      stepsA.push('Voix recentrée en mono');
+    }
+    if (s.declip && before.clipRatio > 0.00005) {
+      let fixed = 0;
+      for (const c of chs) fixed += declip(c);
+      if (fixed) stepsA.push(`Saturation réparée (${fixed.toLocaleString('fr-FR')} échantillons reconstruits)`);
+    }
+    if (s.highpass > 0) {
+      // 12 dB/oct : coupe les grondements sans amincir les voix graves.
+      const hp = biquad('highpass', s.highpass, fs, 0.7071);
+      for (const c of chs) runBiquad(hp, c);
+      stepsA.push(`Coupe-bas ${s.highpass} Hz (grondements, vent, manipulations)`);
+    }
+    if (humFreq) {
+      const fl = humFilters(humFreq, fs);
+      for (const c of chs) runChain(fl, c);
+      stepsA.push(`Ronflement électrique ${humFreq} Hz supprimé (${fl.length} harmoniques)`);
+    }
+    progress(0.06, 'Débruitage');
+    let aiDone = false;
+    if (useAI) {
+      try {
+        await aiDenoise(chs, fs, s.denoise, deps.createDF, step('Débruitage IA', 0.06, 0.6));
+        stepsA.push(`Bruit supprimé par IA — DeepFilterNet3 (intensité ${s.denoise} %)`);
+        aiDone = true;
+      } catch (e) {
+        stepsA.push('IA indisponible sur cet appareil : débruitage classique utilisé');
+        if (typeof console !== 'undefined') console.warn('DeepFilterNet', e);
+      }
+    }
+    progress(0.66, 'Écho');
+    let derev = 0;
+    if (voice && s.mode !== 'mix') {
+      // L'estimateur sous-estime les grandes salles : on le recale (mesuré sur
+      // des réponses impulsionnelles de 0,3 à 1 s).
+      const est = before.t60;
+      t60 = est ? (est > 0.4 ? 0.3 + (est - 0.4) * 2.5 : est) : null;
+      if (s.dereverb === 'auto') derev = est && est > 0.4 ? Math.min(100, (est - 0.32) * 300) : 0;
+      else derev = Number(s.dereverb) || 0;
+    }
+    const classicNoise = !aiDone && s.denoise > 0 ? s.denoise : 0;
+    if (classicNoise || derev > 0) {
+      spectralDenoise(chs, fs, classicNoise, step(derev ? 'Écho' : 'Débruitage', 0.66, 0.1), { dereverb: derev, t60: t60 || 0.5 });
+      if (classicNoise) stepsA.push(`Bruit de fond réduit (filtrage spectral, intensité ${classicNoise} %)`);
+      if (derev > 0) stepsA.push(`Écho de la pièce réduit${t60 ? ` (réverbération estimée ${t60.toFixed(2).replace('.', ',')} s)` : ''}`);
+    }
+    // Mesuré juste après le nettoyage, avant niveleur/compression qui fausseraient la comparaison.
+    nrA = noiseReduction(input, chs, fs);
+    if (cache) { cache.keyA = keyA; cache.chsA = chs.map((c) => Float32Array.from(c)); cache.stepsA = stepsA; cache.t60 = t60; cache.nrA = nrA; }
+  }
+  report.steps.push(...stepsA);
+  report.t60 = t60;
+  progress(0.78, 'Égalisation');
+
   const eq = [];
   if (voice && s.autoEq) {
     const fl = autoEqFilters(mixMid(chs), fs, s.mode === 'mix' ? 0.5 : 1);
@@ -729,18 +1053,21 @@ function processAudio(input, fs, s, progress) {
     report.steps.push(`Clarté de la voix +${s.clarity} %`);
   }
   for (const c of chs) runChain(eq, c);
-  progress(0.78, 'De-esser');
 
   if (voice && s.deess > 0) {
     deEss(chs, fs, s.deess);
     report.steps.push('Sifflantes adoucies (de-esser)');
   }
-  progress(0.82, 'Compression');
+  progress(0.82, 'Niveaux');
 
+  if (voice && s.level > 0) {
+    const m = levelVoices(chs, fs, s.level);
+    if (m > 1) report.steps.push(`Voix équilibrées entre elles (correction jusqu'à ${Math.round(m)} dB)`);
+  }
   if (s.compress > 0) {
     const levels = blockLevels(mixMid(chs), fs, 0.4);
     compress(chs, fs, s.compress, levels.length ? percentile(levels, 0.85) : -20);
-    report.steps.push(`Volume de la voix stabilisé (compression ${s.compress} %)`);
+    report.steps.push(`Dynamique resserrée (compression ${s.compress} %)`);
   }
   progress(0.88, 'Silences');
 
@@ -750,50 +1077,39 @@ function processAudio(input, fs, s, progress) {
   }
   progress(0.92, 'Normalisation');
 
-  // Normalisation + limiteur, itérée pour atteindre la cible malgré le limiteur.
-  const ceiling = s.ceiling ?? -1.5;
-  let pre = Infinity;
+  // Normalisation + limiteur true-peak, itérée pour atteindre la cible malgré le limiteur.
+  const ceiling = s.ceiling ?? -1;
+  const margin = 0.3; // marge pour l'interpolation et l'encodeur
   let work = chs;
   if (Number.isFinite(s.target)) {
+    // Contrôle des crêtes : ramène le facteur de crête vers ~11 dB pour que le
+    // limiteur final n'ait presque rien à faire (sinon les voix « pointues »
+    // seraient écrasées plus que les autres).
+    if (voice) {
+      const lv = blockLevels(mixMid(chs), fs, 0.4);
+      if (lv.length) limit(chs, fs, percentile(lv, 0.85) + 11, 3, 0.05);
+      // Le contrôle de crêtes baisse davantage les voix « pointues » : 2e passe du niveleur.
+      if (s.level > 0) levelVoices(chs, fs, s.level);
+    }
     let gainDb = s.target - integratedLoudness(chs, fs);
     for (let it = 0; it < 10 && Number.isFinite(gainDb); it++) {
       work = chs.map((c) => Float32Array.from(c));
       applyGain(work, Math.min(gainDb, 60));
-      limit(work, fs, ceiling);
-      pre = integratedLoudness(work, fs);
-      const err = s.target - pre;
-      if (Math.abs(err) < 0.2) break;
+      limit(work, fs, ceiling - margin);
+      const err = s.target - integratedLoudness(work, fs);
+      if (Math.abs(err) < 0.15) break;
       gainDb += err * (it ? 1.6 : 1);
     }
-    report.steps.push(`Volume normalisé à ${s.target} LUFS, crêtes ≤ ${ceiling} dB`);
+    report.steps.push(`Volume normalisé à ${s.target} LUFS, crêtes réelles ≤ ${ceiling} dBTP`);
   } else {
-    limit(work, fs, ceiling);
+    limit(work, fs, ceiling - margin);
   }
-  progress(0.98, 'Mesures finales');
+  progress(0.97, 'Mesures finales');
 
   report.after = analyze(work, fs);
-  report.noiseReductionDb = noiseReduction(input, work, fs);
+  report.after.truePeakDb = linToDb(truePeak(work));
+  report.noiseReductionDb = nrA;
   return { chs: work, report };
 }
 
-if (typeof self !== 'undefined' && typeof self.postMessage === 'function' && typeof window === 'undefined') {
-  self.onmessage = (e) => {
-    const { id, type, channels, sampleRate, settings } = e.data;
-    try {
-      if (type === 'analyze') {
-        self.postMessage({ id, type: 'analysis', analysis: analyze(channels, sampleRate) });
-        return;
-      }
-      let last = 0;
-      const { chs, report } = processAudio(channels, sampleRate, settings, (p, label) => {
-        const now = Date.now();
-        if (now - last > 80) { last = now; self.postMessage({ id, type: 'progress', progress: p, label }); }
-      });
-      self.postMessage({ id, type: 'done', channels: chs, report }, chs.map((c) => c.buffer));
-    } catch (err) {
-      self.postMessage({ id, type: 'error', message: String(err && err.message || err) });
-    }
-  };
-}
-
-if (typeof module !== 'undefined') module.exports = { processAudio, analyze, integratedLoudness, biquad, runBiquad };
+export { analyze, integratedLoudness, truePeak, resample, estimateT60, biquad, runBiquad };

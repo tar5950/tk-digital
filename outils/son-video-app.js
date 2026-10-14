@@ -1,5 +1,6 @@
 // TK Digital — Studio Son : interface, lecture A/B et export vidéo.
 import * as MB from './vendor/mediabunny-1.59.1.min.mjs';
+import { autoSettings } from './son-video-dsp.js';
 
 const $ = (id) => document.getElementById(id);
 const els = {
@@ -11,15 +12,17 @@ const els = {
   denoise: $('denoise'), clarity: $('clarity'), compress: $('compress'), autoEq: $('autoEq'),
   expandT: $('expandT'), deessT: $('deessT'), highpass: $('highpass'), dehum: $('dehum'),
   monoT: $('monoT'), declipT: $('declipT'), toast: $('toast'),
+  engine: $('engine'), dereverb: $('dereverb'), level: $('level'), matchT: $('matchT'), aiBadge: $('aiBadge'),
 };
 
+// Préréglages : partent des réglages auto (moteur, écho…) puis imposent leur caractère.
 const PRESETS = {
-  face:      { mode: 'voice', denoise: 55, clarity: 40, compress: 50, autoEq: true,  expand: true,  deess: true,  highpass: 80 },
-  outdoor:   { mode: 'voice', denoise: 80, clarity: 45, compress: 55, autoEq: true,  expand: true,  deess: true,  highpass: 120 },
-  interview: { mode: 'voice', denoise: 60, clarity: 50, compress: 60, autoEq: true,  expand: true,  deess: true,  highpass: 90 },
-  mix:       { mode: 'mix',   denoise: 30, clarity: 25, compress: 30, autoEq: true,  expand: false, deess: true,  highpass: 60 },
-  podcast:   { mode: 'voice', denoise: 55, clarity: 40, compress: 70, autoEq: true,  expand: true,  deess: true,  highpass: 80, target: '-16' },
-  music:     { mode: 'music', denoise: 0,  clarity: 0,  compress: 15, autoEq: false, expand: false, deess: false, highpass: 30 },
+  face:      { denoise: 60, clarity: 40, compress: 45, level: 80, autoEq: true,  expand: true,  deess: true,  highpass: 70 },
+  outdoor:   { engine: 'ai', denoise: 90, clarity: 45, compress: 50, level: 90, autoEq: true, expand: true, deess: true, highpass: 110 },
+  interview: { engine: 'ai', denoise: 75, dereverb: '65', clarity: 45, compress: 50, level: 100, autoEq: true, expand: true, deess: true, highpass: 80 },
+  mix:       { mode: 'mix', engine: 'classic', denoise: 30, dereverb: '0', clarity: 25, compress: 25, level: 0, autoEq: true, expand: false, deess: true, highpass: 50 },
+  podcast:   { denoise: 65, clarity: 40, compress: 60, level: 90, autoEq: true,  expand: true,  deess: true,  highpass: 70, target: '-16' },
+  music:     { mode: 'music', engine: 'classic', denoise: 0, dereverb: '0', clarity: 0, compress: 10, level: 0, autoEq: false, expand: false, deess: false, highpass: 25 },
 };
 
 const state = {
@@ -28,7 +31,7 @@ const state = {
   analysis: null, report: null, mode: 'voice', preset: 'auto',
   view: 'after', ctx: null, analyser: null, src: null, startedAt: 0,
   playing: false, clockOffset: 0, duration: 0,
-  worker: null, jobId: 0, busy: false, exporting: false,
+  worker: null, jobId: 0, busy: false, exporting: false, pending: false,
   peaksOrig: null, peaksProc: null,
 };
 
@@ -75,8 +78,22 @@ function ensureCtx() {
     state.analyser.fftSize = 4096;
     state.analyser.smoothingTimeConstant = 0.78;
     state.analyser.connect(state.ctx.destination);
+    state.gain = state.ctx.createGain();
+    state.gain.connect(state.analyser);
   }
   return state.ctx;
+}
+
+// Comparaison honnête : l'original est rejoué au même volume perçu (LUFS)
+// que la version traitée, sinon « plus fort » paraît toujours « mieux ».
+function applyMatchGain() {
+  if (!state.gain) return;
+  let g = 1;
+  const r = state.report;
+  if (state.view === 'before' && els.matchT.checked && r && Number.isFinite(r.before.loudness) && Number.isFinite(r.after.loudness)) {
+    g = Math.pow(10, Math.max(-30, Math.min(30, r.after.loudness - r.before.loudness)) / 20);
+  }
+  state.gain.gain.setTargetAtTime(g, state.ctx.currentTime, 0.01);
 }
 
 async function decodeWithMediabunny(file, onProgress) {
@@ -121,7 +138,6 @@ async function decodeWithWebAudio(file) {
 
 async function loadFile(file) {
   stopAudio();
-  if (state.worker) { state.worker.terminate(); state.worker = null; }
   Object.assign(state, { file, orig: null, proc: null, report: null, analysis: null, peaksOrig: null, peaksProc: null, preset: 'auto', busy: false });
   els.studio.classList.add('on');
   els.fname.textContent = file.name;
@@ -164,8 +180,8 @@ async function loadFile(file) {
   drawWave();
   if (state.duration > 1800) toast('Fichier long : le traitement peut prendre quelques minutes.');
 
-  setStatus('Analyse du son…', 0.32);
-  const analysis = await runWorker({ type: 'analyze', channels: dec.chs, sampleRate: dec.sr });
+  setStatus('Analyse du son (bruit, écho, ronflement, saturation)…', 0.32);
+  const analysis = await runWorker({ type: 'load', channels: dec.chs, sampleRate: dec.sr }, null, dec.chs.map((c) => c.buffer));
   if (!analysis || state.file !== file) return;
   state.analysis = analysis.analysis;
   applyPreset('auto', false);
@@ -175,20 +191,31 @@ async function loadFile(file) {
 /* ----------------------------------------------------------- Worker */
 
 function getWorker() {
-  if (!state.worker) state.worker = new Worker(new URL('./son-video-dsp.js', import.meta.url));
+  if (!state.worker) {
+    state.worker = new Worker(new URL('./son-video-worker.js', import.meta.url), { type: 'module' });
+    // Le modèle IA (34 Mo) se télécharge en arrière-plan dès l'ouverture.
+    state.aiReady = runWorker({ type: 'preloadAI' }, (p) => setBadge(`IA : ${Math.round(p * 100)} %`), [], state.worker)
+      .then((r) => { setBadge(r ? 'IA prête ✓' : 'IA indisponible', !r); return !!r; });
+  }
   return state.worker;
 }
 
-function runWorker(msg, onProgress, transfer = []) {
-  const id = ++state.jobId;
-  const w = getWorker();
+function setBadge(txt, bad = false) {
+  els.aiBadge.textContent = txt;
+  els.aiBadge.style.background = bad ? 'var(--bad)' : '';
+}
+
+let msgId = 0;
+function runWorker(msg, onProgress, transfer = [], worker = null) {
+  const id = ++msgId;
+  const w = worker || getWorker();
   return new Promise((resolve) => {
     const handler = (e) => {
       const d = e.data;
       if (d.id !== id) return;
       if (d.type === 'progress') { onProgress && onProgress(d.progress, d.label); return; }
       w.removeEventListener('message', handler);
-      if (d.type === 'error') { console.error(d.message); toast(`Erreur de traitement : ${d.message}`, true); resolve(null); return; }
+      if (d.type === 'error') { console.error(d.message); if (msg.type !== 'preloadAI') toast(`Erreur de traitement : ${d.message}`, true); resolve(null); return; }
       resolve(d);
     };
     w.addEventListener('message', handler);
@@ -202,29 +229,22 @@ function highlightPreset(p) {
   els.presets.querySelectorAll('.preset').forEach((b) => b.classList.toggle('on', b.dataset.p === p));
 }
 
-function autoSettings(a) {
-  const snr = a ? a.snrDb : 30;
-  let denoise = snr < 12 ? 85 : snr < 20 ? 70 : snr < 28 ? 55 : snr < 38 ? 38 : 20;
-  if (a && a.noiseFloorDb < -72) denoise = Math.min(denoise, 15);
-  return {
-    mode: 'voice', denoise, clarity: 40, compress: 50, autoEq: true,
-    expand: snr < 40, deess: true, highpass: 80,
-  };
-}
-
 function applyPreset(name, reprocess = true) {
   state.preset = name;
   highlightPreset(name);
-  const p = name === 'auto' ? autoSettings(state.analysis) : PRESETS[name];
+  const auto = autoSettings(state.analysis);
+  const p = name === 'auto' ? auto : { ...auto, mode: 'voice', dereverb: 'auto', ...PRESETS[name] };
   state.mode = p.mode;
-  els.denoise.value = p.denoise; els.clarity.value = p.clarity; els.compress.value = p.compress;
-  els.autoEq.checked = p.autoEq; els.expandT.checked = p.expand; els.deessT.checked = p.deess;
+  els.engine.value = p.engine; els.dereverb.value = String(p.dereverb);
+  els.denoise.value = p.denoise; els.clarity.value = p.clarity; els.compress.value = p.compress; els.level.value = p.level;
+  els.autoEq.checked = !!p.autoEq; els.expandT.checked = !!p.expand; els.deessT.checked = !!p.deess;
   els.highpass.value = p.highpass;
   if (p.target) els.target.value = p.target;
-  else if (name !== 'podcast' && els.target.value === '-16' && state.presetTargetFromPodcast) els.target.value = '-14';
+  else if (state.presetTargetFromPodcast && els.target.value === '-16') els.target.value = '-14';
   state.presetTargetFromPodcast = !!p.target;
   const voice = p.mode !== 'music';
-  [els.clarity, els.autoEq, els.expandT, els.deessT].forEach((el) => { el.disabled = !voice; });
+  [els.clarity, els.autoEq, els.expandT, els.deessT, els.level, els.dereverb].forEach((el) => { el.disabled = !voice; });
+  els.engine.disabled = p.mode !== 'voice';
   refreshOutputs();
   if (reprocess) scheduleProcess(0);
 }
@@ -233,25 +253,31 @@ function refreshOutputs() {
   $('denoiseV').textContent = `${els.denoise.value} %`;
   $('clarityV').textContent = `${els.clarity.value} %`;
   $('compressV').textContent = `${els.compress.value} %`;
+  $('levelV').textContent = `${els.level.value} %`;
   $('highpassV').textContent = Number(els.highpass.value) ? `${els.highpass.value} Hz` : 'off';
+  const t = state.analysis && state.analysis.t60;
+  $('dereverbV').textContent = els.dereverb.value === 'auto' && t ? `salle ≈ ${t > 0.42 ? 'réverbérante' : 'sèche'}` : '';
 }
 
 function currentSettings() {
   const t = els.target.value;
   return {
     mode: state.mode,
+    engine: els.engine.value,
     denoise: Number(els.denoise.value),
+    dereverb: els.dereverb.value === 'auto' ? 'auto' : Number(els.dereverb.value),
     clarity: Number(els.clarity.value),
     compress: Number(els.compress.value),
+    level: Number(els.level.value),
     autoEq: els.autoEq.checked,
-    expand: els.expandT.checked ? 50 : 0,
+    expand: els.expandT.checked ? 60 : 0,
     deess: els.deessT.checked ? 45 : 0,
     highpass: Number(els.highpass.value),
     dehum: els.dehum.value,
     monoVoice: els.monoT.checked,
     declip: els.declipT.checked,
     target: t === 'off' ? NaN : Number(t),
-    ceiling: -1.5,
+    ceiling: -1,
   };
 }
 
@@ -259,11 +285,12 @@ els.presets.addEventListener('click', (e) => {
   const b = e.target.closest('.preset');
   if (b && state.orig) applyPreset(b.dataset.p);
 });
-['denoise', 'clarity', 'compress', 'highpass'].forEach((k) => {
+['denoise', 'clarity', 'compress', 'highpass', 'level'].forEach((k) => {
   els[k].addEventListener('input', refreshOutputs);
   els[k].addEventListener('change', () => scheduleProcess());
 });
-['target', 'autoEq', 'expandT', 'deessT', 'dehum', 'monoT', 'declipT'].forEach((k) => els[k].addEventListener('change', () => scheduleProcess()));
+['target', 'autoEq', 'expandT', 'deessT', 'dehum', 'monoT', 'declipT', 'engine', 'dereverb'].forEach((k) => els[k].addEventListener('change', () => { refreshOutputs(); scheduleProcess(); }));
+els.matchT.addEventListener('change', () => applyMatchGain());
 
 let procTimer;
 function scheduleProcess(delay = 350) {
@@ -274,33 +301,33 @@ function scheduleProcess(delay = 350) {
 
 async function process() {
   if (!state.orig || state.exporting) return;
+  // Un calcul est déjà en cours : on relancera avec les derniers réglages à la fin.
+  if (state.busy) { state.pending = true; return; }
   const file = state.file;
-  const chs = Array.from({ length: state.orig.numberOfChannels }, (_, c) => state.orig.getChannelData(c).slice());
-  // Un nouveau réglage annule le calcul en cours.
-  if (state.busy && state.worker) { state.worker.terminate(); state.worker = null; }
-  state.busy = true;
+  state.busy = true; state.pending = false;
   els.studio.classList.add('busy');
   els.dlVideo.disabled = true; els.dlWav.disabled = true;
   setStatus('Amélioration du son…', 0.35);
   const t = performance.now();
   const res = await runWorker(
-    { type: 'process', channels: chs, sampleRate: state.sr, settings: currentSettings() },
+    { type: 'process', settings: currentSettings() },
     (p, label) => setStatus(`${label}… ${Math.round(p * 100)} %`, 0.35 + p * 0.65),
-    chs.map((c) => c.buffer),
   );
-  if (state.file !== file || (res && res.id !== state.jobId)) return;
-  if (!res) { state.busy = false; els.studio.classList.remove('busy'); setStatus('Le traitement a échoué. Essaie un autre réglage ou un autre fichier.'); return; }
   state.busy = false;
   els.studio.classList.remove('busy');
+  if (state.file !== file) return;
+  if (state.pending) { process(); return; }
+  if (!res) { setStatus('Le traitement a échoué. Essaie un autre réglage ou un autre fichier.'); return; }
   const ctx = ensureCtx();
   const buf = ctx.createBuffer(res.channels.length, res.channels[0].length, state.sr);
   res.channels.forEach((c, i) => buf.copyToChannel(c, i));
   state.proc = buf;
   state.report = res.report;
   state.peaksProc = computePeaks(buf);
+  applyMatchGain();
   drawWave();
   renderReport();
-  setStatus(`Prêt ✓ — traité en ${((performance.now() - t) / 1000).toFixed(1).replace('.', ',')} s. Compare avec « Avant / Après ».`, 1);
+  setStatus(`Prêt ✓ — traité en ${((performance.now() - t) / 1000).toFixed(1).replace('.', ',')} s. Compare avec « Avant / Après » (touche A).`, 1);
   els.dlVideo.disabled = !state.hasVideo;
   els.dlVideo.hidden = !state.hasVideo;
   els.dlWav.className = state.hasVideo ? 'btn btn-g' : 'btn btn-a';
@@ -314,12 +341,14 @@ function renderReport() {
   const stat = (k, v, unit, d) => `<div class="stat"><div class="k">${k}</div><div class="v">${v} <small>${unit}</small></div><div class="d">${d}</div></div>`;
   const nr = state.report.noiseReductionDb;
   const nrTxt = nr === null || nr === undefined ? ['—', '', 'pas de blanc à mesurer']
-    : nr < 1.5 ? ['OK', '', 'son déjà propre'] : [`−${Math.round(nr)}`, 'dB', 'pendant les blancs, à voix égale'];
+    : nr < 1.5 ? ['OK', '', 'son déjà propre'] : [`−${Math.round(nr)}`, 'dB', 'par rapport à la voix (avant nettoyage des silences)'];
   els.stats.innerHTML = [
     stat('Volume perçu', fmtDb(a.loudness), 'LUFS', `avant ${fmtDb(b.loudness)}`),
     stat('Bruit de fond', nrTxt[0], nrTxt[1], nrTxt[2]),
-    stat('Ronflement', b.hum && currentSettings().dehum !== '0' ? `${b.hum} Hz` : 'aucun', '', b.hum && currentSettings().dehum !== '0' ? '<b>supprimé</b>' : 'rien détecté'),
-    stat('Crête max', fmtDb(a.peakDb), 'dBFS', `avant ${fmtDb(b.peakDb)}`),
+    state.report.steps.some((x) => x.startsWith('Écho'))
+      ? stat('Écho', state.report.t60 ? fmtDb(state.report.t60, 2) : '—', 's', '<b>réduit</b> (réverbération estimée)')
+      : stat('Ronflement', b.hum && currentSettings().dehum !== '0' ? `${b.hum} Hz` : 'aucun', '', b.hum && currentSettings().dehum !== '0' ? '<b>supprimé</b>' : 'rien détecté'),
+    stat('Crête réelle', fmtDb(a.truePeakDb ?? a.peakDb), 'dBTP', `avant ${fmtDb(b.peakDb)} dBFS`),
   ].join('');
   els.steps.innerHTML = state.report.steps.map((s) => `<li>${s}</li>`).join('');
   const warns = [];
@@ -350,7 +379,7 @@ function startAudio() {
   const ctx = ensureCtx();
   const src = ctx.createBufferSource();
   src.buffer = buf;
-  src.connect(state.analyser);
+  src.connect(state.gain);
   const t = mediaTime();
   const off = t - state.t0;
   if (off >= 0) src.start(0, Math.min(off, buf.duration));
@@ -415,11 +444,12 @@ document.querySelectorAll('.ab-switch button').forEach((b) => b.addEventListener
 function setView(v) {
   state.view = v;
   document.querySelectorAll('.ab-switch button').forEach((x) => x.classList.toggle('on', x.dataset.v === v));
+  applyMatchGain();
   if (state.playing) startAudio();
 }
 
 document.addEventListener('keydown', (e) => {
-  if (!state.orig || e.target.closest('input,select,textarea,button')) return;
+  if (!state.orig || e.target.closest('input,select,textarea')) return;
   if (e.key === 'a' || e.key === 'A') { setView(state.view === 'after' ? 'before' : 'after'); }
   else if (e.key === ' ') { e.preventDefault(); state.playing ? pause() : play(); }
   else if (e.key === 'ArrowRight') seek(mediaTime() + 5);
@@ -647,3 +677,4 @@ els.dlVideo.addEventListener('click', async () => {
 });
 
 refreshOutputs();
+getWorker();
